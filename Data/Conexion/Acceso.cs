@@ -182,7 +182,7 @@ namespace Data.Conexion
         }
 
         // TO REVIEW
-        /*public DataTable GenerarConsulta(string Consulta)
+        public DataTable GenerarConsulta(string Consulta)
         {
             SqlDataReader dr;
             DataTable dt = new DataTable();
@@ -205,7 +205,7 @@ namespace Data.Conexion
 
             Desconectar();
             return dt;
-        }*/
+        }
 
         public virtual bool VerificarExistenciaBaseDeDatos(string server, string nombreBase)
         {

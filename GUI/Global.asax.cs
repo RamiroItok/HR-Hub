@@ -1,5 +1,6 @@
 ﻿using Aplication;
 using Aplication.Interfaces;
+using Aplication.Services;
 using Data.DAO;
 using Data.Interfaces;
 using System;
@@ -25,6 +26,8 @@ namespace GUI
         {
             Container = new UnityContainer();
 
+            Container.RegisterType<IDigitoVerificadorDAO, DigitoVerificadorDAO>();
+            Container.RegisterType<IDigitoVerificadorService, DigitoVerificadorService>();
             Container.RegisterType<IUsuarioDAO, UsuarioDAO>();
             Container.RegisterType<IUsuarioService, UsuarioService>();
         }
