@@ -1,21 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Aplication;
+using Aplication.Interfaces;
+using Data.DAO;
+using Data.Interfaces;
+using System;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
+using Unity;
 
 namespace GUI
 {
     public class Global : HttpApplication
     {
+        public static IUnityContainer Container { get; private set; }
         void Application_Start(object sender, EventArgs e)
         {
-            // Código que se ejecuta al iniciar la aplicación
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            RegistrarDependencias();
+        }
+
+        private static void RegistrarDependencias()
+        {
+            Container = new UnityContainer();
+
+            Container.RegisterType<IUsuarioDAO, UsuarioDAO>();
+            Container.RegisterType<IUsuarioService, UsuarioService>();
         }
     }
 }
