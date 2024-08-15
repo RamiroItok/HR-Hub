@@ -8,7 +8,7 @@ namespace Aplication.Interfaces
     public interface IUsuarioService
     {
         int RegistrarUsuario(Usuario usuario);
-        //List<Puesto> ObtenerPuestos();
         DataTable ObtenerPuestos();
+        Usuario ValidarUsuarioContraseña(string email, string contraseña);
     }
 }

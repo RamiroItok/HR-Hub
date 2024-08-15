@@ -7,5 +7,6 @@ namespace Data.Interfaces
     {
         int RegistrarUsuario(Usuario usuario);
         DataSet ObtenerPuestos();
+        Usuario ValidarUsuarioContraseña(string email, string contraseña);
     }
 }
