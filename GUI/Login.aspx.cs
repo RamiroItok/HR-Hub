@@ -26,6 +26,7 @@ namespace GUI
             if (usuario == null)
             {
                 lblMensaje.Text = "El email no coincide con la contraseña.";
+                lblMensaje.Visible = true;
             }
             else
             {

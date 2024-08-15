@@ -63,7 +63,7 @@ namespace Data.DAO
 
             var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_validarUsuarioContraseña", parametros);
 
-            if(resultado.Tables.Count == 0)
+            if(resultado.Tables[0].Rows.Count == 0)
             {
                 return null;
             }

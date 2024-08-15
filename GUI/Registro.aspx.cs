@@ -18,7 +18,10 @@ namespace GUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CargarPuestos();
+            if (!IsPostBack)
+            {
+                CargarPuestos();
+            }
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
@@ -27,30 +30,31 @@ namespace GUI
             {
                 Usuario usuario = new Usuario()
                 {
-                    Nombre = txtNombre.Value,
-                    Apellido = txtApellido.Value,
-                    Email = txtEmail.Value,
-                    Contraseña = txtContraseña.Value,
+                    Nombre = txtNombre.Text,
+                    Apellido = txtApellido.Text,
+                    Email = txtEmail.Text,
+                    Contraseña = txtContraseña.Text,
                     Puesto = (Puesto)Enum.Parse(typeof(Puesto), DropDownPuesto.Text)
                 };
 
                 var id = _usuarioService.RegistrarUsuario(usuario);
 
-                lblResultado.Text = "Se ha registrado el usuario correctamente";
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "Se ha registrado el usuario correctamente";
                 Limpiar();
             }
             catch (Exception ex)
             {
-                lblResultado.Text = ex.Message;
+                lblMensaje.Text = ex.Message;
             }
         }
 
         private void Limpiar()
         {
-            txtNombre.Value = String.Empty;
-            txtApellido.Value = String.Empty;
-            txtEmail.Value = String.Empty;
-            txtContraseña.Value = String.Empty;
+            txtNombre.Text = String.Empty;
+            txtApellido.Text = String.Empty;
+            txtEmail.Text = String.Empty;
+            txtContraseña.Text = String.Empty;
         }
 
         private void CargarPuestos()
