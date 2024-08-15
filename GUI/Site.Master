@@ -54,6 +54,7 @@
                         <li><a runat="server" href="~/">Inicio</a></li>
                         <li><a runat="server" href="~/Registro">Registro</a></li>
                         <li><a runat="server" href="~/Contact">Contacto</a></li>
+                        <li><asp:LinkButton ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" CssClass="navbar-link">Cerrar sesión</asp:LinkButton></li>
                     </ul>
                 </div>
             </div>

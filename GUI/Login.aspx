@@ -14,16 +14,16 @@
             <h2>Inicio de Sesión</h2>
             <asp:Panel runat="server" CssClass="form-group">
                 <asp:Label runat="server" AssociatedControlID="txtEmail" Text="Email:" CssClass="form-label"></asp:Label>
-                <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" />
+                <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" Width="344px" />
             </asp:Panel>
 
             <asp:Panel runat="server" CssClass="form-group">
                 <asp:Label runat="server" AssociatedControlID="txtPassword" Text="Contraseña:" CssClass="form-label"></asp:Label>
-                <asp:TextBox runat="server" ID="txtPassword" CssClass="form-control" TextMode="Password" />
+                <asp:TextBox runat="server" ID="txtPassword" CssClass="form-control" TextMode="Password" Width="343px" />
             </asp:Panel>
 
             <asp:Panel runat="server" CssClass="form-group">
-                <asp:Button runat="server" ID="btnLogin" Text="Iniciar Sesión" CssClass="btn btn-primary" OnClick="btnLogin_Click" />
+                <asp:Button runat="server" ID="btnLogin" Text="Iniciar Sesión" CssClass="btn btn-primary" OnClick="btnLogin_Click" Width="364px" />
             </asp:Panel>
 
             <!-- Label para mostrar mensajes de error o éxito -->
