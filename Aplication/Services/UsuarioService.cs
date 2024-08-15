@@ -2,6 +2,7 @@
 using Data.Interfaces;
 using Models;
 using System;
+using System.Data;
 
 namespace Aplication
 {
@@ -43,6 +44,13 @@ namespace Aplication
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public DataTable ObtenerPuestos()
+        {
+            var resultado = _usuarioDAO.ObtenerPuestos();
+
+            return resultado.Tables[0];
         }
     }
 }

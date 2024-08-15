@@ -38,5 +38,19 @@ namespace Data.DAO
                 throw new Exception(ex.Message);
             }
         }
+
+        public DataSet ObtenerPuestos()
+        {
+            try
+            {
+                DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_s_puesto", null);
+
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
