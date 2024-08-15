@@ -2,26 +2,28 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2 class="text-center">Registrar usuario</h2>
-    <p class="text-center">Esta parte de la página es para registrarse como usuario</p>
-    <p class="text-center">Nombre:
-        <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
-    </p>
-    <p class="text-center">Apellido:
-        <asp:TextBox ID="txtApellido" runat="server"></asp:TextBox>
-    </p>
-    <p class="text-center">Email:
-        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-    </p>
-    <p class="text-center">Contraseña:
-        <asp:TextBox ID="txtContraseña" runat="server"></asp:TextBox>
-    </p>
+
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="nombre" id="txtNombre" name="nombre" required runat="server">
+    </div>
+    <div class="form-group">
+        <label for="apellido">Apellido</label>
+        <input type="apellido" id="txtApellido" name="apellido" required runat="server">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="txtEmail" name="email" required runat="server">
+    </div>
+    <div class="form-group">
+        <label for="contraseña">Contraseña</label>
+        <input type="contraseña" id="txtContraseña" name="contraseña" required runat="server">
+    </div>
     <p class="text-center">Puesto:
         <asp:DropDownList ID="DropDownPuesto" runat="server">
         </asp:DropDownList>
     </p>
-    <p class="text-center">
-        <asp:Button ID="btnRegistrar" runat="server" OnClick="btnRegistrar_Click" Text="Registrarse" />
-    </p>
+    <asp:Button type="submit" id="btnRegistrar" class="submit-btn" runat="server" Text="Registrar" OnClick="btnRegistrar_Click"></asp:Button>
     <p class="text-center">
         &nbsp;</p>
     <p class="text-center">

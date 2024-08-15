@@ -21,7 +21,7 @@ namespace GUI
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtNombre;
 
         /// <summary>
         /// Control txtApellido.
@@ -30,7 +30,7 @@ namespace GUI
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApellido;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtApellido;
 
         /// <summary>
         /// Control txtEmail.
@@ -39,7 +39,7 @@ namespace GUI
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtEmail;
 
         /// <summary>
         /// Control txtContraseña.
@@ -48,7 +48,7 @@ namespace GUI
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContraseña;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtContraseña;
 
         /// <summary>
         /// Control DropDownPuesto.

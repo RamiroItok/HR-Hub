@@ -18,23 +18,20 @@ namespace GUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            CargarPuestos();
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             try
             {
-                var puesto = DropDownPuesto.Text;
-                puesto = "Lider";
-
                 Usuario usuario = new Usuario()
                 {
-                    Nombre = txtNombre.Text,
-                    Apellido = txtApellido.Text,
-                    Email = txtEmail.Text,
-                    Contraseña = txtContraseña.Text,
-                    Puesto = (Puesto)Enum.Parse(typeof(Puesto), puesto)
+                    Nombre = txtNombre.Value,
+                    Apellido = txtApellido.Value,
+                    Email = txtEmail.Value,
+                    Contraseña = txtContraseña.Value,
+                    Puesto = (Puesto)Enum.Parse(typeof(Puesto), DropDownPuesto.Text)
                 };
 
                 var id = _usuarioService.RegistrarUsuario(usuario);
@@ -50,10 +47,19 @@ namespace GUI
 
         private void Limpiar()
         {
-            txtNombre.Text = String.Empty;
-            txtApellido.Text = String.Empty;
-            txtEmail.Text = String.Empty;
-            txtContraseña.Text = String.Empty;
+            txtNombre.Value = String.Empty;
+            txtApellido.Value = String.Empty;
+            txtEmail.Value = String.Empty;
+            txtContraseña.Value = String.Empty;
+        }
+
+        private void CargarPuestos()
+        {
+            var resultado = _usuarioService.ObtenerPuestos();
+            DropDownPuesto.DataSource = resultado;
+            DropDownPuesto.DataTextField = "Puesto";
+            DropDownPuesto.DataValueField = "Id";
+            DropDownPuesto.DataBind();
         }
     }
 }
