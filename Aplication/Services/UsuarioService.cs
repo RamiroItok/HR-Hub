@@ -52,5 +52,11 @@ namespace Aplication
 
             return resultado.Tables[0];
         }
+
+        public Usuario ValidarUsuarioContraseña(string email, string contraseña)
+        {
+            var resultado = _usuarioDAO.ValidarUsuarioContraseña(email, contraseña);
+            return resultado;
+        }
     }
 }
