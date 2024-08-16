@@ -33,6 +33,11 @@
         </asp:Panel>
 
         <asp:Panel runat="server" CssClass="form-group">
+            <asp:Label runat="server" AssociatedControlID="txtArea" Text="Area:" CssClass="form-label"></asp:Label>
+            <asp:TextBox runat="server" ID="txtArea" CssClass="form-control" />
+        </asp:Panel>
+
+        <asp:Panel runat="server" CssClass="form-group">
             <asp:Button runat="server" ID="btnRegistrar" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrar_Click" />
         </asp:Panel>
 

@@ -10,5 +10,6 @@ namespace Aplication.Interfaces
         int RegistrarUsuario(Usuario usuario);
         DataTable ObtenerPuestos();
         Usuario ValidarUsuarioContraseña(string email, string contraseña);
+        List<Usuario> ListarUsuarios();
     }
 }

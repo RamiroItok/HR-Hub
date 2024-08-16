@@ -26,7 +26,9 @@ namespace Data.DAO
                     { "@Apellido", usuario.Apellido },
                     { "@Email", usuario.Email },
                     { "@Contraseña", usuario.Contraseña },
-                    { "@IdPuesto", (int)usuario.Puesto }
+                    { "@IdPuesto", (int)usuario.Puesto },
+                    { "@Area", usuario.Area },
+                    { "@FechaIngreso", usuario.FechaIngreso }
                 };
 
                 DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_i_usuario", parameters);
@@ -55,29 +57,52 @@ namespace Data.DAO
 
         public Usuario ValidarUsuarioContraseña(string email, string contraseña)
         {
-            Dictionary<string, object> parametros = new Dictionary<string, object>
+            try
             {
-                { "@Email", email },
-                { "@Contraseña", contraseña }
-            };
+                Dictionary<string, object> parametros = new Dictionary<string, object>
+                {
+                    { "@Email", email },
+                    { "@Contraseña", contraseña }
+                };
 
-            var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_validarUsuarioContraseña", parametros);
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_validarUsuarioContraseña", parametros);
 
-            if(resultado.Tables[0].Rows.Count == 0)
-            {
-                return null;
+                if (resultado.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                var usuario = new Usuario()
+                {
+                    Id = (int)resultado.Tables[0].Rows[0]["Id"],
+                    Nombre = resultado.Tables[0].Rows[0]["Nombre"].ToString(),
+                    Apellido = resultado.Tables[0].Rows[0]["Apellido"].ToString(),
+                    Email = resultado.Tables[0].Rows[0]["Email"].ToString(),
+                    Puesto = (Models.Enums.Puesto)resultado.Tables[0].Rows[0]["IdPuesto"],
+                    Area = resultado.Tables[0].Rows[0]["Area"].ToString(),
+                    FechaIngreso = (DateTime)resultado.Tables[0].Rows[0]["FechaIngreso"],
+                };
+
+                return usuario;
             }
-
-            var usuario = new Usuario()
+            catch (Exception ex)
             {
-                Id = (int)resultado.Tables[0].Rows[0]["Id"],
-                Nombre = resultado.Tables[0].Rows[0]["Nombre"].ToString(),
-                Apellido = resultado.Tables[0].Rows[0]["Apellido"].ToString(),
-                Email = resultado.Tables[0].Rows[0]["Email"].ToString(),
-                Puesto = (Models.Enums.Puesto)resultado.Tables[0].Rows[0]["IdPuesto"]
-            };
+                throw new Exception(ex.Message);
+            }
+        }
 
-            return usuario;
+        public DataSet ListarUsuarios()
+        {
+            try
+            {
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_usuarios", null);
+
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

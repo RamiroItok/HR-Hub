@@ -1,4 +1,5 @@
 ﻿using Models.Enums;
+using System;
 
 namespace Models
 {
@@ -10,5 +11,7 @@ namespace Models
         public string Email { get; set; }
         public string Contraseña { get; set; }
         public Puesto Puesto { get; set; }
+        public string Area { get; set; }
+        public DateTime FechaIngreso { get; set; }
     }
 }
