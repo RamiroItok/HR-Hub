@@ -34,7 +34,9 @@ namespace GUI
                     Apellido = txtApellido.Text,
                     Email = txtEmail.Text,
                     Contraseña = txtContraseña.Text,
-                    Puesto = (Puesto)Enum.Parse(typeof(Puesto), DropDownPuesto.Text)
+                    Puesto = (Puesto)Enum.Parse(typeof(Puesto), DropDownPuesto.Text),
+                    Area = txtArea.Text,
+                    FechaIngreso = DateTime.Now
                 };
 
                 var id = _usuarioService.RegistrarUsuario(usuario);
