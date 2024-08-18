@@ -1,6 +1,7 @@
 ﻿using Aplication;
 using Aplication.Interfaces;
 using Aplication.Services;
+using Data.Composite;
 using Data.DAO;
 using Data.Interfaces;
 using System;
@@ -28,6 +29,8 @@ namespace GUI
 
             Container.RegisterType<IDigitoVerificadorDAO, DigitoVerificadorDAO>();
             Container.RegisterType<IDigitoVerificadorService, DigitoVerificadorService>();
+            Container.RegisterType<IPermisoService, PermisoService>();
+            Container.RegisterType<PermisoDAO, PermisoDAO>();
             Container.RegisterType<IUsuarioDAO, UsuarioDAO>();
             Container.RegisterType<IUsuarioService, UsuarioService>();
         }

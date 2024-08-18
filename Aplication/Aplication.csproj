@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IDigitoVerificadorService.cs" />
+    <Compile Include="Interfaces\IPermisoService.cs" />
     <Compile Include="Services\DigitoVerificadorService.cs" />
     <Compile Include="Services\EncriptacionService.cs" />
     <Compile Include="Interfaces\IUsuarioService.cs" />
+    <Compile Include="Services\PermisoService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

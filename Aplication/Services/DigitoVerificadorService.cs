@@ -9,9 +9,9 @@ namespace Aplication.Services
     {
         private readonly IDigitoVerificadorDAO _digitoVerificadorDAO;
 
-        public DigitoVerificadorService(IDigitoVerificadorDAO digitoVerificadorDAO)
+        public DigitoVerificadorService()
         {
-            _digitoVerificadorDAO = digitoVerificadorDAO;
+            _digitoVerificadorDAO = new Data.DAO.DigitoVerificadorDAO();;
         }
 
         public string VerificarDV()
