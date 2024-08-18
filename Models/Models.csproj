@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Composite\Componente.cs" />
+    <Compile Include="Composite\Familia.cs" />
+    <Compile Include="Composite\Patente.cs" />
+    <Compile Include="Composite\Permiso.cs" />
+    <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="Enums\Puesto.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

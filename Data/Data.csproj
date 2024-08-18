@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Composite\PermisoDAO.cs" />
     <Compile Include="Conexion\Acceso.cs" />
     <Compile Include="Conexion\Conexion.cs" />
     <Compile Include="DAO\DigitoVerificadorDAO.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Interfaces\IDigitoVerificadorDAO.cs" />
     <Compile Include="Interfaces\IUsuarioDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\Fill.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
