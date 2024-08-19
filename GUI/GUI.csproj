@@ -114,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GestionFamilia.aspx" />
     <Content Include="GestionFamiliaPatente.aspx" />
     <Content Include="ListarUsuarios.aspx" />
     <Content Include="Login.aspx" />
@@ -177,6 +178,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="GestionFamilia.aspx.cs">
+      <DependentUpon>GestionFamilia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionFamilia.aspx.designer.cs">
+      <DependentUpon>GestionFamilia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GestionFamiliaPatente.aspx.cs">
       <DependentUpon>GestionFamiliaPatente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
