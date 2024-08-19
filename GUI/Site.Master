@@ -64,6 +64,7 @@
                                     <a class="test" tabindex="-1" href="#">Roles</a>
                                     <ul class="dropdown-menu">
                                         <li><a tabindex="-1" runat="server" href="~/GestionFamiliaPatente">Gestión Familia Patente</a></li>
+                                        <li><a tabindex="-2" runat="server" href="~/GestionFamilia">Gestión Familia</a></li>
                                     </ul>
                                 </li>
                             </ul>
