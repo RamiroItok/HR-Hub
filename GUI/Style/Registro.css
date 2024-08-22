@@ -44,10 +44,10 @@ h2 {
     box-sizing: border-box;
 }
 
-.btn-primary {
+.btn-success {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #76B041; /* Usa el mismo color verde que el botón de login o del menú */
     color: white;
     border: none;
     border-radius: 4px;
@@ -55,9 +55,10 @@ h2 {
     font-size: 16px;
 }
 
-    .btn-primary:hover {
-        background-color: #0056b3;
+    .btn-success:hover {
+        background-color: #5e8e33; /* Un verde ligeramente más oscuro para el hover */
     }
+
 
 .message-label {
     padding: 10px;
