@@ -38,7 +38,7 @@
         </asp:Panel>
 
         <asp:Panel runat="server" CssClass="form-group">
-            <asp:Button runat="server" ID="btnRegistrar" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrar_Click" />
+            <asp:Button ID="btnRegistrar" runat="server" CssClass="btn btn-success" Text="Registrar" OnClick="btnRegistrar_Click"/>
         </asp:Panel>
 
         <asp:Panel runat="server" CssClass="form-group">
