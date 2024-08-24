@@ -24,13 +24,13 @@ namespace GUI
         protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
 
         /// <summary>
-        /// Control btnCerrarSesion.
+        /// Control NavBarControl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCerrarSesion;
+        protected global::GUI.Controls.NavBar NavBarControl;
 
         /// <summary>
         /// Control MainContent.

@@ -118,6 +118,7 @@
     <Content Include="GestionFamiliaPatente.aspx" />
     <Content Include="ListarUsuarios.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="NavBar.ascx" />
     <Content Include="Registro.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -206,6 +207,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NavBar.ascx.cs">
+      <DependentUpon>NavBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NavBar.ascx.designer.cs">
+      <DependentUpon>NavBar.ascx</DependentUpon>
     </Compile>
     <Compile Include="Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
