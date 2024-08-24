@@ -50,11 +50,10 @@
 
 .container.body-content {
     margin-top: 50px;
-    padding: 20px 30px;
-    background-color: #ffffff; /* Blanco */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 1000px;
+    padding: 0; /* Elimina el padding */
+    background-color: transparent; /* Elimina el color de fondo */
+    border-radius: 0; /* Elimina los bordes redondeados */
+    box-shadow: none; /* Elimina la sombra */
 }
 
 footer {

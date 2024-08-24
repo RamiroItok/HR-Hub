@@ -21,5 +21,9 @@ namespace Aplication.Interfaces
         IList<Familia> GetFamiliasValidacion(int familiaId);
         Componente ObtenerFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar);
         Componente GetUsuarioArbol(int usuarioId, Componente componenteOriginal, Componente componenteAgregar);
+        IList<Componente> ObtenerPermisosNoAsignados(int familiaId);
+        IList<Componente> ObtenerPermisosPorFamilia(int familiaId);
+        void AsignarPermisoAFamilia(int padreId, int hijoId);
+        void QuitarPermisoAFamilia(int padreId, int hijoId);
     }
 }

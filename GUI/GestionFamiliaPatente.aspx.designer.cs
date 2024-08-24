@@ -51,85 +51,40 @@ namespace GUI
         protected global::System.Web.UI.WebControls.Button btn_Listar;
 
         /// <summary>
-        /// Control lblPatentes.
+        /// Control gvPermisosNoAsignados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPatentes;
+        protected global::System.Web.UI.WebControls.GridView gvPermisosNoAsignados;
 
         /// <summary>
-        /// Control cmb_Patentes.
+        /// Control btn_AsignarPermiso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmb_Patentes;
+        protected global::System.Web.UI.WebControls.Button btn_AsignarPermiso;
 
         /// <summary>
-        /// Control btn_AgregarPatente.
+        /// Control lblMensajeAsignacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_AgregarPatente;
+        protected global::System.Web.UI.WebControls.Label lblMensajeAsignacion;
 
         /// <summary>
-        /// Control lblFamilia2.
+        /// Control gvPermisosAsignados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFamilia2;
-
-        /// <summary>
-        /// Control cmb_Familia2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmb_Familia2;
-
-        /// <summary>
-        /// Control btn_AgregarFamilia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_AgregarFamilia;
-
-        /// <summary>
-        /// Control lblTreeView.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTreeView;
-
-        /// <summary>
-        /// Control treePatenteFamilia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TreeView treePatenteFamilia;
-
-        /// <summary>
-        /// Control btn_Guardar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Guardar;
+        protected global::System.Web.UI.WebControls.GridView gvPermisosAsignados;
 
         /// <summary>
         /// Control btn_EliminarPatente.
@@ -141,12 +96,12 @@ namespace GUI
         protected global::System.Web.UI.WebControls.Button btn_EliminarPatente;
 
         /// <summary>
-        /// Control btn_Cancelar.
+        /// Control lblMensajeEliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Cancelar;
+        protected global::System.Web.UI.WebControls.Label lblMensajeEliminar;
     }
 }

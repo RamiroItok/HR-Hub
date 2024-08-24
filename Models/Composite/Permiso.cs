@@ -2,6 +2,7 @@
 {
     public enum Permiso
     {
+        Bitacora,
         Gestion_Usuarios,
         CerrarSesion
     }
