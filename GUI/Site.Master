@@ -1,4 +1,5 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="GUI.SiteMaster" %>
+﻿<%@ Register Src="~/NavBar.ascx" TagName="NavBar" TagPrefix="uc" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="GUI.SiteMaster" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -14,12 +15,12 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/Style/SiteMaster.css" rel="stylesheet" type="text/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    
+
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
 </head>
-
 <body>
     <form runat="server">
+        <!-- Corrección: No se puede tener contenido literal dentro de ScriptManager -->
         <asp:ScriptManager runat="server">
             <Scripts>
                 <asp:ScriptReference Name="MsAjaxBundle" />
@@ -37,40 +38,8 @@
             </Scripts>
         </asp:ScriptManager>
 
-         <header class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">HR Hub</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Inicio</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a runat="server" href="~/ListarUsuarios">Lista de usuarios</a></li>
-                                <li><a runat="server" href="~/Registro">Registrar usuario</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seguridad <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a runat="server" href="~/Seguridad/GestionRoles">Gestión de Roles</a></li>
-                                <li><a runat="server" href="~/GestionFamilia">Gestión de Familia</a></li>
-                                <li><a runat="server" href="~/GestionFamiliaPatente">Gestión de Familia Patente</a></li>
-                            </ul>
-                        </li>
-                        <li><a runat="server" href="~/Contact">Contacto</a></li>
-                        <li><asp:LinkButton ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" CssClass="navbar-link">Cerrar sesión</asp:LinkButton></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
+        <!-- Aquí incluimos el control de usuario NavBar -->
+        <uc:NavBar runat="server" ID="NavBarControl" />
 
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">

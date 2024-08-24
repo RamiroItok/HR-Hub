@@ -27,6 +27,7 @@ namespace GUI
 
         private void CargarDataGrids()
         {
+            Limpiar();
             DataTable dt = new DataTable();
             dt.Columns.Add("Id", typeof(int));
             dt.Columns.Add("Nombre", typeof(string));
