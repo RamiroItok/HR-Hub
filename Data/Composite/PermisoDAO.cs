@@ -71,6 +71,42 @@ namespace Data.Composite
             }
         }
 
+        public void AsignarPermisoAFamilia(int padreId, int hijoId)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@parPadreId", padreId },
+                    { "@parHijoId", hijoId }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_i_familiaPatente", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al asignar el permiso a la familia.", ex);
+            }
+        }
+
+        public void QuitarPermisoAFamilia(int padreId, int hijoId)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@parPadreId", padreId },
+                    { "@parHijoId", hijoId }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_d_familiaPatente", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al quitar el permiso a la familia.", ex);
+            }
+        }
+
         public void GuardarPermiso(UsuarioDTO usuario)
         {
             try
@@ -417,6 +453,89 @@ namespace Data.Composite
             componenteRaiz.AgregarHijo(familia);
 
             ObtenerFamiliaArbol(componente.Id, componenteOriginal, familia);
+        }
+
+        public List<Componente> ObtenerPermisosNoAsignados(int familiaId)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@FamiliaId", familiaId }
+            };
+
+            var resultado = _acceso.ExecuteStoredProcedureReader("sp_ObtenerPermisosNoAsignados", parameters);
+            DataTable dt = resultado.Tables[0];
+
+            List<Componente> permisosNoAsignados = new List<Componente>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string permisoTexto = row["Permiso"].ToString();
+                Componente componente;
+
+                if (string.IsNullOrEmpty(permisoTexto))
+                {
+                    componente = new Familia();
+                }
+                else
+                {
+                    componente = new Patente();
+                    componente.Permiso = (Permiso)Enum.Parse(typeof(Permiso), permisoTexto);
+                }
+                componente.Id = Convert.ToInt32(row["Id"]);
+                componente.Nombre = row["Nombre"].ToString();
+
+                permisosNoAsignados.Add(componente);
+            }
+
+            return permisosNoAsignados;
+        }
+
+        public List<Componente> ObtenerPermisosPorFamilia(int idFamilia)
+        {
+            List<Componente> permisosNoAsignados = new List<Componente>();
+
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@idFamilia", idFamilia }
+                };
+
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_permiso_familiaPatente", parameters);
+                DataTable dt = resultado.Tables[0];
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    Componente componente;
+                    string permisoString = row["Permiso"] != DBNull.Value ? row["Permiso"].ToString() : null;
+
+                    if (string.IsNullOrEmpty(permisoString))
+                    {
+                        componente = new Familia
+                        {
+                            Id = Convert.ToInt32(row["PermisoId"]),
+                            Nombre = row["Nombre"].ToString()
+                        };
+                    }
+                    else
+                    {
+                        componente = new Patente
+                        {
+                            Id = Convert.ToInt32(row["PermisoId"]),
+                            Nombre = row["Nombre"].ToString(),
+                            Permiso = (Permiso)Enum.Parse(typeof(Permiso), permisoString)
+                        };
+                    }
+
+                    permisosNoAsignados.Add(componente);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los permisos no asignados para la familia.", ex);
+            }
+
+            return permisosNoAsignados;
         }
 
     }

@@ -30,6 +30,30 @@ namespace Aplication.Services
             }
         }
 
+        public void AsignarPermisoAFamilia(int padreId, int hijoId)
+        {
+            try
+            {
+                _permisoDAO.AsignarPermisoAFamilia(padreId, hijoId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void QuitarPermisoAFamilia(int padreId, int hijoId)
+        {
+            try
+            {
+                _permisoDAO.QuitarPermisoAFamilia(padreId, hijoId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public int AltaFamiliaPatente(Componente componente, bool familia)
         {
             try
@@ -114,6 +138,26 @@ namespace Aplication.Services
             {
                 IList<Patente> patentes = _permisoDAO.ObtenerPatentes();
                 return patentes;
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+        }
+
+        public IList<Componente> ObtenerPermisosNoAsignados(int familiaId)
+        {
+            try
+            {
+                IList<Componente> permisosNoAsignados = _permisoDAO.ObtenerPermisosNoAsignados(familiaId);
+                return permisosNoAsignados;
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+        }
+
+        public IList<Componente> ObtenerPermisosPorFamilia(int familiaId)
+        {
+            try
+            {
+                IList<Componente> permisosNoAsignados = _permisoDAO.ObtenerPermisosPorFamilia(familiaId);
+                return permisosNoAsignados;
             }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }

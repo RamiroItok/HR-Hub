@@ -83,7 +83,6 @@
 
         <script>
             $(document).ready(function () {
-                // Manejo de submenús anidados
                 $('.dropdown-submenu a').on("click", function (e) {
                     $(this).next('ul').toggle();
                     e.stopPropagation();
@@ -91,7 +90,6 @@
                 });
             });
         </script>
-
     </form>
 </body>
 </html>
