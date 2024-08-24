@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IBitacoraServices.cs" />
     <Compile Include="Interfaces\IDigitoVerificadorService.cs" />
     <Compile Include="Interfaces\IPermisoService.cs" />
+    <Compile Include="Services\BitacoraServices.cs" />
     <Compile Include="Services\DigitoVerificadorService.cs" />
     <Compile Include="Services\EncriptacionService.cs" />
     <Compile Include="Interfaces\IUsuarioService.cs" />
