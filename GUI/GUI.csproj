@@ -114,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
     <Content Include="GestionFamilia.aspx" />
     <Content Include="GestionFamiliaPatente.aspx" />
     <Content Include="ListarUsuarios.aspx" />
@@ -168,6 +169,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Style\Default.css" />
     <Content Include="Style\GestionFamiliaPatente.css" />
     <Content Include="Style\ListarUsuarios.css" />
     <Content Include="Style\Login.css" />

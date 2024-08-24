@@ -1,0 +1,156 @@
+﻿/* Reseteo de estilos para asegurar consistencia en todos los navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Color de fondo neutro */
+    color: #333; /* Color de texto estándar */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Estilos del NavBar */
+.navbar {
+    background-color: #4CAF50; /* Verde del logo */
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+    .navbar .navbar-brand,
+    .navbar-nav > li > a {
+        color: #fff !important; /* Color de texto blanco para contraste */
+    }
+
+        .navbar-nav > li > a:hover,
+        .navbar-nav > li > a:focus {
+            background-color: #3e8e41; /* Tonalidad más oscura de verde */
+        }
+
+    .navbar .navbar-collapse {
+        justify-content: flex-end;
+    }
+
+/* Encabezado principal con el logo */
+.header {
+    background-color: #ffffff;
+    border-bottom: 2px solid #ddd;
+    padding: 60px 0; /* Aumentar padding para más espacio visual */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px; /* Ajustar altura mínima para espacio suficiente */
+    margin-top: 20px; /* Ajuste del margen superior para más espacio debajo del navBar */
+}
+
+.header .logo {
+    max-width: 150px; /* Ajuste del tamaño máximo del logo */
+    width: auto;
+    height: auto;
+    margin-bottom: 10px; /* Quitar margen negativo */
+}
+
+.header h1 {
+    margin: 0;
+    position: relative;
+    top: -50%; /* Ajustar para centrar texto verticalmente con el logo */
+    transform: translateY(50%); /* Centrado vertical del texto */
+}
+
+/* Sección destacada con fondo de gradiente */
+.highlight-section {
+    background: linear-gradient(135deg, #4CAF50 0%, #a5d6a7 100%); /* Gradiente de verde a un tono más claro */
+    color: #fff; /* Texto blanco para contraste */
+    padding: 40px 20px;
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 10px; /* Bordes redondeados */
+    max-width: 900px; /* Limitar el ancho máximo */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra ligera para profundidad */
+    transition: transform 0.3s ease-in-out; /* Transición suave */
+}
+
+    .highlight-section:hover {
+        transform: translateY(-10px); /* Efecto de elevación al pasar el cursor */
+    }
+
+.highlight-content h2 {
+    font-size: 2.5em; /* Tamaño de fuente más grande para el título */
+    margin-bottom: 10px;
+}
+
+.highlight-content p {
+    font-size: 1.2em; /* Tamaño de fuente más grande para el párrafo */
+    margin: 0;
+}
+
+.highlight-content i {
+    margin-bottom: 15px; /* Espacio debajo del icono */
+    color: #fff; /* Color del icono */
+}
+
+/* Sección Hero */
+.hero-section {
+    background-color: #ffffff;
+    color: #333;
+    padding: 40px 20px; /* Ajuste del padding para más equilibrio visual */
+    text-align: center;
+    background-image: url('Content/imagenes/fondo-hr.jpg'); /* Imagen de fondo relevante */
+    background-size: cover;
+    background-attachment: fixed;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Secciones de contenido principal */
+.about-us, .our-pillars {
+    padding: 30px 20px;
+    background-color: #fff;
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color: #4CAF50; /* Verde del logo */
+}
+
+.pillar {
+    margin: 15px 0;
+    padding: 20px;
+    background-color: #f9f9f9; /* Fondo ligero para los pilares */
+    border-left: 5px solid #4CAF50; /* Verde del logo */
+    transition: transform 0.3s ease-in-out;
+}
+
+    .pillar:hover {
+        transform: scale(1.05);
+    }
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+    .footer p {
+        margin: 0;
+    }
