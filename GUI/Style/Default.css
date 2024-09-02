@@ -40,8 +40,8 @@ body {
 .header {
     background-color: #ffffff;
     border-bottom: 2px solid #ddd;
-    padding: 60px 0; /* Aumentar padding para más espacio visual */
-    margin-bottom: 20px;
+    padding: 20px 0; /* Reducir padding para menos espacio visual */
+    margin-bottom: 10px; /* Reducir margen inferior */
     text-align: center;
 }
 
@@ -50,22 +50,22 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 250px; /* Ajustar altura mínima para espacio suficiente */
-    margin-top: 20px; /* Ajuste del margen superior para más espacio debajo del navBar */
+    min-height: 100px; /* Reducir altura mínima */
+    margin-top: 0; /* Eliminar margen superior */
 }
 
 .header .logo {
     max-width: 150px; /* Ajuste del tamaño máximo del logo */
-    width: auto;
-    height: auto;
+    width: 144px;
+    height: 167px;
     margin-bottom: 10px; /* Quitar margen negativo */
 }
 
 .header h1 {
     margin: 0;
     position: relative;
-    top: -50%; /* Ajustar para centrar texto verticalmente con el logo */
-    transform: translateY(50%); /* Centrado vertical del texto */
+    top: 0; /* Ajustar para centrar texto verticalmente con el logo */
+    transform: translateY(0); /* Centrado vertical del texto */
 }
 
 /* Sección destacada con fondo de gradiente */
@@ -73,7 +73,7 @@ body {
     background: linear-gradient(135deg, #4CAF50 0%, #a5d6a7 100%); /* Gradiente de verde a un tono más claro */
     color: #fff; /* Texto blanco para contraste */
     padding: 40px 20px;
-    margin: 20px auto;
+    margin: 10px auto; /* Reducir margen superior e inferior */
     text-align: center;
     border-radius: 10px; /* Bordes redondeados */
     max-width: 900px; /* Limitar el ancho máximo */
@@ -98,19 +98,6 @@ body {
 .highlight-content i {
     margin-bottom: 15px; /* Espacio debajo del icono */
     color: #fff; /* Color del icono */
-}
-
-/* Sección Hero */
-.hero-section {
-    background-color: #ffffff;
-    color: #333;
-    padding: 40px 20px; /* Ajuste del padding para más equilibrio visual */
-    text-align: center;
-    background-image: url('Content/imagenes/fondo-hr.jpg'); /* Imagen de fondo relevante */
-    background-size: cover;
-    background-attachment: fixed;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #ddd;
 }
 
 /* Secciones de contenido principal */
@@ -154,3 +141,9 @@ h1, h2, h3 {
     .footer p {
         margin: 0;
     }
+
+.welcome-message {
+    font-size: 1.5em;
+    color: #4CAF50; /* O cualquier color que desees */
+    margin-top: 10px;
+}

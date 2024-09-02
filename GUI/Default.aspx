@@ -11,6 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Style/SiteMaster.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -21,7 +22,7 @@
         <div class="header">
             <div class="header-content">
                 <img src="Content/imagenes/Logo_HrHub.jpg" alt="HR Hub Logo" class="logo" />
-                <h1>Bienvenidos a HR Hub</h1>
+                <asp:Label ID="lblBienvenido" runat="server" CssClass="welcome-message" />
             </div>
         </div>
 

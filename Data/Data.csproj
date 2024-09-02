@@ -45,8 +45,10 @@
     <Compile Include="Composite\PermisoDAO.cs" />
     <Compile Include="Conexion\Acceso.cs" />
     <Compile Include="Conexion\Conexion.cs" />
+    <Compile Include="DAO\BitacoraDAO.cs" />
     <Compile Include="DAO\DigitoVerificadorDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
+    <Compile Include="Interfaces\IBitacoraDAO.cs" />
     <Compile Include="Interfaces\IDigitoVerificadorDAO.cs" />
     <Compile Include="Interfaces\IUsuarioDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
