@@ -49,6 +49,7 @@
     <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="Enums\Criticidad.cs" />
     <Compile Include="Enums\Puesto.cs" />
+    <Compile Include="Enums\Genero.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
