@@ -17,6 +17,7 @@ namespace GUI.Controls
                     logoutLink.Visible = true;
                     seguridadLink.Visible = true;
                     registroLink.Visible = true;
+                    bitacoraLink.Visible = true;
                 }
                 else
                 {
@@ -24,6 +25,7 @@ namespace GUI.Controls
                     logoutLink.Visible = false;
                     seguridadLink.Visible = false;
                     registroLink.Visible = false;
+                    bitacoraLink.Visible = false;
                 }
             }
         }

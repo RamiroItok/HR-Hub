@@ -114,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bitacora.aspx" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
     <Content Include="GestionFamilia.aspx" />
     <Content Include="GestionFamiliaPatente.aspx" />
@@ -169,6 +170,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Style\Bitacora.css" />
     <Content Include="Style\Default.css" />
     <Content Include="Style\GestionFamiliaPatente.css" />
     <Content Include="Style\ListarUsuarios.css" />
@@ -182,6 +184,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Bitacora.aspx.cs">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bitacora.aspx.designer.cs">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GestionFamilia.aspx.cs">
       <DependentUpon>GestionFamilia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

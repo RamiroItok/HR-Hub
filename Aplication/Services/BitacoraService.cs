@@ -5,17 +5,14 @@ using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aplication.Services
 {
-    public class BitacoraServices : IBitacoraServices
+    public class BitacoraService : IBitacoraService
     {
         private readonly IBitacoraDAO _bitacoraDAO;
 
-        public BitacoraServices(IBitacoraDAO bitacoraDAO)
+        public BitacoraService(IBitacoraDAO bitacoraDAO)
         {
             _bitacoraDAO = bitacoraDAO;
         }
@@ -45,6 +42,36 @@ namespace Aplication.Services
             throw new NotImplementedException();
         }
 
+        public List<Bitacora> ListarEventos()
+        {
+            try
+            {
+                List<Bitacora> listaEventos = new List<Bitacora>();
+                var resultado = _bitacoraDAO.ListarEventos();
+                foreach (DataRow evento in resultado.Tables[0].Rows)
+                {
+                    Bitacora bitacora = new Bitacora()
+                    {
+                        Id = int.Parse(evento["Id"].ToString()),
+                        Email = evento["Email"].ToString(),
+                        TipoUsuario = evento["TipoUsuario"].ToString(),
+                        Descripcion = evento["Descripcion"].ToString(),
+                        Fecha = DateTime.Parse(evento["Fecha"].ToString()),
+                        Criticidad = evento["Criticidad"].ToString(),
+                        DVH = int.Parse(evento["DVH"].ToString())
+                    };
+
+                    listaEventos.Add(bitacora);
+                }
+
+                return listaEventos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public DataTable ListarEventoBetween(string fecha_ini, string fecha_fin)
         {
             throw new NotImplementedException();
@@ -71,11 +98,6 @@ namespace Aplication.Services
         }
 
         public DataTable ListarEventoFechaUsuCrit(string fecha_ini, string fecha_fin, string nombre_usuario, string crit)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Bitacora> ListarEventos()
         {
             throw new NotImplementedException();
         }

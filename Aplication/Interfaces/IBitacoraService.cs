@@ -1,14 +1,15 @@
-﻿using Models.Enums;
+﻿using Models;
+using Models.Enums;
 using System.Collections.Generic;
 using System.Data;
 
 namespace Aplication.Interfaces
 {
-    public interface IBitacoraServices
+    public interface IBitacoraService
     {
         int AltaBitacora(string email, Puesto tipoUsuario, string descripcion, Criticidad criticidad);
         int BajaBitacora(string fechaIni, string fechaFin);
-        List<Models.Bitacora> ListarEventos();
+        List<Bitacora> ListarEventos();
         DataTable ListarEventoBetween(string fecha_ini, string fecha_fin);
         DataTable ListarEventoBetweenUsuario(string fecha_ini, string fecha_fin, string nombre_usuario);
         DataTable ListarEventoUsuario(string nombre_usuario);

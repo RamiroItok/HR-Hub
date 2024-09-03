@@ -27,7 +27,7 @@ namespace GUI
         {
             Container = new UnityContainer();
 
-            Container.RegisterType<IBitacoraServices, BitacoraServices>();
+            Container.RegisterType<IBitacoraService, BitacoraService>();
             Container.RegisterType<IBitacoraDAO, BitacoraDAO>();
             Container.RegisterType<IDigitoVerificadorDAO, DigitoVerificadorDAO>();
             Container.RegisterType<IDigitoVerificadorService, DigitoVerificadorService>();

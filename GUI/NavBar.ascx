@@ -13,7 +13,6 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a runat="server" href="~/">Inicio</a></li>
                 <li class="dropdown"  id="registroLink" runat="server">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -28,6 +27,7 @@
                         <li><a runat="server" href="~/GestionFamiliaPatente">Gestión de Familia Patente</a></li>
                     </ul>
                 </li>
+                <li><a runat="server" id="bitacoraLink" href="~/Bitacora">Bitacora</a></li>
                 <li><a runat="server" href="~/Contact">Contacto</a></li>
             </ul>
             
