@@ -50,16 +50,7 @@ namespace Aplication.Services
                 var resultado = _bitacoraDAO.ListarEventos();
                 foreach (DataRow evento in resultado.Tables[0].Rows)
                 {
-                    Bitacora bitacora = new Bitacora()
-                    {
-                        Id = int.Parse(evento["Id"].ToString()),
-                        Email = evento["Email"].ToString(),
-                        TipoUsuario = evento["TipoUsuario"].ToString(),
-                        Descripcion = evento["Descripcion"].ToString(),
-                        Fecha = DateTime.Parse(evento["Fecha"].ToString()),
-                        Criticidad = evento["Criticidad"].ToString(),
-                        DVH = int.Parse(evento["DVH"].ToString())
-                    };
+                    var bitacora = CompletarBitacora(evento);
 
                     listaEventos.Add(bitacora);
                 }
@@ -72,39 +63,20 @@ namespace Aplication.Services
             }
         }
 
-        public DataTable ListarEventoBetween(string fecha_ini, string fecha_fin)
+        private Bitacora CompletarBitacora(DataRow evento)
         {
-            throw new NotImplementedException();
-        }
+            Bitacora bitacora = new Bitacora()
+            {
+                Id = int.Parse(evento["Id"].ToString()),
+                Email = evento["Email"].ToString(),
+                TipoUsuario = evento["TipoUsuario"].ToString(),
+                Descripcion = evento["Descripcion"].ToString(),
+                Fecha = DateTime.Parse(evento["Fecha"].ToString()),
+                Criticidad = evento["Criticidad"].ToString(),
+                DVH = int.Parse(evento["DVH"].ToString())
+            };
 
-        public DataTable ListarEventoBetweenCritic(string fecha_ini, string fecha_fin, string critic)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DataTable ListarEventoBetweenUsuario(string fecha_ini, string fecha_fin, string nombre_usuario)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DataTable ListarEventoCrit(string critic)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DataTable ListarEventoCritUsu(string nombre_usuario, string crit)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DataTable ListarEventoFechaUsuCrit(string fecha_ini, string fecha_fin, string nombre_usuario, string crit)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DataTable ListarEventoUsuario(string nombre_usuario)
-        {
-            throw new NotImplementedException();
+            return bitacora;
         }
     }
 }

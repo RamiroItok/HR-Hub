@@ -20,13 +20,23 @@
             <!-- Filtros de búsqueda -->
             <div class="filter-container">
                 <asp:Label ID="lblSearch" runat="server" Text="Texto de Búsqueda:" AssociatedControlID="txtSearch" />
-                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" Width="200px" />
+                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" />
+
+                <asp:Label ID="lblUsuario" runat="server" Text="Usuario" AssociatedControlID="drpUsuarios" />
+                <asp:DropDownList ID="drpUsuarios" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                <asp:Label ID="lblTipoUsuario" runat="server" Text="Tipo de Usuario" AssociatedControlID="drpTipoUsuario" />
+                <asp:DropDownList ID="drpTipoUsuario" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                <asp:Label ID="lblCriticidad" runat="server" Text="Criticidad" AssociatedControlID="drpCriticidad" />
+                <asp:DropDownList ID="drpCriticidad" runat="server" CssClass="form-control"></asp:DropDownList>
+                <br />
 
                 <asp:Label ID="lblFechaDesde" runat="server" Text="Fecha Desde:" AssociatedControlID="txtFechaDesde" />
-                <asp:TextBox ID="txtFechaDesde" runat="server" CssClass="form-control" TextMode="Date" Width="150px" />
+                <asp:TextBox ID="txtFechaDesde" runat="server" CssClass="form-control" TextMode="DateTimeLocal" />
 
                 <asp:Label ID="lblFechaHasta" runat="server" Text="Fecha Hasta:" AssociatedControlID="txtFechaHasta" />
-                <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control" TextMode="Date" Width="150px" />
+                <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control" TextMode="DateTimeLocal" />
 
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" />
 
