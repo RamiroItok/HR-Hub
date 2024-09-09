@@ -24,19 +24,29 @@ namespace GUI
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            var usuario = _usuarioService.ValidarUsuarioContraseña(txtEmail.Text, txtPassword.Text);
+            var resultadoValidacion = _usuarioService.ValidarCampos(txtEmail.Text, txtPassword.Text);
 
-            if (usuario == null)
+            if (!string.IsNullOrEmpty(resultadoValidacion))
             {
-                lblMensaje.Text = "El email no coincide con la contraseña.";
+                lblMensaje.Text = resultadoValidacion;
                 lblMensaje.Visible = true;
             }
             else
             {
-                Session["Usuario"] = usuario;
-                _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Inicio de sesion", Criticidad.MEDIA) ;
-                Response.Redirect("Default.aspx", false);
-                Context.ApplicationInstance.CompleteRequest();
+                var usuario = _usuarioService.ValidarUsuarioContraseña(txtEmail.Text, txtPassword.Text);
+
+                if (usuario == null)
+                {
+                    lblMensaje.Text = "El email no coincide con la contraseña.";
+                    lblMensaje.Visible = true;
+                }
+                else
+                {
+                    Session["Usuario"] = usuario;
+                    _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Inicio de sesion", Criticidad.MEDIA);
+                    Response.Redirect("Default.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
             }
         }
     }
