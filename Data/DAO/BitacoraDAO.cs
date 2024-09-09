@@ -4,8 +4,6 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 
 namespace Data.DAO
 {
@@ -45,6 +43,20 @@ namespace Data.DAO
         public bool BajaBitacora(string fechaIni, string fechaFin)
         {
             throw new NotImplementedException();
+        }
+
+        public DataSet ListarEventos()
+        {
+            try
+            {
+                DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_s_bitacora", null);
+
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

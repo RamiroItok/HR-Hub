@@ -9,12 +9,12 @@ namespace GUI
     public partial class Login : Page
     {
         private readonly IUsuarioService _usuarioService;
-        private readonly IBitacoraServices _bitacoraServices;
+        private readonly IBitacoraService _bitacoraService;
 
         public Login()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
-            _bitacoraServices = Global.Container.Resolve<IBitacoraServices>();
+            _bitacoraService = Global.Container.Resolve<IBitacoraService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace GUI
             else
             {
                 Session["Usuario"] = usuario;
-                _bitacoraServices.AltaBitacora(usuario.Email, usuario.Puesto, "Inicio de sesion", Criticidad.MEDIA) ;
+                _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Inicio de sesion", Criticidad.MEDIA) ;
                 Response.Redirect("Default.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }

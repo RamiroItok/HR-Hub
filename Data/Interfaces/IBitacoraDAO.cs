@@ -1,9 +1,5 @@
 ﻿using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace Data.Interfaces
 {
@@ -11,5 +7,6 @@ namespace Data.Interfaces
     {
         int RegistrarBitacora(Bitacora bitacora);
         bool BajaBitacora(string fechaIni, string fechaFin);
+        DataSet ListarEventos();
     }
 }
