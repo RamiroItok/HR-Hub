@@ -1,11 +1,19 @@
-﻿using Models;
+﻿using Aplication.Interfaces;
+using Models;
 using System;
 using System.Web.UI;
+using Unity;
 
 namespace GUI.Controls
 {
     public partial class NavBar : UserControl
     {
+        private readonly IBitacoraService _bitacoraService;
+        public NavBar()
+        {
+            _bitacoraService = Global.Container.Resolve<IBitacoraService>();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,6 +40,10 @@ namespace GUI.Controls
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+
+            _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Cierra sesion", Models.Enums.Criticidad.BAJA);
+
             Session.Abandon();
             Response.Redirect("Default.aspx");
         }

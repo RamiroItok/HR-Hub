@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Bitácora" Language="C#" AutoEventWireup="true" CodeBehind="Bitacora.aspx.cs" Inherits="GUI.Bitacora" %>
+﻿<%@ Page Title="Bitacora" Language="C#" AutoEventWireup="true" CodeBehind="Bitacora.aspx.cs" Inherits="GUI.Bitacora" %>
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
 <!DOCTYPE html>
@@ -17,9 +17,8 @@
         <uc:NavBar runat="server" ID="NavBarControl" />
 
         <div class="container">
-            <h2>Bitácora</h2>
+            <h2>Bitacora</h2>
             <div class="filter-container">
-                <!-- Primera fila -->
                 <div class="form-group">
                     <asp:Label ID="lblSearch" runat="server" Text="Texto de Búsqueda:" AssociatedControlID="txtSearch" />
                     <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" />
@@ -30,7 +29,6 @@
                     <asp:DropDownList ID="drpUsuarios" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
             
-                <!-- Segunda fila -->
                 <div class="form-group">
                     <asp:Label ID="lblTipoUsuario" runat="server" Text="Tipo de Usuario" AssociatedControlID="drpTipoUsuario" />
                     <asp:DropDownList ID="drpTipoUsuario" runat="server" CssClass="form-control"></asp:DropDownList>
@@ -41,7 +39,6 @@
                     <asp:DropDownList ID="drpCriticidad" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
             
-                <!-- Tercera fila -->
                 <div class="form-group">
                     <label for="txtFechaDesde">Fecha Desde:</label>
                     <div class="input-container">
@@ -58,7 +55,6 @@
                     </div>
                 </div>
             
-                <!-- Botones alineados en la última fila -->
                 <div class="button-group">
                     <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-primary" OnClick="btnCancelar_Click" />

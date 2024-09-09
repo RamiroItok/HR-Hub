@@ -10,10 +10,12 @@ namespace GUI
     public partial class Registro : Page
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly IBitacoraService _iBitacoraService;
 
         public Registro()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
+            _iBitacoraService = Global.Container.Resolve<IBitacoraService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -41,6 +43,8 @@ namespace GUI
 
                 var id = _usuarioService.RegistrarUsuario(usuario);
 
+                RegistrarBitacora();
+
                 lblMensaje.Visible = true;
                 lblMensaje.Text = "Se ha registrado el usuario correctamente";
                 Limpiar();
@@ -66,6 +70,12 @@ namespace GUI
             DropDownPuesto.DataTextField = "Puesto";
             DropDownPuesto.DataValueField = "Id";
             DropDownPuesto.DataBind();
+        }
+
+        private void RegistrarBitacora()
+        {
+            var user = Session["Usuario"] as Usuario;
+            _iBitacoraService.AltaBitacora(user.Email, user.Puesto, "Da de alta un usuario", Models.Enums.Criticidad.BAJA);
         }
     }
 }
