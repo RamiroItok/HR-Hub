@@ -26,7 +26,6 @@
                 <asp:Button runat="server" ID="btnLogin" Text="Iniciar Sesión" CssClass="btn btn-primary" OnClick="btnLogin_Click" />
             </asp:Panel>
 
-            <!-- Label para mostrar mensajes de error o éxito -->
             <asp:Panel runat="server" CssClass="form-group">
                 <asp:Label runat="server" ID="lblMensaje" CssClass="message-label" Visible="false"></asp:Label>
             </asp:Panel>

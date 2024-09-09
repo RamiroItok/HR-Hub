@@ -1,5 +1,4 @@
 ﻿using Models;
-using Models.Enums;
 using System.Collections.Generic;
 using System.Data;
 
@@ -11,5 +10,6 @@ namespace Aplication.Interfaces
         DataTable ObtenerPuestos();
         Usuario ValidarUsuarioContraseña(string email, string contraseña);
         List<Usuario> ListarUsuarios();
+        string ValidarCampos(string usuario, string contraeña);
     }
 }
