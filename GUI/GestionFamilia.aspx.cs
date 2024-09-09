@@ -1,4 +1,5 @@
 ﻿using Aplication.Interfaces;
+using Models;
 using Models.Composite;
 using System;
 using System.Linq;
@@ -10,9 +11,11 @@ namespace GUI
     public partial class GestionFamilia : System.Web.UI.Page
     {
         private readonly IPermisoService _iPermiso;
+        private readonly IBitacoraService _bitacoraService;
         public GestionFamilia()
         {
             _iPermiso = Global.Container.Resolve<IPermisoService>();
+            _bitacoraService = Global.Container.Resolve<IBitacoraService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -42,6 +45,9 @@ namespace GUI
                     };
 
                     _iPermiso.AltaFamiliaPatente(familia, true);
+
+                    var usuario = Session["Usuario"] as Usuario;
+                    _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Da de alta una patente", Models.Enums.Criticidad.ALTA);
 
                     lblMessage.CssClass = "text-success";
                     lblMessage.Text = "Se ha dado de alta la familia correctamente.";

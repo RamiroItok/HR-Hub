@@ -1,4 +1,5 @@
 ﻿using Aplication.Interfaces;
+using Models;
 using System;
 using System.Data;
 using System.Web.UI;
@@ -10,10 +11,12 @@ namespace GUI
     public partial class GestionFamiliaPatente : Page
     {
         private readonly IPermisoService _iPermiso;
+        private readonly IBitacoraService _iBitacoraService;
 
         public GestionFamiliaPatente()
         {
             _iPermiso = Global.Container.Resolve<IPermisoService>();
+            _iBitacoraService = Global.Container.Resolve<IBitacoraService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -99,6 +102,9 @@ namespace GUI
                     Listar(familiaId);
                     if (isSelected)
                     {
+                        var usuario = Session["Usuario"] as Usuario;
+                        _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Asigna patente a familia", Models.Enums.Criticidad.ALTA);
+
                         lblMensajeAsignacion.Text = "Se asignó el permiso correctamente.";
                         lblMensajeAsignacion.ForeColor = System.Drawing.Color.Green;
                     }

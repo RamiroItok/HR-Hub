@@ -115,8 +115,8 @@ namespace Aplication
             if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña))
                 return "Hay campos sin completar.";
 
-            if(contraseña.Length < 8)
-                return "La contraseña debe ser mayor a 8 caracteres.";
+            /*if(contraseña.Length < 8)
+                return "La contraseña debe ser mayor a 8 caracteres.";*/
 
             /*string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?""':{}|<>]).+$";
             if (!Regex.IsMatch(contraseña, pattern))

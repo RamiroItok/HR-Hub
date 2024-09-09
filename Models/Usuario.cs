@@ -10,7 +10,6 @@ namespace Models
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Contraseña { get; set; }
-        public Genero Genero { get; set; }
         public Puesto Puesto { get; set; }
         public string Area { get; set; }
         public DateTime FechaIngreso { get; set; }
