@@ -34,6 +34,21 @@ namespace GUI
             }
         }
 
+        protected void gvBitacora_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvBitacora.PageIndex = e.NewPageIndex;
+
+            if (Session["EventosFiltrados"] != null)
+            {
+                var eventosFiltrados = (List<Models.Bitacora>)Session["EventosFiltrados"];
+                CargarGrilla(eventosFiltrados);
+            }
+            else
+            {
+                CargarEventosDefault();
+            }
+        }
+
         private void CargarEventosDefault()
         {
             var resultado = listaEventos
@@ -69,10 +84,11 @@ namespace GUI
             drpCriticidad.Items.Insert(0, new ListItem("Seleccione una criticidad", ""));
         }
 
+        // Evento del botón de búsqueda con filtros
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            DateTime? fechaDesde = string.IsNullOrEmpty(txtFechaDesde.Text) ? (DateTime?)null : DateTime.Parse(txtFechaDesde.Text);
-            DateTime? fechaHasta = string.IsNullOrEmpty(txtFechaHasta.Text) ? (DateTime?)null : DateTime.Parse(txtFechaHasta.Text);
+            DateTime? fechaDesde = string.IsNullOrEmpty(txtFechaDesde.Value) ? (DateTime?)null : DateTime.Parse(txtFechaDesde.Value);
+            DateTime? fechaHasta = string.IsNullOrEmpty(txtFechaHasta.Value) ? (DateTime?)null : DateTime.Parse(txtFechaHasta.Value);
 
             List<Models.Bitacora> listaEventosFiltrados = new List<Models.Bitacora>();
 
@@ -86,8 +102,12 @@ namespace GUI
                                             && (!fechaHasta.HasValue || x.Fecha <= fechaHasta)
                                         )
                                         .OrderByDescending(x => x.Id)
-                                        .Take(50)
                                         .ToList();
+
+            // Guardar los resultados filtrados en la sesión para la paginación
+            Session["EventosFiltrados"] = listaEventosFiltrados;
+
+            // Cargar la grilla con los resultados filtrados
             CargarGrilla(listaEventosFiltrados);
         }
 
@@ -95,8 +115,12 @@ namespace GUI
         {
             Limpiar();
             CargarEventosDefault();
+
+            // Limpiar los resultados filtrados de la sesión
+            Session["EventosFiltrados"] = null;
         }
 
+        // Método para cargar datos en el GridView
         private void CargarGrilla(List<Models.Bitacora> listadoBitacora)
         {
             gvBitacora.DataSource = listadoBitacora;
@@ -106,8 +130,8 @@ namespace GUI
         private void Limpiar()
         {
             txtSearch.Text = String.Empty;
-            txtFechaDesde.Text = String.Empty;
-            txtFechaHasta.Text = String.Empty;
+            txtFechaDesde.Value = String.Empty;
+            txtFechaHasta.Value = String.Empty;
             drpUsuarios.SelectedIndex = 0;
             drpTipoUsuario.SelectedIndex = 0;
             drpCriticidad.SelectedIndex = 0;

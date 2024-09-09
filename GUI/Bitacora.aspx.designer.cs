@@ -105,31 +105,13 @@ namespace GUI
         protected global::System.Web.UI.WebControls.DropDownList drpCriticidad;
 
         /// <summary>
-        /// Control lblFechaDesde.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFechaDesde;
-
-        /// <summary>
         /// Control txtFechaDesde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaDesde;
-
-        /// <summary>
-        /// Control lblFechaHasta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFechaHasta;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtFechaDesde;
 
         /// <summary>
         /// Control txtFechaHasta.
@@ -138,7 +120,7 @@ namespace GUI
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaHasta;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtFechaHasta;
 
         /// <summary>
         /// Control btnBuscar.
