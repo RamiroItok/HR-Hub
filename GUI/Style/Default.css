@@ -1,5 +1,4 @@
-﻿/* Reseteo de estilos para asegurar consistencia en todos los navegadores */
-* {
+﻿* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,16 +6,15 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4; /* Color de fondo neutro */
-    color: #333; /* Color de texto estándar */
+    background-color: #f4f4f4;
+    color: #333;
     margin: 0;
     padding: 0;
     line-height: 1.6;
 }
 
-/* Estilos del NavBar */
 .navbar {
-    background-color: #4CAF50; /* Verde del logo */
+    background-color: #4CAF50;
     border: none;
     border-radius: 0;
     margin-bottom: 0;
@@ -24,24 +22,23 @@ body {
 
     .navbar .navbar-brand,
     .navbar-nav > li > a {
-        color: #fff !important; /* Color de texto blanco para contraste */
+        color: #fff !important;
     }
 
         .navbar-nav > li > a:hover,
         .navbar-nav > li > a:focus {
-            background-color: #3e8e41; /* Tonalidad más oscura de verde */
+            background-color: #3e8e41;
         }
 
     .navbar .navbar-collapse {
         justify-content: flex-end;
     }
 
-/* Encabezado principal con el logo */
 .header {
     background-color: #ffffff;
     border-bottom: 2px solid #ddd;
-    padding: 20px 0; /* Reducir padding para menos espacio visual */
-    margin-bottom: 10px; /* Reducir margen inferior */
+    padding: 20px 0;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -50,57 +47,55 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100px; /* Reducir altura mínima */
-    margin-top: 0; /* Eliminar margen superior */
+    min-height: 100px;
+    margin-top: 0;
 }
 
 .header .logo {
-    max-width: 150px; /* Ajuste del tamaño máximo del logo */
+    max-width: 150px;
     width: 144px;
     height: 167px;
-    margin-bottom: 10px; /* Quitar margen negativo */
+    margin-bottom: 10px;
 }
 
 .header h1 {
     margin: 0;
     position: relative;
-    top: 0; /* Ajustar para centrar texto verticalmente con el logo */
-    transform: translateY(0); /* Centrado vertical del texto */
+    top: 0;
+    transform: translateY(0);
 }
 
-/* Sección destacada con fondo de gradiente */
 .highlight-section {
-    background: linear-gradient(135deg, #4CAF50 0%, #a5d6a7 100%); /* Gradiente de verde a un tono más claro */
-    color: #fff; /* Texto blanco para contraste */
+    background: linear-gradient(135deg, #4CAF50 0%, #a5d6a7 100%);
+    color: #fff;
     padding: 40px 20px;
-    margin: 10px auto; /* Reducir margen superior e inferior */
+    margin: 10px auto;
     text-align: center;
-    border-radius: 10px; /* Bordes redondeados */
-    max-width: 900px; /* Limitar el ancho máximo */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra ligera para profundidad */
-    transition: transform 0.3s ease-in-out; /* Transición suave */
+    border-radius: 10px;
+    max-width: 900px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
 }
 
     .highlight-section:hover {
-        transform: translateY(-10px); /* Efecto de elevación al pasar el cursor */
+        transform: translateY(-10px);
     }
 
 .highlight-content h2 {
-    font-size: 2.5em; /* Tamaño de fuente más grande para el título */
+    font-size: 2.5em;
     margin-bottom: 10px;
 }
 
 .highlight-content p {
-    font-size: 1.2em; /* Tamaño de fuente más grande para el párrafo */
+    font-size: 1.2em;
     margin: 0;
 }
 
 .highlight-content i {
-    margin-bottom: 15px; /* Espacio debajo del icono */
-    color: #fff; /* Color del icono */
+    margin-bottom: 15px;
+    color: #fff; 
 }
 
-/* Secciones de contenido principal */
 .about-us, .our-pillars {
     padding: 30px 20px;
     background-color: #fff;
@@ -112,14 +107,14 @@ body {
 }
 
 h1, h2, h3 {
-    color: #4CAF50; /* Verde del logo */
+    color: #4CAF50;
 }
 
 .pillar {
     margin: 15px 0;
     padding: 20px;
-    background-color: #f9f9f9; /* Fondo ligero para los pilares */
-    border-left: 5px solid #4CAF50; /* Verde del logo */
+    background-color: #f9f9f9;
+    border-left: 5px solid #4CAF50;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -136,6 +131,7 @@ h1, h2, h3 {
     bottom: 0;
     width: 100%;
     margin-top: 20px;
+    flex-shrink: 0;
 }
 
     .footer p {
@@ -144,6 +140,6 @@ h1, h2, h3 {
 
 .welcome-message {
     font-size: 1.5em;
-    color: #4CAF50; /* O cualquier color que desees */
+    color: #4CAF50;
     margin-top: 10px;
 }
