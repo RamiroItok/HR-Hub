@@ -7,16 +7,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bitácora - HR Hub</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Style/SiteMaster.css" rel="stylesheet" />
     <link href="~/Style/Bitacora.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
     <form id="form1" runat="server">
         <uc:NavBar runat="server" ID="NavBarControl" />
-
-        <div class="container">
+        <div class="bitacora-page">
+            <div class="container">
             <h2>Bitacora</h2>
             <div class="filter-container">
                 <div class="form-group">
@@ -42,16 +46,21 @@
                 <div class="form-group">
                     <label for="txtFechaDesde">Fecha Desde:</label>
                     <div class="input-container">
-                        <input type="datetime-local" ID="txtFechaDesde" runat="server" CssClass="form-control" />
-                        <i class="fas fa-calendar-alt calendar-icon"></i>
+                        <input type="text" ID="txtFechaDesde" runat="server" CssClass="form-control" />
+                        
+                        <button type="button" class="calendar-button" onclick="openFlatpickr('txtFechaDesde')">
+                            <i class="fas fa-calendar-alt"></i>
+                        </button>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="txtFechaHasta">Fecha Hasta:</label>
                     <div class="input-container">
-                        <input type="datetime-local" ID="txtFechaHasta" runat="server" CssClass="form-control" />
-                        <i class="fas fa-calendar-alt calendar-icon"></i>
+                        <input type="text" ID="txtFechaHasta" runat="server" CssClass="form-control" />
+                        <button type="button" class="calendar-button" onclick="openFlatpickr('txtFechaHasta')">
+                            <i class="fas fa-calendar-alt"></i>
+                        </button>
                     </div>
                 </div>
             
@@ -61,7 +70,7 @@
                 </div>
             </div>
 
-           <asp:GridView ID="gvBitacora" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" 
+            <asp:GridView ID="gvBitacora" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" 
                           AllowPaging="True" PageSize="15" OnPageIndexChanging="gvBitacora_PageIndexChanging" PagerStyle-CssClass="gridview-pagination"
                           PagerSettings-Mode="Numeric" PagerStyle-HorizontalAlign="Center" >
                 <Columns>
@@ -74,7 +83,33 @@
                 </Columns>
             </asp:GridView>
         </div>
+        </div>
     </form>
+
+    <script>
+        var fpFechaDesde, fpFechaHasta;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            fpFechaDesde = flatpickr("#<%= txtFechaDesde.ClientID %>", {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+            });
+
+            fpFechaHasta = flatpickr("#<%= txtFechaHasta.ClientID %>", {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+            });
+        });
+
+        function openFlatpickr(fieldId) {
+            if (fieldId === 'txtFechaDesde') {
+                fpFechaDesde.open();
+            } else if (fieldId === 'txtFechaHasta') {
+                fpFechaHasta.open();
+            }
+        }
+    </script>
+
     <script src="Scripts/bootstrap.min.js"></script>
 </body>
 </html>
