@@ -39,6 +39,19 @@ namespace Aplication.Services
             }
         }
 
+        public bool CalcularDVTabla(string tabla)
+        {
+            try
+            {
+                _digitoVerificadorDAO.CalcularDVTabla(tabla);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public DataTable ObtenerTabla(string tabla)
         {
             try

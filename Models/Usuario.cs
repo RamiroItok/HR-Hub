@@ -13,5 +13,6 @@ namespace Models
         public Puesto Puesto { get; set; }
         public string Area { get; set; }
         public DateTime FechaIngreso { get; set; }
+        public int DVH { get; set; }
     }
 }

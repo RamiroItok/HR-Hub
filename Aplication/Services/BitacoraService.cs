@@ -11,10 +11,12 @@ namespace Aplication.Services
     public class BitacoraService : IBitacoraService
     {
         private readonly IBitacoraDAO _bitacoraDAO;
+        private readonly IDigitoVerificadorService _digitoVerificadorService;
 
-        public BitacoraService(IBitacoraDAO bitacoraDAO)
+        public BitacoraService(IBitacoraDAO bitacoraDAO, IDigitoVerificadorService digitoVerificadorService)
         {
             _bitacoraDAO = bitacoraDAO;
+            _digitoVerificadorService = digitoVerificadorService;
         }
         public int AltaBitacora(string email, Puesto tipoUsuario, string descripcion, Criticidad criticidad)
         {
@@ -29,6 +31,7 @@ namespace Aplication.Services
                     Criticidad = criticidad.ToString()
                 };
                 var resultado = _bitacoraDAO.RegistrarBitacora(bitacora);
+                _digitoVerificadorService.CalcularDVTabla("Bitacora");
                 return resultado;
             }
             catch (Exception ex)
