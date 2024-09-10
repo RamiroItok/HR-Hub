@@ -111,7 +111,7 @@ namespace GUI
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtFechaDesde;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaDesde;
 
         /// <summary>
         /// Control txtFechaHasta.
@@ -120,7 +120,7 @@ namespace GUI
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtFechaHasta;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaHasta;
 
         /// <summary>
         /// Control btnBuscar.

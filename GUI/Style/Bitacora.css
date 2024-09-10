@@ -1,216 +1,213 @@
-﻿/* Tipografía global */
-body {
+﻿/* Tipografía específica para la página Bitácora */
+.bitacora-page {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía moderna */
     font-size: 16px;
     color: #333;
 }
 
-/* Contenedor de filtros ajustado */
-.filter-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 20px; /* Reducir el espacio entre filas (vertical: 10px, horizontal: 20px) */
-    justify-content: space-between;
-}
-
-    /* Cada control (label + input/dropdown) */
-    .filter-container .form-group {
+    /* Contenedor de filtros ajustado */
+    .bitacora-page .filter-container {
         display: flex;
-        flex-direction: column;
-        width: 48%; /* Ocupa el 48% del ancho para tener dos controles por fila */
-        margin-bottom: 5px; /* Reducir el margen inferior entre las filas */
-    }
-
-    /* Alinear los botones en una fila */
-    .filter-container .button-group {
-        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 20px;
         justify-content: space-between;
-        width: 100%;
-        margin-top: 5px; /* Espacio superior para los botones */
     }
 
-        /* Botones alineados */
-        .filter-container .button-group .btn {
-            width: 48%; /* Botones alineados con el mismo ancho */
+        /* Cada control (label + input/dropdown) */
+        .bitacora-page .filter-container .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 48%;
+            margin-bottom: 5px;
         }
 
-    /* Estilo general para los Labels */
-    .filter-container label {
+        /* Botones alineados */
+        .bitacora-page .filter-container .button-group {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+            .bitacora-page .filter-container .button-group .btn {
+                width: 48%;
+            }
+
+        /* Estilo general para los Labels */
+        .bitacora-page .filter-container label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        /* Estilo general para los TextBoxes y DropDowns */
+        .bitacora-page .filter-container input,
+        .bitacora-page .filter-container select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: auto;
+        }
+
+            /* Efecto de foco */
+            .bitacora-page .filter-container input:focus,
+            .bitacora-page .filter-container select:focus {
+                border-color: #76B041;
+                box-shadow: 0 4px 8px rgba(118, 176, 65, 0.3);
+                outline: none;
+            }
+
+        /* DropDown específico */
+        .bitacora-page .filter-container select {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 30px;
+        }
+
+    /* Botones */
+    .bitacora-page .btn-primary {
+        background-color: #76B041;
+        border-color: #76B041;
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-weight: bold;
-        margin-bottom: 8px;
-        color: #333;
-        display: inline-block;
-        font-size: 14px;
     }
 
-    /* Estilo general para los TextBoxes y DropDowns */
-    .filter-container input,
-    .filter-container select {
-        width: 100%;
-        padding: 12px 16px; /* Ajustamos el padding para aumentar el tamaño vertical */
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px; /* Aumentamos el tamaño de la fuente */
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        height: auto; /* Dejar que la altura se ajuste según el contenido */
+        .bitacora-page .btn-primary:hover {
+            background-color: #5c8f34;
+            border-color: #4b7529;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    /* Paginación numérica */
+    .bitacora-page .gridview-pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        list-style: none;
+        padding: 0;
     }
 
-        /* Efecto de foco */
-        .filter-container input:focus,
-        .filter-container select:focus {
-            border-color: #76B041;
-            box-shadow: 0 4px 8px rgba(118, 176, 65, 0.3);
+        .bitacora-page .gridview-pagination a,
+        .bitacora-page .gridview-pagination span {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 12px;
+            margin: 0 3px;
+            border-radius: 8px;
+            background-color: #76B041;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+            /* Efecto hover para los números */
+            .bitacora-page .gridview-pagination a:hover {
+                background-color: #5c8f34;
+                transform: scale(1.05);
+            }
+
+        /* Número activo (página actual) */
+        .bitacora-page .gridview-pagination .aspNetDisabled {
+            background-color: transparent;
+            border: 2px solid #76B041;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: #76B041;
+            font-weight: bold;
+            transform: scale(1.1);
+        }
+
+            .bitacora-page .gridview-pagination .aspNetDisabled:hover {
+                transform: none;
+            }
+
+        /* Eliminar borde de enfoque en navegadores */
+        .bitacora-page .gridview-pagination a:focus {
             outline: none;
         }
 
-    /* DropDown especifico */
-    .filter-container select {
-        white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
-        overflow: hidden; /* Ocultar el texto que se desborda */
-        text-overflow: ellipsis; /* Mostrar "..." si el texto es demasiado largo */
-        padding-right: 30px; /* Espacio adicional para la flecha desplegable */
-    }
-
-/* Botones */
-.btn-primary {
-    background-color: #76B041;
-    border-color: #76B041;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-}
-
-    .btn-primary:hover {
-        background-color: #5c8f34;
-        border-color: #4b7529;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-/* Paginación numérica */
-.gridview-pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    list-style: none;
-    padding: 0;
-}
-
-    .gridview-pagination a, .gridview-pagination span {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        padding: 8px 12px; /* Reducir padding para que los botones sean más pequeños */
-        margin: 0 3px; /* Menor espacio entre los números */
+    /* Tabla */
+    .bitacora-page .table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
-        background-color: #76B041; /* Color verde base */
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
+        overflow: hidden;
+        background-color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: 16px;
-        transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
-        /* Efecto hover para los números */
-        .gridview-pagination a:hover {
-            background-color: #5c8f34; /* Hover verde oscuro */
-            transform: scale(1.05); /* Leve aumento de tamaño */
+        .bitacora-page .table th {
+            background-color: #76B041;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-    /* Número activo (página actual) */
-    .gridview-pagination .aspNetDisabled {
-        background-color: transparent; /* Fondo transparente */
-        border: 2px solid #76B041; /* Borde verde */
-        padding: 8px 12px; /* Mismo padding para mantener consistencia */
-        border-radius: 8px;
-        color: #76B041; /* Color del texto en verde */
-        font-weight: bold;
-        transform: scale(1.1); /* Aumento ligeramente más grande */
-    }
-
-        .gridview-pagination .aspNetDisabled:hover {
-            transform: none; /* Desactivar el efecto de hover para el número activo */
+        .bitacora-page .table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
         }
 
-    /* Eliminar borde de enfoque en navegadores */
-    .gridview-pagination a:focus {
-        outline: none;
-    }
-
-/* Tabla */
-.table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px;
-}
-
-    .table th {
-        background-color: #76B041;
-        color: white;
-        padding: 12px;
-        text-align: left;
-        border-bottom: 2px solid #ddd;
-        font-size: 16px;
-        text-transform: uppercase;
-        letter-spacing: 1px; /* Mejorar la separación de las letras */
-    }
-
-    .table td {
-        padding: 12px;
-        border-bottom: 1px solid #ddd;
-        font-size: 14px;
-    }
-
-    .table tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    .table tr:hover {
-        background-color: #f1f1f1; /* Efecto hover en las filas */
-    }
+        .bitacora-page .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
 
 /* Responsividad */
 @media screen and (max-width: 768px) {
-    .filter-container {
+    .bitacora-page .filter-container {
         flex-direction: column;
     }
 
-        .filter-container input,
-        .filter-container select {
-            max-width: 100%; /* Aumentar el ancho en pantallas más grandes */
+        .bitacora-page .filter-container input,
+        .bitacora-page .filter-container select {
+            max-width: 100%;
         }
 
-        /* Botones alineados uno al lado del otro */
-        .filter-container .btn {
-            width: 48%; /* Botones del mismo ancho, alineados */
-            margin-left: 1%; /* Espaciado entre botones */
+        .bitacora-page .filter-container .btn {
+            width: 48%;
+            margin-left: 1%;
         }
 
-    .table, th, td {
+    .bitacora-page .table,
+    .bitacora-page th,
+    .bitacora-page td {
         font-size: 12px;
     }
 
-    .gridview-pagination li a {
+    .bitacora-page .gridview-pagination li a {
         padding: 8px 12px;
         font-size: 14px;
     }
 }
 
 /* Contenedor del input con icono */
-.input-container {
+.bitacora-page .input-container {
     position: relative;
     width: 100%;
 }
 
-    .input-container input {
+    .bitacora-page .input-container input {
         width: 100%;
-        padding-right: 40px; /* Espacio para el ícono */
+        padding-right: 40px;
         padding-left: 10px;
         height: 40px;
         font-size: 16px;
@@ -220,60 +217,25 @@ body {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-        .input-container input:focus {
-            border-color: #76B041; /* Cambia el color al enfocarse */
-            box-shadow: 0 0 5px rgba(118, 176, 65, 0.5); /* Sombra al enfocarse */
+        .bitacora-page .input-container input:focus {
+            border-color: #76B041;
+            box-shadow: 0 0 5px rgba(118, 176, 65, 0.5);
             outline: none;
         }
 
-/* Estilo para el contenedor del input */
-.input-container {
-    position: relative;
-    width: 100%;
-}
-
-    .input-container input {
-        width: 100%;
-        padding-right: 40px; /* Espacio para el ícono */
-        padding-left: 10px;
-        height: 40px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-        .input-container input:focus {
-            border-color: #76B041; /* Cambiar color del borde */
-            box-shadow: 0 0 5px rgba(118, 176, 65, 0.5); /* Sombra suave */
-            outline: none;
-        }
-
-.calendar-icon {
+/* Botón de calendario */
+.bitacora-page .calendar-button {
     position: absolute;
-    top: 50%;
     right: 10px;
+    top: 50%;
     transform: translateY(-50%);
-    color: #888;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
     font-size: 18px;
-    pointer-events: none;
 }
 
-.input-container input:focus + .calendar-icon {
-    color: #76B041; /* Cambiar color del ícono en foco */
-}
-
-/* Responsividad */
-@media (max-width: 768px) {
-    .input-container input {
-        font-size: 14px;
-        height: 35px;
-        padding-right: 35px;
-    }
-
-    .calendar-icon {
-        font-size: 16px;
-        right: 8px;
-    }
+.bitacora-page .input-container input:focus + .calendar-button {
+    color: #76B041;
 }
