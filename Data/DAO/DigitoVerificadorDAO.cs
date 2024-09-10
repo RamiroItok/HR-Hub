@@ -148,6 +148,77 @@ namespace Data.DAO
             }
         }
 
+        public bool CalcularDVTabla(string tablaObjetivo)
+        {
+            try
+            {
+                bool mensaje = true;
+
+                string consulta = $"SELECT NombreTabla as Tabla, DV as Valor_DV FROM DigitoVerificador WHERE NombreTabla = '{tablaObjetivo}'";
+                DataTable dt = _acceso.GenerarConsulta(consulta);
+
+                if (dt.Rows.Count == 0)
+                {
+                    throw new Exception("La tabla especificada no existe en la base de datos DigitoVerificador.");
+                }
+
+                string tabla = dt.Rows[0]["Tabla"].ToString();
+                int DV_tabla = 0;
+                string consulta2 = $@"SELECT * FROM {tabla}";
+                DataTable dt2 = _acceso.GenerarConsulta(consulta2);
+                int x = 0;
+
+                foreach (DataRow fila1 in dt2.Rows)
+                {
+                    int DVH_total = 0;
+                    int dvh_fila = 0;
+
+                    foreach (DataColumn dc in dt2.Columns)
+                    {
+                        if (dc.ColumnName.ToString().Substring(0, 2).ToUpper() != "ID")
+                        {
+                            if (dc.ColumnName.ToString().ToUpper() != "DVH")
+                            {
+                                string celda = fila1[dc].ToString();
+                                for (int i = 0; i < celda.Length; i++)
+                                {
+                                    byte[] bytes = Encoding.ASCII.GetBytes(celda.Substring(i, 1));
+                                    int result = bytes[0];
+                                    dvh_fila += result * (i + 1);
+                                }
+                            }
+                            else
+                            {
+                                DVH_total = int.Parse(fila1[dc].ToString());
+                            }
+                        }
+                    }
+
+                    if (DVH_total != dvh_fila)
+                    {
+                        string primaryKey = "Id";
+                        if (tabla == "UsuarioPermiso")
+                            primaryKey = "Id_UsuarioPermiso";
+
+                        string consultaUpdate = $@"UPDATE {tabla} SET DVH = '{dvh_fila}' WHERE {primaryKey} = '{dt2.Rows[x][primaryKey].ToString()}'";
+                        _acceso.GenerarConsulta(consultaUpdate);
+                    }
+
+                    x += 1;
+                    DV_tabla += dvh_fila;
+                }
+
+                string xxconsulta = $@"UPDATE DigitoVerificador SET dv = {DV_tabla} WHERE NombreTabla = '{tabla}'";
+                _acceso.GenerarConsulta(xxconsulta);
+
+                return mensaje;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la base de datos: " + ex.Message);
+            }
+        }
+
         public DataTable ObtenerTabla(string tabla)
         {
             try

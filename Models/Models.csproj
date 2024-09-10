@@ -46,6 +46,7 @@
     <Compile Include="Composite\Familia.cs" />
     <Compile Include="Composite\Patente.cs" />
     <Compile Include="Composite\Permiso.cs" />
+    <Compile Include="DigitoVerificador.cs" />
     <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="Enums\Criticidad.cs" />
     <Compile Include="Enums\Puesto.cs" />

@@ -12,10 +12,12 @@ namespace Aplication
     public class UsuarioService : IUsuarioService
     {
         private readonly IUsuarioDAO _usuarioDAO;
+        private readonly IDigitoVerificadorService _iDigitoVerificadorService;
 
-        public UsuarioService(IUsuarioDAO usuarioDAO)
+        public UsuarioService(IUsuarioDAO usuarioDAO, IDigitoVerificadorService digitoVerificadorService)
         {
             _usuarioDAO = usuarioDAO;
+            _iDigitoVerificadorService = digitoVerificadorService;
         }
 
         public int RegistrarUsuario(Usuario usuario)
@@ -43,6 +45,9 @@ namespace Aplication
                 };
 
                 var idUsuario = _usuarioDAO.RegistrarUsuario(usuarioReal);
+
+                _iDigitoVerificadorService.CalcularDVTabla("Usuario");
+
                 return idUsuario;
             }
             catch (Exception ex)

@@ -6,6 +6,7 @@ namespace Data.Interfaces
     {
         string Verificar_DV();
         bool Recalcular_DV();
+        bool CalcularDVTabla(string tablaObjetivo);
         DataTable ObtenerTabla(string tabla);
     }
 }
