@@ -13,11 +13,13 @@ namespace Aplication
     {
         private readonly IUsuarioDAO _usuarioDAO;
         private readonly IDigitoVerificadorService _iDigitoVerificadorService;
+        private readonly IBitacoraService _iBitacoraService;
 
-        public UsuarioService(IUsuarioDAO usuarioDAO, IDigitoVerificadorService digitoVerificadorService)
+        public UsuarioService(IUsuarioDAO usuarioDAO, IDigitoVerificadorService digitoVerificadorService, IBitacoraService bitacoraService)
         {
             _usuarioDAO = usuarioDAO;
             _iDigitoVerificadorService = digitoVerificadorService;
+            _iBitacoraService = bitacoraService;
         }
 
         public int RegistrarUsuario(Usuario usuario)
@@ -42,6 +44,7 @@ namespace Aplication
                     Puesto = usuario.Puesto,
                     Area = usuario.Area,
                     FechaIngreso = usuario.FechaIngreso,
+                    Estado = 0
                 };
 
                 var idUsuario = _usuarioDAO.RegistrarUsuario(usuarioReal);
@@ -70,12 +73,37 @@ namespace Aplication
             }
         }
 
-        public Usuario ValidarUsuarioContraseña(string email, string contraseña)
+        public string ValidarUsuario(Usuario usuario, string email, string contraseña)
         {
             try
             {
-                var resultado = _usuarioDAO.ValidarUsuarioContraseña(email, contraseña);
-                return resultado;
+                if(usuario == null)
+                    return "El email no se ha dado de alta en el sistema.";
+
+                if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(contraseña))
+                    return "Hay campos sin completar.";
+
+                var contraseñaReal = usuario.Contraseña;
+                string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?""':{}|<>]).+$";
+
+                if(contraseña.Length < 8 || !Regex.IsMatch(contraseña, pattern))
+                    return "La contraseña no posee el formato correcto.";
+
+                if(usuario.Estado == 3)
+                    return "El usuario está bloqueado. Contacte un administrador para su desbloqueo.";
+
+                if (contraseñaReal != contraseña)
+                {
+                    EstadoBloqueoUsuario(usuario.Email);
+                    return "La contraseña es incorrecta.";
+                }
+                else
+                {
+                    DesbloquearUsuario(usuario.Email);
+                    _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Inicio de sesion", Criticidad.MEDIA);
+                }
+
+                return null;
             }
             catch (Exception ex)
             {
@@ -115,19 +143,42 @@ namespace Aplication
             }
         }
 
-        public string ValidarCampos(string usuario, string contraseña)
+        public void EstadoBloqueoUsuario(string email)
         {
-            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña))
-                return "Hay campos sin completar.";
+            try
+            {
+                _usuarioDAO.EstadoBloqueoUsuario(email);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
-            /*if(contraseña.Length < 8)
-                return "La contraseña debe ser mayor a 8 caracteres.";*/
+        public void DesbloquearUsuario(string email)
+        {
+            try
+            {
+                _usuarioDAO.DesbloquearUsuario(email);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
-            /*string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?""':{}|<>]).+$";
-            if (!Regex.IsMatch(contraseña, pattern))
-                return "La contraseña debe tener al menos una mayúscula, una minúscula, un número y un carácter especial.";*/
-
-            return null;
+        public Usuario ObtenerUsuarioPorEmail(string email)
+        {
+            try
+            {
+                //email = EncriptacionService.Encriptar_AES(email);
+                var resultado = _usuarioDAO.ObtenerUsuarioPorEmail(email);
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

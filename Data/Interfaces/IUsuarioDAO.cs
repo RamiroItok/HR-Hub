@@ -1,5 +1,4 @@
 ﻿using Models;
-using System.Collections.Generic;
 using System.Data;
 
 namespace Data.Interfaces
@@ -8,7 +7,9 @@ namespace Data.Interfaces
     {
         int RegistrarUsuario(Usuario usuario);
         DataSet ObtenerPuestos();
-        Usuario ValidarUsuarioContraseña(string email, string contraseña);
         DataSet ListarUsuarios();
+        void EstadoBloqueoUsuario(string email);
+        void DesbloquearUsuario(string email);
+        Usuario ObtenerUsuarioPorEmail(string email);
     }
 }
