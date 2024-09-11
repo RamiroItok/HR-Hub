@@ -25,28 +25,27 @@ namespace GUI
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            var resultadoValidacion = _usuarioService.ValidarCampos(txtEmail.Text, txtPassword.Text);
-
-            if (!string.IsNullOrEmpty(resultadoValidacion))
+            try
             {
-                lblMensaje.Text = resultadoValidacion;
-                lblMensaje.Visible = true;
-            }
-            else
-            {
-                var usuario = _usuarioService.ValidarUsuarioContraseña(txtEmail.Text, txtPassword.Text);
+                var usuario = _usuarioService.ObtenerUsuarioPorEmail(txtEmail.Text);
 
-                if (usuario == null)
-                {
-                    lblMensaje.Text = "El email no coincide con la contraseña.";
+                lblMensaje.Text = _usuarioService.ValidarUsuario(usuario, txtEmail.Text, txtPassword.Text);
+
+                if (lblMensaje.Text != "")
                     lblMensaje.Visible = true;
-                }
                 else
                 {
                     Session["Usuario"] = usuario;
-                    _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Inicio de sesion", Criticidad.MEDIA);
                     Response.Redirect("Default.aspx", false);
                     Context.ApplicationInstance.CompleteRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("SQL"))
+                {
+                    lblMensaje.Text = "Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos";
+                    lblMensaje.Visible = true;
                 }
             }
         }

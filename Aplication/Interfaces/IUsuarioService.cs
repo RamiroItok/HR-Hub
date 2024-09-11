@@ -8,8 +8,10 @@ namespace Aplication.Interfaces
     {
         int RegistrarUsuario(Usuario usuario);
         DataTable ObtenerPuestos();
-        Usuario ValidarUsuarioContraseña(string email, string contraseña);
+        string ValidarUsuario(Usuario usuario, string email, string contraseña);
         List<Usuario> ListarUsuarios();
-        string ValidarCampos(string usuario, string contraeña);
+        void EstadoBloqueoUsuario(string email);
+        void DesbloquearUsuario(string email);
+        Usuario ObtenerUsuarioPorEmail(string email);
     }
 }

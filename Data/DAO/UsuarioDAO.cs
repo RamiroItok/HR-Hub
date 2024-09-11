@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Data.DAO
 {
-    public class UsuarioDAO : IUsuarioDAO 
+    public class UsuarioDAO : IUsuarioDAO
     {
         private readonly Acceso _acceso;
 
@@ -28,7 +28,8 @@ namespace Data.DAO
                     { "@Contraseña", usuario.Contraseña },
                     { "@IdPuesto", (int)usuario.Puesto },
                     { "@Area", usuario.Area },
-                    { "@FechaIngreso", usuario.FechaIngreso }
+                    { "@FechaIngreso", usuario.FechaIngreso },
+                    { "@Estado", usuario.Estado }
                 };
 
                 DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_i_usuario", parameters);
@@ -81,6 +82,7 @@ namespace Data.DAO
                     Puesto = (Models.Enums.Puesto)resultado.Tables[0].Rows[0]["IdPuesto"],
                     Area = resultado.Tables[0].Rows[0]["Area"].ToString(),
                     FechaIngreso = (DateTime)resultado.Tables[0].Rows[0]["FechaIngreso"],
+                    Estado = (int)resultado.Tables[0].Rows[0]["Estado"]
                 };
 
                 return usuario;
@@ -98,6 +100,77 @@ namespace Data.DAO
                 var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_usuarios", null);
 
                 return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void EstadoBloqueoUsuario(string email)
+        {
+            try
+            {
+                Dictionary<string, object> parametros = new Dictionary<string, object>
+                {
+                    { "@Email", email }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_u_EstadoUsuarioBloqueo", parametros);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void DesbloquearUsuario(string email)
+        {
+            try
+            {
+                Dictionary<string, object> parametros = new Dictionary<string, object>
+                {
+                    { "@Email", email }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_u_DesbloquearUsuario", parametros);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public Usuario ObtenerUsuarioPorEmail(string email)
+        {
+            try
+            {
+                Dictionary<string, object> parametros = new Dictionary<string, object>
+                {
+                    { "@Email", email }
+                };
+
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_UsuarioEmail", parametros);
+
+                if (resultado.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                var usuario = new Usuario()
+                {
+                    Id = (int)resultado.Tables[0].Rows[0]["Id"],
+                    Nombre = resultado.Tables[0].Rows[0]["Nombre"].ToString(),
+                    Apellido = resultado.Tables[0].Rows[0]["Apellido"].ToString(),
+                    Email = resultado.Tables[0].Rows[0]["Email"].ToString(),
+                    Contraseña = resultado.Tables[0].Rows[0]["Contraseña"].ToString(),
+                    Puesto = (Models.Enums.Puesto)resultado.Tables[0].Rows[0]["IdPuesto"],
+                    Area = resultado.Tables[0].Rows[0]["Area"].ToString(),
+                    FechaIngreso = (DateTime)resultado.Tables[0].Rows[0]["FechaIngreso"],
+                    Estado = (int)resultado.Tables[0].Rows[0]["Estado"]
+                };
+
+                return usuario;
             }
             catch (Exception ex)
             {

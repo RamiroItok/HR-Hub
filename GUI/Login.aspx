@@ -13,7 +13,7 @@
         <div class="login-container">
             <h2>Iniciar Sesión</h2>
             <asp:Panel runat="server" CssClass="form-group">
-                <asp:Label runat="server" AssociatedControlID="txtEmail" Text="Correo Electrónico:" CssClass="form-label"></asp:Label>
+                <asp:Label runat="server" AssociatedControlID="txtEmail" Text="Email:" CssClass="form-label"></asp:Label>
                 <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" />
             </asp:Panel>
 
@@ -24,10 +24,14 @@
 
             <asp:Panel runat="server" CssClass="form-group">
                 <asp:Button runat="server" ID="btnLogin" Text="Iniciar Sesión" CssClass="btn btn-primary" OnClick="btnLogin_Click" />
-            </asp:Panel>
+                    <asp:HyperLink ID="lnkRecuperarContraseña" runat="server" NavigateUrl="ForgotPassword.aspx" CssClass="forgot-password">
+                        ¿Olvidaste tu contraseña?
+                    </asp:HyperLink>
+
+                </asp:Panel>
 
             <asp:Panel runat="server" CssClass="form-group">
-                <asp:Label runat="server" ID="lblMensaje" CssClass="message-label" Visible="false"></asp:Label>
+                    <asp:Label runat="server" ID="lblMensaje" CssClass="message-label" Visible="false"></asp:Label>                
             </asp:Panel>
         </div>
     </form>
