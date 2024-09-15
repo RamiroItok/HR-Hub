@@ -13,5 +13,6 @@ namespace Aplication.Interfaces
         void EstadoBloqueoUsuario(string email);
         void DesbloquearUsuario(string email);
         Usuario ObtenerUsuarioPorEmail(string email);
+        bool ValidarFormatoContraseña(string contraseña);
     }
 }

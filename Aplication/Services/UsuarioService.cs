@@ -26,21 +26,12 @@ namespace Aplication
         {
             try
             {
-                /*Usuario usuarioReal = new Usuario()
+                Usuario usuarioReal = new Usuario()
                 {
                     Nombre = EncriptacionService.Encriptar_AES(usuario.Nombre),
                     Apellido = EncriptacionService.Encriptar_AES(usuario.Apellido),
                     Email = EncriptacionService.Encriptar_AES(usuario.Email),
                     Contraseña = EncriptacionService.Encriptar_MD5(usuario.Contraseña),
-                    Puesto = usuario.Puesto
-                };*/
-
-                Usuario usuarioReal = new Usuario()
-                {
-                    Nombre = usuario.Nombre,
-                    Apellido = usuario.Apellido,
-                    Email = usuario.Email,
-                    Contraseña = usuario.Contraseña,
                     Puesto = usuario.Puesto,
                     Area = usuario.Area,
                     FechaIngreso = usuario.FechaIngreso,
@@ -83,16 +74,15 @@ namespace Aplication
                 if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(contraseña))
                     return "Hay campos sin completar.";
 
-                var contraseñaReal = usuario.Contraseña;
-                string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?""':{}|<>]).+$";
+                var contraseñaReal = EncriptacionService.Encriptar_MD5(contraseña);
 
-                if(contraseña.Length < 8 || !Regex.IsMatch(contraseña, pattern))
+                if(contraseña.Length < 8 || !ValidarFormatoContraseña(contraseña))
                     return "La contraseña no posee el formato correcto.";
-
+                
                 if(usuario.Estado == 3)
                     return "El usuario está bloqueado. Contacte un administrador para su desbloqueo.";
 
-                if (contraseñaReal != contraseña)
+                if (contraseñaReal != usuario.Contraseña)
                 {
                     EstadoBloqueoUsuario(usuario.Email);
                     return "La contraseña es incorrecta.";
@@ -111,6 +101,16 @@ namespace Aplication
             }
         }
 
+        public bool ValidarFormatoContraseña(string contraseña)
+        {
+            string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?""':{}|<>]).+$";
+
+            if(!Regex.IsMatch(contraseña, pattern))
+                return false;
+
+            return true;
+        }
+
         public List<Usuario> ListarUsuarios()
         {
             try
@@ -124,9 +124,9 @@ namespace Aplication
                     Usuario usuario = new Usuario
                     {
                         Id = Convert.ToInt32(row["Id"]),
-                        Nombre = row["Nombre"].ToString(),
-                        Apellido = row["Apellido"].ToString(),
-                        Email = row["Email"].ToString(),
+                        Nombre = EncriptacionService.Decrypt_AES(row["Nombre"].ToString()),
+                        Apellido = EncriptacionService.Decrypt_AES(row["Apellido"].ToString()),
+                        Email = EncriptacionService.Decrypt_AES(row["Email"].ToString()),
                         Puesto = (Puesto)Enum.Parse(typeof(Puesto), row["IdPuesto"].ToString()),
                         Area = row["Area"].ToString(),
                         FechaIngreso = (DateTime)row["FechaIngreso"]
@@ -171,13 +171,35 @@ namespace Aplication
         {
             try
             {
-                //email = EncriptacionService.Encriptar_AES(email);
+                email = EncriptacionService.Encriptar_AES(email);
                 var resultado = _usuarioDAO.ObtenerUsuarioPorEmail(email);
-                return resultado;
+
+                var usuario = new Usuario()
+                {
+                    Id = (int)resultado.Tables[0].Rows[0]["Id"],
+                    Nombre = resultado.Tables[0].Rows[0]["Nombre"].ToString(),
+                    Apellido = resultado.Tables[0].Rows[0]["Apellido"].ToString(),
+                    Email = resultado.Tables[0].Rows[0]["Email"].ToString(),
+                    Contraseña = resultado.Tables[0].Rows[0]["Contraseña"].ToString(),
+                    Puesto = (Models.Enums.Puesto)resultado.Tables[0].Rows[0]["IdPuesto"],
+                    Area = resultado.Tables[0].Rows[0]["Area"].ToString(),
+                    FechaIngreso = (DateTime)resultado.Tables[0].Rows[0]["FechaIngreso"],
+                    Estado = (int)resultado.Tables[0].Rows[0]["Estado"]
+                };
+
+                return usuario;
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                var mensaje = "";
+                if (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+                {
+                    mensaje = "Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos";
+                }
+                else
+                    mensaje = ex.Message;
+
+                throw new Exception(mensaje);
             }
         }
     }

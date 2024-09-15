@@ -24,7 +24,7 @@
 
             <asp:Panel runat="server" CssClass="form-group">
                 <asp:Button runat="server" ID="btnLogin" Text="Iniciar Sesión" CssClass="btn btn-primary" OnClick="btnLogin_Click" />
-                    <asp:HyperLink ID="lnkRecuperarContraseña" runat="server" NavigateUrl="ForgotPassword.aspx" CssClass="forgot-password">
+                    <asp:HyperLink ID="lnkRecuperarContraseña" runat="server" NavigateUrl="RecuperarContraseña.aspx" CssClass="forgot-password">
                         ¿Olvidaste tu contraseña?
                     </asp:HyperLink>
 

@@ -42,11 +42,8 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("SQL"))
-                {
-                    lblMensaje.Text = "Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos";
-                    lblMensaje.Visible = true;
-                }
+                lblMensaje.Text = ex.Message;
+                lblMensaje.Visible = true;
             }
         }
     }

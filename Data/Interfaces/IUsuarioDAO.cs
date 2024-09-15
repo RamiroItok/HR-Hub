@@ -10,6 +10,6 @@ namespace Data.Interfaces
         DataSet ListarUsuarios();
         void EstadoBloqueoUsuario(string email);
         void DesbloquearUsuario(string email);
-        Usuario ObtenerUsuarioPorEmail(string email);
+        DataSet ObtenerUsuarioPorEmail(string email);
     }
 }
