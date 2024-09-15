@@ -41,13 +41,23 @@ namespace GUI
                     FechaIngreso = DateTime.Now
                 };
 
-                var id = _usuarioService.RegistrarUsuario(usuario);
+                var esContraseñaValida = _usuarioService.ValidarFormatoContraseña(txtContraseña.Text);
 
-                RegistrarBitacora();
+                if (esContraseñaValida)
+                {
+                    var id = _usuarioService.RegistrarUsuario(usuario);
 
-                lblMensaje.Visible = true;
-                lblMensaje.Text = "Se ha registrado el usuario correctamente";
-                Limpiar();
+                    RegistrarBitacora();
+
+                    lblMensaje.Visible = true;
+                    lblMensaje.Text = "Se ha registrado el usuario correctamente";
+                    Limpiar();
+                }
+                else
+                {
+                    lblMensaje.Text = "La contraseña debe tener al menos una mayuscula, una minuscula, un caracter especial, un numero, y debe ser de 8 caracteres en total.";
+                }
+                
             }
             catch (Exception ex)
             {
@@ -61,6 +71,8 @@ namespace GUI
             txtApellido.Text = String.Empty;
             txtEmail.Text = String.Empty;
             txtContraseña.Text = String.Empty;
+            txtArea.Text = String.Empty;
+            DropDownPuesto.SelectedIndex = 0;
         }
 
         private void CargarPuestos()

@@ -71,7 +71,7 @@ namespace Aplication.Services
             Bitacora bitacora = new Bitacora()
             {
                 Id = int.Parse(evento["Id"].ToString()),
-                Email = evento["Email"].ToString(),
+                Email = EncriptacionService.Decrypt_AES(evento["Email"].ToString()),
                 TipoUsuario = evento["TipoUsuario"].ToString(),
                 Descripcion = evento["Descripcion"].ToString(),
                 Fecha = DateTime.Parse(evento["Fecha"].ToString()),

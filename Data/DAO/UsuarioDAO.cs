@@ -141,7 +141,7 @@ namespace Data.DAO
             }
         }
 
-        public Usuario ObtenerUsuarioPorEmail(string email)
+        public DataSet ObtenerUsuarioPorEmail(string email)
         {
             try
             {
@@ -157,20 +157,7 @@ namespace Data.DAO
                     return null;
                 }
 
-                var usuario = new Usuario()
-                {
-                    Id = (int)resultado.Tables[0].Rows[0]["Id"],
-                    Nombre = resultado.Tables[0].Rows[0]["Nombre"].ToString(),
-                    Apellido = resultado.Tables[0].Rows[0]["Apellido"].ToString(),
-                    Email = resultado.Tables[0].Rows[0]["Email"].ToString(),
-                    Contraseña = resultado.Tables[0].Rows[0]["Contraseña"].ToString(),
-                    Puesto = (Models.Enums.Puesto)resultado.Tables[0].Rows[0]["IdPuesto"],
-                    Area = resultado.Tables[0].Rows[0]["Area"].ToString(),
-                    FechaIngreso = (DateTime)resultado.Tables[0].Rows[0]["FechaIngreso"],
-                    Estado = (int)resultado.Tables[0].Rows[0]["Estado"]
-                };
-
-                return usuario;
+                return resultado;
             }
             catch (Exception ex)
             {
