@@ -7,74 +7,56 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace GUI.Controls
+namespace GUI
 {
 
 
-    public partial class NavBar
+    public partial class CambiarContraseña
     {
 
         /// <summary>
-        /// Control registroLink.
+        /// Control txtPasswordActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl registroLink;
+        protected global::System.Web.UI.WebControls.TextBox txtPasswordActual;
 
         /// <summary>
-        /// Control seguridadLink.
+        /// Control txtPasswordNueva.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seguridadLink;
+        protected global::System.Web.UI.WebControls.TextBox txtPasswordNueva;
 
         /// <summary>
-        /// Control bitacoraLink.
+        /// Control txtPasswordConfirmar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor bitacoraLink;
+        protected global::System.Web.UI.WebControls.TextBox txtPasswordConfirmar;
 
         /// <summary>
-        /// Control miCuentaLink.
+        /// Control btnCambiar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl miCuentaLink;
+        protected global::System.Web.UI.WebControls.Button btnCambiar;
 
         /// <summary>
-        /// Control loginLink.
+        /// Control lblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl loginLink;
-
-        /// <summary>
-        /// Control logoutLink.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl logoutLink;
-
-        /// <summary>
-        /// Control btnLogout.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
     }
 }

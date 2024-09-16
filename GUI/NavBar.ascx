@@ -31,8 +31,14 @@
                 <li><a runat="server" href="~/Contact">Contacto</a></li>
             </ul>
             
-            <!-- Enlaces de Login y Logout -->
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" id="miCuentaLink" runat="server">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi cuenta <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a runat="server" href="~/MisDatos">Mis datos</a></li>
+                        <li><a runat="server" href="~/CambiarContraseña">Cambiar contraseña</a></li>
+                    </ul>
+                </li>
                 <li id="loginLink" runat="server"><a href="Login.aspx">Login</a></li>
                 <li id="logoutLink" runat="server"><asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click">Cerrar Sesión</asp:LinkButton></li>
             </ul>
