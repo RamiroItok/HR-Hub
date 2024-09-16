@@ -121,6 +121,7 @@
     <Content Include="ListarUsuarios.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="NavBar.ascx" />
+    <Content Include="RecuperarContraseña.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -177,6 +178,7 @@
     <Content Include="Style\Login.css" />
     <Content Include="Style\Registro.css" />
     <Content Include="Style\SiteMaster.css" />
+    <Content Include="Templates\RecuperarContraseñaTemplate.html" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -225,6 +227,13 @@
     </Compile>
     <Compile Include="NavBar.ascx.designer.cs">
       <DependentUpon>NavBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="RecuperarContraseña.aspx.cs">
+      <DependentUpon>RecuperarContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecuperarContraseña.aspx.designer.cs">
+      <DependentUpon>RecuperarContraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>

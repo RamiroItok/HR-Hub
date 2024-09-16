@@ -9,12 +9,10 @@ namespace GUI
     public partial class Login : Page
     {
         private readonly IUsuarioService _usuarioService;
-        private readonly IBitacoraService _bitacoraService;
 
         public Login()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
-            _bitacoraService = Global.Container.Resolve<IBitacoraService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)

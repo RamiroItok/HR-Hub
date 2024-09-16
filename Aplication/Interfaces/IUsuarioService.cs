@@ -14,5 +14,8 @@ namespace Aplication.Interfaces
         void DesbloquearUsuario(string email);
         Usuario ObtenerUsuarioPorEmail(string email);
         bool ValidarFormatoContraseña(string contraseña);
+        string GenerarContraseña();
+        bool ActualizarContraseña(Usuario usuario, string contraseña);
+        void EnviarMail(string email, string contraeña);
     }
 }

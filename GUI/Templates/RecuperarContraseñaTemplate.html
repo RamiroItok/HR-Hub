@@ -1,0 +1,58 @@
+﻿<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .header {
+            background-color: #76B041;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .content {
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div class='header'>
+            HR Hub - Recuperación de Contraseña
+        </div>
+        <div class='content'>
+            <p>Estimado(a) usuario,</p>
+            <p>Hemos recibido una solicitud para restablecer su contraseña. Su nueva contraseña es la siguiente:</p>
+            <p><strong>{{CONTRASEÑA}}</strong></p>
+            <p>Le recomendamos que inicie sesión y cambie su contraseña por una de su preferencia lo antes posible.</p>
+        </div>
+        <div class='footer'>
+            &copy; 2024 HR Hub. Todos los derechos reservados.
+        </div>
+    </div>
+</body>
+</html>

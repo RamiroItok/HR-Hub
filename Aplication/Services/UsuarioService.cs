@@ -5,7 +5,12 @@ using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace Aplication
 {
@@ -200,6 +205,83 @@ namespace Aplication
                     mensaje = ex.Message;
 
                 throw new Exception(mensaje);
+            }
+        }
+
+        public string GenerarContraseña()
+        {
+            const string minusculas = "abcdefghijklmnopqrstuvwxyz";
+            const string mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string numeros = "1234567890";
+            const string caracteresEspeciales = "!@#$%^&*()";
+            const string todosCaracteres = minusculas + mayusculas + numeros + caracteresEspeciales;
+
+            StringBuilder contraseña = new StringBuilder();
+            Random random = new Random();
+
+            contraseña.Append(minusculas[random.Next(minusculas.Length)]);
+            contraseña.Append(mayusculas[random.Next(mayusculas.Length)]);
+            contraseña.Append(numeros[random.Next(numeros.Length)]);
+            contraseña.Append(caracteresEspeciales[random.Next(caracteresEspeciales.Length)]);
+
+            for (int i = contraseña.Length; i < 10; i++)
+            {
+                contraseña.Append(todosCaracteres[random.Next(todosCaracteres.Length)]);
+            }
+
+            return MezclarCaracteres(contraseña.ToString());
+        }
+
+        private string MezclarCaracteres(string contraseña)
+        {
+            char[] array = contraseña.ToCharArray();
+            Random random = new Random();
+            for (int i = array.Length - 1; i > 0; i--)
+            {
+                int j = random.Next(i + 1);
+                char temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return new string(array);
+        }
+
+        public bool ActualizarContraseña(Usuario usuario, string contraseña)
+        {
+            var contraseñaEncriptada = EncriptacionService.Encriptar_MD5(contraseña);
+            var resultado = _usuarioDAO.ActualizarContraseña(usuario.Email, contraseñaEncriptada);
+
+            if (resultado)
+                _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Recuperación de contraseña", Criticidad.ALTA);
+
+            return resultado;
+        }
+
+        public void EnviarMail(string email, string contraseña)
+        {
+            try
+            {
+                MailMessage mensaje = new MailMessage();
+                mensaje.From = new MailAddress("noreply@hrhub.com", "HR Hub");
+                mensaje.To.Add(email);
+                mensaje.Subject = "Recuperación de contraseña";
+
+                string body = File.ReadAllText(HttpContext.Current.Server.MapPath("~/Templates/RecuperarContraseñaTemplate.html"));
+
+                body = body.Replace("{{CONTRASEÑA}}", contraseña);
+
+                mensaje.Body = body;
+                mensaje.IsBodyHtml = true;
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                smtp.Port = 587;
+                smtp.Credentials = new System.Net.NetworkCredential("noreply.hrhub@gmail.com", "wjfjskqjkcoaxmhm");
+                smtp.EnableSsl = true;
+                smtp.Send(mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }
