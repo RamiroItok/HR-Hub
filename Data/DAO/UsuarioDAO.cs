@@ -164,5 +164,30 @@ namespace Data.DAO
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool ActualizarContraseña(string email, string contraseña)
+        {
+            try
+            {
+                Dictionary<string, object> parametros = new Dictionary<string, object>
+                {
+                    { "@email", email },
+                    { "@contraseña", contraseña }
+                };
+
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_u_usuarioContraseña", parametros);
+
+                if (resultado.Tables[0].Rows.Count == 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
