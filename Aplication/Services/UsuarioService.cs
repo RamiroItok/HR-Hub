@@ -179,20 +179,7 @@ namespace Aplication
                 email = EncriptacionService.Encriptar_AES(email);
                 var resultado = _usuarioDAO.ObtenerUsuarioPorEmail(email);
 
-                var usuario = new Usuario()
-                {
-                    Id = (int)resultado.Tables[0].Rows[0]["Id"],
-                    Nombre = resultado.Tables[0].Rows[0]["Nombre"].ToString(),
-                    Apellido = resultado.Tables[0].Rows[0]["Apellido"].ToString(),
-                    Email = resultado.Tables[0].Rows[0]["Email"].ToString(),
-                    Contraseña = resultado.Tables[0].Rows[0]["Contraseña"].ToString(),
-                    Puesto = (Models.Enums.Puesto)resultado.Tables[0].Rows[0]["IdPuesto"],
-                    Area = resultado.Tables[0].Rows[0]["Area"].ToString(),
-                    FechaIngreso = (DateTime)resultado.Tables[0].Rows[0]["FechaIngreso"],
-                    Estado = (int)resultado.Tables[0].Rows[0]["Estado"]
-                };
-
-                return usuario;
+                return CompletarUsuario(resultado);
             }
             catch (Exception ex)
             {
@@ -246,13 +233,15 @@ namespace Aplication
             return new string(array);
         }
 
-        public bool ActualizarContraseña(Usuario usuario, string contraseña)
+        public bool ActualizarContraseña(Usuario usuario, string contraseña, TipoOperacionContraseña tipoOperacion)
         {
             var contraseñaEncriptada = EncriptacionService.Encriptar_MD5(contraseña);
             var resultado = _usuarioDAO.ActualizarContraseña(usuario.Email, contraseñaEncriptada);
 
+            var descripcion = tipoOperacion == TipoOperacionContraseña.Recuperacion ? "Recuperacion de contraseña" : "Cambio de contraseña";
+
             if (resultado)
-                _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Recuperación de contraseña", Criticidad.ALTA);
+                _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, descripcion, Criticidad.ALTA);
 
             return resultado;
         }
@@ -283,6 +272,42 @@ namespace Aplication
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        private Usuario CompletarUsuario(DataSet tabla)
+        {
+            var usuario = new Usuario()
+            {
+                Id = (int)tabla.Tables[0].Rows[0]["Id"],
+                Nombre = tabla.Tables[0].Rows[0]["Nombre"].ToString(),
+                Apellido = tabla.Tables[0].Rows[0]["Apellido"].ToString(),
+                Email = tabla.Tables[0].Rows[0]["Email"].ToString(),
+                Contraseña = tabla.Tables[0].Rows[0]["Contraseña"].ToString(),
+                Puesto = (Models.Enums.Puesto)tabla.Tables[0].Rows[0]["IdPuesto"],
+                Area = tabla.Tables[0].Rows[0]["Area"].ToString(),
+                FechaIngreso = (DateTime)tabla.Tables[0].Rows[0]["FechaIngreso"],
+                Estado = (int)tabla.Tables[0].Rows[0]["Estado"]
+            };
+
+            return usuario;
+        }
+
+        public string ValidarContraseñas(Usuario usuario, string contraseñaActual, string contraseñaNueva, string confirmarContraseña)
+        {
+            var contraseñaEncriptada = EncriptacionService.Encriptar_MD5(contraseñaActual);
+
+            if(usuario.Contraseña != contraseñaEncriptada)
+            {
+                return "La contraseña actual es incorrecta";
+            }
+
+            if (contraseñaNueva != confirmarContraseña)
+                return "La nueva contraseña y la confirmación no coinciden";
+
+            if (contraseñaNueva.Length < 8 || !ValidarFormatoContraseña(contraseñaNueva))
+                return "La contraseña no posee el formato correcto.";
+
+            return null;
         }
     }
 }

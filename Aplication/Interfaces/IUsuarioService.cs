@@ -1,4 +1,5 @@
 ﻿using Models;
+using Models.Enums;
 using System.Collections.Generic;
 using System.Data;
 
@@ -15,7 +16,8 @@ namespace Aplication.Interfaces
         Usuario ObtenerUsuarioPorEmail(string email);
         bool ValidarFormatoContraseña(string contraseña);
         string GenerarContraseña();
-        bool ActualizarContraseña(Usuario usuario, string contraseña);
+        bool ActualizarContraseña(Usuario usuario, string contraseña, TipoOperacionContraseña tipoOperacionContraseña);
         void EnviarMail(string email, string contraeña);
+        string ValidarContraseñas(Usuario usuario, string contraseñaActual, string contraseñaNueva, string confirmarContraseña);
     }
 }

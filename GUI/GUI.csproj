@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Bitacora.aspx" />
+    <Content Include="CambiarContraseña.aspx" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
     <Content Include="GestionFamilia.aspx" />
     <Content Include="GestionFamiliaPatente.aspx" />
@@ -172,6 +173,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="Style\Bitacora.css" />
+    <Content Include="Style\CambiarContraseña.css" />
     <Content Include="Style\Default.css" />
     <Content Include="Style\GestionFamiliaPatente.css" />
     <Content Include="Style\ListarUsuarios.css" />
@@ -192,6 +194,13 @@
     </Compile>
     <Compile Include="Bitacora.aspx.designer.cs">
       <DependentUpon>Bitacora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarContraseña.aspx.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CambiarContraseña.aspx.designer.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionFamilia.aspx.cs">
       <DependentUpon>GestionFamilia.aspx</DependentUpon>

@@ -36,7 +36,7 @@ namespace GUI
             else
             {
                 string nuevaContraseña = _usuarioService.GenerarContraseña();
-                if(_usuarioService.ActualizarContraseña(usuario, nuevaContraseña))
+                if(_usuarioService.ActualizarContraseña(usuario, nuevaContraseña, Models.Enums.TipoOperacionContraseña.Recuperacion))
                 {
                     _usuarioService.EnviarMail(email, nuevaContraseña);
                     lblMensaje.Text = "Se ha enviado una nueva contraseña a su correo electrónico.";

@@ -26,6 +26,7 @@ namespace GUI.Controls
                     seguridadLink.Visible = true;
                     registroLink.Visible = true;
                     bitacoraLink.Visible = true;
+                    miCuentaLink.Visible = true;
                 }
                 else
                 {
@@ -34,6 +35,7 @@ namespace GUI.Controls
                     seguridadLink.Visible = false;
                     registroLink.Visible = false;
                     bitacoraLink.Visible = false;
+                    miCuentaLink.Visible = false;
                 }
             }
         }
