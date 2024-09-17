@@ -11,7 +11,7 @@ namespace Aplication.Services
 
         public DigitoVerificadorService()
         {
-            _digitoVerificadorDAO = new Data.DAO.DigitoVerificadorDAO();;
+            _digitoVerificadorDAO = new Data.DAO.DigitoVerificadorDAO();
         }
 
         public string VerificarDV()

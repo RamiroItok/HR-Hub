@@ -27,6 +27,8 @@ namespace GUI
         {
             Container = new UnityContainer();
 
+            Container.RegisterType<IBackUpService, BackUpService>();
+            Container.RegisterType<BackUpDAO, BackUpDAO>();
             Container.RegisterType<IBitacoraService, BitacoraService>();
             Container.RegisterType<IBitacoraDAO, BitacoraDAO>();
             Container.RegisterType<IDigitoVerificadorDAO, DigitoVerificadorDAO>();

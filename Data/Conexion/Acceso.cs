@@ -41,17 +41,17 @@ namespace Data.Conexion
         private SqlCommand _ExecuteParameters = new SqlCommand();
         internal readonly DbProviderFactory BaseFactory = DbProviderFactories.GetFactory("System.Data.SqlClient");
 
-        protected string SelectCommandText
+        public string SelectCommandText
         {
             get { return _SelectCommandText; }
             set { _SelectCommandText = value; }
         }
-        protected string ExecuteCommandText
+        public string ExecuteCommandText
         {
             get { return _executeCommandText; }
             set { _executeCommandText = value; }
         }
-        protected SqlCommand ExecuteParameters
+        public SqlCommand ExecuteParameters
         {
             get { return _ExecuteParameters; }
             set { _ExecuteParameters = value; }

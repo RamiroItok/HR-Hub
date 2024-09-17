@@ -20,7 +20,7 @@ namespace Data.DAO
             try
             {
                 string mensaje = "";
-                string consulta = "SELECT Nombre_Tabla as Tabla, DV as Valor_DV from DigitoVerificador";
+                string consulta = "SELECT NombreTabla as Tabla, DV as Valor_DV from DigitoVerificador";
                 DataTable dt = _acceso.GenerarConsulta(consulta);
                 foreach (DataRow fila in dt.Rows)
                 {
