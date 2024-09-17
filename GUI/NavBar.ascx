@@ -25,6 +25,8 @@
                     <ul class="dropdown-menu">
                         <li><a runat="server" href="~/GestionFamilia">Gestión de Familia</a></li>
                         <li><a runat="server" href="~/GestionFamiliaPatente">Gestión de Familia Patente</a></li>
+                        <li><a runat="server" href="~/Backup">Backup</a></li>
+                        <li><a runat="server" href="~/Restore">Restore</a></li>
                     </ul>
                 </li>
                 <li><a runat="server" id="bitacoraLink" href="~/Bitacora">Bitacora</a></li>
