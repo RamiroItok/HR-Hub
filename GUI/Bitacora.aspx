@@ -69,6 +69,9 @@
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-primary" OnClick="btnCancelar_Click" />
                 </div>
             </div>
+                <asp:Panel runat="server" CssClass="form-group">
+                    <asp:Label runat="server" ID="lblMensaje" CssClass="message-label" Visible="false"></asp:Label>                
+            </asp:Panel>
 
             <asp:GridView ID="gvBitacora" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" 
                           AllowPaging="True" PageSize="15" OnPageIndexChanging="gvBitacora_PageIndexChanging" PagerStyle-CssClass="gridview-pagination"
