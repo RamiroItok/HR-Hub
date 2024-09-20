@@ -24,13 +24,22 @@ namespace GUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                listaEventos = _iBitacoraService.ListarEventos();
-                CargarEventosDefault();
-                CargarUsuarios();
-                CargarTipoUsuario();
-                CargarCriticidad();
+                if (!IsPostBack)
+                {
+                    listaEventos = _iBitacoraService.ListarEventos();
+                    CargarEventosDefault();
+                    CargarUsuarios();
+                    CargarTipoUsuario();
+                    CargarCriticidad();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Visible = true;
+                lblMensaje.Text = ex.Message;
             }
         }
 
