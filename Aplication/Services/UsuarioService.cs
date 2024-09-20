@@ -100,6 +100,10 @@ namespace Aplication
 
                 return null;
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -181,17 +185,13 @@ namespace Aplication
 
                 return CompletarUsuario(resultado);
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
             catch (Exception ex)
             {
-                var mensaje = "";
-                if (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
-                {
-                    mensaje = "Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos";
-                }
-                else
-                    mensaje = ex.Message;
-
-                throw new Exception(mensaje);
+                throw new Exception(ex.Message);
             }
         }
 

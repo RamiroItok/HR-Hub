@@ -24,13 +24,22 @@ namespace GUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                listaEventos = _iBitacoraService.ListarEventos();
-                CargarEventosDefault();
-                CargarUsuarios();
-                CargarTipoUsuario();
-                CargarCriticidad();
+                if (!IsPostBack)
+                {
+                    listaEventos = _iBitacoraService.ListarEventos();
+                    CargarEventosDefault();
+                    CargarUsuarios();
+                    CargarTipoUsuario();
+                    CargarCriticidad();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Visible = true;
+                lblMensaje.Text = ex.Message;
             }
         }
 
@@ -84,31 +93,39 @@ namespace GUI
             drpCriticidad.Items.Insert(0, new ListItem("Seleccione una criticidad", ""));
         }
 
-        // Evento del botón de búsqueda con filtros
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             DateTime? fechaDesde = string.IsNullOrEmpty(txtFechaDesde.Value) ? (DateTime?)null : DateTime.Parse(txtFechaDesde.Value);
             DateTime? fechaHasta = string.IsNullOrEmpty(txtFechaHasta.Value) ? (DateTime?)null : DateTime.Parse(txtFechaHasta.Value);
 
-            List<Models.Bitacora> listaEventosFiltrados = new List<Models.Bitacora>();
 
-            listaEventosFiltrados = listaEventos
-                                        .Where(x => 
-                                            (string.IsNullOrEmpty(drpUsuarios.Text) || x.Email == drpUsuarios.SelectedItem.Text)
-                                            && (string.IsNullOrEmpty(drpCriticidad.Text) || x.Criticidad == drpCriticidad.SelectedItem.Text)
-                                            && (string.IsNullOrEmpty(drpTipoUsuario.Text) || x.TipoUsuario == drpTipoUsuario.SelectedItem.Text)
-                                            && (string.IsNullOrEmpty(txtSearch.Text) || x.Descripcion.Contains(txtSearch.Text))
-                                            && (!fechaDesde.HasValue || x.Fecha >= fechaDesde)
-                                            && (!fechaHasta.HasValue || x.Fecha <= fechaHasta)
-                                        )
-                                        .OrderByDescending(x => x.Id)
-                                        .ToList();
+            if ((fechaDesde.HasValue && fechaHasta.HasValue) && fechaDesde.Value > fechaHasta.Value)
+            {
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "El campo 'Fecha Desde' no puede ser mayor que el campo 'Fecha Hasta'";
+            }
+            else
+            {
+                List<Models.Bitacora> listaEventosFiltrados = new List<Models.Bitacora>();
 
-            // Guardar los resultados filtrados en la sesión para la paginación
-            Session["EventosFiltrados"] = listaEventosFiltrados;
+                listaEventosFiltrados = listaEventos
+                                            .Where(x =>
+                                                (string.IsNullOrEmpty(drpUsuarios.Text) || x.Email == drpUsuarios.SelectedItem.Text)
+                                                && (string.IsNullOrEmpty(drpCriticidad.Text) || x.Criticidad == drpCriticidad.SelectedItem.Text)
+                                                && (string.IsNullOrEmpty(drpTipoUsuario.Text) || x.TipoUsuario == drpTipoUsuario.SelectedItem.Text)
+                                                && (string.IsNullOrEmpty(txtSearch.Text) || x.Descripcion.ToLower().Contains(txtSearch.Text.ToLower()))
+                                                && (!fechaDesde.HasValue || x.Fecha >= fechaDesde)
+                                                && (!fechaHasta.HasValue || x.Fecha <= fechaHasta)
+                                            )
+                                            .OrderByDescending(x => x.Id)
+                                            .ToList();
 
-            // Cargar la grilla con los resultados filtrados
-            CargarGrilla(listaEventosFiltrados);
+                Session["EventosFiltrados"] = listaEventosFiltrados;
+
+                CargarGrilla(listaEventosFiltrados);
+            }
+            
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -116,11 +133,9 @@ namespace GUI
             Limpiar();
             CargarEventosDefault();
 
-            // Limpiar los resultados filtrados de la sesión
             Session["EventosFiltrados"] = null;
         }
 
-        // Método para cargar datos en el GridView
         private void CargarGrilla(List<Models.Bitacora> listadoBitacora)
         {
             gvBitacora.DataSource = listadoBitacora;
@@ -135,6 +150,8 @@ namespace GUI
             drpUsuarios.SelectedIndex = 0;
             drpTipoUsuario.SelectedIndex = 0;
             drpCriticidad.SelectedIndex = 0;
+            lblMensaje.Text = String.Empty;
+            lblMensaje.Visible = false;
         }
     }
 }
