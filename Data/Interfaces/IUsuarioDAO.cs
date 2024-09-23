@@ -7,6 +7,7 @@ namespace Data.Interfaces
     {
         int RegistrarUsuario(Usuario usuario);
         DataSet ObtenerPuestos();
+        DataSet ObtenerAreas();
         DataSet ListarUsuarios();
         void EstadoBloqueoUsuario(string email);
         void DesbloquearUsuario(string email);

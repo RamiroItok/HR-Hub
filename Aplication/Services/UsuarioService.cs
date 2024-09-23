@@ -27,7 +27,7 @@ namespace Aplication
             _iBitacoraService = bitacoraService;
         }
 
-        public int RegistrarUsuario(Usuario usuario)
+        public int RegistrarUsuario(Usuario usuario, Usuario userSession)
         {
             try
             {
@@ -39,15 +39,21 @@ namespace Aplication
                     Contraseña = EncriptacionService.Encriptar_MD5(usuario.Contraseña),
                     Puesto = usuario.Puesto,
                     Area = usuario.Area,
+                    FechaNacimiento = usuario.FechaNacimiento,
+                    Genero = usuario.Genero,
                     FechaIngreso = usuario.FechaIngreso,
                     Estado = 0
                 };
 
                 var idUsuario = _usuarioDAO.RegistrarUsuario(usuarioReal);
-
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Registra el usuario {usuario.Nombre} {usuario.Apellido}", Criticidad.BAJA);
                 _iDigitoVerificadorService.CalcularDVTabla("Usuario");
 
                 return idUsuario;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {
@@ -62,6 +68,28 @@ namespace Aplication
                 var resultado = _usuarioDAO.ObtenerPuestos();
 
                 return resultado.Tables[0];
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataTable ObtenerAreas()
+        {
+            try
+            {
+                var resultado = _usuarioDAO.ObtenerAreas();
+
+                return resultado.Tables[0];
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {
@@ -137,14 +165,21 @@ namespace Aplication
                         Apellido = EncriptacionService.Decrypt_AES(row["Apellido"].ToString()),
                         Email = EncriptacionService.Decrypt_AES(row["Email"].ToString()),
                         Puesto = (Puesto)Enum.Parse(typeof(Puesto), row["IdPuesto"].ToString()),
-                        Area = row["Area"].ToString(),
-                        FechaIngreso = (DateTime)row["FechaIngreso"]
+                        Area = (Area)Enum.Parse(typeof(Area), row["IdArea"].ToString()),
+                        FechaNacimiento = (DateTime)row["FechaNacimiento"],
+                        Genero = row["Genero"].ToString(),
+                        FechaIngreso = (DateTime)row["FechaIngreso"],
+                        Estado = Convert.ToInt32(row["Estado"])
                     };
 
                     listaUsuarios.Add(usuario);
                 }
 
                 return listaUsuarios;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {
@@ -158,6 +193,10 @@ namespace Aplication
             {
                 _usuarioDAO.EstadoBloqueoUsuario(email);
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -169,6 +208,10 @@ namespace Aplication
             try
             {
                 _usuarioDAO.DesbloquearUsuario(email);
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {
@@ -283,8 +326,10 @@ namespace Aplication
                 Apellido = tabla.Tables[0].Rows[0]["Apellido"].ToString(),
                 Email = tabla.Tables[0].Rows[0]["Email"].ToString(),
                 Contraseña = tabla.Tables[0].Rows[0]["Contraseña"].ToString(),
-                Puesto = (Models.Enums.Puesto)tabla.Tables[0].Rows[0]["IdPuesto"],
-                Area = tabla.Tables[0].Rows[0]["Area"].ToString(),
+                Puesto = (Puesto)tabla.Tables[0].Rows[0]["IdPuesto"],
+                Area = (Area)tabla.Tables[0].Rows[0]["IdArea"],
+                FechaNacimiento = (DateTime)tabla.Tables[0].Rows[0]["FechaNacimiento"],
+                Genero = tabla.Tables[0].Rows[0]["Genero"].ToString(),
                 FechaIngreso = (DateTime)tabla.Tables[0].Rows[0]["FechaIngreso"],
                 Estado = (int)tabla.Tables[0].Rows[0]["Estado"]
             };

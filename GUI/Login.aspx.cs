@@ -18,7 +18,7 @@ namespace GUI
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario"] != null)
-                Response.Redirect("/Default.aspx");
+                Response.Redirect("/Home.aspx");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace GUI
                 else
                 {
                     Session["Usuario"] = usuario;
-                    Response.Redirect("Default.aspx", false);
+                    Response.Redirect("Home.aspx", false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
             }

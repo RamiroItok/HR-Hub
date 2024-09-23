@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" runat="server" href="~/">HR Hub</a>
+            <a class="navbar-brand" runat="server" href="~/Home">HR Hub</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">

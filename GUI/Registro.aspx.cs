@@ -3,6 +3,7 @@ using Models;
 using Models.Enums;
 using System;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using Unity;
 
 namespace GUI
@@ -20,9 +21,19 @@ namespace GUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                CargarPuestos();
+                if (!IsPostBack)
+                {
+                    CargarPuestos();
+                    CargarAreas();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = ex.Message;
             }
         }
 
@@ -37,7 +48,9 @@ namespace GUI
                     Email = txtEmail.Text,
                     Contraseña = txtContraseña.Text,
                     Puesto = (Puesto)Enum.Parse(typeof(Puesto), DropDownPuesto.Text),
-                    Area = txtArea.Text,
+                    Area = (Area)Enum.Parse(typeof(Area), DropDownArea.Text),
+                    FechaNacimiento = DateTime.Parse(txtFechaNac.Value),
+                    Genero = drpGenero.ToString(),
                     FechaIngreso = DateTime.Now
                 };
 
@@ -45,9 +58,8 @@ namespace GUI
 
                 if (esContraseñaValida)
                 {
-                    var id = _usuarioService.RegistrarUsuario(usuario);
-
-                    RegistrarBitacora();
+                    var userSession = Session["Usuario"] as Usuario;
+                    var id = _usuarioService.RegistrarUsuario(usuario, userSession);
 
                     lblMensaje.Visible = true;
                     lblMensaje.Text = "Se ha registrado el usuario correctamente";
@@ -71,23 +83,33 @@ namespace GUI
             txtApellido.Text = String.Empty;
             txtEmail.Text = String.Empty;
             txtContraseña.Text = String.Empty;
-            txtArea.Text = String.Empty;
+            txtFechaNac.Value = String.Empty;
+            DropDownArea.SelectedIndex = 0;
+            drpGenero.SelectedIndex = 0;
             DropDownPuesto.SelectedIndex = 0;
         }
 
         private void CargarPuestos()
         {
-            var resultado = _usuarioService.ObtenerPuestos();
-            DropDownPuesto.DataSource = resultado;
+            DropDownPuesto.DataSource = _usuarioService.ObtenerPuestos();
             DropDownPuesto.DataTextField = "Puesto";
             DropDownPuesto.DataValueField = "Id";
             DropDownPuesto.DataBind();
+            DropDownPuesto.Items.Insert(0, new ListItem("Seleccione un Puesto", ""));
         }
 
-        private void RegistrarBitacora()
+        private void CargarAreas()
         {
-            var user = Session["Usuario"] as Usuario;
-            _iBitacoraService.AltaBitacora(user.Email, user.Puesto, "Da de alta un usuario", Models.Enums.Criticidad.BAJA);
+            DropDownArea.DataSource = _usuarioService.ObtenerAreas();
+            DropDownArea.DataTextField = "Area";
+            DropDownArea.DataValueField = "Id";
+            DropDownArea.DataBind();
+            DropDownArea.Items.Insert(0, new ListItem("Seleccione una Area", ""));
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
     }
 }
