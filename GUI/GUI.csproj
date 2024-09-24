@@ -131,7 +131,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Default.aspx" />
+    <Content Include="Home.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -180,8 +180,10 @@
     <Content Include="Style\GestionFamiliaPatente.css" />
     <Content Include="Style\ListarUsuarios.css" />
     <Content Include="Style\Login.css" />
+    <Content Include="Style\NavBar.css" />
     <Content Include="Style\Registro.css" />
     <Content Include="Style\SiteMaster.css" />
+    <Content Include="Templates\GenerarContraseñaTemplate.html" />
     <Content Include="Templates\RecuperarContraseñaTemplate.html" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -268,12 +270,12 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

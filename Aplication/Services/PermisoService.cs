@@ -24,6 +24,10 @@ namespace Aplication.Services
             {
                 _permisoDAO.GuardarFamiliaCreada(familia);
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -36,6 +40,10 @@ namespace Aplication.Services
             {
                 _permisoDAO.AsignarPermisoAFamilia(padreId, hijoId);
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -47,6 +55,10 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.QuitarPermisoAFamilia(padreId, hijoId);
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {
@@ -61,6 +73,10 @@ namespace Aplication.Services
                 _permisoDAO.AltaFamiliaPatente(componente, familia);
                 return 1;
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -72,6 +88,10 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.GuardarPermiso(usuario);
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {
@@ -86,6 +106,10 @@ namespace Aplication.Services
                 _permisoDAO.PrimerRegistroGuardarPermiso(idUsuario, idPatente);
                 _digitoVerificadorService.RecalcularDV();
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -99,7 +123,14 @@ namespace Aplication.Services
                 IList<Componente> componentes = _permisoDAO.TraerFamiliaPatentes(familiaId);
                 return componentes;
             }
-            catch (Exception ex) { throw new Exception(ex.Message); }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public Componente ObtenerFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar)
@@ -109,7 +140,14 @@ namespace Aplication.Services
                 Componente comp = _permisoDAO.ObtenerFamiliaArbol(familiaId, componenteOriginal, componenteAgregar);
                 return comp;
             }
-            catch (Exception ex) { throw new Exception(ex.Message); }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public Componente GetUsuarioArbol(int usuarioId, Componente componenteOriginal, Componente componenteAgregar)
@@ -119,7 +157,14 @@ namespace Aplication.Services
                 Componente comp = _permisoDAO.GetUsuarioArbol(usuarioId, componenteOriginal, componenteAgregar);
                 return comp;
             }
-            catch (Exception ex) { throw new Exception(ex.Message); }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public IList<Familia> ObtenerFamilias()
@@ -129,7 +174,14 @@ namespace Aplication.Services
                 IList<Familia> familias = _permisoDAO.ObtenerFamilias();
                 return familias;
             }
-            catch (Exception ex) { throw new Exception(ex.Message); }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public IList<Patente> ObtenerPatentes()
@@ -139,7 +191,14 @@ namespace Aplication.Services
                 IList<Patente> patentes = _permisoDAO.ObtenerPatentes();
                 return patentes;
             }
-            catch (Exception ex) { throw new Exception(ex.Message); }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public IList<Componente> ObtenerPermisosNoAsignados(int familiaId)
@@ -149,7 +208,14 @@ namespace Aplication.Services
                 IList<Componente> permisosNoAsignados = _permisoDAO.ObtenerPermisosNoAsignados(familiaId);
                 return permisosNoAsignados;
             }
-            catch (Exception ex) { throw new Exception(ex.Message); }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public IList<Componente> ObtenerPermisosPorFamilia(int familiaId)
@@ -159,7 +225,14 @@ namespace Aplication.Services
                 IList<Componente> permisosNoAsignados = _permisoDAO.ObtenerPermisosPorFamilia(familiaId);
                 return permisosNoAsignados;
             }
-            catch (Exception ex) { throw new Exception(ex.Message); }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public Array TraerPermisos()
@@ -178,7 +251,14 @@ namespace Aplication.Services
                 IList<Familia> familias = _permisoDAO.GetFamiliasValidacion(familiaId);
                 return familias;
             }
-            catch (Exception ex) { throw new Exception(ex.Message); }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public bool ExisteComponente(Componente componente, int Id)
@@ -206,6 +286,10 @@ namespace Aplication.Services
             {
                 _permisoDAO.GetComponenteUsuario(usuario);
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -217,6 +301,10 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.GetComponenteFamilia(familia);
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {

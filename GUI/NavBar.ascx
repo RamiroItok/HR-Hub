@@ -1,5 +1,4 @@
-﻿<!-- Archivo: NavBar.ascx -->
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NavBar.ascx.cs" Inherits="GUI.Controls.NavBar" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NavBar.ascx.cs" Inherits="GUI.Controls.NavBar" %>
 
 <header class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -9,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" runat="server" href="~/">HR Hub</a>
+            <a class="navbar-brand" runat="server" href="~/Home">HR Hub</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">

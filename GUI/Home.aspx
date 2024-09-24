@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Inicio" Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="GUI._Default" %>
+﻿<%@ Page Title="Inicio" Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="GUI._Default" %>
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
 <!DOCTYPE html>
@@ -7,11 +7,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HR Hub - Gestión de Recursos Humanos</title>
-    <link href="Style/Default.css" rel="stylesheet" />
+    <link href="~/Style/Default.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Style/SiteMaster.css" rel="stylesheet" type="text/css" />
+    <link href="~/Style/NavBar.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">

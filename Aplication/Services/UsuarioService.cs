@@ -4,6 +4,7 @@ using Models;
 using Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Net.Mail;
@@ -27,7 +28,7 @@ namespace Aplication
             _iBitacoraService = bitacoraService;
         }
 
-        public int RegistrarUsuario(Usuario usuario)
+        public int RegistrarUsuario(Usuario usuario, Usuario userSession)
         {
             try
             {
@@ -39,15 +40,21 @@ namespace Aplication
                     Contraseña = EncriptacionService.Encriptar_MD5(usuario.Contraseña),
                     Puesto = usuario.Puesto,
                     Area = usuario.Area,
+                    FechaNacimiento = usuario.FechaNacimiento,
+                    Genero = usuario.Genero,
                     FechaIngreso = usuario.FechaIngreso,
                     Estado = 0
                 };
 
                 var idUsuario = _usuarioDAO.RegistrarUsuario(usuarioReal);
-
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Registra el usuario {usuario.Nombre} {usuario.Apellido}", Criticidad.BAJA);
                 _iDigitoVerificadorService.CalcularDVTabla("Usuario");
 
                 return idUsuario;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {
@@ -62,6 +69,28 @@ namespace Aplication
                 var resultado = _usuarioDAO.ObtenerPuestos();
 
                 return resultado.Tables[0];
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataTable ObtenerAreas()
+        {
+            try
+            {
+                var resultado = _usuarioDAO.ObtenerAreas();
+
+                return resultado.Tables[0];
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {
@@ -137,14 +166,21 @@ namespace Aplication
                         Apellido = EncriptacionService.Decrypt_AES(row["Apellido"].ToString()),
                         Email = EncriptacionService.Decrypt_AES(row["Email"].ToString()),
                         Puesto = (Puesto)Enum.Parse(typeof(Puesto), row["IdPuesto"].ToString()),
-                        Area = row["Area"].ToString(),
-                        FechaIngreso = (DateTime)row["FechaIngreso"]
+                        Area = (Area)Enum.Parse(typeof(Area), row["IdArea"].ToString()),
+                        FechaNacimiento = (DateTime)row["FechaNacimiento"],
+                        Genero = row["Genero"].ToString(),
+                        FechaIngreso = (DateTime)row["FechaIngreso"],
+                        Estado = Convert.ToInt32(row["Estado"])
                     };
 
                     listaUsuarios.Add(usuario);
                 }
 
                 return listaUsuarios;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {
@@ -158,6 +194,10 @@ namespace Aplication
             {
                 _usuarioDAO.EstadoBloqueoUsuario(email);
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -169,6 +209,10 @@ namespace Aplication
             try
             {
                 _usuarioDAO.DesbloquearUsuario(email);
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {
@@ -246,25 +290,24 @@ namespace Aplication
             return resultado;
         }
 
-        public void EnviarMail(string email, string contraseña)
+        public void EnviarMail(string email, string contraseña, AsuntoMail asuntoMail)
         {
             try
             {
+                string body = ObtenerCuerpoCorreo(asuntoMail);
+                body = body.Replace("{{CONTRASEÑA}}", contraseña);
+
                 MailMessage mensaje = new MailMessage();
                 mensaje.From = new MailAddress("noreply@hrhub.com", "HR Hub");
                 mensaje.To.Add(email);
-                mensaje.Subject = "Recuperación de contraseña";
 
-                string body = File.ReadAllText(HttpContext.Current.Server.MapPath("~/Templates/RecuperarContraseñaTemplate.html"));
-
-                body = body.Replace("{{CONTRASEÑA}}", contraseña);
-
+                mensaje.Subject = ObtenerAsuntoCorreo(asuntoMail);
                 mensaje.Body = body;
                 mensaje.IsBodyHtml = true;
 
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com");
                 smtp.Port = 587;
-                smtp.Credentials = new System.Net.NetworkCredential("noreply.hrhub@gmail.com", "wjfjskqjkcoaxmhm");
+                smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["EmailUser"], ConfigurationManager.AppSettings["EmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mensaje);
             }
@@ -283,8 +326,10 @@ namespace Aplication
                 Apellido = tabla.Tables[0].Rows[0]["Apellido"].ToString(),
                 Email = tabla.Tables[0].Rows[0]["Email"].ToString(),
                 Contraseña = tabla.Tables[0].Rows[0]["Contraseña"].ToString(),
-                Puesto = (Models.Enums.Puesto)tabla.Tables[0].Rows[0]["IdPuesto"],
-                Area = tabla.Tables[0].Rows[0]["Area"].ToString(),
+                Puesto = (Puesto)tabla.Tables[0].Rows[0]["IdPuesto"],
+                Area = (Area)tabla.Tables[0].Rows[0]["IdArea"],
+                FechaNacimiento = (DateTime)tabla.Tables[0].Rows[0]["FechaNacimiento"],
+                Genero = tabla.Tables[0].Rows[0]["Genero"].ToString(),
                 FechaIngreso = (DateTime)tabla.Tables[0].Rows[0]["FechaIngreso"],
                 Estado = (int)tabla.Tables[0].Rows[0]["Estado"]
             };
@@ -308,6 +353,37 @@ namespace Aplication
                 return "La contraseña no posee el formato correcto.";
 
             return null;
+        }
+
+        private string ObtenerCuerpoCorreo(AsuntoMail asuntoMail)
+        {
+            string templatePath = "";
+            switch (asuntoMail)
+            {
+                case AsuntoMail.RecuperacionContraseña:
+                    templatePath = "~/Templates/RecuperarContraseñaTemplate.html";
+                    break;
+                case AsuntoMail.GeneracionContraseña:
+                    templatePath = "~/Templates/GenerarContraseñaTemplate.html";
+                    break;
+                default:
+                    throw new ArgumentException("Tipo de asunto no válido");
+            }
+
+            return File.ReadAllText(HttpContext.Current.Server.MapPath(templatePath));
+        }
+
+        private string ObtenerAsuntoCorreo(AsuntoMail asuntoMail)
+        {
+            switch (asuntoMail)
+            {
+                case AsuntoMail.RecuperacionContraseña:
+                    return "Recuperación de contraseña";
+                case AsuntoMail.GeneracionContraseña:
+                    return "Generación de contraseña";
+                default:
+                    throw new ArgumentException("Tipo de asunto no válido");
+            }
         }
     }
 }

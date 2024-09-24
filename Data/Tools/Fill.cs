@@ -33,7 +33,7 @@ namespace Data.Tools
                     usuario.Puesto = ((Models.Enums.Puesto)dr["IdPuesto"]);
 
                 if (dr.Table.Columns.Contains("Area") && !Convert.IsDBNull(dr["Area"]))
-                    usuario.Area = Convert.ToString(dr["Area"]);
+                    usuario.Area = (Models.Enums.Area)(dr["Area"]);
 
                 if(dr.Table.Columns.Contains("FechaIngreso") && !Convert.IsDBNull(dr["FechaIngreso"]))
                     usuario.FechaIngreso = ((DateTime)dr["FechaIngreso"]);

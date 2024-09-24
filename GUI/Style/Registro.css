@@ -1,81 +1,108 @@
 ﻿body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    padding: 20px;
 }
 
-.container {
+.container-registro {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
     background-color: #ffffff;
-    padding: 20px 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    margin-bottom: 30px;
+    color: #2b2b2b;
+    font-size: 24px;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.form-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-    font-weight: bold;
-}
+    .form-group label {
+        font-size: 14px;
+        color: #2b2b2b;
+        display: block;
+        margin-bottom: 8px;
+    }
 
 .form-control {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
     width: 100%;
-    box-sizing: border-box;
+    max-width: 100%;
+    white-space: normal;
+    overflow: visible;
 }
 
-.btn-success {
-    width: 100%;
-    padding: 10px;
-    background-color: #76B041; /* Usa el mismo color verde que el botón de login o del menú */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    .form-control:focus {
+        border-color: #6dbb4d;
+        background-color: #fff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(109, 187, 77, 0.5);
+    }
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+    .input-container input {
+        flex: 1;
+    }
+
+.calendar-button {
+    margin-left: 10px;
     font-size: 16px;
 }
 
-    .btn-success:hover {
-        background-color: #5e8e33; /* Un verde ligeramente más oscuro para el hover */
+    .calendar-button:hover {
+        color: #6dbb4d;
     }
 
-
-.message-label {
-    padding: 10px;
-    border-radius: 4px;
+.button-group {
     text-align: center;
-    font-weight: bold;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
-    .message-label.success {
-        background-color: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #6dbb4d;
+    color: #ffffff;
+}
+
+    .btn-primary:hover {
+        background-color: #5ca441;
     }
 
-    .message-label.error {
-        background-color: #f8d7da;
-        color: #721c24;
-        border: 1px solid #f5c6cb;
+.message-label {
+    color: #2b2b2b;
+    text-align: center;
+    font-size: 16px;
+}
+
+.generate-password-button {
+    margin-left: 10px;
+    background-color: #6dbb4d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .generate-password-button:hover {
+        background-color: #5ca441;
     }

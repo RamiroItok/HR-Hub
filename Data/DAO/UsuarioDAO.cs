@@ -27,7 +27,9 @@ namespace Data.DAO
                     { "@Email", usuario.Email },
                     { "@Contraseña", usuario.Contraseña },
                     { "@IdPuesto", (int)usuario.Puesto },
-                    { "@Area", usuario.Area },
+                    { "@IdArea", (int)usuario.Area },
+                    { "@FechaNacimiento", usuario.FechaNacimiento },
+                    { "@Genero", usuario.Genero },
                     { "@FechaIngreso", usuario.FechaIngreso },
                     { "@Estado", usuario.Estado }
                 };
@@ -47,6 +49,20 @@ namespace Data.DAO
             try
             {
                 DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_s_puesto", null);
+
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataSet ObtenerAreas()
+        {
+            try
+            {
+                DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_s_area", null);
 
                 return resultado;
             }
@@ -80,7 +96,7 @@ namespace Data.DAO
                     Apellido = resultado.Tables[0].Rows[0]["Apellido"].ToString(),
                     Email = resultado.Tables[0].Rows[0]["Email"].ToString(),
                     Puesto = (Models.Enums.Puesto)resultado.Tables[0].Rows[0]["IdPuesto"],
-                    Area = resultado.Tables[0].Rows[0]["Area"].ToString(),
+                    Area = (Models.Enums.Area)resultado.Tables[0].Rows[0]["IdArea"],
                     FechaIngreso = (DateTime)resultado.Tables[0].Rows[0]["FechaIngreso"],
                     Estado = (int)resultado.Tables[0].Rows[0]["Estado"]
                 };

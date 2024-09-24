@@ -47,7 +47,7 @@ namespace GUI.Controls
             _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Cierra sesion", Models.Enums.Criticidad.BAJA);
 
             Session.Abandon();
-            Response.Redirect("Default.aspx");
+            Response.Redirect("Home.aspx");
         }
     }
 }
