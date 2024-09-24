@@ -46,21 +46,21 @@ namespace GUI
                     Nombre = txtNombre.Text,
                     Apellido = txtApellido.Text,
                     Email = txtEmail.Text,
-                    Contraseña = txtContraseña.Text,
+                    Contraseña = hiddenContraseña.Value,
                     Puesto = (Puesto)Enum.Parse(typeof(Puesto), DropDownPuesto.Text),
                     Area = (Area)Enum.Parse(typeof(Area), DropDownArea.Text),
                     FechaNacimiento = DateTime.Parse(txtFechaNac.Value),
-                    Genero = drpGenero.ToString(),
+                    Genero = drpGenero.SelectedItem.Text,
                     FechaIngreso = DateTime.Now
                 };
 
-                var esContraseñaValida = _usuarioService.ValidarFormatoContraseña(txtContraseña.Text);
-
-                if (esContraseñaValida)
+                var esContraseñaValida = _usuarioService.ValidarFormatoContraseña(usuario.Contraseña);
+                //var esUsuarioValido = _usuarioService.ObtenerUsuarioPorEmail(usuario.Email);
+                if (esContraseñaValida) //&& esUsuarioValido == null)
                 {
                     var userSession = Session["Usuario"] as Usuario;
                     var id = _usuarioService.RegistrarUsuario(usuario, userSession);
-
+                    _usuarioService.EnviarMail(usuario.Email, usuario.Contraseña, AsuntoMail.GeneracionContraseña);
                     lblMensaje.Visible = true;
                     lblMensaje.Text = "Se ha registrado el usuario correctamente";
                     Limpiar();
@@ -87,6 +87,7 @@ namespace GUI
             DropDownArea.SelectedIndex = 0;
             drpGenero.SelectedIndex = 0;
             DropDownPuesto.SelectedIndex = 0;
+            hiddenContraseña.Value = String.Empty;
         }
 
         private void CargarPuestos()
@@ -110,6 +111,13 @@ namespace GUI
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Limpiar();
+        }
+
+        protected void btnGenerarPassword_Click(object sender, EventArgs e)
+        {
+            string nuevaContraseña = _usuarioService.GenerarContraseña();
+            hiddenContraseña.Value = nuevaContraseña;
+            txtContraseña.Text = new string('*', nuevaContraseña.Length);
         }
     }
 }

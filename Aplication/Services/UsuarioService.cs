@@ -4,6 +4,7 @@ using Models;
 using Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Net.Mail;
@@ -289,25 +290,24 @@ namespace Aplication
             return resultado;
         }
 
-        public void EnviarMail(string email, string contraseña)
+        public void EnviarMail(string email, string contraseña, AsuntoMail asuntoMail)
         {
             try
             {
+                string body = ObtenerCuerpoCorreo(asuntoMail);
+                body = body.Replace("{{CONTRASEÑA}}", contraseña);
+
                 MailMessage mensaje = new MailMessage();
                 mensaje.From = new MailAddress("noreply@hrhub.com", "HR Hub");
                 mensaje.To.Add(email);
-                mensaje.Subject = "Recuperación de contraseña";
 
-                string body = File.ReadAllText(HttpContext.Current.Server.MapPath("~/Templates/RecuperarContraseñaTemplate.html"));
-
-                body = body.Replace("{{CONTRASEÑA}}", contraseña);
-
+                mensaje.Subject = ObtenerAsuntoCorreo(asuntoMail);
                 mensaje.Body = body;
                 mensaje.IsBodyHtml = true;
 
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com");
                 smtp.Port = 587;
-                smtp.Credentials = new System.Net.NetworkCredential("noreply.hrhub@gmail.com", "wjfjskqjkcoaxmhm");
+                smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["EmailUser"], ConfigurationManager.AppSettings["EmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mensaje);
             }
@@ -353,6 +353,37 @@ namespace Aplication
                 return "La contraseña no posee el formato correcto.";
 
             return null;
+        }
+
+        private string ObtenerCuerpoCorreo(AsuntoMail asuntoMail)
+        {
+            string templatePath = "";
+            switch (asuntoMail)
+            {
+                case AsuntoMail.RecuperacionContraseña:
+                    templatePath = "~/Templates/RecuperarContraseñaTemplate.html";
+                    break;
+                case AsuntoMail.GeneracionContraseña:
+                    templatePath = "~/Templates/GenerarContraseñaTemplate.html";
+                    break;
+                default:
+                    throw new ArgumentException("Tipo de asunto no válido");
+            }
+
+            return File.ReadAllText(HttpContext.Current.Server.MapPath(templatePath));
+        }
+
+        private string ObtenerAsuntoCorreo(AsuntoMail asuntoMail)
+        {
+            switch (asuntoMail)
+            {
+                case AsuntoMail.RecuperacionContraseña:
+                    return "Recuperación de contraseña";
+                case AsuntoMail.GeneracionContraseña:
+                    return "Generación de contraseña";
+                default:
+                    throw new ArgumentException("Tipo de asunto no válido");
+            }
         }
     }
 }

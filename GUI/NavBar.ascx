@@ -1,5 +1,4 @@
-﻿<!-- Archivo: NavBar.ascx -->
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NavBar.ascx.cs" Inherits="GUI.Controls.NavBar" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NavBar.ascx.cs" Inherits="GUI.Controls.NavBar" %>
 
 <header class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">

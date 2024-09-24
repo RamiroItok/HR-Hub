@@ -49,6 +49,7 @@
     <Compile Include="DigitoVerificador.cs" />
     <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="Enums\Area.cs" />
+    <Compile Include="Enums\AsuntoMail.cs" />
     <Compile Include="Enums\Criticidad.cs" />
     <Compile Include="Enums\Puesto.cs" />
     <Compile Include="Enums\Genero.cs" />

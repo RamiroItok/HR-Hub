@@ -10,17 +10,18 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Style/SiteMaster.css" rel="stylesheet" />
     <link href="~/Style/Registro.css" rel="stylesheet" />
+    <link href="~/Style/SiteMaster.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link href="~/Style/NavBar.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
         <uc:NavBar runat="server" ID="NavBarControl" />
         <div class="bitacora-page">
-            <div class="container">
+            <div class="container-registro">
             <h2>Registro de Usuario</h2>
             <div class="filter-container">
                 <div class="form-group">
@@ -40,7 +41,11 @@
 
                 <div class="form-group">
                     <asp:Label ID="lblContraseña" runat="server" Text="Contraseña:" AssociatedControlID="txtContraseña" />
-                    <asp:TextBox ID="txtContraseña" runat="server" CssClass="form-control" />
+                    <div class="input-container">
+                        <asp:TextBox ID="txtContraseña" runat="server" CssClass="form-control" ReadOnly="True"/>
+                        <asp:HiddenField ID="hiddenContraseña" runat="server" />
+                        <asp:Button ID="btnGenerarPassword" runat="server" Text="Generar contraseña" CssClass="generate-password-button" OnClick="btnGenerarPassword_Click" />
+                    </div>
                 </div>
 
                 <div class="form-group">

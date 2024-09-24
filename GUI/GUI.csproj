@@ -180,8 +180,10 @@
     <Content Include="Style\GestionFamiliaPatente.css" />
     <Content Include="Style\ListarUsuarios.css" />
     <Content Include="Style\Login.css" />
+    <Content Include="Style\NavBar.css" />
     <Content Include="Style\Registro.css" />
     <Content Include="Style\SiteMaster.css" />
+    <Content Include="Templates\GenerarContraseñaTemplate.html" />
     <Content Include="Templates\RecuperarContraseñaTemplate.html" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
