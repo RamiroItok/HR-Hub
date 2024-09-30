@@ -89,10 +89,11 @@
     /* Paginación numérica */
     .bitacora-page .gridview-pagination {
         display: flex;
-        justify-content: center;
+        justify-content: center; /* Centrar el contenido */
         margin-top: 20px;
         list-style: none;
         padding: 0;
+        width: 100%; /* Asegurarse que el contenedor tome todo el ancho disponible */
     }
 
         .bitacora-page .gridview-pagination a,
@@ -111,13 +112,11 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-            /* Efecto hover para los números */
             .bitacora-page .gridview-pagination a:hover {
                 background-color: #5c8f34;
                 transform: scale(1.05);
             }
 
-        /* Número activo (página actual) */
         .bitacora-page .gridview-pagination .aspNetDisabled {
             background-color: transparent;
             border: 2px solid #76B041;
@@ -132,12 +131,10 @@
                 transform: none;
             }
 
-        /* Eliminar borde de enfoque en navegadores */
         .bitacora-page .gridview-pagination a:focus {
             outline: none;
         }
 
-    /* Tabla */
     .bitacora-page .table {
         width: 100%;
         margin-top: 20px;
@@ -171,7 +168,6 @@
             background-color: #f9f9f9;
         }
 
-/* Responsividad */
 @media screen and (max-width: 768px) {
     .bitacora-page .filter-container {
         flex-direction: column;
@@ -199,7 +195,6 @@
     }
 }
 
-/* Contenedor del input con icono */
 .bitacora-page .input-container {
     position: relative;
     width: 100%;
@@ -223,7 +218,6 @@
             outline: none;
         }
 
-/* Botón de calendario */
 .bitacora-page .calendar-button {
     position: absolute;
     right: 10px;
@@ -238,4 +232,16 @@
 
 .bitacora-page .input-container input:focus + .calendar-button {
     color: #76B041;
+}
+
+.bitacora-page .titulo-bitacora {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    background-color: #76B041;
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
 }

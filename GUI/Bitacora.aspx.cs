@@ -119,6 +119,7 @@ namespace GUI
                                                 && (!fechaHasta.HasValue || x.Fecha <= fechaHasta)
                                             )
                                             .OrderByDescending(x => x.Id)
+                                            .Take(50)
                                             .ToList();
 
                 Session["EventosFiltrados"] = listaEventosFiltrados;
@@ -131,6 +132,7 @@ namespace GUI
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Limpiar();
+            gvBitacora.PageIndex = 0;
             CargarEventosDefault();
 
             Session["EventosFiltrados"] = null;

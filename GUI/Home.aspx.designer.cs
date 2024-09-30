@@ -11,7 +11,7 @@ namespace GUI
 {
 
 
-    public partial class _Default
+    public partial class Home
     {
 
         /// <summary>

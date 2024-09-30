@@ -11,7 +11,7 @@ namespace GUI
 {
 
 
-    public partial class Inicio
+    public partial class MenuPrincipal
     {
 
         /// <summary>

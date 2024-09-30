@@ -56,7 +56,7 @@ namespace GUI.Controls
 
             if (usuario != null)
             {
-                Response.Redirect("Inicio.aspx");
+                Response.Redirect("MenuPrincipal.aspx");
             }
             else{
                 Response.Redirect("Home.aspx");

@@ -120,7 +120,7 @@
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
     <Content Include="GestionFamilia.aspx" />
     <Content Include="GestionFamiliaPatente.aspx" />
-    <Content Include="Inicio.aspx" />
+    <Content Include="MenuPrincipal.aspx" />
     <Content Include="ListarUsuarios.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="NavBar.ascx" />
@@ -179,7 +179,7 @@
     <Content Include="Style\CambiarContraseña.css" />
     <Content Include="Style\Default.css" />
     <Content Include="Style\GestionFamiliaPatente.css" />
-    <Content Include="Style\Inicio.css" />
+    <Content Include="Style\MenuPrincipal.css" />
     <Content Include="Style\ListarUsuarios.css" />
     <Content Include="Style\Login.css" />
     <Content Include="Style\NavBar.css" />
@@ -229,12 +229,12 @@
     <Compile Include="GestionFamiliaPatente.aspx.designer.cs">
       <DependentUpon>GestionFamiliaPatente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
+    <Compile Include="MenuPrincipal.aspx.cs">
+      <DependentUpon>MenuPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Inicio.aspx.designer.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
+    <Compile Include="MenuPrincipal.aspx.designer.cs">
+      <DependentUpon>MenuPrincipal.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListarUsuarios.aspx.cs">
       <DependentUpon>ListarUsuarios.aspx</DependentUpon>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Inicio" Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="GUI._Default" %>
+﻿<%@ Page Title="Home" Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="GUI.Home" %>
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
 <!DOCTYPE html>
