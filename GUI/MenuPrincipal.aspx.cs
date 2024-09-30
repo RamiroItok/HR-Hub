@@ -6,7 +6,7 @@ using System.Web.UI;
 
 namespace GUI
 {
-    public partial class Inicio : Page
+    public partial class MenuPrincipal : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

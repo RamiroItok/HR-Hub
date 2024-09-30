@@ -5,7 +5,7 @@ using System.Web.UI;
 
 namespace GUI
 {
-    public partial class _Default : Page
+    public partial class Home : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

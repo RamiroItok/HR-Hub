@@ -8,21 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bitácora - HR Hub</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Style/SiteMaster.css" rel="stylesheet" />
-    <link href="~/Style/Bitacora.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link href="~/Style/NavBar.css" rel="stylesheet" />
+    <link href="~/Style/Bitacora.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
         <uc:NavBar runat="server" ID="NavBarControl" />
         <div class="bitacora-page">
             <div class="container">
-            <h2>Bitacora</h2>
+            <h1 class="titulo-bitacora">Bitácora</h1>
             <div class="filter-container">
                 <div class="form-group">
                     <asp:Label ID="lblSearch" runat="server" Text="Texto de Búsqueda:" AssociatedControlID="txtSearch" />
