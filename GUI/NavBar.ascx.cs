@@ -23,10 +23,10 @@ namespace GUI.Controls
                 {
                     loginLink.Visible = false;
                     logoutLink.Visible = true;
-                    seguridadLink.Visible = true;
-                    registroLink.Visible = true;
+                    seguridadLink.Visible = false;
+                    registroLink.Visible = false;
                     bitacoraLink.Visible = true;
-                    miCuentaLink.Visible = true;
+                    miCuentaLink.Visible = false;
                 }
                 else
                 {
@@ -48,6 +48,19 @@ namespace GUI.Controls
 
             Session.Abandon();
             Response.Redirect("Home.aspx");
+        }
+
+        protected void btnInicio_Click(object sender, EventArgs e)
+        {
+            var usuario = Session["Usuario"] as Usuario;
+
+            if (usuario != null)
+            {
+                Response.Redirect("Inicio.aspx");
+            }
+            else{
+                Response.Redirect("Home.aspx");
+            }
         }
     }
 }
