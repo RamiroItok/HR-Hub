@@ -12,7 +12,7 @@ namespace Aplication.Interfaces
         DataTable ObtenerAreas();
         string ValidarUsuario(Usuario usuario, string email, string contraseña);
         List<Usuario> ListarUsuarios();
-        void EstadoBloqueoUsuario(string email);
+        void EstadoBloqueoUsuario(Usuario usuario);
         void DesbloquearUsuario(string email);
         Usuario ObtenerUsuarioPorEmail(string email);
         bool ValidarFormatoContraseña(string contraseña);

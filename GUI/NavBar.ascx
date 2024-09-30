@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" runat="server" href="~/Home">HR Hub</a>
+            <asp:LinkButton ID="btnInicio" class="navbar-brand" runat="server" OnClick="btnInicio_Click">HR Hub</asp:LinkButton>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">

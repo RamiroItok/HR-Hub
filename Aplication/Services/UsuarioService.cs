@@ -118,7 +118,7 @@ namespace Aplication
 
                 if (contraseñaReal != usuario.Contraseña)
                 {
-                    EstadoBloqueoUsuario(usuario.Email);
+                    EstadoBloqueoUsuario(usuario);
                     return "La contraseña es incorrecta.";
                 }
                 else
@@ -188,11 +188,12 @@ namespace Aplication
             }
         }
 
-        public void EstadoBloqueoUsuario(string email)
+        public void EstadoBloqueoUsuario(Usuario usuario)
         {
             try
             {
-                _usuarioDAO.EstadoBloqueoUsuario(email);
+                _usuarioDAO.EstadoBloqueoUsuario(usuario.Email);
+                _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Intento de login fallido", Criticidad.ALTA);
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
@@ -227,7 +228,10 @@ namespace Aplication
                 email = EncriptacionService.Encriptar_AES(email);
                 var resultado = _usuarioDAO.ObtenerUsuarioPorEmail(email);
 
-                return CompletarUsuario(resultado);
+                if (resultado != null)
+                    return CompletarUsuario(resultado);
+
+                return null;
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
