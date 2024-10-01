@@ -74,7 +74,7 @@ body {
 /* Estilo de las descripciones en las tarjetas */
 .card-text {
     color: #555;
-    font-size: 1rem;
+    font-size: 12px;
     margin-bottom: 20px;
     background-color: #f7f7f7; /* Fondo claro */
     padding: 10px;
