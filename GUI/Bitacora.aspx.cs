@@ -123,7 +123,7 @@ namespace GUI
                                             .ToList();
 
                 Session["EventosFiltrados"] = listaEventosFiltrados;
-
+                lblMensaje.Visible = false;
                 CargarGrilla(listaEventosFiltrados);
             }
             
