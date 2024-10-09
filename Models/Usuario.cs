@@ -1,5 +1,7 @@
-﻿using Models.Enums;
+﻿using Models.Composite;
+using Models.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace Models
 {
@@ -17,5 +19,14 @@ namespace Models
         public DateTime FechaIngreso { get; set; }
         public int Estado { get; set; }
         public int DVH { get; set; }
+
+        List<Componente> _permisos = new List<Componente>();
+        public List<Componente> Permisos
+        {
+            get
+            {
+                return _permisos;
+            }
+        }
     }
 }

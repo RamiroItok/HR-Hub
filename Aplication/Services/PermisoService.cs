@@ -1,4 +1,5 @@
 ﻿using Aplication.Interfaces;
+using Models;
 using Models.Composite;
 using Models.DTOs;
 using System;
@@ -280,7 +281,7 @@ namespace Aplication.Services
             return existeComponente;
         }
 
-        public void GetComponenteUsuario(UsuarioDTO usuario)
+        public void GetComponenteUsuario(Usuario usuario)
         {
             try
             {

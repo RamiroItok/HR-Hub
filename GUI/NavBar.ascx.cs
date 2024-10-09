@@ -19,16 +19,7 @@ namespace GUI.Controls
             if (!IsPostBack)
             {
                 var usuario = Session["Usuario"] as Usuario;
-                if (usuario != null)
-                {
-                    loginLink.Visible = false;
-                    logoutLink.Visible = true;
-                    seguridadLink.Visible = false;
-                    registroLink.Visible = false;
-                    bitacoraLink.Visible = true;
-                    miCuentaLink.Visible = false;
-                }
-                else
+                if (usuario == null)
                 {
                     loginLink.Visible = true;
                     logoutLink.Visible = false;
@@ -37,6 +28,8 @@ namespace GUI.Controls
                     bitacoraLink.Visible = false;
                     miCuentaLink.Visible = false;
                 }
+
+                VisualizarMenu(usuario);
             }
         }
 
@@ -60,6 +53,41 @@ namespace GUI.Controls
             }
             else{
                 Response.Redirect("Home.aspx");
+            }
+        }
+
+        private void VisualizarMenu(Usuario usuario)
+        {
+            if (usuario != null)
+            {
+                loginLink.Visible = false;
+                foreach (var permiso in usuario.Permisos)
+                {
+                    switch (permiso.Permiso)
+                    {
+                        case Models.Composite.Permiso.Gestion_Usuarios:
+                            registroLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.Bitacora:
+                            bitacoraLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.Seguridad:
+                            seguridadLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.BackUp:
+                            backUpLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.Restore:
+                            restoreLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.GestionFamilia:
+                            gestionFamiliaLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.GestionFamiliaPatente:
+                            gestionFamiliaPatenteLink.Visible = true;
+                            break;
+                    }
+                }
             }
         }
     }

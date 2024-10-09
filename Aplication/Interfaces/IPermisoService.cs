@@ -1,4 +1,5 @@
-﻿using Models.Composite;
+﻿using Models;
+using Models.Composite;
 using Models.DTOs;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Aplication.Interfaces
         IList<Componente> TraerFamiliaPatentes(int familiaId);
         Array TraerPermisos();
         bool ExisteComponente(Componente componente, int Id);
-        void GetComponenteUsuario(UsuarioDTO usuario);
+        void GetComponenteUsuario(Usuario usuario);
         void GetComponenteFamilia(Familia familia);
         void GuardarPermiso(UsuarioDTO usuario);
         void PrimerRegistroGuardarPermiso(int idUsuario, int idPatente);
