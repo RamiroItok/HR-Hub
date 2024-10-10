@@ -24,6 +24,7 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.GuardarFamiliaCreada(familia);
+                _digitoVerificadorService.CalcularDVTabla("FamiliaPatente");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
@@ -40,6 +41,7 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.AsignarPermisoAFamilia(padreId, hijoId);
+                _digitoVerificadorService.CalcularDVTabla("FamiliaPatente");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
@@ -56,6 +58,7 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.QuitarPermisoAFamilia(padreId, hijoId);
+                _digitoVerificadorService.CalcularDVTabla("FamiliaPatente");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
@@ -72,6 +75,7 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.AltaFamiliaPatente(componente, familia);
+                _digitoVerificadorService.CalcularDVTabla("Permiso");
                 return 1;
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
@@ -89,6 +93,7 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.GuardarPermiso(usuario);
+                //_digitoVerificadorService.CalcularDVTabla("UsuarioPermiso");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
