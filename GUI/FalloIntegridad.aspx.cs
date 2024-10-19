@@ -19,13 +19,16 @@ namespace GUI
         {
             if (!IsPostBack)
             {
-                Models.FalloIntegridad falloIntegridad = Session["ErrorVerificacionDV"] as Models.FalloIntegridad;
-                lblTablaFallo.Text = $"Fallo en tabla: {falloIntegridad.Tabla}";
-
-                lblEstadoIntegridad.Text = "Estado: no saludable";
-                lblEstadoIntegridad.CssClass = "fallo-status-label fallo-status-fallo";
+                if (Session["ErrorVerificacionDV"] != null)
+                {
+                    Models.FalloIntegridad falloIntegridad = Session["ErrorVerificacionDV"] as Models.FalloIntegridad;
+                    MostrarEstadoFallido(falloIntegridad);
+                }
+                else
+                {
+                    MostrarEstadoFallido(null);
+                }
             }
-
         }
 
         protected void btnRecalcular_Click(object sender, EventArgs e)
@@ -33,10 +36,7 @@ namespace GUI
             try
             {
                 _digitoVerificadorService.RecalcularDV();
-                lblEstadoIntegridad.Text = "Estado: Saludable";
-                lblEstadoIntegridad.CssClass = "fallo-status-label fallo-status-saludable";
-                lblTablaFallo.Text = "Fallo en la tabla: -";
-                lblTablaFallo.CssClass = "fallo-text-success";
+                MostrarEstadoFallido(null);
             }
             catch (Exception ex)
             {
@@ -54,6 +54,22 @@ namespace GUI
 
         }
 
-        
+        private void MostrarEstadoFallido(Models.FalloIntegridad falloIntegridad)
+        {
+            if (falloIntegridad != null)
+            {
+                lblTablaFallo.Text = $"Fallo en tabla: {falloIntegridad.Tabla}";
+
+                lblEstadoIntegridad.Text = "Estado: no saludable";
+                lblEstadoIntegridad.CssClass = "fallo-status-label fallo-status-fallo";
+            }
+            else
+            {
+                lblEstadoIntegridad.Text = "Estado: Saludable";
+                lblEstadoIntegridad.CssClass = "fallo-status-label fallo-status-saludable";
+                lblTablaFallo.Text = "Fallo en la tabla: -";
+                lblTablaFallo.CssClass = "fallo-text-success";
+            }
+        }
     }
 }

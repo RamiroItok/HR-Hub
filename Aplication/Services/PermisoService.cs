@@ -93,7 +93,7 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.GuardarPermiso(usuario);
-                //_digitoVerificadorService.CalcularDVTabla("UsuarioPermiso");
+                _digitoVerificadorService.CalcularDVTabla("UsuarioPermiso");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
