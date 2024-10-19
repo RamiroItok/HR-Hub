@@ -2,8 +2,14 @@
 {
     public enum Permiso
     {
+        EsFamilia,
         Bitacora,
         Gestion_Usuarios,
-        CerrarSesion
+        Seguridad,
+        Restore,
+        BackUp,
+        GestionFamilia,
+        GestionFamiliaPatente,
+        FalloIntegridad
     }
 }

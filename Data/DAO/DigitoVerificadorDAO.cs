@@ -47,7 +47,7 @@ namespace Data.DAO
                     {
                         foreach (DataColumn dc in dt3.Columns)
                         {
-                            if (dc.ColumnName.ToString().Substring(0, 2).ToUpper() != "Id")
+                            if (dc.ColumnName.ToString().Substring(0, 2).ToUpper() != "ID")
                             {
                                 if (dc.ColumnName.ToString().ToUpper() != "DVH")
                                 {
@@ -86,7 +86,7 @@ namespace Data.DAO
             try
             {
                 bool mensaje = true;
-                string consulta = "SELECT Nombre_Tabla as Tabla, DV as Valor_DV from DigitoVerificador";
+                string consulta = "SELECT NombreTabla as Tabla, DV as Valor_DV from DigitoVerificador";
                 DataTable dt = _acceso.GenerarConsulta(consulta);
                 foreach (DataRow fila in dt.Rows)
                 {
@@ -102,7 +102,7 @@ namespace Data.DAO
                         int dvh_fila = 0;
                         foreach (DataColumn dc in dt2.Columns)
                         {
-                            if (dc.ColumnName.ToString().Substring(0, 2).ToUpper() != "Id")
+                            if (dc.ColumnName.ToString().Substring(0, 2).ToUpper() != "ID")
                             {
                                 if (dc.ColumnName.ToString().ToUpper() != "DVH")
                                 {
@@ -132,11 +132,31 @@ namespace Data.DAO
                                 string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
                                 _acceso.GenerarConsulta(consulta1);
                             }
+                            else if (tabla == "Permiso")
+                            {
+                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
+                                _acceso.GenerarConsulta(consulta1);
+                            }
+                            else if (tabla == "FamiliaPatente")
+                            {
+                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
+                                _acceso.GenerarConsulta(consulta1);
+                            }
+                            else if (tabla == "UsuarioPermiso")
+                            {
+                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
+                                _acceso.GenerarConsulta(consulta1);
+                            }
+                            else if (tabla == "Puesto")
+                            {
+                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
+                                _acceso.GenerarConsulta(consulta1);
+                            }
                         }
                         x = x + 1;
                         DV_tabla = DV_tabla + dvh_fila;
                     }
-                    string xxconsulta = $@"UPDATE DigitoVerificador set dv = {DV_tabla} WHERE Nombre_Tabla = '{tabla}'";
+                    string xxconsulta = $@"UPDATE DigitoVerificador set dv = {DV_tabla} WHERE NombreTabla = '{tabla}'";
                     _acceso.GenerarConsulta(xxconsulta);
 
                 }
@@ -196,11 +216,24 @@ namespace Data.DAO
 
                     if (DVH_total != dvh_fila)
                     {
+                        string consultaUpdate = "";
                         string primaryKey = "Id";
-                        if (tabla == "UsuarioPermiso")
+                        if (tabla == "FamiliaPatente")
+                        {
+                            var padreId = fila1[0].ToString();
+                            var hijoId = fila1[1].ToString();
+                            consultaUpdate = $@"UPDATE {tabla} SET DVH = '{dvh_fila}' WHERE PadreId = {padreId} and HijoId = {hijoId}";
+                        }
+                        /*else if (tabla == "UsuarioPermiso")
+                        {
                             primaryKey = "Id_UsuarioPermiso";
+                        }*/
+                        
+                        if (tabla != "FamiliaPatente")
+                        {
+                            consultaUpdate = $@"UPDATE {tabla} SET DVH = '{dvh_fila}' WHERE {primaryKey} = '{dt2.Rows[x][primaryKey].ToString()}'";
+                        }
 
-                        string consultaUpdate = $@"UPDATE {tabla} SET DVH = '{dvh_fila}' WHERE {primaryKey} = '{dt2.Rows[x][primaryKey].ToString()}'";
                         _acceso.GenerarConsulta(consultaUpdate);
                     }
 

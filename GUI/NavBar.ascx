@@ -12,7 +12,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="dropdown"  id="registroLink" runat="server">
+                <li class="dropdown" visible="false" id="registroLink" runat="server">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a runat="server" href="~/ListarUsuarios">Lista de usuarios</a></li>
@@ -22,14 +22,16 @@
                 <li class="dropdown" id="seguridadLink" runat="server">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seguridad <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a runat="server" href="~/GestionFamilia">Gestión de Familia</a></li>
-                        <li><a runat="server" href="~/GestionFamiliaPatente">Gestión de Familia Patente</a></li>
-                        <li><a runat="server" href="~/Backup">Backup</a></li>
-                        <li><a runat="server" href="~/Restore">Restore</a></li>
+                        <li><a id="gestionFamiliaLink" visible="false" runat="server" href="~/GestionFamilia">Gestión de Familia</a></li>
+                        <li><a id="gestionFamiliaPatenteLink" visible="false" runat="server" href="~/GestionFamiliaPatente">Gestión de Familia Patente</a></li>
+                        <li><a id="backUpLink" visible="false" runat="server" href="~/Backup">Backup</a></li>
+                        <li><a id="restoreLink" visible="false" runat="server" href="~/Restore">Restore</a></li>
+                        <li><a runat="server" id="falloIntegridadSeguridadLink" visible="false" href="~/FalloIntegridad">Fallo de integridad</a></li>
                     </ul>
                 </li>
-                <li><a runat="server" id="bitacoraLink" href="~/Bitacora">Bitacora</a></li>
-                <li><a runat="server" href="~/Contact">Contacto</a></li>
+                <li><a runat="server" id="falloIntegridadLink" visible="false" href="~/FalloIntegridad">Fallo de integridad</a></li>
+                <li><a runat="server" id="bitacoraLink" visible="false" href="~/Bitacora">Bitacora</a></li>
+                <li><a runat="server" id="contactoLink" href="~/Contact">Contacto</a></li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">

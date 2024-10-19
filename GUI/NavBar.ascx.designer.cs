@@ -42,6 +42,60 @@ namespace GUI.Controls
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl seguridadLink;
 
         /// <summary>
+        /// Control gestionFamiliaLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor gestionFamiliaLink;
+
+        /// <summary>
+        /// Control gestionFamiliaPatenteLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor gestionFamiliaPatenteLink;
+
+        /// <summary>
+        /// Control backUpLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor backUpLink;
+
+        /// <summary>
+        /// Control restoreLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor restoreLink;
+
+        /// <summary>
+        /// Control falloIntegridadSeguridadLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor falloIntegridadSeguridadLink;
+
+        /// <summary>
+        /// Control falloIntegridadLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor falloIntegridadLink;
+
+        /// <summary>
         /// Control bitacoraLink.
         /// </summary>
         /// <remarks>
@@ -49,6 +103,15 @@ namespace GUI.Controls
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor bitacoraLink;
+
+        /// <summary>
+        /// Control contactoLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor contactoLink;
 
         /// <summary>
         /// Control miCuentaLink.

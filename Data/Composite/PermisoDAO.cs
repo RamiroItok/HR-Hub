@@ -1,5 +1,6 @@
 ﻿using Data.Conexion;
 using Data.Tools;
+using Models;
 using Models.Composite;
 using Models.DTOs;
 using System;
@@ -386,13 +387,13 @@ namespace Data.Composite
             catch (Exception) { throw new Exception("Error al obtener los componentes."); }
         }
 
-        public void GetComponenteUsuario(UsuarioDTO usuario)
+        public void GetComponenteUsuario(Usuario usuario)
         {
             try
             {
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
-                    { "@idUsuario", usuario }
+                    { "@idUsuario", usuario.Id }
                 };
 
                 var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_usuarioPermiso_permiso", parameters);

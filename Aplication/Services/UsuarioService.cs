@@ -20,12 +20,14 @@ namespace Aplication
         private readonly IUsuarioDAO _usuarioDAO;
         private readonly IDigitoVerificadorService _iDigitoVerificadorService;
         private readonly IBitacoraService _iBitacoraService;
+        private readonly IPermisoService _iPermisoService;
 
-        public UsuarioService(IUsuarioDAO usuarioDAO, IDigitoVerificadorService digitoVerificadorService, IBitacoraService bitacoraService)
+        public UsuarioService(IUsuarioDAO usuarioDAO, IDigitoVerificadorService digitoVerificadorService, IBitacoraService bitacoraService, IPermisoService permisoService)
         {
             _usuarioDAO = usuarioDAO;
             _iDigitoVerificadorService = digitoVerificadorService;
             _iBitacoraService = bitacoraService;
+            _iPermisoService = permisoService;
         }
 
         public int RegistrarUsuario(Usuario usuario, Usuario userSession)
@@ -124,6 +126,7 @@ namespace Aplication
                 else
                 {
                     DesbloquearUsuario(usuario.Email);
+                    _iPermisoService.GetComponenteUsuario(usuario);
                     _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Inicio de sesion", Criticidad.MEDIA);
                 }
 
