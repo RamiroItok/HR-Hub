@@ -47,17 +47,39 @@ namespace GUI.Controls
         {
             var usuario = Session["Usuario"] as Usuario;
 
-            if (usuario != null)
+            if ((usuario != null && Session["ErrorVerificacionDV"] == null) || (Session["ErrorVerificacionDV"] != null && usuario.Puesto == Models.Enums.Puesto.WebMaster))
             {
                 Response.Redirect("MenuPrincipal.aspx");
             }
-            else{
+            else
+            {
+                Session.Abandon();
                 Response.Redirect("Home.aspx");
             }
         }
 
         private void VisualizarMenu(Usuario usuario)
         {
+            if (Session["ErrorVerificacionDV"] != null && usuario.Puesto == Models.Enums.Puesto.WebMaster)
+            {
+                seguridadLink.Visible = true;
+                restoreLink.Visible = true;
+                registroLink.Visible = false;
+                loginLink.Visible = false;
+                contactoLink.Visible = false;
+                miCuentaLink.Visible = false;
+                return;
+            }
+            else if (Session["ErrorVerificacionDV"] != null && usuario.Puesto != Models.Enums.Puesto.WebMaster)
+            {
+                seguridadLink.Visible = false;
+                registroLink.Visible = false;
+                loginLink.Visible = false;
+                contactoLink.Visible = false;
+                miCuentaLink.Visible = false;
+                return;
+            }
+            
             if (usuario != null)
             {
                 loginLink.Visible = false;

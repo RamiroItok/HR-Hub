@@ -29,7 +29,7 @@
                     </ul>
                 </li>
                 <li><a runat="server" id="bitacoraLink" visible="false" href="~/Bitacora">Bitacora</a></li>
-                <li><a runat="server" href="~/Contact">Contacto</a></li>
+                <li><a runat="server" id="contactoLink" href="~/Contact">Contacto</a></li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
