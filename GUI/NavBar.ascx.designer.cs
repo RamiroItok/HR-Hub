@@ -78,6 +78,24 @@ namespace GUI.Controls
         protected global::System.Web.UI.HtmlControls.HtmlAnchor restoreLink;
 
         /// <summary>
+        /// Control falloIntegridadSeguridadLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor falloIntegridadSeguridadLink;
+
+        /// <summary>
+        /// Control falloIntegridadLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor falloIntegridadLink;
+
+        /// <summary>
         /// Control bitacoraLink.
         /// </summary>
         /// <remarks>

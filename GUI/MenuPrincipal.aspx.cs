@@ -43,7 +43,11 @@ namespace GUI
                     string mensaje = _digitoVerificadorService.VerificarDV();
                     if (mensaje != "true")
                     {
-                        Session["ErrorVerificacionDV"] = true;
+                        Models.FalloIntegridad falloIntegridad = new Models.FalloIntegridad();
+                        falloIntegridad.Tabla = mensaje;
+                        falloIntegridad.Fallo = true;
+
+                        Session["ErrorVerificacionDV"] = falloIntegridad;
                         Response.Redirect($"ErrorDigitoVerificador.aspx?mensaje={mensaje}");
                     }
                 }

@@ -25,11 +25,15 @@ namespace GUI
         protected void btnOk_Click(object sender, EventArgs e)
         {
             var usuario = Session["Usuario"] as Usuario;
-            if (usuario.Puesto != Models.Enums.Puesto.WebMaster)
+            if (usuario != null && usuario.Puesto != Models.Enums.Puesto.WebMaster)
             {
                 Session.Abandon();
+                Response.Redirect("Home.aspx");
             }
-            Response.Redirect("MenuPrincipal.aspx");
+            else
+            {
+                Response.Redirect("MenuPrincipal.aspx");
+            }
         }
     }
 }

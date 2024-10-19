@@ -9,6 +9,7 @@
         Restore,
         BackUp,
         GestionFamilia,
-        GestionFamiliaPatente
+        GestionFamiliaPatente,
+        FalloIntegridad
     }
 }

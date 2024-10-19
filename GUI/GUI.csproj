@@ -119,6 +119,7 @@
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
     <Content Include="ErrorDigitoVerificador.aspx" />
+    <Content Include="FalloIntegridad.aspx" />
     <Content Include="GestionFamilia.aspx" />
     <Content Include="GestionFamiliaPatente.aspx" />
     <Content Include="MenuPrincipal.aspx" />
@@ -180,6 +181,7 @@
     <Content Include="Style\CambiarContraseña.css" />
     <Content Include="Style\Default.css" />
     <Content Include="Style\DigitoVerificador.css" />
+    <Content Include="Style\FalloIntegridad.css" />
     <Content Include="Style\GestionFamiliaPatente.css" />
     <Content Include="Style\MenuPrincipal.css" />
     <Content Include="Style\ListarUsuarios.css" />
@@ -223,6 +225,13 @@
     </Compile>
     <Compile Include="ErrorDigitoVerificador.aspx.designer.cs">
       <DependentUpon>ErrorDigitoVerificador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FalloIntegridad.aspx.cs">
+      <DependentUpon>FalloIntegridad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FalloIntegridad.aspx.designer.cs">
+      <DependentUpon>FalloIntegridad.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionFamilia.aspx.cs">
       <DependentUpon>GestionFamilia.aspx</DependentUpon>

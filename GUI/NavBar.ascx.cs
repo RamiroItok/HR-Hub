@@ -27,6 +27,8 @@ namespace GUI.Controls
                     registroLink.Visible = false;
                     bitacoraLink.Visible = false;
                     miCuentaLink.Visible = false;
+                    falloIntegridadLink.Visible = false;
+                    falloIntegridadSeguridadLink.Visible = false;
                 }
 
                 VisualizarMenu(usuario);
@@ -60,23 +62,25 @@ namespace GUI.Controls
 
         private void VisualizarMenu(Usuario usuario)
         {
-            if (Session["ErrorVerificacionDV"] != null && usuario.Puesto == Models.Enums.Puesto.WebMaster)
+            if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto == Models.Enums.Puesto.WebMaster)
             {
-                seguridadLink.Visible = true;
-                restoreLink.Visible = true;
+                falloIntegridadLink.Visible = true;
+                seguridadLink.Visible = false;
+                restoreLink.Visible = false;
                 registroLink.Visible = false;
                 loginLink.Visible = false;
                 contactoLink.Visible = false;
                 miCuentaLink.Visible = false;
                 return;
             }
-            else if (Session["ErrorVerificacionDV"] != null && usuario.Puesto != Models.Enums.Puesto.WebMaster)
+            else if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto != Models.Enums.Puesto.WebMaster)
             {
                 seguridadLink.Visible = false;
                 registroLink.Visible = false;
                 loginLink.Visible = false;
                 contactoLink.Visible = false;
                 miCuentaLink.Visible = false;
+                falloIntegridadLink.Visible = false;
                 return;
             }
             
@@ -107,6 +111,9 @@ namespace GUI.Controls
                             break;
                         case Models.Composite.Permiso.GestionFamiliaPatente:
                             gestionFamiliaPatenteLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.FalloIntegridad:
+                            falloIntegridadSeguridadLink.Visible = true;
                             break;
                     }
                 }

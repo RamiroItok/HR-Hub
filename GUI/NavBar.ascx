@@ -26,8 +26,10 @@
                         <li><a id="gestionFamiliaPatenteLink" visible="false" runat="server" href="~/GestionFamiliaPatente">Gestión de Familia Patente</a></li>
                         <li><a id="backUpLink" visible="false" runat="server" href="~/Backup">Backup</a></li>
                         <li><a id="restoreLink" visible="false" runat="server" href="~/Restore">Restore</a></li>
+                        <li><a runat="server" id="falloIntegridadSeguridadLink" visible="false" href="~/FalloIntegridad">Fallo de integridad</a></li>
                     </ul>
                 </li>
+                <li><a runat="server" id="falloIntegridadLink" visible="false" href="~/FalloIntegridad">Fallo de integridad</a></li>
                 <li><a runat="server" id="bitacoraLink" visible="false" href="~/Bitacora">Bitacora</a></li>
                 <li><a runat="server" id="contactoLink" href="~/Contact">Contacto</a></li>
             </ul>
