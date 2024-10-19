@@ -19,15 +19,7 @@ namespace GUI
         {
             if (!IsPostBack)
             {
-                if (Session["ErrorVerificacionDV"] != null)
-                {
-                    Models.FalloIntegridad falloIntegridad = Session["ErrorVerificacionDV"] as Models.FalloIntegridad;
-                    MostrarEstadoFallido(falloIntegridad);
-                }
-                else
-                {
-                    MostrarEstadoFallido(null);
-                }
+                MostrarEstadoFallido(Session["ErrorVerificacionDV"] as Models.FalloIntegridad);
             }
         }
 
