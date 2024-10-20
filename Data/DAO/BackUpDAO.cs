@@ -47,7 +47,7 @@ namespace Data.DAO
                 _acceso.SelectCommandText = $@"USE[master]; ALTER DATABASE[HrHub] SET SINGLE_USER WITH ROLLBACK IMMEDIATE USE MASTER RESTORE DATABASE[HrHub] FROM DISK = '{ruta}' WITH REPLACE ALTER DATABASE [HrHub] SET MULTI_USER";
                 _acceso.ExecuteNonReader();
 
-                return "Se restauró el sistema de manera correcta.";
+                return "Se restauró el sistema de manera correcta. Debes volver a iniciar sesion";
             }
             catch
             {

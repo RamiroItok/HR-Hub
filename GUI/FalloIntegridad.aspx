@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <title>Fallo de Integridad</title>
 
+    <!-- Librerías y estilos -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
@@ -16,41 +17,61 @@
 
 <body>
     <form id="form1" runat="server">
+        <!-- NavBar -->
         <uc:NavBar runat="server" ID="NavBarControl" />
 
+        <!-- Contenedor Principal -->
         <div class="fallo-container mt-5">
-            <h2 class="fallo-title text-center">Fallo de Integridad en el Sistema</h2>
-            <div class="fallo-message text-center mt-3">
-                <asp:Label ID="lblTablaFallo" runat="server" CssClass="fallo-status-label fallo-status-fallo"></asp:Label>
+
+            <!-- Sección Recalcular Dígitos Verificadores -->
+            <div class="fallo-section">
+                <h2 class="fallo-title text-center">Recalcular Dígitos Verificadores</h2>
+
+                <!-- Estado de la integridad del sistema -->
+                <div class="fallo-status-container text-center mt-4">
+                    <asp:Label ID="lblEstadoIntegridad" runat="server" CssClass="fallo-status-label"></asp:Label>
+                </div>
+                <br />
+                <!-- Estado de la integridad del sistema -->
+                <div class="fallo-status-container text-center mt-4">
+                    <asp:Label ID="lblTablaFallo" runat="server" CssClass="fallo-status-label"></asp:Label>
+                </div>
+                <br />
+                <!-- Botón para recalcular dígitos verificadores -->
+                <div class="fallo-recalcular-container text-center mt-3">
+                    <asp:Button ID="btnRecalcular" runat="server" CssClass="fallo-btn-primary" Text="Recalcular Dígitos Verificadores" OnClick="btnRecalcular_Click" />
+                </div>
+                <br />
+                <div class="fallo-status-container text-center mt-4">
+                    <asp:Label ID="lblMensajeRecalcular" runat="server" CssClass="fallo-status-label" Visible="false"></asp:Label>
+                </div>
             </div>
 
-            <h3 class="fallo-subtitle text-center mt-5">Recalcular dígitos verificadores</h3>
+            <!-- Separador visual -->
+            <hr class="fallo-divider">
 
-            <div class="fallo-status-container text-center mt-4">
-                <asp:Label ID="lblEstadoIntegridad" runat="server" CssClass="fallo-status-label"></asp:Label>
+            <!-- Sección Realizar Restore -->
+            <div class="fallo-section">
+                <h2 class="fallo-title text-center">Realizar Restore</h2>
+
+                <!-- Selección de archivo de Backup -->
+                <div class="fallo-form-group">
+                    <label for="fileBackup" class="fallo-label">Seleccione el archivo de Backup:</label>
+                    <asp:FileUpload ID="fileBackup" runat="server" CssClass="fallo-form-control" />
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="fallo-buttons text-center">
+                    <asp:Button ID="btnRestore" runat="server" CssClass="fallo-btn-primary" Text="Realizar Restore" OnClick="btnRestore_Click" />
+                    <asp:Button ID="btnCancelar" runat="server" CssClass="fallo-btn-secondary ml-3" Text="Cancelar" OnClick="btnCancelar_Click" />
+                </div>
+                <br />
+                <!-- Mensaje de éxito o error -->
+                <div class="fallo-message text-center mt-3">
+                    <asp:Label ID="lblMensajeRestore" runat="server" CssClass="fallo-text-success" Visible="false"></asp:Label>
+                </div>
             </div>
 
-            <div class="fallo-recalcular-container text-center mt-3">
-                <asp:Button ID="btnRecalcular" runat="server" CssClass="fallo-btn-primary" Text="Recalcular Dígitos Verificadores" OnClick="btnRecalcular_Click" />
-            </div>
-            <br />
-            <h3 class="fallo-subtitle text-center mt-5">Restaurar el sistema</h3>
-            <!-- Subtítulo para la selección del archivo de Backup -->
-            <div class="fallo-form-group">
-                <label for="fileBackup" class="fallo-label">Seleccione el archivo de Backup:</label>
-                <asp:FileUpload ID="fileBackup" runat="server" CssClass="fallo-form-control" />
-            </div>
-
-            <!-- Botones -->
-            <div class="fallo-buttons text-center">
-                <asp:Button ID="btnRestore" runat="server" CssClass="fallo-btn-primary" Text="Realizar Restore" OnClick="btnRestore_Click" />
-                <asp:Button ID="btnCancelar" runat="server" CssClass="fallo-btn-secondary ml-3" Text="Cancelar" OnClick="btnCancelar_Click" />
-            </div>
-
-            <!-- Mensaje de éxito o error -->
-            <div class="fallo-message text-center mt-3">
-                <asp:Label ID="lblMensaje" runat="server" CssClass="fallo-text-success" Visible="false"></asp:Label>
-            </div>
         </div>
     </form>
 

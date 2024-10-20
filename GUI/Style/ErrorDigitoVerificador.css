@@ -1,8 +1,18 @@
-﻿.digito-verificador-page {
+﻿/* Hacer que la página ocupe toda la pantalla */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.digito-verificador-page {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
     color: #333;
-    padding-top: 50px;
+    /* Flexbox para centrar el contenido */
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
     text-align: center;
 }
 

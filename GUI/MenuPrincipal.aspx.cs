@@ -52,7 +52,7 @@ namespace GUI
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 throw new Exception("Se ha producido un error al verificar los digitos verificadores");
             }

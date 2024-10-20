@@ -127,7 +127,7 @@ namespace Aplication
                 {
                     DesbloquearUsuario(usuario.Email);
                     _iPermisoService.GetComponenteUsuario(usuario);
-                    _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Inicio de sesion", Criticidad.MEDIA);
+                    _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Inicio de sesion", Criticidad.BAJA);
                 }
 
                 return null;

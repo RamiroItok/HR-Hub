@@ -10,12 +10,10 @@ namespace Aplication.Services
     public class BackUpService : IBackUpService
     {
         private readonly BackUpDAO _backUpDAO;
-        private readonly IBitacoraService _iBitacoraService;
 
-        public BackUpService(IBitacoraService bitacoraService)
+        public BackUpService()
         {
             _backUpDAO = new BackUpDAO();
-            _iBitacoraService = bitacoraService;
         }
 
         public string RealizarBackup(string ruta, string nombre, Usuario usuario)
@@ -29,7 +27,6 @@ namespace Aplication.Services
                 else
                 {
                     var resultado = _backUpDAO.RealizarBackup(ruta, nombre);
-                    _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Se realizó una copia de seguridad", Criticidad.ALTA);
                     return resultado;
                 }
             }
@@ -50,7 +47,6 @@ namespace Aplication.Services
                 else
                 {
                     var resultado = _backUpDAO.RealizarRestore(archivo);
-                    _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Se realizó un restore.", Criticidad.ALTA);
                     return resultado;
                 }
             }

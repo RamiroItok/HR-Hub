@@ -33,15 +33,6 @@ namespace GUI
         protected global::GUI.Controls.NavBar NavBarControl;
 
         /// <summary>
-        /// Control lblTablaFallo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTablaFallo;
-
-        /// <summary>
         /// Control lblEstadoIntegridad.
         /// </summary>
         /// <remarks>
@@ -51,6 +42,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.Label lblEstadoIntegridad;
 
         /// <summary>
+        /// Control lblTablaFallo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTablaFallo;
+
+        /// <summary>
         /// Control btnRecalcular.
         /// </summary>
         /// <remarks>
@@ -58,6 +58,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRecalcular;
+
+        /// <summary>
+        /// Control lblMensajeRecalcular.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensajeRecalcular;
 
         /// <summary>
         /// Control fileBackup.
@@ -87,12 +96,12 @@ namespace GUI
         protected global::System.Web.UI.WebControls.Button btnCancelar;
 
         /// <summary>
-        /// Control lblMensaje.
+        /// Control lblMensajeRestore.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        protected global::System.Web.UI.WebControls.Label lblMensajeRestore;
     }
 }
