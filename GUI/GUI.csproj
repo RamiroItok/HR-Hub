@@ -180,7 +180,7 @@
     <Content Include="Style\Bitacora.css" />
     <Content Include="Style\CambiarContraseña.css" />
     <Content Include="Style\Default.css" />
-    <Content Include="Style\DigitoVerificador.css" />
+    <Content Include="Style\ErrorDigitoVerificador.css" />
     <Content Include="Style\FalloIntegridad.css" />
     <Content Include="Style\GestionFamiliaPatente.css" />
     <Content Include="Style\MenuPrincipal.css" />

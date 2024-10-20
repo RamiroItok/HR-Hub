@@ -1,5 +1,6 @@
 ﻿using Aplication.Interfaces;
 using Models;
+using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace GUI
     public partial class Backup : Page
     {
         private readonly IBackUpService _iBackupService;
+        private readonly IBitacoraService _iBitacoraService;
 
         public Backup()
         {
             _iBackupService = Global.Container.Resolve<IBackUpService>();
+            _iBitacoraService = Global.Container.Resolve<IBitacoraService>();
             
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -33,7 +36,8 @@ namespace GUI
             try
             {
                 var resultado = _iBackupService.RealizarBackup(ruta, nombre, usuario);
-                
+                _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Se realizó una copia de seguridad", Criticidad.ALTA);
+
                 lblMensaje.Text = resultado;
                 lblMensaje.Visible = true;
             }

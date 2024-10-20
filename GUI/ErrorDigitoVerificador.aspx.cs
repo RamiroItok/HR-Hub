@@ -13,7 +13,7 @@ namespace GUI
                 string tabla = Request.QueryString["mensaje"];
                 if (!string.IsNullOrEmpty(tabla))
                 {
-                    lblErrorMessage.Text = $"Se realizaron modificaciones de datos, de manera externa, en la tabla {tabla}";
+                    lblErrorMessage.Text = $"Hubo un error al ingresar al sistema";
                 }
                 else
                 {

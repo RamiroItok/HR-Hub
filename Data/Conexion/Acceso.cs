@@ -198,7 +198,7 @@ namespace Data.Conexion
                 dt.Load(dr);
                 TR.Commit();
             }
-            catch (Exception Ex)
+            catch
             {
                 TR.Rollback();
             }
