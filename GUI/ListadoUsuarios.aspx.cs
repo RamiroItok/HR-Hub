@@ -1,14 +1,15 @@
 ﻿using Aplication.Interfaces;
 using System;
+using System.Web.UI;
 using Unity;
 
 namespace GUI
 {
-    public partial class ListarUsuarios : System.Web.UI.Page
+    public partial class ListadoUsuarios : Page
     {
         private readonly IUsuarioService _usuarioService;
 
-        public ListarUsuarios()
+        public ListadoUsuarios()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
         }

@@ -31,6 +31,14 @@ namespace Data.DAO
                     { "@FechaNacimiento", usuario.FechaNacimiento },
                     { "@Genero", usuario.Genero },
                     { "@FechaIngreso", usuario.FechaIngreso },
+                    { "@Direccion", usuario.Direccion },
+                    { "@NumeroDireccion", usuario.NumeroDireccion },
+                    { "@Departamento", usuario.Departamento },
+                    { "@CodigoPostal", usuario.CodigoPostal },
+                    { "@Ciudad", usuario.Ciudad },
+                    { "@Provincia", usuario.Provincia },
+                    { "@Pais", usuario.Pais },
+                    { "@IdIdioma", usuario.Idioma },
                     { "@Estado", usuario.Estado }
                 };
 
@@ -98,6 +106,13 @@ namespace Data.DAO
                     Puesto = (Models.Enums.Puesto)resultado.Tables[0].Rows[0]["IdPuesto"],
                     Area = (Models.Enums.Area)resultado.Tables[0].Rows[0]["IdArea"],
                     FechaIngreso = (DateTime)resultado.Tables[0].Rows[0]["FechaIngreso"],
+                    Direccion = resultado.Tables[0].Rows[0]["Direccion"].ToString(),
+                    NumeroDireccion = (int)resultado.Tables[0].Rows[0]["NumeroDireccion"],
+                    Departamento = resultado.Tables[0].Rows[0]["Departamento"].ToString(),
+                    CodigoPostal = resultado.Tables[0].Rows[0]["CodigoPostal"].ToString(),
+                    Provincia = resultado.Tables[0].Rows[0]["Provincia"].ToString(),
+                    Pais = resultado.Tables[0].Rows[0]["Pais"].ToString(),
+                    Idioma = (Models.Enums.Idioma)resultado.Tables[0].Rows[0]["IdIdioma"],
                     Estado = (int)resultado.Tables[0].Rows[0]["Estado"]
                 };
 

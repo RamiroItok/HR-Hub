@@ -1,54 +1,108 @@
-﻿.full-width-container {
-    background-color: #ffffff;
-    padding: 20px;
+﻿/* Contenedor principal */
+/*.full-width-container {
+    background-color: #fff;
+    padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     margin: 50px auto;
-    box-sizing: border-box;
-    width: 100%;
+    max-width: 1200px;
+    width: 90%;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.inner-container {
+    .full-width-container:hover {
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);*/ /* Efecto hover */
+        /*transform: translateY(-5px);
+    }*/
+
+/* Contenedor interno */
+/*.inner-container {
     max-width: 1200px;
     margin: 0 auto;
-}
+}*/
 
-h2 {
+/* Estilo del título */
+/*h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
+    color: #76B041;*/ /* Verde del logo */
+    /*font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
 }
 
-.table {
+    h2:hover {
+        color: #5c8f34;*/ /* Hover en el título */
+    /*}*/
+
+/* Estilo de la tabla */
+/*.table {
     width: 100%;
     margin-bottom: 20px;
     border-collapse: collapse;
     table-layout: auto;
 }
 
-.table th, .table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    word-wrap: break-word;
-}
+    .table th, .table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        word-wrap: break-word;
+    }
 
-.table th {
-    background-color: #007bff;
-    color: white;
-}
+    .table th {
+        background-color: #333;*/ /* Negro oscuro */
+        /*color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
 
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: #f9f9f9;
 }
 
 .table-striped tbody tr:hover {
-    background-color: #f1f1f1;
-}
+    background-color: #eaf4e2;*/ /* Color de hover en filas */
+/*}*/
 
-.footer {
+/* Footer */
+/*.footer {
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
     color: #777;
+    font-size: 14px;
+}*/
+
+/* Botones con colores del logo */
+/*.btn-primary {
+    background-color: #76B041;*/ /* Verde del logo */
+    /*border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
+    .btn-primary:hover {
+        background-color: #5c8f34;
+        transform: scale(1.05);
+    }*/
+
+/* Estilo responsivo para pantallas más pequeñas */
+/*@media (max-width: 768px) {
+    .full-width-container {
+        width: 100%;
+        margin: 20px;
+    }
+
+    .table th, .table td {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}*/

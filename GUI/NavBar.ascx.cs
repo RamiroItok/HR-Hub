@@ -94,6 +94,12 @@ namespace GUI.Controls
                         case Models.Composite.Permiso.Gestion_Usuarios:
                             registroLink.Visible = true;
                             break;
+                        case Models.Composite.Permiso.ListarUsuarios:
+                            listarUsuariosLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.RegistroUsuario:
+                            registroUsuarioLink.Visible = true;
+                            break;
                         case Models.Composite.Permiso.Bitacora:
                             bitacoraLink.Visible = true;
                             break;

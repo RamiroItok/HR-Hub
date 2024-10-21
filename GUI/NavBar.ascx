@@ -15,8 +15,8 @@
                 <li class="dropdown" visible="false" id="registroLink" runat="server">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a runat="server" href="~/ListarUsuarios">Lista de usuarios</a></li>
-                        <li><a runat="server" href="~/Registro">Registrar usuario</a></li>
+                        <li><a id="listarUsuariosLink" runat="server" href="~/ListadoUsuarios">Lista de usuarios</a></li>
+                        <li><a id="registroUsuarioLink" runat="server" href="~/Registro">Registrar usuario</a></li>
                     </ul>
                 </li>
                 <li class="dropdown" id="seguridadLink" runat="server">
