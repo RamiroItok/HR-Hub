@@ -52,6 +52,35 @@ namespace Data.DAO
             }
         }
 
+        public int ModificarUsuario(Usuario usuario)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@Email", usuario.Email },
+                    { "@IdPuesto", (int)usuario.Puesto },
+                    { "@IdArea", (int)usuario.Area },
+                    { "@Genero", usuario.Genero },
+                    { "@Direccion", usuario.Direccion },
+                    { "@NumeroDireccion", usuario.NumeroDireccion },
+                    { "@Departamento", usuario.Departamento },
+                    { "@CodigoPostal", usuario.CodigoPostal },
+                    { "@Ciudad", usuario.Ciudad },
+                    { "@Provincia", usuario.Provincia },
+                    { "@Pais", usuario.Pais }
+                };
+
+                DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_u_usuario", parameters);
+
+                return Convert.ToInt32(resultado.Tables[0].Rows[0]["Id"]);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public DataSet ObtenerPuestos()
         {
             try

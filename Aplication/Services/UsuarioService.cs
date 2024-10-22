@@ -72,6 +72,41 @@ namespace Aplication
             }
         }
 
+        public int ModificarUsuario(Usuario usuario, Usuario userSession)
+        {
+            try
+            {
+                Usuario usuarioReal = new Usuario()
+                {
+                    Email = EncriptacionService.Encriptar_AES(usuario.Email),
+                    Puesto = usuario.Puesto,
+                    Area = usuario.Area,
+                    Genero = usuario.Genero,
+                    Direccion = usuario.Direccion,
+                    NumeroDireccion = usuario.NumeroDireccion,
+                    Departamento = usuario.Departamento,
+                    CodigoPostal = usuario.CodigoPostal,
+                    Ciudad = usuario.Ciudad,
+                    Provincia = usuario.Provincia,
+                    Pais = usuario.Pais
+                };
+
+                var idUsuario = _usuarioDAO.ModificarUsuario(usuarioReal);
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se modifco el usuario {usuario.Nombre} {usuario.Apellido}", Criticidad.MEDIA);
+                _iDigitoVerificadorService.CalcularDVTabla("Usuario");
+
+                return idUsuario;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public DataTable ObtenerPuestos()
         {
             try

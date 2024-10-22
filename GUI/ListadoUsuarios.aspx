@@ -65,17 +65,99 @@
 
             <div id="userForm" runat="server" class="form-container" style="display: none;">
                 <h3>Modificar Datos de Usuario</h3>
-            
-                <label for="txtNombre">Nombre:</label>
-                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
-            
-                <label for="txtApellido">Apellido:</label>
-                <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" />
-            
-                <label for="txtEmail">Email:</label>
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
-            
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="txtNombre">Nombre:</label>
+                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" ReadOnly="true" />
+                        <asp:HiddenField ID="hiddenNombre" runat="server" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtApellido">Apellido:</label>
+                        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" ReadOnly="true" />
+                        <asp:HiddenField ID="hiddenApellido" runat="server" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="txtEmail">Email:</label>
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" ReadOnly="true" />
+                        <asp:HiddenField ID="hiddenEmail" runat="server" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtFechaIngreso">Fecha de Ingreso:</label>
+                        <asp:TextBox ID="txtFechaIngreso" runat="server" CssClass="form-control" ReadOnly="true" />
+                        <asp:HiddenField ID="hiddenFechaIngreso" runat="server" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="DropDownPuesto" Text="Puesto:" CssClass="form-label"></asp:Label>
+                        <asp:DropDownList runat="server" ID="DropDownPuesto" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="DropDownArea" Text="Área:" CssClass="form-label"></asp:Label>
+                        <asp:DropDownList runat="server" ID="DropDownArea" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="txtFechaNacimiento">Fecha de Nacimiento:</label>
+                        <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="form-control" ReadOnly="true" />
+                        <asp:HiddenField ID="hiddenFechaNacimiento" runat="server" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtGenero">Género:</label>
+                        <asp:TextBox ID="txtGenero" runat="server" CssClass="form-control" />
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="txtDireccion">Dirección:</label>
+                        <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtNumeroDireccion">Número de Dirección:</label>
+                        <asp:TextBox ID="txtNumeroDireccion" runat="server" CssClass="form-control" />
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="txtDepartamento">Departamento:</label>
+                        <asp:TextBox ID="txtDepartamento" runat="server" CssClass="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtCodigoPostal">Código Postal:</label>
+                        <asp:TextBox ID="txtCodigoPostal" runat="server" CssClass="form-control" />
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="txtCiudad">Ciudad:</label>
+                        <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtProvincia">Provincia:</label>
+                        <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="txtPais">País:</label>
+                        <asp:TextBox ID="txtPais" runat="server" CssClass="form-control" />
+                    </div>
+                </div>
+
                 <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="button" OnClick="btnGuardar_Click" />
+                <asp:Button ID="btnCancelarModificacion" runat="server" Text="Cancelar" CssClass="button" OnClick="btnCancelarModificacion_Click" />
+                <asp:Label ID="lblMensajeModificacion" runat="server" CssClass="validation-message" Text="" ></asp:Label>
             </div>
         </div>
     </form>
@@ -99,10 +181,54 @@
                     var nombre = row.cells[1].innerText;
                     var apellido = row.cells[2].innerText;
                     var email = row.cells[3].innerText;
+                    var fechaIngreso = row.cells[4].innerText;
+                    var puesto = row.cells[5].innerText;
+                    var area = row.cells[6].innerText;
+                    var fechaNacimiento = row.cells[7].innerText;
+                    var genero = row.cells[8].innerText;
+                    var direccion = row.cells[9].innerText;
+                    var numeroDireccion = row.cells[10].innerText;
+                    var departamento = row.cells[11].innerText;
+                    var codigoPostal = row.cells[12].innerText;
+                    var ciudad = row.cells[13].innerText;
+                    var provincia = row.cells[14].innerText;
+                    var pais = row.cells[15].innerText;
 
                     document.getElementById("<%= txtNombre.ClientID %>").value = nombre;
                     document.getElementById("<%= txtApellido.ClientID %>").value = apellido;
                     document.getElementById("<%= txtEmail.ClientID %>").value = email;
+                    document.getElementById("<%= txtFechaIngreso.ClientID %>").value = fechaIngreso;
+                    document.getElementById("<%= txtFechaNacimiento.ClientID %>").value = fechaNacimiento;
+                    document.getElementById("<%= txtGenero.ClientID %>").value = genero;
+                    document.getElementById("<%= txtDireccion.ClientID %>").value = direccion;
+                    document.getElementById("<%= txtNumeroDireccion.ClientID %>").value = numeroDireccion;
+                    document.getElementById("<%= txtDepartamento.ClientID %>").value = departamento;
+                    document.getElementById("<%= txtCodigoPostal.ClientID %>").value = codigoPostal;
+                    document.getElementById("<%= txtCiudad.ClientID %>").value = ciudad;
+                    document.getElementById("<%= txtProvincia.ClientID %>").value = provincia;
+                    document.getElementById("<%= txtPais.ClientID %>").value = pais;
+
+                    var dropDownPuesto = document.getElementById("<%= DropDownPuesto.ClientID %>");
+                    for (var i = 0; i < dropDownPuesto.options.length; i++) {
+                        if (dropDownPuesto.options[i].text === puesto) {
+                            dropDownPuesto.selectedIndex = i;
+                            break;
+                        }
+                    }
+
+                    var dropDownArea = document.getElementById("<%= DropDownArea.ClientID %>");
+                    for (var i = 0; i < dropDownArea.options.length; i++) {
+                        if (dropDownArea.options[i].text === area) {
+                            dropDownArea.selectedIndex = i;
+                            break;
+                        }
+                    }
+
+                    document.getElementById("<%= hiddenNombre.ClientID %>").value = nombre;
+                    document.getElementById("<%= hiddenApellido.ClientID %>").value = apellido;
+                    document.getElementById("<%= hiddenEmail.ClientID %>").value = email;
+                    document.getElementById("<%= hiddenFechaIngreso.ClientID %>").value = fechaIngreso;
+                    document.getElementById("<%= hiddenFechaNacimiento.ClientID %>").value = fechaNacimiento;
 
                     document.getElementById("userForm").style.display = "block";
                 }

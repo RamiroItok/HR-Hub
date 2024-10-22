@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Models;
+using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +26,14 @@ namespace GUI
             {
                 listaUsuarios = _usuarioService.ListarUsuarios();
                 CargarUsuarioDefault();
+                CargarAreas();
+                CargarPuestos();
             }
         }
 
         private void CargarUsuarioDefault()
         {
-            CargarGrilla(listaUsuarios);
+            CargarGrilla(_usuarioService.ListarUsuarios());
         }
 
         private void CargarGrilla(List<Models.Usuario> listadoBitacora)
@@ -39,6 +43,24 @@ namespace GUI
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            lblMensajeModificacion.Text = Validar();
+            if (!string.IsNullOrEmpty(lblMensajeModificacion.Text))
+            {
+                lblMensajeModificacion.Visible = true;
+            }
+            else
+            {
+                lblMensajeModificacion.Visible = false;
+
+                var usuario = CompletarUsuario();
+                var userSession = Session["Usuario"] as Usuario;
+                _usuarioService.ModificarUsuario(usuario, userSession);
+                CargarUsuarioDefault();
+            }
+        }
+
+        protected void btnCancelarModificacion_Click(object sender, EventArgs e)
         {
 
         }
@@ -74,6 +96,53 @@ namespace GUI
             txtBuscar.Text = string.Empty;
             lblMensaje.Visible = false;
             CargarUsuarioDefault();
+        }
+
+        private void CargarPuestos()
+        {
+            DropDownPuesto.DataSource = _usuarioService.ObtenerPuestos();
+            DropDownPuesto.DataTextField = "Puesto";
+            DropDownPuesto.DataValueField = "Id";
+            DropDownPuesto.DataBind();
+            DropDownPuesto.Items.Insert(0, new ListItem("Seleccione un Puesto", ""));
+        }
+
+        private void CargarAreas()
+        {
+            DropDownArea.DataSource = _usuarioService.ObtenerAreas();
+            DropDownArea.DataTextField = "Area";
+            DropDownArea.DataValueField = "Id";
+            DropDownArea.DataBind();
+            DropDownArea.Items.Insert(0, new ListItem("Seleccione una Area", ""));
+        }
+
+        private string Validar()
+        {
+            if (string.IsNullOrEmpty(hiddenApellido.Value) || string.IsNullOrEmpty(txtCiudad.Text) || string.IsNullOrEmpty(txtCodigoPostal.Text) || string.IsNullOrEmpty(txtDepartamento.Text) || string.IsNullOrEmpty(txtDireccion.Text)
+                || string.IsNullOrEmpty(hiddenEmail.Value) || string.IsNullOrEmpty(hiddenFechaIngreso.Value) || string.IsNullOrEmpty(hiddenFechaNacimiento.Value) || string.IsNullOrEmpty(txtGenero.Text) || string.IsNullOrEmpty(hiddenNombre.Value)
+                || string.IsNullOrEmpty(txtNumeroDireccion.Text) || string.IsNullOrEmpty(txtPais.Text) || string.IsNullOrEmpty(txtProvincia.Text))
+                return "Hay campos sin completar";
+
+            return null;
+        }
+
+        private Usuario CompletarUsuario()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Email = hiddenEmail.Value,
+                Puesto = (Puesto)Enum.Parse(typeof(Puesto), DropDownPuesto.Text),
+                Area = (Area)Enum.Parse(typeof(Area), DropDownArea.Text),
+                Genero = txtGenero.Text,
+                Direccion = txtDireccion.Text,
+                NumeroDireccion = int.Parse(txtNumeroDireccion.Text),
+                Departamento = txtDepartamento.Text,
+                CodigoPostal = txtCodigoPostal.Text,
+                Ciudad = txtCiudad.Text,
+                Provincia = txtProvincia.Text,
+                Pais = txtPais.Text
+            };
+            return usuario;
         }
     }
 }

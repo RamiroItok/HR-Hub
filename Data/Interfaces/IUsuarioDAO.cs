@@ -6,6 +6,7 @@ namespace Data.Interfaces
     public interface IUsuarioDAO
     {
         int RegistrarUsuario(Usuario usuario);
+        int ModificarUsuario(Usuario usuario);
         DataSet ObtenerPuestos();
         DataSet ObtenerAreas();
         DataSet ListarUsuarios();
