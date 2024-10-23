@@ -131,6 +131,15 @@ input[type="text"], select {
         cursor: pointer;
     }
 
+    .table tbody tr.selected-row {
+        background-color: #dcedc8; /* Color verde suave */
+    }
+
+    /* Cambiar el cursor a pointer */
+    .table tbody tr {
+        cursor: pointer;
+    }
+
 
 /* Título general */
 .title {
@@ -144,7 +153,6 @@ input[type="text"], select {
     background-color: #f1f1f1;
     padding: 20px;
     border-radius: 8px;
-    display: none; /* Oculto inicialmente */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
@@ -242,8 +250,15 @@ footer {
             background-color: #757575; /* Gris más oscuro al hacer hover */
         }
 
-.validation-message {
+.validation-message-failed {
     color: red; 
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.validation-message-success {
+    color: #ffffff;
     font-size: 14px;
     margin-top: 10px;
     text-align: center;

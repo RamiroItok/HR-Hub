@@ -78,13 +78,13 @@ namespace GUI
         protected global::System.Web.UI.WebControls.GridView dataGridUsuarios;
 
         /// <summary>
-        /// Control userForm.
+        /// Control lblMensajeModificacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userForm;
+        protected global::System.Web.UI.WebControls.Label lblMensajeModificacion;
 
         /// <summary>
         /// Control txtNombre.
@@ -283,14 +283,5 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelarModificacion;
-
-        /// <summary>
-        /// Control lblMensajeModificacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensajeModificacion;
     }
 }

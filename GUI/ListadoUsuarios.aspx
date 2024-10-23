@@ -22,49 +22,46 @@
             <div class="table-container animate__animated animate__fadeIn">
                 <h2>Listado de Usuarios</h2>
 
-                
-                   
-                        <div class="search-container">
-                            <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Buscar usuario..." />
-                            <asp:Button ID="btnBuscar" runat="server" CssClass="button" Text="Buscar" OnClick="btnBuscar_Click" />
-                            <asp:Button ID="btnCancelar" runat="server" CssClass="button cancel" Text="Cancelar" OnClick="btnCancelar_Click" />
-                        </div>
+                <div class="search-container">
+                    <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Buscar usuario..." />
+                    <asp:Button ID="btnBuscar" runat="server" CssClass="button" Text="Buscar" OnClick="btnBuscar_Click" />
+                    <asp:Button ID="btnCancelar" runat="server" CssClass="button cancel" Text="Cancelar" OnClick="btnCancelar_Click" />
+                </div>
 
-                        <asp:Label ID="lblMensaje" runat="server" CssClass="validation-message" Text="" ></asp:Label>
+                <asp:Label ID="lblMensaje" runat="server" CssClass="validation-message" Text="" ></asp:Label>
 
-                        <div style="overflow-x: auto;">
-                            <asp:GridView ID="dataGridUsuarios" runat="server" CssClass="table table-striped" AutoGenerateColumns="False" GridLines="None" AutoPostBack="True">
-                                <Columns>
-                                    <asp:TemplateField>
-                                        <ItemTemplate>
-                                            <asp:CheckBox ID="CheckBoxSelect" runat="server" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                <div style="overflow-x: auto;">
+                    <asp:GridView ID="dataGridUsuarios" runat="server" CssClass="table table-striped" AutoGenerateColumns="False" GridLines="None" AutoPostBack="True">
+                        <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="CheckBoxSelect" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
-                                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                                    <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
-                                    <asp:BoundField DataField="Email" HeaderText="Email" />
-                                    <asp:BoundField DataField="FechaIngreso" HeaderText="Fecha de Ingreso" />
-                                    <asp:BoundField DataField="Puesto" HeaderText="Puesto" />
-                                    <asp:BoundField DataField="Area" HeaderText="Área" />
-                                    <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha de Nacimiento" />
-                                    <asp:BoundField DataField="Genero" HeaderText="Género" />
-                                    <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
-                                    <asp:BoundField DataField="NumeroDireccion" HeaderText="Número de Dirección" />
-                                    <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
-                                    <asp:BoundField DataField="CodigoPostal" HeaderText="Código Postal" />
-                                    <asp:BoundField DataField="Ciudad" HeaderText="Ciudad" />
-                                    <asp:BoundField DataField="Provincia" HeaderText="Provincia" />
-                                    <asp:BoundField DataField="Pais" HeaderText="País" />
-                                    <asp:BoundField DataField="Idioma" HeaderText="Idioma" />
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                    
+                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                            <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                            <asp:BoundField DataField="Email" HeaderText="Email" />
+                            <asp:BoundField DataField="FechaIngreso" HeaderText="Fecha de Ingreso" />
+                            <asp:BoundField DataField="Puesto" HeaderText="Puesto" />
+                            <asp:BoundField DataField="Area" HeaderText="Área" />
+                            <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha de Nacimiento" />
+                            <asp:BoundField DataField="Genero" HeaderText="Género" />
+                            <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
+                            <asp:BoundField DataField="NumeroDireccion" HeaderText="Número de Dirección" />
+                            <asp:BoundField DataField="Departamento" HeaderText="Departamento" />
+                            <asp:BoundField DataField="CodigoPostal" HeaderText="Código Postal" />
+                            <asp:BoundField DataField="Ciudad" HeaderText="Ciudad" />
+                            <asp:BoundField DataField="Provincia" HeaderText="Provincia" />
+                            <asp:BoundField DataField="Pais" HeaderText="País" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
 
-            <div id="userForm" runat="server" class="form-container" style="display: none;">
+            <div id="userForm" class="form-container">
                 <h3>Modificar Datos de Usuario</h3>
+                <asp:Label ID="lblMensajeModificacion" runat="server" CssClass="validation-message-failed" Text="" ></asp:Label>
 
                 <div class="form-row">
                     <div class="form-group">
@@ -102,7 +99,7 @@
                         <asp:DropDownList runat="server" ID="DropDownArea" CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="txtFechaNacimiento">Fecha de Nacimiento:</label>
@@ -114,7 +111,7 @@
                         <asp:TextBox ID="txtGenero" runat="server" CssClass="form-control" />
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="txtDireccion">Dirección:</label>
@@ -125,7 +122,7 @@
                         <asp:TextBox ID="txtNumeroDireccion" runat="server" CssClass="form-control" />
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="txtDepartamento">Departamento:</label>
@@ -136,7 +133,7 @@
                         <asp:TextBox ID="txtCodigoPostal" runat="server" CssClass="form-control" />
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="txtCiudad">Ciudad:</label>
@@ -157,7 +154,6 @@
 
                 <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="button" OnClick="btnGuardar_Click" />
                 <asp:Button ID="btnCancelarModificacion" runat="server" Text="Cancelar" CssClass="button" OnClick="btnCancelarModificacion_Click" />
-                <asp:Label ID="lblMensajeModificacion" runat="server" CssClass="validation-message" Text="" ></asp:Label>
             </div>
         </div>
     </form>
@@ -165,19 +161,24 @@
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function () {
             var rows = document.querySelectorAll("#<%= dataGridUsuarios.ClientID %> tbody tr");
-
-        rows.forEach(function (row) {
-            row.addEventListener("click", function () {
-                var checkbox = row.querySelector("input[type='checkbox']");
-
-                var allCheckboxes = document.querySelectorAll("#<%= dataGridUsuarios.ClientID %> input[type='checkbox']");
-                allCheckboxes.forEach(function (cb) {
-                    cb.checked = false;
-                });
-
-                if (checkbox) {
-                    checkbox.checked = true;
-
+    
+            rows.forEach(function (row) {
+                row.addEventListener("click", function () {
+                    // Desmarca todos los checkboxes y quita la clase de fila seleccionada
+                    rows.forEach(function (r) {
+                        var checkbox = r.querySelector("input[type='checkbox']");
+                        if (checkbox) checkbox.checked = false;
+                        r.classList.remove("selected-row");
+                    });
+    
+                    // Marca el checkbox de la fila actual
+                    var checkbox = row.querySelector("input[type='checkbox']");
+                    if (checkbox) checkbox.checked = true;
+    
+                    // Resalta la fila seleccionada
+                    row.classList.add("selected-row");
+    
+                    // Obtener los valores de las celdas y asignarlos a los TextBox
                     var nombre = row.cells[1].innerText;
                     var apellido = row.cells[2].innerText;
                     var email = row.cells[3].innerText;
@@ -193,7 +194,8 @@
                     var ciudad = row.cells[13].innerText;
                     var provincia = row.cells[14].innerText;
                     var pais = row.cells[15].innerText;
-
+    
+                    // Asigna los valores a los TextBox
                     document.getElementById("<%= txtNombre.ClientID %>").value = nombre;
                     document.getElementById("<%= txtApellido.ClientID %>").value = apellido;
                     document.getElementById("<%= txtEmail.ClientID %>").value = email;
@@ -207,7 +209,15 @@
                     document.getElementById("<%= txtCiudad.ClientID %>").value = ciudad;
                     document.getElementById("<%= txtProvincia.ClientID %>").value = provincia;
                     document.getElementById("<%= txtPais.ClientID %>").value = pais;
-
+    
+                    // Cargar valores en los HiddenFields
+                    document.getElementById("<%= hiddenNombre.ClientID %>").value = nombre;
+                    document.getElementById("<%= hiddenApellido.ClientID %>").value = apellido;
+                    document.getElementById("<%= hiddenEmail.ClientID %>").value = email;
+                    document.getElementById("<%= hiddenFechaIngreso.ClientID %>").value = fechaIngreso;
+                    document.getElementById("<%= hiddenFechaNacimiento.ClientID %>").value = fechaNacimiento;
+    
+                    // Seleccionar valores correctos en los DropDownList
                     var dropDownPuesto = document.getElementById("<%= DropDownPuesto.ClientID %>");
                     for (var i = 0; i < dropDownPuesto.options.length; i++) {
                         if (dropDownPuesto.options[i].text === puesto) {
@@ -215,7 +225,7 @@
                             break;
                         }
                     }
-
+    
                     var dropDownArea = document.getElementById("<%= DropDownArea.ClientID %>");
                     for (var i = 0; i < dropDownArea.options.length; i++) {
                         if (dropDownArea.options[i].text === area) {
@@ -223,18 +233,9 @@
                             break;
                         }
                     }
-
-                    document.getElementById("<%= hiddenNombre.ClientID %>").value = nombre;
-                    document.getElementById("<%= hiddenApellido.ClientID %>").value = apellido;
-                    document.getElementById("<%= hiddenEmail.ClientID %>").value = email;
-                    document.getElementById("<%= hiddenFechaIngreso.ClientID %>").value = fechaIngreso;
-                    document.getElementById("<%= hiddenFechaNacimiento.ClientID %>").value = fechaNacimiento;
-
-                    document.getElementById("userForm").style.display = "block";
-                }
+                });
             });
         });
-    });
     </script>
 
     <script src="Scripts/jquery-3.4.1.min.js"></script>

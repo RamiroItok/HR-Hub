@@ -29,6 +29,7 @@ namespace GUI
                 CargarAreas();
                 CargarPuestos();
             }
+            CargarCampos();
         }
 
         private void CargarUsuarioDefault()
@@ -48,21 +49,25 @@ namespace GUI
             if (!string.IsNullOrEmpty(lblMensajeModificacion.Text))
             {
                 lblMensajeModificacion.Visible = true;
+                lblMensajeModificacion.CssClass = "validation-message-failed";
             }
             else
             {
-                lblMensajeModificacion.Visible = false;
+                lblMensajeModificacion.Text = "Se modificaron correctamente los datos";
+                lblMensajeModificacion.Visible = true;
+                lblMensajeModificacion.CssClass = "validation-message-success";
 
                 var usuario = CompletarUsuario();
                 var userSession = Session["Usuario"] as Usuario;
                 _usuarioService.ModificarUsuario(usuario, userSession);
                 CargarUsuarioDefault();
+                LimpiarCampos();
             }
         }
 
         protected void btnCancelarModificacion_Click(object sender, EventArgs e)
         {
-
+            LimpiarCampos();
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -96,6 +101,7 @@ namespace GUI
             txtBuscar.Text = string.Empty;
             lblMensaje.Visible = false;
             CargarUsuarioDefault();
+            LimpiarCampos();
         }
 
         private void CargarPuestos()
@@ -143,6 +149,34 @@ namespace GUI
                 Pais = txtPais.Text
             };
             return usuario;
+        }
+
+        private void CargarCampos()
+        {
+            txtApellido.Text = hiddenApellido.Value;
+            txtNombre.Text = hiddenNombre.Value;
+            txtEmail.Text = hiddenEmail.Value;
+            txtFechaIngreso.Text = hiddenFechaIngreso.Value;
+            txtFechaNacimiento.Text = hiddenFechaNacimiento.Value;
+        }
+
+        private void LimpiarCampos()
+        {
+            txtApellido.Text = string.Empty;
+            txtCiudad.Text = string.Empty;
+            txtCodigoPostal.Text = string.Empty;
+            txtDepartamento.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtFechaIngreso.Text = string.Empty;
+            txtFechaNacimiento.Text= string.Empty;
+            txtGenero.Text = string.Empty;
+            txtNombre.Text = string.Empty;
+            txtNumeroDireccion.Text = string.Empty;
+            txtPais.Text = string.Empty;
+            txtProvincia.Text = string.Empty;
+            DropDownPuesto.SelectedIndex = 0;
+            DropDownArea.SelectedIndex = 0;
         }
     }
 }
