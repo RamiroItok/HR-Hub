@@ -10,10 +10,12 @@ namespace Aplication.Services
     public class PermisoService : IPermisoService
     {
         private readonly Data.Composite.PermisoDAO _permisoDAO;
+        private readonly IDigitoVerificadorService _digitoVerificadorService;
 
-        public PermisoService()
+        public PermisoService(IDigitoVerificadorService digitoVerificadorService)
         { 
             _permisoDAO = new Data.Composite.PermisoDAO();
+            _digitoVerificadorService = digitoVerificadorService;
         }
 
         #region Metodos
@@ -38,6 +40,7 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.AsignarPermisoAFamilia(padreId, hijoId);
+                _digitoVerificadorService.CalcularDVTabla("FamiliaPatente");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
@@ -54,6 +57,7 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.QuitarPermisoAFamilia(padreId, hijoId);
+                _digitoVerificadorService.CalcularDVTabla("FamiliaPatente");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
