@@ -122,8 +122,8 @@
     <Content Include="FalloIntegridad.aspx" />
     <Content Include="GestionFamilia.aspx" />
     <Content Include="GestionFamiliaPatente.aspx" />
+    <Content Include="ListadoUsuarios.aspx" />
     <Content Include="MenuPrincipal.aspx" />
-    <Content Include="ListarUsuarios.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="NavBar.ascx" />
     <Content Include="RecuperarContraseña.aspx" />
@@ -247,19 +247,19 @@
     <Compile Include="GestionFamiliaPatente.aspx.designer.cs">
       <DependentUpon>GestionFamiliaPatente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListadoUsuarios.aspx.cs">
+      <DependentUpon>ListadoUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoUsuarios.aspx.designer.cs">
+      <DependentUpon>ListadoUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MenuPrincipal.aspx.cs">
       <DependentUpon>MenuPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MenuPrincipal.aspx.designer.cs">
       <DependentUpon>MenuPrincipal.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ListarUsuarios.aspx.cs">
-      <DependentUpon>ListarUsuarios.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ListarUsuarios.aspx.designer.cs">
-      <DependentUpon>ListarUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

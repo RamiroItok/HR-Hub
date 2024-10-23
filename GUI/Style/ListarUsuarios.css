@@ -1,54 +1,285 @@
-﻿.full-width-container {
+﻿/* General */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.containerListado {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Hover effect para las filas de los registros (tbody) con transición */
+.table tbody tr:hover {
+    background-color: #e8f5e9; /* Un verde más suave al hacer hover */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto de selección suave para las filas */
+.table tbody tr.selected {
+    background-color: #c8e6c9;
+    transition: background-color 0.3s ease;
+}
+
+/* Mejorar el estilo de los títulos */
+h2 {
+    font-size: 2rem;
+    color: #2e7d32; /* Color verde más oscuro */
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase; /* Convertir a mayúsculas */
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: #388e3c; /* Otro tono de verde para subtítulos */
+    text-align: left;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #388e3c; /* Añadir una línea decorativa debajo */
+    padding-bottom: 5px;
+}
+
+/* Botones con efecto de sombra */
+input[type="submit"], .button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra en los botones */
+}
+
+    /* Hover effect para los botones */
+    input[type="submit"]:hover, .button:hover {
+        background-color: #388e3c;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Aumentar la sombra al hacer hover */
+    }
+
+/* Cajas de contenido con sombras más suaves */
+.table-container, .form-container {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 50px auto;
-    box-sizing: border-box;
-    width: 100%;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Sombra un poco más marcada */
 }
 
-.inner-container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Estilos mejorados para los campos de texto y select */
+input[type="text"], select {
+    width: calc(100% - 20px);
+    padding: 10px; /* Aumentar el padding */
+    margin: 10px 0;
+    border: 1px solid #cccccc;
+    border-radius: 6px; /* Bordes más redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
+    /* Efecto al hacer foco en los inputs */
+    input[type="text"]:focus, select:focus {
+        border-color: #1b5e20;
+        box-shadow: 0 0 8px rgba(27, 94, 32, 0.2); /* Sombra más pronunciada al enfocar */
+    }
 
+/* Tabla completa */
 .table {
     width: 100%;
-    margin-bottom: 20px;
-    border-collapse: collapse;
-    table-layout: auto;
+    border-collapse: separate;
+    border-spacing: 0 10px;
 }
 
-.table th, .table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    word-wrap: break-word;
+    /* Fila del encabezado (Header) con color fijo */
+    .table th {
+        background-color: #4caf50; /* Color verde para el encabezado */
+        color: white;
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    /* Hover effect para las filas de los registros (tbody) */
+    .table tbody tr:hover {
+        background-color: #dcedc8; /* Color hover para las filas */
+        cursor: pointer;
+    }
+
+    /* Resaltar la fila seleccionada (cuando se marca el checkbox) */
+    .table tbody tr.selected {
+        background-color: #dcedc8; /* El mismo color del hover */
+    }
+
+    /* Estilo para las celdas del cuerpo de la tabla (registros) */
+    .table td {
+        background-color: #e8f5e9;
+        max-width: 300px; /* Limitar ancho máximo de las columnas */
+        text-overflow: ellipsis; /* Mostrar '...' si el texto es muy largo */
+        overflow: hidden;
+        padding: 10px;
+        white-space: nowrap;
+    }
+
+    /* Checkbox styling for row selection */
+    .table input[type="checkbox"] {
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .table tbody tr.selected-row {
+        background-color: #dcedc8; /* Color verde suave */
+    }
+
+    /* Cambiar el cursor a pointer */
+    .table tbody tr {
+        cursor: pointer;
+    }
+
+
+/* Título general */
+.title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
 }
 
-.table th {
-    background-color: #007bff;
-    color: white;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f9f9f9;
-}
-
-.table-striped tbody tr:hover {
+/* Formulario de edición */
+.form-container {
     background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
-.footer {
+    .form-container h3 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .form-container label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-container input[type="text"], .form-container input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    /* Botón dentro del formulario */
+    .form-container .button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .form-container .button:hover {
+            background-color: #388e3c;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+/* Estilos para los errores */
+.error {
+    color: red;
+    margin-top: 5px;
+}
+
+/* Footer */
+footer {
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    margin-top: 40px;
+    font-size: 14px;
     color: #777;
 }
+
+/* Estilo del contenedor de búsqueda */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .search-container .form-control {
+        width: 300px;
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    /* Botones de buscar y cancelar */
+    .search-container .button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .search-container .button:hover {
+            background-color: #388e3c;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+    /* Estilo para el botón cancelar - Color gris */
+    .search-container .cancel {
+        background-color: #9e9e9e; /* Gris estándar */
+    }
+
+        .search-container .cancel:hover {
+            background-color: #757575; /* Gris más oscuro al hacer hover */
+        }
+
+.validation-message-failed {
+    color: red; 
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.validation-message-success {
+    color: #ffffff;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Estilo para la fila del formulario */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+/* Estilo para cada grupo de campo */
+.form-group {
+    flex-basis: 48%; /* Ajusta esto para controlar el ancho de cada TextBox */
+}
+
+    /* Asegurar que el TextBox ocupe todo el ancho del grupo */
+    .form-group .form-control {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }

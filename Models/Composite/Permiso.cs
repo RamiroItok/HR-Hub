@@ -10,6 +10,8 @@
         BackUp,
         GestionFamilia,
         GestionFamiliaPatente,
-        FalloIntegridad
+        FalloIntegridad,
+        ListarUsuarios,
+        RegistroUsuario
     }
 }

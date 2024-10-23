@@ -51,6 +51,7 @@
     <Compile Include="Enums\Area.cs" />
     <Compile Include="Enums\AsuntoMail.cs" />
     <Compile Include="Enums\Criticidad.cs" />
+    <Compile Include="Enums\Idioma.cs" />
     <Compile Include="Enums\Puesto.cs" />
     <Compile Include="Enums\Genero.cs" />
     <Compile Include="Enums\TipoOperacionContraseña.cs" />

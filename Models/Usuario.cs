@@ -17,6 +17,14 @@ namespace Models
         public DateTime FechaNacimiento { get; set; }
         public string Genero { get; set; }
         public DateTime FechaIngreso { get; set; }
+        public string Direccion { get; set; }
+        public int NumeroDireccion { get; set; }
+        public string Departamento { get; set; }
+        public string CodigoPostal { get; set; }
+        public string Ciudad { get; set; }
+        public string Provincia { get; set; }
+        public string Pais { get; set; }
+        public Idioma Idioma { get; set; }
         public int Estado { get; set; }
         public int DVH { get; set; }
 

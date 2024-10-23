@@ -122,7 +122,7 @@ namespace Data.DAO
                         }
                         if (DVH_total != dvh_fila)
                         {
-                            if (tabla == "Usuarios")
+                            if (tabla == "Usuario")
                             {
                                 string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
                                 _acceso.GenerarConsulta(consulta1);

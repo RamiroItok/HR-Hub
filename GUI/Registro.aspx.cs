@@ -51,8 +51,17 @@ namespace GUI
                     Area = (Area)Enum.Parse(typeof(Area), DropDownArea.Text),
                     FechaNacimiento = DateTime.Parse(txtFechaNac.Value),
                     Genero = drpGenero.SelectedItem.Text,
-                    FechaIngreso = DateTime.Now
+                    FechaIngreso = DateTime.Now,
+                    Direccion = txtDireccion.Text,
+                    NumeroDireccion = int.Parse(txtNumeroDireccion.Text),
+                    Departamento = txtDepartamento.Text,
+                    CodigoPostal = txtCodigoPostal.Text,
+                    Ciudad = txtCiudad.Text,
+                    Provincia = txtProvincia.Text,
+                    Pais = txtPais.Text
                 };
+
+                // TODO: --> VALIDAR CAMPOS
 
                 var esContraseñaValida = _usuarioService.ValidarFormatoContraseña(usuario.Contraseña);
                 //var esUsuarioValido = _usuarioService.ObtenerUsuarioPorEmail(usuario.Email);
@@ -88,6 +97,13 @@ namespace GUI
             drpGenero.SelectedIndex = 0;
             DropDownPuesto.SelectedIndex = 0;
             hiddenContraseña.Value = String.Empty;
+            txtDireccion.Text = String.Empty;
+            txtNumeroDireccion.Text = String.Empty;
+            txtDepartamento.Text = String.Empty;
+            txtCodigoPostal.Text = String.Empty;
+            txtCiudad.Text = String.Empty;
+            txtProvincia.Text = String.Empty;
+            txtPais.Text = String.Empty;
         }
 
         private void CargarPuestos()

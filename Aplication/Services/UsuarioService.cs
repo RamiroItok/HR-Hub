@@ -45,11 +45,54 @@ namespace Aplication
                     FechaNacimiento = usuario.FechaNacimiento,
                     Genero = usuario.Genero,
                     FechaIngreso = usuario.FechaIngreso,
+                    Direccion = usuario.Direccion,
+                    NumeroDireccion = usuario.NumeroDireccion,
+                    Departamento = usuario.Departamento,
+                    CodigoPostal = usuario.CodigoPostal,
+                    Ciudad = usuario.Ciudad,
+                    Provincia = usuario.Provincia,
+                    Pais = usuario.Pais,
+                    Idioma = usuario.Idioma,
                     Estado = 0
                 };
 
                 var idUsuario = _usuarioDAO.RegistrarUsuario(usuarioReal);
                 _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Registra el usuario {usuario.Nombre} {usuario.Apellido}", Criticidad.BAJA);
+                _iDigitoVerificadorService.CalcularDVTabla("Usuario");
+
+                return idUsuario;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public int ModificarUsuario(Usuario usuario, Usuario userSession)
+        {
+            try
+            {
+                Usuario usuarioReal = new Usuario()
+                {
+                    Email = EncriptacionService.Encriptar_AES(usuario.Email),
+                    Puesto = usuario.Puesto,
+                    Area = usuario.Area,
+                    Genero = usuario.Genero,
+                    Direccion = usuario.Direccion,
+                    NumeroDireccion = usuario.NumeroDireccion,
+                    Departamento = usuario.Departamento,
+                    CodigoPostal = usuario.CodigoPostal,
+                    Ciudad = usuario.Ciudad,
+                    Provincia = usuario.Provincia,
+                    Pais = usuario.Pais
+                };
+
+                var idUsuario = _usuarioDAO.ModificarUsuario(usuarioReal);
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se modifco el usuario {usuario.Nombre} {usuario.Apellido}", Criticidad.MEDIA);
                 _iDigitoVerificadorService.CalcularDVTabla("Usuario");
 
                 return idUsuario;
@@ -173,6 +216,14 @@ namespace Aplication
                         FechaNacimiento = (DateTime)row["FechaNacimiento"],
                         Genero = row["Genero"].ToString(),
                         FechaIngreso = (DateTime)row["FechaIngreso"],
+                        Direccion = row["Direccion"].ToString(),
+                        NumeroDireccion = Convert.ToInt32(row["NumeroDireccion"]),
+                        Departamento = row["Departamento"].ToString(),
+                        CodigoPostal = row["CodigoPostal"].ToString(),
+                        Ciudad = row["Ciudad"].ToString(),
+                        Provincia = row["Provincia"].ToString(),
+                        Pais = row["Pais"].ToString(),
+                        Idioma = (Idioma)Enum.Parse(typeof(Idioma), row["IdIdioma"].ToString()),
                         Estado = Convert.ToInt32(row["Estado"])
                     };
 
@@ -338,6 +389,14 @@ namespace Aplication
                 FechaNacimiento = (DateTime)tabla.Tables[0].Rows[0]["FechaNacimiento"],
                 Genero = tabla.Tables[0].Rows[0]["Genero"].ToString(),
                 FechaIngreso = (DateTime)tabla.Tables[0].Rows[0]["FechaIngreso"],
+                Direccion = tabla.Tables[0].Rows[0]["Direccion"].ToString(),
+                NumeroDireccion = (int)tabla.Tables[0].Rows[0]["NumeroDireccion"],
+                Departamento = tabla.Tables[0].Rows[0]["Departamento"].ToString(),
+                CodigoPostal = tabla.Tables[0].Rows[0]["CodigoPostal"].ToString(),
+                Ciudad = tabla.Tables[0].Rows[0]["Ciudad"].ToString(),
+                Provincia = tabla.Tables[0].Rows[0]["Provincia"].ToString(),
+                Pais = tabla.Tables[0].Rows[0]["Pais"].ToString(),
+                Idioma = (Idioma)tabla.Tables[0].Rows[0]["IdIdioma"],
                 Estado = (int)tabla.Tables[0].Rows[0]["Estado"]
             };
 
