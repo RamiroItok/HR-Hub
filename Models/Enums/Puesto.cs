@@ -2,9 +2,9 @@
 {
     public enum Puesto
     {
-        Empleado = 1,
-        Lider = 3,
+        Administrador = 1,
+        Empleado = 2,
         WebMaster = 4,
-        Administrador = 5
+        Lider = 5
     }
 }

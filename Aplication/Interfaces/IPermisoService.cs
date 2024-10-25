@@ -17,7 +17,8 @@ namespace Aplication.Interfaces
         bool ExisteComponente(Componente componente, int Id);
         void GetComponenteUsuario(Usuario usuario);
         void GetComponenteFamilia(Familia familia);
-        void GuardarPermiso(UsuarioDTO usuario);
+        void GuardarUsuarioPermiso(int puestoId, int permisoId);
+        void EliminarPermisoUsuario(int puestoId, int permisoId);
         void PrimerRegistroGuardarPermiso(int idUsuario, int idPatente);
         IList<Familia> GetFamiliasValidacion(int familiaId);
         Componente ObtenerFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar);

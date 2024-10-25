@@ -79,7 +79,6 @@ namespace Aplication
                 Usuario usuarioReal = new Usuario()
                 {
                     Email = EncriptacionService.Encriptar_AES(usuario.Email),
-                    Puesto = usuario.Puesto,
                     Area = usuario.Area,
                     Genero = usuario.Genero,
                     Direccion = usuario.Direccion,
@@ -96,6 +95,31 @@ namespace Aplication
                 _iDigitoVerificadorService.CalcularDVTabla("Usuario");
 
                 return idUsuario;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void ModificarPermisoUsuario(Usuario usuario, Usuario userSession)
+        {
+            try
+            {
+                Usuario usuarioReal = new Usuario()
+                {
+                    Email = EncriptacionService.Encriptar_AES(usuario.Email),
+                    Puesto = usuario.Puesto,
+                };
+
+                _usuarioDAO.ModificarPermisoUsuario(usuarioReal);
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se modifco el puesto de {usuario.Nombre} {usuario.Apellido} a {usuario.Puesto}", Criticidad.ALTA);
+                _iDigitoVerificadorService.CalcularDVTabla("Usuario");
+                _iDigitoVerificadorService.CalcularDVTabla("UsuarioPermiso");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {

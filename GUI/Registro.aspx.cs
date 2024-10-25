@@ -25,7 +25,6 @@ namespace GUI
             {
                 if (!IsPostBack)
                 {
-                    CargarPuestos();
                     CargarAreas();
                 }
             }
@@ -47,7 +46,7 @@ namespace GUI
                     Apellido = txtApellido.Text,
                     Email = txtEmail.Text,
                     Contraseña = hiddenContraseña.Value,
-                    Puesto = (Puesto)Enum.Parse(typeof(Puesto), DropDownPuesto.Text),
+                    Puesto = Puesto.Empleado,
                     Area = (Area)Enum.Parse(typeof(Area), DropDownArea.Text),
                     FechaNacimiento = DateTime.Parse(txtFechaNac.Value),
                     Genero = drpGenero.SelectedItem.Text,
@@ -95,7 +94,6 @@ namespace GUI
             txtFechaNac.Value = String.Empty;
             DropDownArea.SelectedIndex = 0;
             drpGenero.SelectedIndex = 0;
-            DropDownPuesto.SelectedIndex = 0;
             hiddenContraseña.Value = String.Empty;
             txtDireccion.Text = String.Empty;
             txtNumeroDireccion.Text = String.Empty;
@@ -104,15 +102,6 @@ namespace GUI
             txtCiudad.Text = String.Empty;
             txtProvincia.Text = String.Empty;
             txtPais.Text = String.Empty;
-        }
-
-        private void CargarPuestos()
-        {
-            DropDownPuesto.DataSource = _usuarioService.ObtenerPuestos();
-            DropDownPuesto.DataTextField = "Puesto";
-            DropDownPuesto.DataValueField = "Id";
-            DropDownPuesto.DataBind();
-            DropDownPuesto.Items.Insert(0, new ListItem("Seleccione un Puesto", ""));
         }
 
         private void CargarAreas()

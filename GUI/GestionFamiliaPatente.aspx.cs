@@ -95,6 +95,10 @@ namespace GUI
                             {
                                 int permisoId = int.Parse(gvPermisosNoAsignados.DataKeys[row.RowIndex].Value.ToString());
                                 _iPermiso.AsignarPermisoAFamilia(familiaId, permisoId);
+                                _iPermiso.GuardarUsuarioPermiso(familiaId, permisoId);
+
+                                var usuario = Session["Usuario"] as Models.Usuario;
+                                _iPermiso.GetComponenteUsuario(usuario);
                             }
                         }
                     }
@@ -105,7 +109,7 @@ namespace GUI
                         var usuario = Session["Usuario"] as Usuario;
                         _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Asigna patente a familia", Models.Enums.Criticidad.ALTA);
 
-                        lblMensajeAsignacion.Text = "Se asignó el permiso correctamente.";
+                        lblMensajeAsignacion.Text = "Se realizó la operación correctamente.";
                         lblMensajeAsignacion.ForeColor = System.Drawing.Color.Green;
                     }
                     else
@@ -148,6 +152,10 @@ namespace GUI
                             {
                                 int permisoId = int.Parse(gvPermisosAsignados.DataKeys[row.RowIndex].Value.ToString());
                                 _iPermiso.QuitarPermisoAFamilia(familiaId, permisoId);
+                                _iPermiso.EliminarPermisoUsuario(familiaId, permisoId);
+
+                                var usuario = Session["Usuario"] as Models.Usuario;
+                                _iPermiso.GetComponenteUsuario(usuario);
                             }
                         }
                     }
@@ -155,7 +163,7 @@ namespace GUI
                     Listar(familiaId);
                     if (isSelected)
                     {
-                        lblMensajeEliminar.Text = "Se asignó el permiso correctamente.";
+                        lblMensajeEliminar.Text = "Se realizó la operación correctamente.";
                         lblMensajeEliminar.ForeColor = System.Drawing.Color.Green;
                     }
                     else

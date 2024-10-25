@@ -27,7 +27,6 @@ namespace GUI
                 listaUsuarios = _usuarioService.ListarUsuarios();
                 CargarUsuarioDefault();
                 CargarAreas();
-                CargarPuestos();
             }
             CargarCampos();
         }
@@ -104,15 +103,6 @@ namespace GUI
             LimpiarCampos();
         }
 
-        private void CargarPuestos()
-        {
-            DropDownPuesto.DataSource = _usuarioService.ObtenerPuestos();
-            DropDownPuesto.DataTextField = "Puesto";
-            DropDownPuesto.DataValueField = "Id";
-            DropDownPuesto.DataBind();
-            DropDownPuesto.Items.Insert(0, new ListItem("Seleccione un Puesto", ""));
-        }
-
         private void CargarAreas()
         {
             DropDownArea.DataSource = _usuarioService.ObtenerAreas();
@@ -137,7 +127,6 @@ namespace GUI
             Usuario usuario = new Usuario()
             {
                 Email = hiddenEmail.Value,
-                Puesto = (Puesto)Enum.Parse(typeof(Puesto), DropDownPuesto.Text),
                 Area = (Area)Enum.Parse(typeof(Area), DropDownArea.Text),
                 Genero = txtGenero.Text,
                 Direccion = txtDireccion.Text,
@@ -175,7 +164,6 @@ namespace GUI
             txtNumeroDireccion.Text = string.Empty;
             txtPais.Text = string.Empty;
             txtProvincia.Text = string.Empty;
-            DropDownPuesto.SelectedIndex = 0;
             DropDownArea.SelectedIndex = 0;
         }
     }

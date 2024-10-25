@@ -126,6 +126,7 @@
     <Content Include="MenuPrincipal.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="NavBar.ascx" />
+    <Content Include="PermisosUsuario.aspx" />
     <Content Include="RecuperarContraseña.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Contact.aspx" />
@@ -274,6 +275,13 @@
     </Compile>
     <Compile Include="NavBar.ascx.designer.cs">
       <DependentUpon>NavBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PermisosUsuario.aspx.cs">
+      <DependentUpon>PermisosUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PermisosUsuario.aspx.designer.cs">
+      <DependentUpon>PermisosUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecuperarContraseña.aspx.cs">
       <DependentUpon>RecuperarContraseña.aspx</DependentUpon>

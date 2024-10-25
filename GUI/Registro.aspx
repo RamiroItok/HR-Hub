@@ -49,11 +49,6 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="DropDownPuesto" Text="Puesto:" CssClass="form-label"></asp:Label>
-                    <asp:DropDownList runat="server" ID="DropDownPuesto" CssClass="form-control"></asp:DropDownList>
-                </div>
-
-                <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="DropDownArea" Text="Area:" CssClass="form-label"></asp:Label>
                     <asp:DropDownList runat="server" ID="DropDownArea" CssClass="form-control"></asp:DropDownList>
                 </div>

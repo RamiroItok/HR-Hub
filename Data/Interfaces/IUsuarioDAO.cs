@@ -7,6 +7,7 @@ namespace Data.Interfaces
     {
         int RegistrarUsuario(Usuario usuario);
         int ModificarUsuario(Usuario usuario);
+        void ModificarPermisoUsuario(Usuario usuario);
         DataSet ObtenerPuestos();
         DataSet ObtenerAreas();
         DataSet ListarUsuarios();

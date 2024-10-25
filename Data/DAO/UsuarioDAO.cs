@@ -59,7 +59,6 @@ namespace Data.DAO
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "@Email", usuario.Email },
-                    { "@IdPuesto", (int)usuario.Puesto },
                     { "@IdArea", (int)usuario.Area },
                     { "@Genero", usuario.Genero },
                     { "@Direccion", usuario.Direccion },
@@ -74,6 +73,56 @@ namespace Data.DAO
                 DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_u_usuario", parameters);
 
                 return Convert.ToInt32(resultado.Tables[0].Rows[0]["Id"]);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void ModificarPermisoUsuario(Usuario usuario)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@Email", usuario.Email },
+                    { "@IdPuesto", (int)usuario.Puesto }
+                };
+
+                DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_u_usuario_IdPuestoporEmail", parameters);
+
+                if (resultado != null)
+                {
+                    Dictionary<string, object> parametero = new Dictionary<string, object>
+                    {
+                        { "@parPadreId", (int)usuario.Puesto }
+                    };
+
+                    var permisos = _acceso.ExecuteStoredProcedureReader("sp_s_FamiliaPatente_permisos", parametero);
+                    DataTable dt = permisos.Tables[0];
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        Dictionary<string, object> parametero2 = new Dictionary<string, object>
+                        {
+                            { "@Email", usuario.Email }
+                        };
+
+                        _acceso.ExecuteStoredProcedureReader("sp_d_usuarioPermiso_porEmail", parametero2);
+
+                        foreach (DataRow rows in dt.Rows)
+                        {
+                            Dictionary<string, object> parametros2 = new Dictionary<string, object>
+                            {
+                                { "@Email", usuario.Email },
+                                { "@PatenteId", int.Parse(rows["HijoId"].ToString()) }
+                            };
+
+                            _acceso.ExecuteStoredProcedureReader("sp_i_usuarioPermiso_porPermisoyUsuario", parametros2);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
