@@ -28,7 +28,6 @@ namespace GUI.Controls
                     bitacoraLink.Visible = false;
                     miCuentaLink.Visible = false;
                     falloIntegridadLink.Visible = false;
-                    falloIntegridadSeguridadLink.Visible = false;
                 }
 
                 VisualizarMenu(usuario);
@@ -120,6 +119,9 @@ namespace GUI.Controls
                             break;
                         case Models.Composite.Permiso.FalloIntegridad:
                             falloIntegridadSeguridadLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.PermisoUsuario:
+                            permisosUsuarioLink.Visible = true;
                             break;
                     }
                 }

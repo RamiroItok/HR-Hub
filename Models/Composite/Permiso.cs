@@ -12,6 +12,7 @@
         GestionFamiliaPatente,
         FalloIntegridad,
         ListarUsuarios,
-        RegistroUsuario
+        RegistroUsuario,
+        PermisoUsuario
     }
 }

@@ -108,27 +108,62 @@ namespace Data.Composite
             }
         }
 
-        public void GuardarPermiso(UsuarioDTO usuario)
+        public void GuardarUsuarioPermiso(int puestoId, int permisoId)
         {
             try
             {
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
-                    { "@parUsuarioId", usuario.Id }
+                    { "@parPuestoId", puestoId }
                 };
 
-                _acceso.ExecuteStoredProcedureReader("sp_d_usuarioPermiso", parameters);
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_Usuario_porPuesto", parameters);
+                DataTable dt = resultado.Tables[0];
 
-                foreach (Componente item in usuario.Permisos)
+                if (dt.Rows.Count > 0)
                 {
-                    Dictionary<string, object> parameteros = new Dictionary<string, object>
+                    foreach (DataRow rows in dt.Rows)
                     {
-                        { "@parUsuarioId", usuario.Id },
-                        { "@parPatenteId", item.Id },
-                        { "@parDVH", 0 }
-                    };
+                        Dictionary<string, object> parametros = new Dictionary<string, object>
+                        {
+                            { "@parUsuarioId", int.Parse(rows["ID"].ToString()) },
+                            { "@parPermisoId", permisoId }
+                        };
 
-                    _acceso.ExecuteStoredProcedureReader("sp_i_usuarioPermiso", parameteros);
+                        _acceso.ExecuteStoredProcedureReader("sp_i_UsuarioPermiso", parametros);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public void EliminarUsuarioPermiso(int puestoId, int permisoId)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@parPuestoId", puestoId }
+                };
+
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_Usuario_porPuesto", parameters);
+                DataTable dt = resultado.Tables[0];
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow rows in dt.Rows)
+                    {
+                        Dictionary<string, object> parametros = new Dictionary<string, object>
+                        {
+                            { "@parUsuarioId", int.Parse(rows["ID"].ToString()) },
+                            { "@parPermisoId", permisoId }
+                        };
+
+                        _acceso.ExecuteStoredProcedureReader("sp_d_UsuarioPermiso", parametros);
+                    }
                 }
             }
             catch (Exception)
@@ -391,6 +426,7 @@ namespace Data.Composite
         {
             try
             {
+                usuario.Permisos.Clear();
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "@idUsuario", usuario.Id }

@@ -37,7 +37,7 @@ namespace Data.DAO
                     }
                     else
                     {
-                        mensaje = "false";
+                        mensaje = tabla;
                         return mensaje;
                     }
                     string consulta3 = "SELECT * FROM " + tabla;
@@ -139,15 +139,10 @@ namespace Data.DAO
                             }
                             else if (tabla == "FamiliaPatente")
                             {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
+                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE PadreId = '{dt2.Rows[x]["PadreId"].ToString()}' and HijoId = '{dt2.Rows[x]["HijoId"].ToString()}'";
                                 _acceso.GenerarConsulta(consulta1);
                             }
                             else if (tabla == "UsuarioPermiso")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "Puesto")
                             {
                                 string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
                                 _acceso.GenerarConsulta(consulta1);
@@ -224,10 +219,6 @@ namespace Data.DAO
                             var hijoId = fila1[1].ToString();
                             consultaUpdate = $@"UPDATE {tabla} SET DVH = '{dvh_fila}' WHERE PadreId = {padreId} and HijoId = {hijoId}";
                         }
-                        /*else if (tabla == "UsuarioPermiso")
-                        {
-                            primaryKey = "Id_UsuarioPermiso";
-                        }*/
                         
                         if (tabla != "FamiliaPatente")
                         {
