@@ -46,10 +46,12 @@
     <Compile Include="Interfaces\IBackUpService.cs" />
     <Compile Include="Interfaces\IBitacoraService.cs" />
     <Compile Include="Interfaces\IDigitoVerificadorService.cs" />
+    <Compile Include="Interfaces\IEmpresaService.cs" />
     <Compile Include="Interfaces\IPermisoService.cs" />
     <Compile Include="Services\BackUpService.cs" />
     <Compile Include="Services\BitacoraService.cs" />
     <Compile Include="Services\DigitoVerificadorService.cs" />
+    <Compile Include="Services\EmpresaService.cs" />
     <Compile Include="Services\EncriptacionService.cs" />
     <Compile Include="Interfaces\IUsuarioService.cs" />
     <Compile Include="Services\PermisoService.cs" />

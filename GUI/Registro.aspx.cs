@@ -11,12 +11,10 @@ namespace GUI
     public partial class Registro : Page
     {
         private readonly IUsuarioService _usuarioService;
-        private readonly IBitacoraService _iBitacoraService;
 
         public Registro()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
-            _iBitacoraService = Global.Container.Resolve<IBitacoraService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)

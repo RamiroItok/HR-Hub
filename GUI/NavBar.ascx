@@ -13,14 +13,14 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown" visible="false" id="registroLink" runat="server">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a id="listarUsuariosLink" runat="server" href="~/ListadoUsuarios">Lista de usuarios</a></li>
                         <li><a id="registroUsuarioLink" runat="server" href="~/Registro">Registrar usuario</a></li>
                     </ul>
                 </li>
                 <li class="dropdown" id="seguridadLink" runat="server" visible="false">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seguridad <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seguridad<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a id="gestionFamiliaLink" visible="false" runat="server" href="~/GestionFamilia">Gestión de Familia</a></li>
                         <li><a id="gestionFamiliaPatenteLink" visible="false" runat="server" href="~/GestionFamiliaPatente">Gestión de Familia Patente</a></li>
@@ -28,6 +28,12 @@
                         <li><a id="backUpLink" visible="false" runat="server" href="~/Backup">Backup</a></li>
                         <li><a id="restoreLink" visible="false" runat="server" href="~/Restore">Restore</a></li>
                         <li><a runat="server" id="falloIntegridadSeguridadLink" visible="false" href="~/FalloIntegridad">Fallo de integridad</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" visible="false" id="beneficiosLink" runat="server">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Beneficios<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a runat="server" href="~/EmpresasClientes">Empresas Clientes</a></li>
                     </ul>
                 </li>
                 <li><a runat="server" id="falloIntegridadLink" visible="false" href="~/FalloIntegridad">Fallo de integridad</a></li>
@@ -39,7 +45,7 @@
                 <li class="dropdown" id="miCuentaLink" runat="server">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi cuenta <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a runat="server" href="~/MisDatos">Mis datos</a></li>
+                        <!--<li><a runat="server" href="~/MisDatos">Mis datos</a></li>-->
                         <li><a runat="server" href="~/CambiarContraseña">Cambiar contraseña</a></li>
                     </ul>
                 </li>

@@ -13,6 +13,7 @@
         FalloIntegridad,
         ListarUsuarios,
         RegistroUsuario,
-        PermisoUsuario
+        PermisoUsuario,
+        Beneficios
     }
 }

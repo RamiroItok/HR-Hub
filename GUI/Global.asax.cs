@@ -33,6 +33,8 @@ namespace GUI
             Container.RegisterType<IBitacoraDAO, BitacoraDAO>();
             Container.RegisterType<IDigitoVerificadorDAO, DigitoVerificadorDAO>();
             Container.RegisterType<IDigitoVerificadorService, DigitoVerificadorService>();
+            Container.RegisterType<IEmpresaDAO, EmpresaDAO>();
+            Container.RegisterType<IEmpresaService, EmpresaService>();
             Container.RegisterType<IPermisoService, PermisoService>();
             Container.RegisterType<PermisoDAO, PermisoDAO>();
             Container.RegisterType<IUsuarioDAO, UsuarioDAO>();

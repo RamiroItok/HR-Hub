@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Backup.aspx" />
+    <Content Include="EmpresasClientes.aspx" />
     <Content Include="Bitacora.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
@@ -181,6 +182,7 @@
     <Content Include="Style\Bitacora.css" />
     <Content Include="Style\CambiarContraseña.css" />
     <Content Include="Style\Default.css" />
+    <Content Include="Style\EmpresasClientes.css" />
     <Content Include="Style\ErrorDigitoVerificador.css" />
     <Content Include="Style\FalloIntegridad.css" />
     <Content Include="Style\GestionFamiliaPatente.css" />
@@ -205,6 +207,13 @@
     </Compile>
     <Compile Include="Backup.aspx.designer.cs">
       <DependentUpon>Backup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmpresasClientes.aspx.cs">
+      <DependentUpon>EmpresasClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmpresasClientes.aspx.designer.cs">
+      <DependentUpon>EmpresasClientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Bitacora.aspx.cs">
       <DependentUpon>Bitacora.aspx</DependentUpon>

@@ -48,6 +48,7 @@
     <Compile Include="Composite\Permiso.cs" />
     <Compile Include="DigitoVerificador.cs" />
     <Compile Include="DTOs\UsuarioDTO.cs" />
+    <Compile Include="Empresa.cs" />
     <Compile Include="Enums\Area.cs" />
     <Compile Include="Enums\AsuntoMail.cs" />
     <Compile Include="Enums\Criticidad.cs" />

@@ -28,6 +28,7 @@ namespace GUI.Controls
                     bitacoraLink.Visible = false;
                     miCuentaLink.Visible = false;
                     falloIntegridadLink.Visible = false;
+                    beneficiosLink.Visible = false;
                 }
 
                 VisualizarMenu(usuario);
@@ -70,6 +71,7 @@ namespace GUI.Controls
                 loginLink.Visible = false;
                 contactoLink.Visible = false;
                 miCuentaLink.Visible = false;
+                beneficiosLink.Visible = false;
                 return;
             }
             else if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto != Models.Enums.Puesto.WebMaster)
@@ -80,6 +82,7 @@ namespace GUI.Controls
                 contactoLink.Visible = false;
                 miCuentaLink.Visible = false;
                 falloIntegridadLink.Visible = false;
+                beneficiosLink.Visible = false;
                 return;
             }
             
@@ -122,6 +125,9 @@ namespace GUI.Controls
                             break;
                         case Models.Composite.Permiso.PermisoUsuario:
                             permisosUsuarioLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.Beneficios:
+                            beneficiosLink.Visible = true;
                             break;
                     }
                 }
