@@ -30,10 +30,11 @@
                         <li><a runat="server" id="falloIntegridadSeguridadLink" visible="false" href="~/FalloIntegridad">Fallo de integridad</a></li>
                     </ul>
                 </li>
-                <li class="dropdown" visible="false" id="beneficiosLink" runat="server">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Beneficios<b class="caret"></b></a>
+                <li class="dropdown" visible="false" id="configuraciónEmpresaLink" runat="server">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuracion Empresas<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a runat="server" href="~/EmpresasClientes">Empresas Clientes</a></li>
+                        <li><a runat="server" href="~/AltaEmpresa">Alta de Empresa</a></li>
+                        <li><a runat="server" href="~/ListadoEmpresas">Listado de Empresas</a></li>
                     </ul>
                 </li>
                 <li><a runat="server" id="falloIntegridadLink" visible="false" href="~/FalloIntegridad">Fallo de integridad</a></li>

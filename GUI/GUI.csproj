@@ -115,7 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Backup.aspx" />
-    <Content Include="EmpresasClientes.aspx" />
+    <Content Include="AltaEmpresa.aspx" />
     <Content Include="Bitacora.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
@@ -123,6 +123,7 @@
     <Content Include="FalloIntegridad.aspx" />
     <Content Include="GestionFamilia.aspx" />
     <Content Include="GestionFamiliaPatente.aspx" />
+    <Content Include="ListadoEmpresas.aspx" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="MenuPrincipal.aspx" />
     <Content Include="Login.aspx" />
@@ -182,10 +183,11 @@
     <Content Include="Style\Bitacora.css" />
     <Content Include="Style\CambiarContraseña.css" />
     <Content Include="Style\Default.css" />
-    <Content Include="Style\EmpresasClientes.css" />
+    <Content Include="Style\AltaEmpresa.css" />
     <Content Include="Style\ErrorDigitoVerificador.css" />
     <Content Include="Style\FalloIntegridad.css" />
     <Content Include="Style\GestionFamiliaPatente.css" />
+    <Content Include="Style\ListadoEmpresas.css" />
     <Content Include="Style\MenuPrincipal.css" />
     <Content Include="Style\ListarUsuarios.css" />
     <Content Include="Style\Login.css" />
@@ -208,12 +210,12 @@
     <Compile Include="Backup.aspx.designer.cs">
       <DependentUpon>Backup.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EmpresasClientes.aspx.cs">
-      <DependentUpon>EmpresasClientes.aspx</DependentUpon>
+    <Compile Include="AltaEmpresa.aspx.cs">
+      <DependentUpon>AltaEmpresa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EmpresasClientes.aspx.designer.cs">
-      <DependentUpon>EmpresasClientes.aspx</DependentUpon>
+    <Compile Include="AltaEmpresa.aspx.designer.cs">
+      <DependentUpon>AltaEmpresa.aspx</DependentUpon>
     </Compile>
     <Compile Include="Bitacora.aspx.cs">
       <DependentUpon>Bitacora.aspx</DependentUpon>
@@ -256,6 +258,13 @@
     </Compile>
     <Compile Include="GestionFamiliaPatente.aspx.designer.cs">
       <DependentUpon>GestionFamiliaPatente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoEmpresas.aspx.cs">
+      <DependentUpon>ListadoEmpresas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoEmpresas.aspx.designer.cs">
+      <DependentUpon>ListadoEmpresas.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoUsuarios.aspx.cs">
       <DependentUpon>ListadoUsuarios.aspx</DependentUpon>

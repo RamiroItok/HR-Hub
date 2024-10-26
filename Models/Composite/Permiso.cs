@@ -14,6 +14,6 @@
         ListarUsuarios,
         RegistroUsuario,
         PermisoUsuario,
-        Beneficios
+        ConfiguracionEmpresas
     }
 }

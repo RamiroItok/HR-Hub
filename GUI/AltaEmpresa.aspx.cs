@@ -7,11 +7,11 @@ using Unity;
 
 namespace GUI
 {
-    public partial class EmpresasClientes : Page
+    public partial class AltaEmpresa : Page
     {
         private readonly IEmpresaService _empresaService;
 
-        public EmpresasClientes()
+        public AltaEmpresa()
         {
             _empresaService = Global.Container.Resolve<IEmpresaService>();
         }
