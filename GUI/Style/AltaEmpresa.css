@@ -1,7 +1,4 @@
-﻿/* EmpresasClientes.css */
-
-/* Estilos generales */
-body {
+﻿body {
     background-color: #f8f9fa;
     margin: 0;
     padding: 0;
@@ -12,7 +9,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Contenedor principal */
 .containerEmpresas {
     display: flex;
     justify-content: center;
@@ -21,14 +17,13 @@ body {
     background-color: #f8f9fa;
 }
 
-/* Caja del formulario con mayor ancho */
 .content-box {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 800px; /* Incrementamos el ancho a 800px */
+    max-width: 800px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -37,11 +32,10 @@ body {
         box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
     }
 
-/* Estilo del título */
 h2 {
-    color: #4CAF50; /* Verde del logo */
+    color: #4CAF50;
     font-weight: bold;
-    font-size: 2.5rem; /* Tamaño mayor del título */
+    font-size: 2.5rem;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -55,26 +49,25 @@ h2 {
         display: block;
         width: 50%;
         margin: 10px auto 0 auto;
-        border-bottom: 3px solid #4CAF50; /* Línea verde debajo del título */
+        border-bottom: 3px solid #4CAF50;
     }
 
-/* Estilos para los controles */
 .form-control, .form-control-file {
-    border: 2px solid #4CAF50; /* Verde del logo */
+    border: 2px solid #4CAF50;
     border-radius: 5px;
     padding: 12px;
-    font-size: 1.1rem; /* Tamaño más grande */
-    width: 100%; /* Asegura que todos los campos ocupen el mismo ancho */
-    box-sizing: border-box; /* Incluye el padding y el borde dentro del tamaño total */
+    font-size: 1.1rem;
+    width: 100%;
+    box-sizing: border-box;
     transition: border-color 0.3s ease;
 }
 
 .form-control-file {
-    padding: 8px; /* Ajuste de padding para los inputs tipo file */
+    padding: 8px;
 }
 
     .form-control:focus, .form-control-file:focus {
-        border-color: #388E3C; /* Verde oscuro al enfocar */
+        border-color: #388E3C;
     }
 
 label {
@@ -82,26 +75,25 @@ label {
     font-size: 1.2rem;
 }
 
-/* Botones */
 .btn-primary {
-    background-color: #4CAF50; /* Verde del logo */
+    background-color: #4CAF50;
     border-color: #4CAF50;
     color: #fff;
     font-weight: bold;
-    padding: 12px 30px; /* Tamaño más grande */
+    padding: 12px 30px;
     font-size: 1.2rem;
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
     .btn-primary:hover {
-        background-color: #388E3C; /* Verde más oscuro en hover */
+        background-color: #388E3C;
         border-color: #388E3C;
         transform: scale(1.05);
     }
 
 .btn-secondary {
-    background-color: #6c757d; /* Color gris */
+    background-color: #6c757d;
     border-color: #6c757d;
     color: #fff;
     font-weight: bold;
@@ -112,12 +104,11 @@ label {
 }
 
     .btn-secondary:hover {
-        background-color: #5a6268; /* Gris más oscuro en hover */
+        background-color: #5a6268;
         border-color: #5a6268;
         transform: scale(1.05);
     }
 
-/* Centrado del texto de botones */
 .text-center {
     margin-top: 20px;
 }

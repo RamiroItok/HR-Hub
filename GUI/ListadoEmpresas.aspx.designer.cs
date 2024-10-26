@@ -11,7 +11,7 @@ namespace GUI
 {
 
 
-    public partial class EmpresasClientes
+    public partial class ListadoEmpresas
     {
 
         /// <summary>
@@ -33,6 +33,33 @@ namespace GUI
         protected global::GUI.Controls.NavBar NavBarControl;
 
         /// <summary>
+        /// Control lblMensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
+
+        /// <summary>
+        /// Control rptEmpresas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptEmpresas;
+
+        /// <summary>
+        /// Control hfEmpresaId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfEmpresaId;
+
+        /// <summary>
         /// Control txtNombreEmpresa.
         /// </summary>
         /// <remarks>
@@ -40,15 +67,6 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombreEmpresa;
-
-        /// <summary>
-        /// Control fileLogo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileLogo;
 
         /// <summary>
         /// Control txtURLEmpresa.
@@ -60,30 +78,21 @@ namespace GUI
         protected global::System.Web.UI.WebControls.TextBox txtURLEmpresa;
 
         /// <summary>
-        /// Control btnSubmit.
+        /// Control fileLogoEmpresa.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.FileUpload fileLogoEmpresa;
 
         /// <summary>
-        /// Control btnCancel.
+        /// Control btnGuardarCambios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
-
-        /// <summary>
-        /// Control lblMensaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        protected global::System.Web.UI.WebControls.Button btnGuardarCambios;
     }
 }

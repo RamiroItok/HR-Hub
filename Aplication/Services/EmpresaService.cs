@@ -3,6 +3,7 @@ using Data.Interfaces;
 using Models;
 using Models.Enums;
 using System;
+using System.Data;
 
 namespace Aplication.Services
 {
@@ -66,6 +67,48 @@ namespace Aplication.Services
                 _empresaDAO.Eliminar(empresa.Id);
                 _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se da de baja la empresa {empresa.Nombre}", Criticidad.MEDIA);
                 _iDigitoVerificadorService.CalcularDVTabla("Empresa");
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataTable ObtenerEmpresas()
+        {
+            try
+            {
+                var resultado = _empresaDAO.ObtenerEmpresas();
+
+                return resultado.Tables[0];
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public Empresa ObtenerEmpresaPorId(int id)
+        {
+            try
+            {
+                var resultado = _empresaDAO.ObtenerEmpresaPorId(id);
+
+                Empresa empresa = new Empresa()
+                {
+                    Id = (int)resultado.Tables[0].Rows[0]["Id"],
+                    Nombre = resultado.Tables[0].Rows[0]["Nombre"].ToString()
+                };               
+
+                return empresa;
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {

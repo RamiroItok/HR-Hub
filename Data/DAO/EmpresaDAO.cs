@@ -76,5 +76,35 @@ namespace Data.DAO
                 throw new Exception(ex.Message);
             }
         }
+
+        public DataSet ObtenerEmpresas()
+        {
+            try
+            {
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_empresa", null);
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataSet ObtenerEmpresaPorId(int id)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@IdEmpresa", id }
+                };
+
+                return _acceso.ExecuteStoredProcedureReader("sp_s_empresa_porId", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
