@@ -61,20 +61,20 @@ h2 {
     background-color: #f8f9fa;
 }
 
-/* Título de la tarjeta */
+/* Título de la tarjeta (nombre de la empresa) */
 .card-title {
-    font-size: 1.5rem;
+    font-size: 2rem; /* Tamaño de fuente más grande */
     font-weight: bold;
     color: #333;
     text-align: center;
     margin-top: 10px;
 }
 
-/* Enlace de la tarjeta */
+/* Enlace de la tarjeta (URL de la empresa) */
 .card-text a {
     color: #4CAF50;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1.3rem; /* Tamaño de fuente más grande */
     transition: color 0.3s ease;
 }
 
@@ -122,6 +122,72 @@ h2 {
         background-color: #5a6268;
         transform: translateY(-2px);
     }
+
+/* Estilos del modal */
+.modal-content {
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 0; /* Eliminar padding general */
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.modal-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px; /* Reducir el espacio de padding */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+    .modal-header .modal-title {
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin: 0;
+        flex-grow: 1; /* Asegura que el título ocupe el espacio disponible */
+    }
+
+    .modal-header .close {
+        color: white;
+        opacity: 1;
+        font-size: 1.5rem;
+        padding: 0;
+        margin: 0;
+        margin-left: auto; /* Llevar el botón de cerrar a la derecha */
+        cursor: pointer;
+    }
+
+.modal-body {
+    padding: 20px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.modal-footer {
+    padding: 10px 20px;
+    border-top: none;
+    text-align: right;
+}
+
+    .modal-footer .btn-primary {
+        background-color: #4CAF50;
+        border-color: #4CAF50;
+        color: #fff;
+        border-radius: 20px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+        .modal-footer .btn-primary:hover {
+            background-color: #388E3C;
+            transform: translateY(-2px);
+        }
+
+    .modal-footer .btn-secondary {
+        border-radius: 20px;
+    }
+
 
 /* Mensaje de éxito o error */
 #lblMensaje {
