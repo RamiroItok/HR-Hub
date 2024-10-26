@@ -19,19 +19,60 @@ namespace Data.DAO
             _acceso = Acceso.GetInstance;
         }
 
-        public void Eliminar(Producto producto)
+        public void Eliminar(int idProducto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@Id", idProducto }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_d_producto", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public int Modificar(Producto producto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@Id", producto.Id },
+                    { "@Nombre", producto.Nombre },
+                    { "@IdEmpresa", producto.IdEmpresa },
+                    { "@Imagen", producto.Imagen },
+                    { "@Descripcion", producto.Descripcion },
+                    { "@IdTipoProducto", producto.IdTipoProducto },
+                    { "@Cantidad", producto.Cantidad },
+                    { "@PrecioUnitario", producto.PrecioUnitario }
+                };
+
+                DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_u_producto", parameters);
+
+                return Convert.ToInt32(resultado.Tables[0].Rows[0]["Id"]);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public DataSet ObtenerProductos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_producto", null);
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public DataSet ObtenerTipoProducto()

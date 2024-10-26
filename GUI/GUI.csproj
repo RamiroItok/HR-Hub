@@ -125,6 +125,7 @@
     <Content Include="GestionFamilia.aspx" />
     <Content Include="GestionFamiliaPatente.aspx" />
     <Content Include="ListadoEmpresas.aspx" />
+    <Content Include="ListadoProductos.aspx" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="MenuPrincipal.aspx" />
     <Content Include="Login.aspx" />
@@ -190,6 +191,7 @@
     <Content Include="Style\FalloIntegridad.css" />
     <Content Include="Style\GestionFamiliaPatente.css" />
     <Content Include="Style\ListadoEmpresas.css" />
+    <Content Include="Style\ListadoProductos.css" />
     <Content Include="Style\MenuPrincipal.css" />
     <Content Include="Style\ListarUsuarios.css" />
     <Content Include="Style\Login.css" />
@@ -274,6 +276,13 @@
     </Compile>
     <Compile Include="ListadoEmpresas.aspx.designer.cs">
       <DependentUpon>ListadoEmpresas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoProductos.aspx.cs">
+      <DependentUpon>ListadoProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoProductos.aspx.designer.cs">
+      <DependentUpon>ListadoProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoUsuarios.aspx.cs">
       <DependentUpon>ListadoUsuarios.aspx</DependentUpon>

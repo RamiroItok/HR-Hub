@@ -7,7 +7,7 @@ namespace Data.Interfaces
     {
         int Registrar(Producto producto);
         int Modificar(Producto producto);
-        void Eliminar(Producto producto);
+        void Eliminar(int idProducto);
         DataSet ObtenerProductos();
         DataSet ObtenerTipoProducto();
     }

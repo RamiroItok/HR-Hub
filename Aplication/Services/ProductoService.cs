@@ -24,19 +24,60 @@ namespace Aplication.Services
             _iBitacoraService = bitacoraService;
         }
 
-        public void Eliminar(Producto empresa, Usuario userSession)
+        public void Eliminar(Producto producto, Usuario userSession)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _iProductoDAO.Eliminar(producto.Id);
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se da de baja el producto {producto.Nombre}", Criticidad.MEDIA);
+                _iDigitoVerificadorService.CalcularDVTabla("Producto");
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public int Modificar(Producto empresa, Usuario userSession)
+        public int Modificar(Producto producto, Usuario userSession)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var id = _iProductoDAO.Modificar(producto);
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se modifican los datos del producto {producto.Nombre}", Criticidad.MEDIA);
+                _iDigitoVerificadorService.CalcularDVTabla("Producto");
+
+                return id;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public DataTable ObtenerProductos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var resultado = _iProductoDAO.ObtenerProductos();
+
+                return resultado.Tables[0];
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public DataTable ObtenerTipoProducto()
