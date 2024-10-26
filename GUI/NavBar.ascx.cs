@@ -29,6 +29,7 @@ namespace GUI.Controls
                     miCuentaLink.Visible = false;
                     falloIntegridadLink.Visible = false;
                     configuraciónEmpresaLink.Visible = false;
+                    configuracionProductosLink.Visible = false;
                 }
 
                 VisualizarMenu(usuario);
@@ -128,6 +129,9 @@ namespace GUI.Controls
                             break;
                         case Models.Composite.Permiso.ConfiguracionEmpresas:
                             configuraciónEmpresaLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.ConfiguracionProducto:
+                            configuracionProductosLink.Visible = true;
                             break;
                     }
                 }

@@ -57,6 +57,8 @@
     <Compile Include="Enums\Genero.cs" />
     <Compile Include="Enums\TipoOperacionContraseña.cs" />
     <Compile Include="FalloIntegridad.cs" />
+    <Compile Include="Producto.cs" />
+    <Compile Include="TipoProducto.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -14,6 +14,7 @@
         ListarUsuarios,
         RegistroUsuario,
         PermisoUsuario,
-        ConfiguracionEmpresas
+        ConfiguracionEmpresas,
+        ConfiguracionProducto
     }
 }
