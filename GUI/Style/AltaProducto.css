@@ -1,0 +1,147 @@
+﻿/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.containerEmpresas {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+    .containerEmpresas:hover {
+        transform: scale(1.02);
+    }
+
+/* Título */
+.content-box h2 {
+    color: #76B041;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+/* Estilos de los elementos de formulario */
+.form-group label {
+    font-weight: 600;
+    color: #333;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #76B041;
+        box-shadow: 0 0 8px rgba(118, 176, 65, 0.2);
+    }
+
+    /* Ajustes para DropDownList */
+    .form-control select, .form-control {
+        height: 40px; /* Ajusta la altura de los dropdowns */
+        line-height: 1.5; /* Aumenta la altura de línea para mejor legibilidad */
+        padding-top: 8px; /* Ajuste adicional para centrar el texto verticalmente */
+    }
+
+/* Botones */
+.btn-primary {
+    background-color: #76B041;
+    border-color: #76B041;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #5e9134;
+        transform: scale(1.05);
+    }
+
+.btn-secondary {
+    background-color: #555;
+    border-color: #555;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+    .btn-secondary:hover {
+        background-color: #333;
+        color: #fff; /* Cambia el texto a blanco en el hover */
+        transform: scale(1.05);
+    }
+
+/* Mensaje de éxito */
+.text-success {
+    color: #76B041;
+    font-weight: 600;
+}
+
+/* Transiciones y animaciones */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control-file {
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+    .form-control-file:hover {
+        border-color: #76B041;
+    }
+
+.text-center {
+    margin-top: 20px;
+}
+
+/* Efecto de sombra y redondeo */
+.content-box {
+    padding: 20px 30px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto hover en etiquetas */
+label:hover {
+    color: #76B041;
+    transition: color 0.3s ease;
+}
+
+
+/* Estilo profesional para el título */
+.content-box h2 {
+    color: #76B041; /* Color verde del título */
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #76B041; /* Línea verde debajo del título */
+}
+
+    .content-box h2::after {
+        content: '';
+        width: 50px;
+        height: 3px;
+        background-color: #76B041;
+        display: block;
+        margin: 8px auto 0;
+        border-radius: 5px;
+    }

@@ -114,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AltaProducto.aspx" />
     <Content Include="Backup.aspx" />
     <Content Include="AltaEmpresa.aspx" />
     <Content Include="Bitacora.aspx" />
@@ -124,6 +125,7 @@
     <Content Include="GestionFamilia.aspx" />
     <Content Include="GestionFamiliaPatente.aspx" />
     <Content Include="ListadoEmpresas.aspx" />
+    <Content Include="ListadoProductos.aspx" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="MenuPrincipal.aspx" />
     <Content Include="Login.aspx" />
@@ -180,6 +182,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Style\AltaProducto.css" />
     <Content Include="Style\Bitacora.css" />
     <Content Include="Style\CambiarContraseña.css" />
     <Content Include="Style\Default.css" />
@@ -188,6 +191,7 @@
     <Content Include="Style\FalloIntegridad.css" />
     <Content Include="Style\GestionFamiliaPatente.css" />
     <Content Include="Style\ListadoEmpresas.css" />
+    <Content Include="Style\ListadoProductos.css" />
     <Content Include="Style\MenuPrincipal.css" />
     <Content Include="Style\ListarUsuarios.css" />
     <Content Include="Style\Login.css" />
@@ -202,6 +206,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaProducto.aspx.cs">
+      <DependentUpon>AltaProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaProducto.aspx.designer.cs">
+      <DependentUpon>AltaProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Backup.aspx.cs">
       <DependentUpon>Backup.aspx</DependentUpon>
@@ -265,6 +276,13 @@
     </Compile>
     <Compile Include="ListadoEmpresas.aspx.designer.cs">
       <DependentUpon>ListadoEmpresas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoProductos.aspx.cs">
+      <DependentUpon>ListadoProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoProductos.aspx.designer.cs">
+      <DependentUpon>ListadoProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoUsuarios.aspx.cs">
       <DependentUpon>ListadoUsuarios.aspx</DependentUpon>

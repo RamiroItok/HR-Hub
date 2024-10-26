@@ -37,6 +37,13 @@
                         <li><a runat="server" href="~/ListadoEmpresas">Listado de Empresas</a></li>
                     </ul>
                 </li>
+                <li class="dropdown" visible="false" id="configuracionProductosLink" runat="server">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuracion Productos<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a runat="server" href="~/AltaProducto">Alta de Producto</a></li>
+                        <li><a runat="server" href="~/ListadoProductos">Listado de Productos</a></li>
+                    </ul>
+                </li>
                 <li><a runat="server" id="falloIntegridadLink" visible="false" href="~/FalloIntegridad">Fallo de integridad</a></li>
                 <li><a runat="server" id="bitacoraLink" visible="false" href="~/Bitacora">Bitacora</a></li>
                 <li><a runat="server" id="contactoLink" href="~/Contact">Contacto</a></li>

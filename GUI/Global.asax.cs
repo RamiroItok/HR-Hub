@@ -37,6 +37,8 @@ namespace GUI
             Container.RegisterType<IEmpresaService, EmpresaService>();
             Container.RegisterType<IPermisoService, PermisoService>();
             Container.RegisterType<PermisoDAO, PermisoDAO>();
+            Container.RegisterType<IProductoService, ProductoService>();
+            Container.RegisterType<IProductoDAO, ProductoDAO>();
             Container.RegisterType<IUsuarioDAO, UsuarioDAO>();
             Container.RegisterType<IUsuarioService, UsuarioService>();
         }
