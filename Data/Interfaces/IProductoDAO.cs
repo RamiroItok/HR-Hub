@@ -9,6 +9,8 @@ namespace Data.Interfaces
         int Modificar(Producto producto);
         void Eliminar(int idProducto);
         DataSet ObtenerProductos();
+        DataSet ObtenerProductoPorId(int id);
         DataSet ObtenerTipoProducto();
+
     }
 }

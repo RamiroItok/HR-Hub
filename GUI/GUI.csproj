@@ -131,6 +131,7 @@
     <Content Include="Login.aspx" />
     <Content Include="NavBar.ascx" />
     <Content Include="PermisosUsuario.aspx" />
+    <Content Include="Productos.aspx" />
     <Content Include="RecuperarContraseña.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Contact.aspx" />
@@ -196,6 +197,7 @@
     <Content Include="Style\ListarUsuarios.css" />
     <Content Include="Style\Login.css" />
     <Content Include="Style\NavBar.css" />
+    <Content Include="Style\Productos.css" />
     <Content Include="Style\Registro.css" />
     <Content Include="Style\SiteMaster.css" />
     <Content Include="Templates\GenerarContraseñaTemplate.html" />
@@ -318,6 +320,13 @@
     </Compile>
     <Compile Include="PermisosUsuario.aspx.designer.cs">
       <DependentUpon>PermisosUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Productos.aspx.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Productos.aspx.designer.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecuperarContraseña.aspx.cs">
       <DependentUpon>RecuperarContraseña.aspx</DependentUpon>

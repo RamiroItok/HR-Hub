@@ -4,9 +4,6 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.DAO
 {
@@ -44,10 +41,10 @@ namespace Data.DAO
                 {
                     { "@Id", producto.Id },
                     { "@Nombre", producto.Nombre },
-                    { "@IdEmpresa", producto.IdEmpresa },
+                    { "@IdEmpresa", producto.Empresa.Id },
                     { "@Imagen", producto.Imagen },
                     { "@Descripcion", producto.Descripcion },
-                    { "@IdTipoProducto", producto.IdTipoProducto },
+                    { "@IdTipoProducto", producto.TipoProducto.Id },
                     { "@Cantidad", producto.Cantidad },
                     { "@PrecioUnitario", producto.PrecioUnitario }
                 };
@@ -67,6 +64,24 @@ namespace Data.DAO
             try
             {
                 var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_producto", null);
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataSet ObtenerProductoPorId(int id)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@Id", id }
+                };
+
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_producto_porId", parameters);
                 return resultado;
             }
             catch (Exception ex)
@@ -98,8 +113,8 @@ namespace Data.DAO
                     { "@Nombre", producto.Nombre },
                     { "@Descripcion", producto.Descripcion },
                     { "@Imagen", producto.Imagen },
-                    { "@IdEmpresa", producto.IdEmpresa },
-                    { "@IdTipoProducto", producto.IdTipoProducto },
+                    { "@IdEmpresa", producto.Empresa.Id },
+                    { "@IdTipoProducto", producto.TipoProducto.Id },
                     { "@Cantidad", producto.Cantidad },
                     { "@PrecioUnitario", producto.PrecioUnitario },
                     { "@DVH", 0 }
