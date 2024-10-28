@@ -18,53 +18,58 @@
 <body>
     <form id="form1" runat="server">
         <uc:NavBar runat="server" ID="NavBarControl" />
-        
-        <div class="containerProductos">
-            <h1 class="titulo-productos">Productos</h1>
-        
-            <div class="row filtros-busqueda">
-                <div class="col-md-3">
-                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Filtrar por Nombre"></asp:TextBox>
-                </div>
-                <div class="col-md-3">
-                    <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" placeholder="Filtrar por Descripción"></asp:TextBox>
-                </div>
-                <div class="col-md-3">
-                    <asp:DropDownList runat="server" ID="DropDownEmpresa" CssClass="form-control"></asp:DropDownList>
-                </div>
-                <div class="col-md-3">
-                    <asp:DropDownList runat="server" ID="DropDownTipoProducto" CssClass="form-control"></asp:DropDownList>
-                </div>
-                <div class="col-md-3 mt-3">
-                    <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary" OnClick="btnFiltrar_Click" />
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
-                </div>
-            </div>
-        
-            <div class="row" id="productContainer">
-                <asp:Repeater ID="ProductRepeater" runat="server">
-                    <ItemTemplate>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div class="containerProductos">
+                    <h1 class="titulo-productos">Productos</h1>
+                
+                    <div class="row filtros-busqueda">
                         <div class="col-md-3">
-                            <br />
-                            <div class="card producto-card shadow-sm" runat="server" ID="productoCard">
-                                <div class="img-container">
-                                    <img src='<%# "data:image/png;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) %>' class="card-img-top img-fluid" alt='<%# Eval("Nombre") %>' />
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title"><%# Eval("Nombre") %></h5>
-                                    <p class="card-text">Descripcion: <%# Eval("Descripcion") %></p>
-                                    <p class="card-text">Empresa: <%# Eval("Empresa.Nombre") %></p>
-                                    <p class="card-text">Tipo de Producto: <%# Eval("TipoProducto.Nombre") %></p>
-                                    <p class="card-text">Cantidad: <%# Eval("Cantidad") %></p>
-                                    <p class="card-text">Precio: $<%# Eval("PrecioUnitario") %></p>
-                                    <asp:Button runat="server" Text="Agregar al carrito" CssClass="btn btn-add-cart" CommandArgument='<%# Eval("Id") %>' CommandName="Agregar" OnClientClick="showCartModal();" OnCommand="AgregarAlCarrito_Command" />
-                                </div>
-                            </div>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Filtrar por Nombre"></asp:TextBox>
                         </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </div>
-        </div>
+                        <div class="col-md-3">
+                            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" placeholder="Filtrar por Descripción"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <asp:DropDownList runat="server" ID="DropDownEmpresa" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                        <div class="col-md-3">
+                            <asp:DropDownList runat="server" ID="DropDownTipoProducto" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary" OnClick="btnFiltrar_Click" />
+                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
+                        </div>
+                    </div>
+                
+                    <div class="row" id="productContainer">
+                        <asp:Repeater ID="ProductRepeater" runat="server">
+                            <ItemTemplate>
+                                <div class="col-md-3">
+                                    <br />
+                                    <div class="card producto-card shadow-sm" runat="server" ID="productoCard">
+                                        <div class="img-container">
+                                            <img src='<%# "data:image/png;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) %>' class="card-img-top img-fluid" alt='<%# Eval("Nombre") %>' />
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title"><%# Eval("Nombre") %></h5>
+                                            <p class="card-text">Descripcion: <%# Eval("Descripcion") %></p>
+                                            <p class="card-text">Empresa: <%# Eval("Empresa.Nombre") %></p>
+                                            <p class="card-text">Tipo de Producto: <%# Eval("TipoProducto.Nombre") %></p>
+                                            <p class="card-text">Cantidad: <%# Eval("Cantidad") %></p>
+                                            <p class="card-text">Precio: $<%# Eval("PrecioUnitario") %></p>
+                                            <asp:Button runat="server" Text="Agregar al carrito" CssClass="btn btn-add-cart" CommandArgument='<%# Eval("Id") %>' CommandName="Agregar" OnClientClick="showCartModal();" OnCommand="AgregarAlCarrito_Command" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
 
         <div class="footer">
             <p>&copy; 2024 HR Hub. Todos los derechos reservados.</p>

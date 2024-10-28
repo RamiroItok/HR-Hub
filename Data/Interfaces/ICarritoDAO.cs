@@ -5,9 +5,9 @@ namespace Data.Interfaces
 {
     public interface ICarritoDAO
     {
-        void InsertarCarrito(int idProducto, int idUsuario);
+        void InsertarCarrito(int idProducto, int idUsuario, int? cantidad);
         DataSet ObtenerCarrito(int idUsuario);
-        void EliminarCarrito(int idCarrito);
+        void EliminarProducto(int idCarrito);
         void LimpiarCarrito(int idCarrito);
     }
 }

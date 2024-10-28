@@ -97,7 +97,8 @@ namespace GUI
         {
             int idProducto = Convert.ToInt32(e.CommandArgument);
             var userSession = Session["Usuario"] as Usuario;
-            _carritoService.InsertarCarrito(idProducto, userSession);
+            _carritoService.InsertarCarrito(idProducto, userSession, null);
+            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showCartModal", "showCartModal();", true);
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

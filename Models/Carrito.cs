@@ -8,5 +8,7 @@
         public int Cantidad { get; set; }
         public decimal Total { get; set; }
         public int DVH { get; set; }
+
+        public int IdProducto => Producto?.Id ?? 0;
     }
 }

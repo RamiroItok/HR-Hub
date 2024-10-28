@@ -16,6 +16,7 @@
         PermisoUsuario,
         ConfiguracionEmpresas,
         ConfiguracionProducto,
-        Productos
+        Productos,
+        Carrito
     }
 }

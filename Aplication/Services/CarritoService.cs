@@ -3,6 +3,7 @@ using Data.Interfaces;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Aplication.Services
 {
@@ -19,11 +20,25 @@ namespace Aplication.Services
             _bitacoraService = bitacoraService;
         }
 
-        public void InsertarCarrito(int idProducto, Usuario userSession)
+        public void EliminarProducto(int idCarrito, Usuario userSession)
         {
             try
             {
-                _carritoDAO.InsertarCarrito(idProducto, userSession.Id);
+                _carritoDAO.EliminarProducto(idCarrito);
+                _bitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, "Elimino un producto del carrito", Models.Enums.Criticidad.BAJA);
+                _digitoVerificadorService.CalcularDVTabla("Carrito");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void InsertarCarrito(int idProducto, Usuario userSession, int? cantidad)
+        {
+            try
+            {
+                _carritoDAO.InsertarCarrito(idProducto, userSession.Id, cantidad);
                 _bitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, "Agrego un producto al carrito", Models.Enums.Criticidad.BAJA);
                 _digitoVerificadorService.CalcularDVTabla("Carrito");
             }
@@ -35,7 +50,39 @@ namespace Aplication.Services
 
         public List<Carrito> ObtenerCarrito(int idUsuario)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var resultado = _carritoDAO.ObtenerCarrito(idUsuario);
+                List<Carrito> productosCarrito = new List<Carrito>();
+
+                foreach (DataRow row in resultado.Tables[0].Rows)
+                {
+                    Carrito carrito = new Carrito()
+                    {
+                        Id = Convert.ToInt32(row["Id"]),
+                        Producto = new Producto()
+                            {
+                                Id = Convert.ToInt32(row["IdProducto"]),
+                                Nombre = row["NombreProducto"].ToString(),
+                                Imagen = (byte[])row["Imagen"],
+                                Cantidad = Convert.ToInt32(row["CantidadProducto"]),
+                                PrecioUnitario = Convert.ToDecimal(row["PrecioUnitario"])
+                            },
+                        Usuario = new Usuario()
+                            {
+                                Id = Convert.ToInt32(row["IdUsuario"])
+                            },
+                        Cantidad = Convert.ToInt32(row["Cantidad"])
+                    };
+
+                    productosCarrito.Add(carrito);
+                }
+                return productosCarrito;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

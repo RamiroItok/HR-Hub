@@ -119,6 +119,7 @@
     <Content Include="AltaEmpresa.aspx" />
     <Content Include="Bitacora.aspx" />
     <Content Include="CambiarContraseña.aspx" />
+    <Content Include="Carrito.aspx" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
     <Content Include="ErrorDigitoVerificador.aspx" />
     <Content Include="FalloIntegridad.aspx" />
@@ -186,6 +187,7 @@
     <Content Include="Style\AltaProducto.css" />
     <Content Include="Style\Bitacora.css" />
     <Content Include="Style\CambiarContraseña.css" />
+    <Content Include="Style\Carrito.css" />
     <Content Include="Style\Default.css" />
     <Content Include="Style\AltaEmpresa.css" />
     <Content Include="Style\ErrorDigitoVerificador.css" />
@@ -243,6 +245,13 @@
     </Compile>
     <Compile Include="CambiarContraseña.aspx.designer.cs">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Carrito.aspx.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Carrito.aspx.designer.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorDigitoVerificador.aspx.cs">
       <DependentUpon>ErrorDigitoVerificador.aspx</DependentUpon>
