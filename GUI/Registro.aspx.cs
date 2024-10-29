@@ -44,7 +44,6 @@ namespace GUI
                     Apellido = txtApellido.Text,
                     Email = txtEmail.Text,
                     Contraseña = hiddenContraseña.Value,
-                    Puesto = Puesto.Empleado,
                     Area = (Area)Enum.Parse(typeof(Area), DropDownArea.Text),
                     FechaNacimiento = DateTime.Parse(txtFechaNac.Value),
                     Genero = drpGenero.SelectedItem.Text,

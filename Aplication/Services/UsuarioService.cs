@@ -40,7 +40,6 @@ namespace Aplication
                     Apellido = EncriptacionService.Encriptar_AES(usuario.Apellido),
                     Email = EncriptacionService.Encriptar_AES(usuario.Email),
                     Contraseña = EncriptacionService.Encriptar_MD5(usuario.Contraseña),
-                    Puesto = usuario.Puesto,
                     Area = usuario.Area,
                     FechaNacimiento = usuario.FechaNacimiento,
                     Genero = usuario.Genero,
@@ -235,7 +234,9 @@ namespace Aplication
                         Nombre = EncriptacionService.Decrypt_AES(row["Nombre"].ToString()),
                         Apellido = EncriptacionService.Decrypt_AES(row["Apellido"].ToString()),
                         Email = EncriptacionService.Decrypt_AES(row["Email"].ToString()),
-                        Puesto = (Puesto)Enum.Parse(typeof(Puesto), row["IdPuesto"].ToString()),
+                        Puesto = row["IdPuesto"] != DBNull.Value 
+                                ? (Puesto?)Enum.Parse(typeof(Puesto), row["IdPuesto"].ToString()) 
+                                : null, 
                         Area = (Area)Enum.Parse(typeof(Area), row["IdArea"].ToString()),
                         FechaNacimiento = (DateTime)row["FechaNacimiento"],
                         Genero = row["Genero"].ToString(),

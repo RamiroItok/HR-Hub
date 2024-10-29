@@ -12,7 +12,7 @@ namespace Models
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Contraseña { get; set; }
-        public Puesto Puesto { get; set; }
+        public Puesto? Puesto { get; set; }
         public Area Area { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Genero { get; set; }

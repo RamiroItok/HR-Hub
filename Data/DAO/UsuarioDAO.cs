@@ -26,7 +26,7 @@ namespace Data.DAO
                     { "@Apellido", usuario.Apellido },
                     { "@Email", usuario.Email },
                     { "@Contraseña", usuario.Contraseña },
-                    { "@IdPuesto", (int)usuario.Puesto },
+                    { "@IdPuesto", null },
                     { "@IdArea", (int)usuario.Area },
                     { "@FechaNacimiento", usuario.FechaNacimiento },
                     { "@Genero", usuario.Genero },
