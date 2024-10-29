@@ -206,9 +206,7 @@ namespace Data.DAO
         {
             try
             {
-                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_usuarios", null);
-
-                return resultado;
+                return _acceso.ExecuteStoredProcedureReader("sp_s_usuarios", null);
             }
             catch (Exception ex)
             {

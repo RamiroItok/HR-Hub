@@ -80,6 +80,51 @@ namespace Aplication.Services
             }
         }
 
+        public Producto ObtenerProductoPorId(int id)
+        {
+            try
+            {
+                var resultado = _iProductoDAO.ObtenerProductoPorId(id);
+
+                if (resultado != null && resultado.Tables.Count > 0 && resultado.Tables[0].Rows.Count > 0)
+                {
+                    var fila = resultado.Tables[0].Rows[0];
+
+                    Producto producto = new Producto()
+                    {
+                        Id = (int)fila["Id"],
+                        Nombre = (string)fila["Nombre"],
+                        Empresa = new Empresa()
+                            {
+                                Id = (int)fila["IdEmpresa"],
+                                Nombre = (string)fila["NombreEmpresa"]
+                            },
+                        Imagen = (byte[])fila["Imagen"],
+                        Descripcion = (string)fila["Descripcion"],
+                        TipoProducto = new TipoProducto()
+                            {
+                                Id = (int)fila["IdTipoProducto"],
+                                Nombre = (string)fila["NombreTipoProducto"]
+                            },
+                        Cantidad = (int?)fila["Cantidad"],
+                        PrecioUnitario = (decimal?)fila["PrecioUnitario"]
+                    };
+
+                    return producto;
+                }
+
+                return null;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public DataTable ObtenerTipoProducto()
         {
             try

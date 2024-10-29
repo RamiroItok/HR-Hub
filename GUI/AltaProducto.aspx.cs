@@ -51,10 +51,16 @@ namespace GUI
                     Producto producto = new Producto()
                     {
                         Nombre = txtNombreProducto.Text,
-                        IdEmpresa = int.Parse(DropDownEmpresa.Text),
+                        Empresa = new Empresa()
+                            {
+                                Id = int.Parse(DropDownEmpresa.Text)
+                            },
                         Imagen = imagenBytes,
                         Descripcion = txtDescripcion.Text,
-                        IdTipoProducto = int.Parse(DropDownTipoProducto.Text),
+                        TipoProducto = new TipoProducto()
+                            {
+                                Id = int.Parse(DropDownTipoProducto.Text)
+                            },
                         Cantidad = int.Parse(txtCantidad.Text),
                         PrecioUnitario = decimal.Parse(txtPrecioUnitario.Text)
                     };

@@ -31,6 +31,8 @@ namespace GUI
             Container.RegisterType<BackUpDAO, BackUpDAO>();
             Container.RegisterType<IBitacoraService, BitacoraService>();
             Container.RegisterType<IBitacoraDAO, BitacoraDAO>();
+            Container.RegisterType<ICarritoService, CarritoService>();
+            Container.RegisterType<ICarritoDAO, CarritoDAO>();
             Container.RegisterType<IDigitoVerificadorDAO, DigitoVerificadorDAO>();
             Container.RegisterType<IDigitoVerificadorService, DigitoVerificadorService>();
             Container.RegisterType<IEmpresaDAO, EmpresaDAO>();

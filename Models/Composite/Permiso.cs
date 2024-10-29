@@ -15,6 +15,8 @@
         RegistroUsuario,
         PermisoUsuario,
         ConfiguracionEmpresas,
-        ConfiguracionProducto
+        ConfiguracionProducto,
+        Productos,
+        Carrito
     }
 }

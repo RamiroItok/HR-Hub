@@ -100,10 +100,16 @@ namespace GUI
             {
                 Id = Convert.ToInt32(IdProducto.Value),
                 Nombre = string.IsNullOrEmpty(txtNombreProducto.Text) ? string.Empty : txtNombreProducto.Text,
-                IdEmpresa = string.IsNullOrEmpty(DropDownEmpresa.SelectedValue) ? (int?)null : int.Parse(DropDownEmpresa.SelectedValue),
+                Empresa = new Empresa()
+                    {
+                        Id = (int)(string.IsNullOrEmpty(DropDownEmpresa.SelectedValue) ? (int?)null : int.Parse(DropDownEmpresa.SelectedValue))
+                    },
                 Imagen = imagen,
                 Descripcion = string.IsNullOrEmpty(txtDescripcion.Text) ? string.Empty : txtDescripcion.Text,
-                IdTipoProducto = string.IsNullOrEmpty(DropDownTipoProducto.SelectedValue) ? (int?)null : int.Parse(DropDownTipoProducto.SelectedValue),
+                TipoProducto = new TipoProducto() 
+                    {
+                        Id = (int)(string.IsNullOrEmpty(DropDownTipoProducto.SelectedValue) ? (int?)null : int.Parse(DropDownTipoProducto.SelectedValue))
+                    },
                 Cantidad = string.IsNullOrEmpty(txtCantidad.Text) ? (int?)null : int.Parse(txtCantidad.Text),
                 PrecioUnitario = string.IsNullOrEmpty(txtPrecioUnitario.Text) ? (decimal?)null : decimal.Parse(txtPrecioUnitario.Text)
             };

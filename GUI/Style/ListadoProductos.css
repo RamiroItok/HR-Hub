@@ -51,7 +51,7 @@ h2::after {
 
 .card-img-top {
     height: 180px;
-    object-fit: cover;
+    object-fit: contain;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: #f8f9fa;

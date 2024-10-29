@@ -150,6 +150,24 @@ namespace GUI.Controls
         protected global::System.Web.UI.HtmlControls.HtmlAnchor bitacoraLink;
 
         /// <summary>
+        /// Control productosLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor productosLink;
+
+        /// <summary>
+        /// Control carritoLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor carritoLink;
+
+        /// <summary>
         /// Control contactoLink.
         /// </summary>
         /// <remarks>
