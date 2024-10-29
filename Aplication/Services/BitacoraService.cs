@@ -18,7 +18,7 @@ namespace Aplication.Services
             _bitacoraDAO = bitacoraDAO;
             _digitoVerificadorService = digitoVerificadorService;
         }
-        public int AltaBitacora(string email, Puesto tipoUsuario, string descripcion, Criticidad criticidad)
+        public int AltaBitacora(string email, Puesto? tipoUsuario, string descripcion, Criticidad criticidad)
         {
             try
             {
