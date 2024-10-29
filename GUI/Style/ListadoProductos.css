@@ -114,14 +114,9 @@ h2::after {
     transform: translateY(-2px);
 }
 
-/* Estilos del modal */
 .modal-dialog {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    margin: 0 auto; /* Asegura que el modal esté centrado horizontalmente */
-    width: auto; /* Permite que se ajuste al contenido */
+    max-width: 600px;
+    margin: auto;
 }
 
 .modal-content {
