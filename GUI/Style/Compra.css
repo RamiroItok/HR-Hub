@@ -1,0 +1,132 @@
+﻿/* General para el contenedor de la pantalla de Compra */
+.containerCompra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    max-width: 1000px;
+    margin: auto;
+    font-size: 18px; /* Tamaño base aumentado solo dentro del contenedor */
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Tarjetas */
+.card-centered {
+    width: 100%;
+    max-width: 800px;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card-centered:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+/* Títulos */
+h3.card-title {
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 2rem; /* Tamaño aumentado solo en esta pantalla */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Tabla de resumen de compra */
+.table {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 1.1rem;
+}
+
+    .table thead th {
+        background-color: #4CAF50;
+        color: #ffffff;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .table tbody td {
+        padding: 15px;
+        text-align: center;
+        background-color: #ffffff;
+        border-top: 1px solid #e9ecef;
+    }
+
+    .table tbody tr:hover td {
+        background-color: #f1f9f1;
+    }
+
+.text-right h4 {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* Formulario de Detalles de Pago */
+.form-group {
+    margin-bottom: 18px;
+}
+
+    .form-group label {
+        font-weight: bold;
+        color: #333;
+        font-size: 1.2rem;
+    }
+
+    .form-group input {
+        font-size: 1.1rem;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        width: 100%;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 6px rgba(76, 175, 80, 0.3);
+        }
+
+/* Botón de pago */
+.btn-success {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: #fff;
+    font-size: 1.3rem;
+    padding: 12px;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto 0;
+    display: block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn-success:hover {
+        background-color: #388E3C;
+        transform: translateY(-3px);
+    }
+
+/* Espaciado y estilo de la sección de detalles de pago */
+.card-centered.payment-details {
+    margin-top: 40px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3.card-title.payment-title {
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 25px;
+}

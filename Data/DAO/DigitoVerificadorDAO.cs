@@ -167,6 +167,16 @@ namespace Data.DAO
                                 string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
                                 _acceso.GenerarConsulta(consulta1);
                             }
+                            else if (tabla == "Compra")
+                            {
+                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
+                                _acceso.GenerarConsulta(consulta1);
+                            }
+                            else if (tabla == "DetalleCompra")
+                            {
+                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
+                                _acceso.GenerarConsulta(consulta1);
+                            }
                         }
                         x = x + 1;
                         DV_tabla = DV_tabla + dvh_fila;

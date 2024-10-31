@@ -95,3 +95,27 @@ h2 {
 .btn, .form-control {
     transition: all 0.3s ease;
 }
+
+.btn-finalizar-compra {
+    background-color: #28a745;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+    .btn-finalizar-compra:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-finalizar-compra:active {
+        background-color: #1e7e34;
+        transform: translateY(1px);
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    }

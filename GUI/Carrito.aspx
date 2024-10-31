@@ -66,6 +66,7 @@
                         <div class="text-right mt-3">
                             <h4>Total del Carrito: <asp:Label ID="lblTotalCarrito" runat="server" Text="0.00" CssClass="font-weight-bold"></asp:Label></h4>
                         </div>
+                            <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" CssClass="btn btn-finalizar-compra mt-3" OnClick="btnFinalizarCompra_Click" />
                     </ContentTemplate>
                 </asp:UpdatePanel>
         </div>

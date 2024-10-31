@@ -17,6 +17,7 @@ namespace GUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-AR");
             if (!IsPostBack)
             {
                 CargarCarrito();
@@ -94,6 +95,12 @@ namespace GUI
                 return "";
 
             return "data:image/png;base64," + Convert.ToBase64String(imagen);
+        }
+
+        protected void btnFinalizarCompra_Click(object sender, EventArgs e)
+        {
+            var userSession = Session["Usuario"] as Usuario;
+            Response.Redirect($"Compra.aspx?carritoId={userSession.Id}");
         }
     }
 }
