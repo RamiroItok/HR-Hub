@@ -28,6 +28,10 @@ namespace Aplication.Services
                 _bitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, "Elimino un producto del carrito", Models.Enums.Criticidad.BAJA);
                 _digitoVerificadorService.CalcularDVTabla("Carrito");
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -41,6 +45,30 @@ namespace Aplication.Services
                 _carritoDAO.InsertarCarrito(idProducto, userSession.Id, cantidad);
                 _bitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, "Agrego un producto al carrito", Models.Enums.Criticidad.BAJA);
                 _digitoVerificadorService.CalcularDVTabla("Carrito");
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void LimpiarCarrito(Usuario userSession, bool noEsCompra)
+        {
+            try
+            {
+                _carritoDAO.LimpiarCarrito(userSession.Id);
+                if(noEsCompra)
+                    _bitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, "Se limpio el carrito", Models.Enums.Criticidad.BAJA);
+
+                _digitoVerificadorService.CalcularDVTabla("Carrito");
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {
@@ -78,6 +106,10 @@ namespace Aplication.Services
                     productosCarrito.Add(carrito);
                 }
                 return productosCarrito;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
             }
             catch (Exception ex)
             {

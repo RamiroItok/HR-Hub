@@ -11,7 +11,7 @@ namespace GUI
 {
 
 
-    public partial class Carrito
+    public partial class Compra
     {
 
         /// <summary>
@@ -24,15 +24,6 @@ namespace GUI
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control NavBar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::GUI.Controls.NavBar NavBar;
-
-        /// <summary>
         /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
+        /// Control NavBar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::GUI.Controls.NavBar NavBar;
 
         /// <summary>
         /// Control UpdatePanel1.
@@ -51,15 +51,6 @@ namespace GUI
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// Control pnlCarritoVacio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCarritoVacio;
-
-        /// <summary>
         /// Control gvCarrito.
         /// </summary>
         /// <remarks>
@@ -69,30 +60,57 @@ namespace GUI
         protected global::System.Web.UI.WebControls.GridView gvCarrito;
 
         /// <summary>
-        /// Control btnLimpiarCarrito.
+        /// Control lblTotalCompra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLimpiarCarrito;
+        protected global::System.Web.UI.WebControls.Label lblTotalCompra;
 
         /// <summary>
-        /// Control lblTotalCarrito.
+        /// Control txtNumeroTarjeta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalCarrito;
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroTarjeta;
 
         /// <summary>
-        /// Control btnFinalizarCompra.
+        /// Control txtNombreTitular.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFinalizarCompra;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreTitular;
+
+        /// <summary>
+        /// Control txtFechaVencimiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaVencimiento;
+
+        /// <summary>
+        /// Control txtCVC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCVC;
+
+        /// <summary>
+        /// Control btnPagar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPagar;
     }
 }

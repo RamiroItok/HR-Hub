@@ -34,6 +34,10 @@ namespace Aplication.Services
                 _digitoVerificadorService.CalcularDVTabla("Bitacora");
                 return resultado;
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);

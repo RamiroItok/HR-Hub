@@ -14,6 +14,7 @@ namespace Aplication.Interfaces
         List<Usuario> ListarUsuarios();
         void EstadoBloqueoUsuario(Usuario usuario);
         void DesbloquearUsuario(string email);
+        Usuario ObtenerUsuarioPorId(int id);
         Usuario ObtenerUsuarioPorEmail(string email);
         bool ValidarFormatoContraseña(string contraseña);
         string GenerarContraseña();

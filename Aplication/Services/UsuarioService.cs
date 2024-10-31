@@ -322,6 +322,27 @@ namespace Aplication
             }
         }
 
+        public Usuario ObtenerUsuarioPorId(int id)
+        {
+            try
+            {
+                var resultado = _usuarioDAO.ObtenerUsuarioPorId(id);
+
+                if (resultado != null)
+                    return CompletarUsuarioDesencriptado(resultado);
+
+                return null;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public string GenerarContraseña()
         {
             const string minusculas = "abcdefghijklmnopqrstuvwxyz";
@@ -409,6 +430,33 @@ namespace Aplication
                 Apellido = tabla.Tables[0].Rows[0]["Apellido"].ToString(),
                 Email = tabla.Tables[0].Rows[0]["Email"].ToString(),
                 Contraseña = tabla.Tables[0].Rows[0]["Contraseña"].ToString(),
+                Puesto = (Puesto)tabla.Tables[0].Rows[0]["IdPuesto"],
+                Area = (Area)tabla.Tables[0].Rows[0]["IdArea"],
+                FechaNacimiento = (DateTime)tabla.Tables[0].Rows[0]["FechaNacimiento"],
+                Genero = tabla.Tables[0].Rows[0]["Genero"].ToString(),
+                FechaIngreso = (DateTime)tabla.Tables[0].Rows[0]["FechaIngreso"],
+                Direccion = tabla.Tables[0].Rows[0]["Direccion"].ToString(),
+                NumeroDireccion = (int)tabla.Tables[0].Rows[0]["NumeroDireccion"],
+                Departamento = tabla.Tables[0].Rows[0]["Departamento"].ToString(),
+                CodigoPostal = tabla.Tables[0].Rows[0]["CodigoPostal"].ToString(),
+                Ciudad = tabla.Tables[0].Rows[0]["Ciudad"].ToString(),
+                Provincia = tabla.Tables[0].Rows[0]["Provincia"].ToString(),
+                Pais = tabla.Tables[0].Rows[0]["Pais"].ToString(),
+                Idioma = (Idioma)tabla.Tables[0].Rows[0]["IdIdioma"],
+                Estado = (int)tabla.Tables[0].Rows[0]["Estado"]
+            };
+
+            return usuario;
+        }
+
+        private Usuario CompletarUsuarioDesencriptado(DataSet tabla)
+        {
+            Usuario usuario = new Usuario
+            {
+                Id = Convert.ToInt32(tabla.Tables[0].Rows[0]["Id"]),
+                Nombre = EncriptacionService.Decrypt_AES(tabla.Tables[0].Rows[0]["Nombre"].ToString()),
+                Apellido = EncriptacionService.Decrypt_AES(tabla.Tables[0].Rows[0]["Apellido"].ToString()),
+                Email = EncriptacionService.Decrypt_AES(tabla.Tables[0].Rows[0]["Email"].ToString()),
                 Puesto = (Puesto)tabla.Tables[0].Rows[0]["IdPuesto"],
                 Area = (Area)tabla.Tables[0].Rows[0]["IdArea"],
                 FechaNacimiento = (DateTime)tabla.Tables[0].Rows[0]["FechaNacimiento"],

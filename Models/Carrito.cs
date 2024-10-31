@@ -10,5 +10,6 @@
         public int DVH { get; set; }
 
         public int IdProducto => Producto?.Id ?? 0;
+        public decimal Subtotal => Cantidad * Producto.PrecioUnitario.GetValueOrDefault(0);
     }
 }

@@ -48,12 +48,14 @@
     <Compile Include="DAO\BackUpDAO.cs" />
     <Compile Include="DAO\BitacoraDAO.cs" />
     <Compile Include="DAO\CarritoDAO.cs" />
+    <Compile Include="DAO\CompraDAO.cs" />
     <Compile Include="DAO\DigitoVerificadorDAO.cs" />
     <Compile Include="DAO\EmpresaDAO.cs" />
     <Compile Include="DAO\ProductoDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Interfaces\IBitacoraDAO.cs" />
     <Compile Include="Interfaces\ICarritoDAO.cs" />
+    <Compile Include="Interfaces\ICompraDAO.cs" />
     <Compile Include="Interfaces\IDigitoVerificadorDAO.cs" />
     <Compile Include="Interfaces\IEmpresaDAO.cs" />
     <Compile Include="Interfaces\IProductoDAO.cs" />

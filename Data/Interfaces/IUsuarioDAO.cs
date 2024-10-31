@@ -13,6 +13,7 @@ namespace Data.Interfaces
         DataSet ListarUsuarios();
         void EstadoBloqueoUsuario(string email);
         void DesbloquearUsuario(string email);
+        DataSet ObtenerUsuarioPorId(int id);
         DataSet ObtenerUsuarioPorEmail(string email);
         bool ActualizarContraseña(string email, string contraseña);
     }

@@ -4,31 +4,33 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.DAO
 {
-    public class CarritoDAO : ICarritoDAO
+    public class CompraDAO : ICompraDAO
     {
         private readonly Acceso _acceso;
 
-        public CarritoDAO()
+        public CompraDAO()
         {
             _acceso = Acceso.GetInstance;
         }
 
-        public void EliminarProducto(int idCarrito)
+        public void GuardarDetalleCompra(DetalleCompra detalleCompra)
         {
             try
             {
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
-                    { "@IdCarrito", idCarrito }
+                    { "@IdCompra", detalleCompra.IdCompra },
+                    { "@IdProducto", detalleCompra.IdProducto },
+                    { "@NombreProducto", detalleCompra.NombreProducto },
+                    { "@Cantidad", detalleCompra.Cantidad },
+                    { "@PrecioUnitario", detalleCompra.PrecioUnitario },
+                    { "@Subtotal", detalleCompra.Subtotal }
                 };
 
-                _acceso.ExecuteStoredProcedureReader("sp_d_productoCarrito", parameters);
+                _acceso.ExecuteStoredProcedureReader("sp_i_detalleCompra", parameters);
             }
             catch (Exception ex)
             {
@@ -36,18 +38,16 @@ namespace Data.DAO
             }
         }
 
-        public void InsertarCarrito(int idProducto, int idUsuario, int? cantidad)
+        public DataSet ObtenerCompras(int idCompra)
         {
             try
             {
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
-                    { "@IdProducto", idProducto },
-                    { "@IdUsuario", idUsuario },
-                    { "@Cantidad", cantidad },
+                    { "@Id", idCompra }
                 };
 
-                _acceso.ExecuteStoredProcedureReader("sp_i_carrito", parameters);
+                return _acceso.ExecuteStoredProcedureReader("sp_s_compraId", parameters);
             }
             catch (Exception ex)
             {
@@ -55,16 +55,16 @@ namespace Data.DAO
             }
         }
 
-        public void LimpiarCarrito(int idUsuario)
+        public DataSet ObtenerDetalleCompra(int idCompra)
         {
             try
             {
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
-                    { "@IdUsuario", idUsuario }
+                    { "@IdCompra", idCompra }
                 };
 
-                _acceso.ExecuteStoredProcedureReader("sp_d_carrito", parameters);
+                return _acceso.ExecuteStoredProcedureReader("sp_s_detalleCompraIdCompra", parameters);
             }
             catch (Exception ex)
             {
@@ -72,16 +72,20 @@ namespace Data.DAO
             }
         }
 
-        public DataSet ObtenerCarrito(int idUsuario)
+        public int RealizarCompra(Compra compra)
         {
             try
             {
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
-                    { "@IdUsuario", idUsuario }
+                    { "@IdUsuario", compra.IdUsuario },
+                    { "@FechaPago", compra.FechaPago },
+                    { "@Total", compra.Total }
                 };
 
-                return _acceso.ExecuteStoredProcedureReader("sp_s_carrito", parameters);
+                DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_i_compra", parameters);
+
+                return Convert.ToInt32(resultado.Tables[0].Rows[0]["Id"]);
             }
             catch (Exception ex)
             {
