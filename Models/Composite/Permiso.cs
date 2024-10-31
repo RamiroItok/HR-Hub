@@ -10,6 +10,7 @@
         BackUp,
         GestionFamilia,
         GestionFamiliaPatente,
+        GestionPermisosUsuario,
         FalloIntegridad,
         ListarUsuarios,
         RegistroUsuario,

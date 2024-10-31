@@ -24,8 +24,12 @@ namespace Aplication.Interfaces
         Componente ObtenerFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar);
         Componente GetUsuarioArbol(int usuarioId, Componente componenteOriginal, Componente componenteAgregar);
         IList<Componente> ObtenerPermisosNoAsignados(int familiaId);
+        IList<Componente> ObtenerPermisosNoAsignadosPorUsuario(int idUsuario);
+        IList<Componente> ObtenerPermisosAsignadosPorUsuario(int idUsuario);
         IList<Componente> ObtenerPermisosPorFamilia(int familiaId);
         void AsignarPermisoAFamilia(int padreId, int hijoId);
         void QuitarPermisoAFamilia(int padreId, int hijoId);
+        void AsignarPermisoAUsuario(int idUsuario, int idPatente, Usuario userSession);
+        void QuitarPermisoAUsuario(int idUsuario, int idPatente, Usuario userSession);
     }
 }

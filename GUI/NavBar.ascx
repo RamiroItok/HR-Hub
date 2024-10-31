@@ -24,6 +24,7 @@
                     <ul class="dropdown-menu">
                         <li><a id="gestionFamiliaLink" visible="false" runat="server" href="~/GestionFamilia">Gestión de Familia</a></li>
                         <li><a id="gestionFamiliaPatenteLink" visible="false" runat="server" href="~/GestionFamiliaPatente">Gestión de Familia Patente</a></li>
+                        <li><a id="gestionPermisosUsuarioLink" visible="false" runat="server" href="~/GestionPermisosUsuario">Gestion de Permisos de Usuario</a></li>
                         <li><a id="permisosUsuarioLink" visible="false" runat="server" href="~/PermisosUsuario">Permisos Usuarios</a></li>
                         <li><a id="backUpLink" visible="false" runat="server" href="~/Backup">Backup</a></li>
                         <li><a id="restoreLink" visible="false" runat="server" href="~/Restore">Restore</a></li>

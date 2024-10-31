@@ -11,11 +11,13 @@ namespace Aplication.Services
     {
         private readonly Data.Composite.PermisoDAO _permisoDAO;
         private readonly IDigitoVerificadorService _digitoVerificadorService;
+        private readonly IBitacoraService _bitacoraService;
 
-        public PermisoService(IDigitoVerificadorService digitoVerificadorService)
+        public PermisoService(IDigitoVerificadorService digitoVerificadorService, IBitacoraService bitacoraService)
         { 
             _permisoDAO = new Data.Composite.PermisoDAO();
             _digitoVerificadorService = digitoVerificadorService;
+            _bitacoraService = bitacoraService;
         }
 
         #region Metodos
@@ -40,7 +42,26 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.AsignarPermisoAFamilia(padreId, hijoId);
+                //_bitacoraService.AltaBitacora();
                 _digitoVerificadorService.CalcularDVTabla("FamiliaPatente");
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void AsignarPermisoAUsuario(int idUsuario, int idPatente, Usuario userSession)
+        {
+            try
+            {
+                _permisoDAO.AsignarPermisoAUsuario(idUsuario, idPatente);
+                //_bitacoraService.AltaBitacora();
+                _digitoVerificadorService.CalcularDVTabla("UsuarioPermiso");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
@@ -58,6 +79,24 @@ namespace Aplication.Services
             {
                 _permisoDAO.QuitarPermisoAFamilia(padreId, hijoId);
                 _digitoVerificadorService.CalcularDVTabla("FamiliaPatente");
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void QuitarPermisoAUsuario(int idUsuario, int idPatente, Usuario userSession)
+        {
+            try
+            {
+                _permisoDAO.QuitarPermisoAUsuario(idUsuario, idPatente);
+                //_bitacoraService.AltaBitacora();
+                _digitoVerificadorService.CalcularDVTabla("UsuarioPermiso");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
@@ -227,6 +266,40 @@ namespace Aplication.Services
             {
                 IList<Componente> permisosNoAsignados = _permisoDAO.ObtenerPermisosNoAsignados(familiaId);
                 return permisosNoAsignados;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public IList<Componente> ObtenerPermisosNoAsignadosPorUsuario(int idUsuario)
+        {
+            try
+            {
+                IList<Componente> permisosNoAsignados = _permisoDAO.ObtenerPermisosNoAsignadosPorUsuario(idUsuario);
+                return permisosNoAsignados;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public IList<Componente> ObtenerPermisosAsignadosPorUsuario(int idUsuario)
+        {
+            try
+            {
+                IList<Componente> permisosAsignados = _permisoDAO.ObtenerPermisosAsignadosPorUsuario(idUsuario);
+                return permisosAsignados;
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
