@@ -38,9 +38,38 @@ namespace Data.DAO
             }
         }
 
-        public DataSet ObtenerCompras(int idUsuario)
+        public DataSet ObtenerCompras(int idCompra)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@Id", idCompra }
+                };
+
+                return _acceso.ExecuteStoredProcedureReader("sp_s_compraId", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataSet ObtenerDetalleCompra(int idCompra)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@IdCompra", idCompra }
+                };
+
+                return _acceso.ExecuteStoredProcedureReader("sp_s_detalleCompraIdCompra", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public int RealizarCompra(Compra compra)

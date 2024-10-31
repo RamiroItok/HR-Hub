@@ -28,7 +28,7 @@ namespace Data.DAO
                     { "@IdCarrito", idCarrito }
                 };
 
-                _acceso.ExecuteStoredProcedureReader("sp_d_carrito", parameters);
+                _acceso.ExecuteStoredProcedureReader("sp_d_productoCarrito", parameters);
             }
             catch (Exception ex)
             {
@@ -55,9 +55,21 @@ namespace Data.DAO
             }
         }
 
-        public void LimpiarCarrito(int idCarrito)
+        public void LimpiarCarrito(int idUsuario)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@IdUsuario", idUsuario }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_d_carrito", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public DataSet ObtenerCarrito(int idUsuario)

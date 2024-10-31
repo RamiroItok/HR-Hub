@@ -7,6 +7,7 @@ namespace Data.Interfaces
     {
         int RealizarCompra(Compra compra);
         DataSet ObtenerCompras(int idUsuario);
+        DataSet ObtenerDetalleCompra(int idCompra);
         void GuardarDetalleCompra(DetalleCompra detalleCompra);
     }
 }

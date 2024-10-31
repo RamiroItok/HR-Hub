@@ -84,6 +84,17 @@ namespace GUI
                     _compraService.GuardarDetalleCompra(detalleCompra);
                 }
 
+                _carritoService.LimpiarCarrito(usuario, false);
+
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showPaymentSuccess",
+                    "Swal.fire({ " +
+                    "  icon: 'success', " +
+                    "  title: 'Pago realizado', " +
+                    "  text: '¡El pago se ha realizado correctamente!', " +
+                    "  confirmButtonText: 'Aceptar', " +
+                    "  customClass: { popup: 'animated fadeInDown' } " +
+                    "}).then((result) => { if (result.isConfirmed) { window.location.href = '/Carrito.aspx'; }});",
+                    true);
             }
             catch (Exception ex)
             {

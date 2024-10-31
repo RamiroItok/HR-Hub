@@ -6,7 +6,8 @@ namespace Aplication.Interfaces
     public interface ICompraService
     {
         int RealizarCompra(Compra compra, Usuario userSession);
-        List<Compra> ObtenerCompras(int idUsuario);
+        Compra ObtenerCompra(int idCompra);
+        List<DetalleCompra> ObtenerDetalleCompra(int idCompra);
         void GuardarDetalleCompra(DetalleCompra detalleCompra);
     }
 }

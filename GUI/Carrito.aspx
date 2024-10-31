@@ -22,53 +22,62 @@
         <div class="containerCarrito mt-4">
             <h2>Carrito de Compras</h2>
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered" 
-                            DataKeyNames="IdProducto" OnRowCommand="gvCarrito_RowCommand" OnRowDataBound="gvCarrito_RowDataBound">
-                            <Columns>
-                                <asp:TemplateField HeaderText="Imagen">
-                                    <ItemTemplate>
-                                        <asp:Image ID="imgProducto" runat="server" Width="50px" Height="50px" 
-                                                   ImageUrl='<%# ConvertirImagenABase64((byte[])Eval("Producto.Imagen")) %>' 
-                                                   AlternateText="Imagen del Producto" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                
-                                <asp:BoundField DataField="Producto.Nombre" HeaderText="Producto" />
-                                <asp:BoundField DataField="Producto.PrecioUnitario" HeaderText="Precio Unitario" DataFormatString="{0:C}" />
-                
-                                <asp:TemplateField HeaderText="Cantidad">
-                                    <ItemTemplate>
-                                        <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Eval("Cantidad") %>' CssClass="form-control"
-                                                     OnTextChanged="txtCantidad_TextChanged" AutoPostBack="true" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                
-                                <asp:TemplateField HeaderText="Subtotal">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblSubtotal" runat="server" Text="" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="btnEliminar" runat="server" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>'
-                                                        CssClass="btn btn-danger">
-                                            <i class="fas fa-trash-alt"></i> Eliminar
-                                        </asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                
-                        <div class="text-right mt-3">
-                            <h4>Total del Carrito: <asp:Label ID="lblTotalCarrito" runat="server" Text="0.00" CssClass="font-weight-bold"></asp:Label></h4>
-                        </div>
-                            <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" CssClass="btn btn-finalizar-compra mt-3" OnClick="btnFinalizarCompra_Click" />
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+        
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+        
+                    <asp:Panel ID="pnlCarritoVacio" runat="server" Visible="false" CssClass="empty-cart-message">
+                        <h4>¡No hay productos en el carrito!</h4>
+                    </asp:Panel>
+        
+                    <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                                  DataKeyNames="IdProducto" OnRowCommand="gvCarrito_RowCommand" OnRowDataBound="gvCarrito_RowDataBound">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Imagen">
+                                <ItemTemplate>
+                                    <asp:Image ID="imgProducto" runat="server" Width="50px" Height="50px"
+                                               ImageUrl='<%# ConvertirImagenABase64((byte[])Eval("Producto.Imagen")) %>'
+                                               AlternateText="Imagen del Producto" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+        
+                            <asp:BoundField DataField="Producto.Nombre" HeaderText="Producto" />
+                            <asp:BoundField DataField="Producto.PrecioUnitario" HeaderText="Precio Unitario" DataFormatString="{0:C}" />
+        
+                            <asp:TemplateField HeaderText="Cantidad">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Eval("Cantidad") %>' CssClass="form-control"
+                                                 OnTextChanged="txtCantidad_TextChanged" AutoPostBack="true" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+        
+                            <asp:TemplateField HeaderText="Subtotal">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblSubtotal" runat="server" Text="" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+        
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnEliminar" runat="server" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>'
+                                                    CssClass="btn btn-danger">
+                                        <i class="fas fa-trash-alt"></i> Eliminar
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+        
+                      <div class="cart-footer">
+                          <asp:Button ID="btnLimpiarCarrito" runat="server" Text="Limpiar Carrito" CssClass="btn btn-warning" OnClick="btnLimpiarCarrito_Click" />
+                          
+                          <div class="total-container">
+                              <h4>Total del Carrito: <asp:Label ID="lblTotalCarrito" runat="server" Text="0.00" CssClass="font-weight-bold"></asp:Label></h4>
+                              <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" CssClass="btn btn-finalizar-compra mt-3" OnClick="btnFinalizarCompra_Click" />
+                          </div>
+                      </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
     </form>
 
@@ -94,6 +103,17 @@
             html: '<span style="font-size: 1.2em;">El producto ha sido eliminado del carrito.</span>',
             showConfirmButton: true,
             confirmButtonText: '<span style="font-size: 1.1em;">OK</span>'
+        });
+    }
+
+    function mostrarNotificacionCarritoVacio() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Carrito vaciado',
+            text: 'Todos los productos han sido eliminados del carrito.',
+            showConfirmButton: true,
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#4CAF50'
         });
     }
 </script>

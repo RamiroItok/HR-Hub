@@ -28,9 +28,26 @@ namespace GUI
         {
             var userSession = Session["Usuario"] as Usuario;
             var carrito = _carritoService.ObtenerCarrito(userSession.Id);
-            gvCarrito.DataSource = carrito;
-            gvCarrito.DataBind();
-            CalcularTotalCarrito();
+
+            if (carrito == null || carrito.Count == 0)
+            {
+                pnlCarritoVacio.Visible = true;
+                gvCarrito.Visible = false;
+                lblTotalCarrito.Text = "$0.00";
+                btnLimpiarCarrito.Visible = false;
+                btnFinalizarCompra.Visible = false;
+            }
+            else
+            {
+                pnlCarritoVacio.Visible = false;
+                gvCarrito.Visible = true;
+                btnLimpiarCarrito.Visible = true;
+                btnFinalizarCompra.Visible = true;
+
+                gvCarrito.DataSource = carrito;
+                gvCarrito.DataBind();
+                CalcularTotalCarrito();
+            }
         }
 
         protected void txtCantidad_TextChanged(object sender, EventArgs e)
@@ -101,6 +118,23 @@ namespace GUI
         {
             var userSession = Session["Usuario"] as Usuario;
             Response.Redirect($"Compra.aspx?carritoId={userSession.Id}");
+        }
+
+        protected void btnLimpiarCarrito_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var userSession = Session["Usuario"] as Usuario;
+                _carritoService.LimpiarCarrito(userSession, true);
+
+                CargarCarrito();
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "carritoVaciado", "mostrarNotificacionCarritoVacio();", true);
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorLimpiarCarrito", $"alert('Error al limpiar el carrito: {ex.Message}');", true);
+            }
         }
     }
 }

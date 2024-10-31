@@ -119,3 +119,58 @@ h2 {
         transform: translateY(1px);
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     }
+
+.btn-warning {
+    background-color: #f0ad4e;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn-warning:hover {
+        background-color: #ec971f;
+        transform: translateY(-3px);
+    }
+
+.btn-finalizar-compra {
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 12px;
+    border-radius: 25px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn-finalizar-compra:hover {
+        background-color: #388E3C;
+        transform: translateY(-3px);
+    }
+
+/* Total label */
+.total-label {
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.empty-cart-message {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #999;
+    padding: 20px;
+    border: 2px dashed #ddd;
+    margin-top: 20px;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}

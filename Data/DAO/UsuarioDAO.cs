@@ -272,6 +272,30 @@ namespace Data.DAO
             }
         }
 
+        public DataSet ObtenerUsuarioPorId(int id)
+        {
+            try
+            {
+                Dictionary<string, object> parametros = new Dictionary<string, object>
+                {
+                    { "@Id", id }
+                };
+
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_usuarioPorId", parametros);
+
+                if (resultado.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public bool ActualizarContraseña(string email, string contraseña)
         {
             try
