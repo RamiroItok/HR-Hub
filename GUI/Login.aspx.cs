@@ -25,18 +25,26 @@ namespace GUI
         {
             try
             {
-                var usuario = _usuarioService.ObtenerUsuarioPorEmail(txtEmail.Text);
+                Page.Validate("PasswordGroup");
 
-                lblMensaje.Text = _usuarioService.ValidarUsuario(usuario, txtEmail.Text, txtPassword.Text);
-
-                if (lblMensaje.Text != "")
-                    lblMensaje.Visible = true;
-                else
+                if (IsValid)
                 {
-                    Session["Usuario"] = usuario;
-                    Response.Redirect("MenuPrincipal.aspx", false);
-                    Context.ApplicationInstance.CompleteRequest();
+                    var usuario = _usuarioService.ObtenerUsuarioPorEmail(txtEmail.Text);
+                    string password = PasswordValidator.Password;
+
+                    lblMensaje.Text = _usuarioService.ValidarUsuario(usuario, txtEmail.Text, password);
+
+                    if (lblMensaje.Text != "")
+                        lblMensaje.Visible = true;
+                    else
+                    {
+                        Session["Usuario"] = usuario;
+                        Response.Redirect("MenuPrincipal.aspx", false);
+                        Context.ApplicationInstance.CompleteRequest();
+                    }
                 }
+
+                
             }
             catch (Exception ex)
             {
