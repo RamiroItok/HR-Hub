@@ -518,6 +518,16 @@ namespace Data.Composite
             }
         }
 
+        public DataSet ObtenerFamiliaUsuario(int idUsuario)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@IdUsuario", idUsuario }
+            };
+
+            return _acceso.ExecuteStoredProcedureReader("sp_s_familiaUsuario", parameters);
+        }
+
         private void LlenarComponenteFamilia(Componente componente, Componente componenteOriginal, Componente componenteRaiz)
         {
             Componente familia = new Familia();

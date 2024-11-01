@@ -4,6 +4,7 @@ using Models.Composite;
 using Models.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Aplication.Services
 {
@@ -394,6 +395,23 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.GetComponenteFamilia(familia);
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataTable ObtenerFamiliaUsuario(int idUsuario)
+        {
+            try
+            {
+                var resultado = _permisoDAO.ObtenerFamiliaUsuario(idUsuario);
+                return resultado.Tables[0];
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {

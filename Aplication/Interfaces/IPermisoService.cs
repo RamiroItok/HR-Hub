@@ -3,6 +3,7 @@ using Models.Composite;
 using Models.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Aplication.Interfaces
 {
@@ -31,5 +32,6 @@ namespace Aplication.Interfaces
         void QuitarPermisoAFamilia(int padreId, int hijoId);
         void AsignarPermisoAUsuario(int idUsuario, int idPatente, Usuario userSession);
         void QuitarPermisoAUsuario(int idUsuario, int idPatente, Usuario userSession);
+        DataTable ObtenerFamiliaUsuario(int idUsuario);
     }
 }
