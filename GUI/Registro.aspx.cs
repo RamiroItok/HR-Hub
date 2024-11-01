@@ -38,48 +38,65 @@ namespace GUI
         {
             try
             {
-                Usuario usuario = new Usuario()
+                if (CamposLlenos())
                 {
-                    Nombre = txtNombre.Text,
-                    Apellido = txtApellido.Text,
-                    Email = txtEmail.Text,
-                    Contraseña = hiddenContraseña.Value,
-                    Area = (Area)Enum.Parse(typeof(Area), DropDownArea.Text),
-                    FechaNacimiento = DateTime.Parse(txtFechaNac.Value),
-                    Genero = drpGenero.SelectedItem.Text,
-                    FechaIngreso = DateTime.Now,
-                    Direccion = txtDireccion.Text,
-                    NumeroDireccion = int.Parse(txtNumeroDireccion.Text),
-                    Departamento = txtDepartamento.Text,
-                    CodigoPostal = txtCodigoPostal.Text,
-                    Ciudad = txtCiudad.Text,
-                    Provincia = txtProvincia.Text,
-                    Pais = txtPais.Text
-                };
+                    Usuario usuario = new Usuario()
+                    {
+                        Nombre = txtNombre.Text,
+                        Apellido = txtApellido.Text,
+                        Email = txtEmail.Text,
+                        Contraseña = hiddenContraseña.Value,
+                        Area = (Area)Enum.Parse(typeof(Area), DropDownArea.Text),
+                        FechaNacimiento = DateTime.Parse(txtFechaNac.Value),
+                        Genero = drpGenero.SelectedItem.Text,
+                        FechaIngreso = DateTime.Now,
 
-                // TODO: --> VALIDAR CAMPOS
+                        Direccion = ValidarRegistroUsuarioDatosControl.Direccion,
+                        NumeroDireccion = ValidarRegistroUsuarioDatosControl.NumeroDireccion,
+                        Departamento = ValidarRegistroUsuarioDatosControl.Departamento,
+                        CodigoPostal = ValidarRegistroUsuarioDatosControl.CodigoPostal,
+                        Ciudad = ValidarRegistroUsuarioDatosControl.Ciudad,
+                        Provincia = ValidarRegistroUsuarioDatosControl.Provincia,
+                        Pais = ValidarRegistroUsuarioDatosControl.Pais
+                    };
 
-                var esContraseñaValida = _usuarioService.ValidarFormatoContraseña(usuario.Contraseña);
-                //var esUsuarioValido = _usuarioService.ObtenerUsuarioPorEmail(usuario.Email);
-                if (esContraseñaValida) //&& esUsuarioValido == null)
-                {
-                    var userSession = Session["Usuario"] as Usuario;
-                    var id = _usuarioService.RegistrarUsuario(usuario, userSession);
-                    _usuarioService.EnviarMail(usuario.Email, usuario.Contraseña, AsuntoMail.GeneracionContraseña);
-                    lblMensaje.Visible = true;
-                    lblMensaje.Text = "Se ha registrado el usuario correctamente";
-                    Limpiar();
+                    var esContraseñaValida = _usuarioService.ValidarFormatoContraseña(usuario.Contraseña);
+                    if (esContraseñaValida)
+                    {
+                        var userSession = Session["Usuario"] as Usuario;
+                        var id = _usuarioService.RegistrarUsuario(usuario, userSession);
+                        _usuarioService.EnviarMail(usuario.Email, usuario.Contraseña, AsuntoMail.GeneracionContraseña);
+                        lblMensaje.Visible = true;
+                        lblMensaje.Text = "Se ha registrado el usuario correctamente";
+                        Limpiar();
+                    }
+                    else
+                    {
+                        throw new Exception("La contraseña debe tener al menos una mayúscula, una minúscula, un carácter especial, un número, y debe ser de 8 caracteres en total.");
+                    }
                 }
                 else
                 {
-                    lblMensaje.Text = "La contraseña debe tener al menos una mayuscula, una minuscula, un caracter especial, un numero, y debe ser de 8 caracteres en total.";
+                    throw new Exception("Hay campos sin completar");
                 }
-                
             }
             catch (Exception ex)
             {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
                 lblMensaje.Text = ex.Message;
             }
+        }
+
+        private bool CamposLlenos()
+        {
+            if (string.IsNullOrWhiteSpace(txtApellido.Text) || string.IsNullOrWhiteSpace(hiddenContraseña.Value) || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtFechaNac.Value) || 
+                string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Pais) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Departamento) || 
+                string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Ciudad) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.CodigoPostal) || 
+                string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Direccion) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.NumeroDireccion.ToString()))
+                return false;
+
+            return true;
         }
 
         private void Limpiar()
@@ -92,13 +109,8 @@ namespace GUI
             DropDownArea.SelectedIndex = 0;
             drpGenero.SelectedIndex = 0;
             hiddenContraseña.Value = String.Empty;
-            txtDireccion.Text = String.Empty;
-            txtNumeroDireccion.Text = String.Empty;
-            txtDepartamento.Text = String.Empty;
-            txtCodigoPostal.Text = String.Empty;
-            txtCiudad.Text = String.Empty;
-            txtProvincia.Text = String.Empty;
-            txtPais.Text = String.Empty;
+
+            ValidarRegistroUsuarioDatosControl.Limpiar();
         }
 
         private void CargarAreas()

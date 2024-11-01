@@ -25,9 +25,7 @@ namespace GUI
         {
             try
             {
-                Page.Validate("PasswordGroup");
-
-                if (IsValid)
+                if (PasswordValidator.IsValid)
                 {
                     var usuario = _usuarioService.ObtenerUsuarioPorEmail(txtEmail.Text);
                     string password = PasswordValidator.Password;

@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Registro" Language="C#" AutoEventWireup="true" CodeBehind="Registro.aspx.cs" Inherits="GUI.Registro" %>
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
+<%@ Register Src="~/Controls/ValidarRegistroUsuarioDatos.ascx" TagPrefix="uc" TagName="ValidarRegistroUsuarioDatos" %>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -75,40 +77,9 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Label ID="lblDireccion" runat="server" Text="Direccion:" AssociatedControlID="txtDireccion" />
-                    <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" />
+                   <uc:ValidarRegistroUsuarioDatos runat="server" ID="ValidarRegistroUsuarioDatosControl" />
                 </div>
 
-                <div class="form-group">
-                    <asp:Label ID="lblNumeroDireccion" runat="server" Text="Numero:" AssociatedControlID="txtNumeroDireccion" />
-                    <asp:TextBox ID="txtNumeroDireccion" runat="server" CssClass="form-control" />
-                </div>
-
-                <div class="form-group">
-                    <asp:Label ID="lblDepartamento" runat="server" Text="Departamento:" AssociatedControlID="txtDepartamento" />
-                    <asp:TextBox ID="txtDepartamento" runat="server" CssClass="form-control" />
-                </div>
-
-                <div class="form-group">
-                    <asp:Label ID="lblCodigoPostal" runat="server" Text="Codigo Postal:" AssociatedControlID="txtCodigoPostal" />
-                    <asp:TextBox ID="txtCodigoPostal" runat="server" CssClass="form-control" />
-                </div>
-
-                <div class="form-group">
-                    <asp:Label ID="lblCiudad" runat="server" Text="Ciudad:" AssociatedControlID="txtCiudad" />
-                    <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" />
-                </div>
-
-                <div class="form-group">
-                    <asp:Label ID="lblProvincia" runat="server" Text="Provincia:" AssociatedControlID="txtProvincia" />
-                    <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control" />
-                </div>
-
-                <div class="form-group">
-                    <asp:Label ID="lblPais" runat="server" Text="Pais:" AssociatedControlID="txtPais" />
-                    <asp:TextBox ID="txtPais" runat="server" CssClass="form-control" />
-                </div>
-            
                 <div class="button-group">
                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrar_Click" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-primary" OnClick="btnCancelar_Click" />

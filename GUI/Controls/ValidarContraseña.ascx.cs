@@ -19,7 +19,7 @@ namespace GUI.Controls
         {
             string password = args.Value;
 
-            var regex = new Regex(@"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
+            var regex = new Regex(@"^(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*?&#\-_+])[A-Za-z\d.@$!%*?&#\-_+]{8,}$");
             
             if (regex.IsMatch(password))
             {
@@ -33,10 +33,25 @@ namespace GUI.Controls
             }
         }
 
+        public bool IsValid
+        {
+            get
+            {
+                var args = new ServerValidateEventArgs(Password, true);
+                ValidatePassword(this, args);
+                return args.IsValid;
+            }
+        }
+
         public string Password
         {
             get { return txtPassword.Text; }
             set { txtPassword.Text = value; }
+        }
+
+        public void LimpiarPassword()
+        {
+            Password = string.Empty;
         }
     }
 }
