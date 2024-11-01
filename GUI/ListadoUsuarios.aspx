@@ -43,6 +43,7 @@
                             <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                             <asp:BoundField DataField="Email" HeaderText="Email" />
                             <asp:BoundField DataField="FechaIngreso" HeaderText="Fecha de Ingreso" />
+                            <asp:BoundField DataField="Puesto" HeaderText="Puesto" />
                             <asp:BoundField DataField="Area" HeaderText="Área" />
                             <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha de Nacimiento" />
                             <asp:BoundField DataField="Genero" HeaderText="Género" />
@@ -90,54 +91,62 @@
 
                 <div class="form-row">
                     <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="DropDownPuesto" Text="Puesto:" CssClass="form-label"></asp:Label>
+                        <asp:DropDownList runat="server" ID="DropDownPuesto" CssClass="form-control"></asp:DropDownList>
+                        <asp:HiddenField ID="hiddenDropDownPuesto" runat="server" />
+                    </div>
+                    <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="DropDownArea" Text="Área:" CssClass="form-label"></asp:Label>
                         <asp:DropDownList runat="server" ID="DropDownArea" CssClass="form-control"></asp:DropDownList>
                     </div>
+                </div>
+
+                <div class="form-row">
                     <div class="form-group">
                         <label for="txtFechaNacimiento">Fecha de Nacimiento:</label>
                         <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="form-control" ReadOnly="true" />
                         <asp:HiddenField ID="hiddenFechaNacimiento" runat="server" />
                     </div>
-                </div>
-
-                <div class="form-row">
                     <div class="form-group">
                         <label for="txtGenero">Género:</label>
                         <asp:TextBox ID="txtGenero" runat="server" CssClass="form-control" />
                     </div>
+                </div>
+
+                <div class="form-row">
                     <div class="form-group">
                         <label for="txtDireccion">Dirección:</label>
                         <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" />
                     </div>
-                </div>
-
-                <div class="form-row">
                     <div class="form-group">
                         <label for="txtNumeroDireccion">Número de Dirección:</label>
                         <asp:TextBox ID="txtNumeroDireccion" runat="server" CssClass="form-control" />
                     </div>
+                </div>
+
+                <div class="form-row">
                     <div class="form-group">
                         <label for="txtDepartamento">Departamento:</label>
                         <asp:TextBox ID="txtDepartamento" runat="server" CssClass="form-control" />
                     </div>
-                </div>
-
-                <div class="form-row">
                     <div class="form-group">
                         <label for="txtCodigoPostal">Código Postal:</label>
                         <asp:TextBox ID="txtCodigoPostal" runat="server" CssClass="form-control" />
                     </div>
-                    <div class="form-group">
-                        <label for="txtCiudad">Ciudad:</label>
-                        <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" />
-                    </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
+                        <label for="txtCiudad">Ciudad:</label>
+                        <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" />
+                    </div>
+                    <div class="form-group">
                         <label for="txtProvincia">Provincia:</label>
                         <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control" />
                     </div>
+                </div>
+
+                <div class="form-row">
                     <div class="form-group">
                         <label for="txtPais">País:</label>
                         <asp:TextBox ID="txtPais" runat="server" CssClass="form-control" />
@@ -153,7 +162,7 @@
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function () {
             var rows = document.querySelectorAll("#<%= dataGridUsuarios.ClientID %> tbody tr");
-    
+
             rows.forEach(function (row) {
                 row.addEventListener("click", function () {
                     rows.forEach(function (r) {
@@ -171,16 +180,17 @@
                     var apellido = row.cells[2].innerText;
                     var email = row.cells[3].innerText;
                     var fechaIngreso = row.cells[4].innerText;
-                    var area = row.cells[5].innerText;
-                    var fechaNacimiento = row.cells[6].innerText;
-                    var genero = row.cells[7].innerText;
-                    var direccion = row.cells[8].innerText;
-                    var numeroDireccion = row.cells[9].innerText;
-                    var departamento = row.cells[10].innerText;
-                    var codigoPostal = row.cells[11].innerText;
-                    var ciudad = row.cells[12].innerText;
-                    var provincia = row.cells[13].innerText;
-                    var pais = row.cells[14].innerText;
+                    var puesto = row.cells[5].innerText;
+                    var area = row.cells[6].innerText;
+                    var fechaNacimiento = row.cells[7].innerText;
+                    var genero = row.cells[8].innerText;
+                    var direccion = row.cells[9].innerText;
+                    var numeroDireccion = row.cells[10].innerText;
+                    var departamento = row.cells[11].innerText;
+                    var codigoPostal = row.cells[12].innerText;
+                    var ciudad = row.cells[13].innerText;
+                    var provincia = row.cells[14].innerText;
+                    var pais = row.cells[15].innerText;
 
                     document.getElementById("<%= txtNombre.ClientID %>").value = nombre;
                     document.getElementById("<%= txtApellido.ClientID %>").value = apellido;
@@ -195,13 +205,24 @@
                     document.getElementById("<%= txtCiudad.ClientID %>").value = ciudad;
                     document.getElementById("<%= txtProvincia.ClientID %>").value = provincia;
                     document.getElementById("<%= txtPais.ClientID %>").value = pais;
-
+    
                     document.getElementById("<%= hiddenNombre.ClientID %>").value = nombre;
                     document.getElementById("<%= hiddenApellido.ClientID %>").value = apellido;
                     document.getElementById("<%= hiddenEmail.ClientID %>").value = email;
                     document.getElementById("<%= hiddenFechaIngreso.ClientID %>").value = fechaIngreso;
                     document.getElementById("<%= hiddenFechaNacimiento.ClientID %>").value = fechaNacimiento;
-        
+
+                    var dropDownPuesto = document.getElementById("<%= DropDownPuesto.ClientID %>");
+                    var hiddenField = document.getElementById("<%= hiddenDropDownPuesto.ClientID %>");
+
+                    for (var i = 0; i < dropDownPuesto.options.length; i++) {
+                        if (dropDownPuesto.options[i].text === puesto) {
+                            dropDownPuesto.selectedIndex = i;
+                            hiddenField.value = dropDownPuesto.options[i].value;
+                            break;
+                        }
+                    }
+    
                     var dropDownArea = document.getElementById("<%= DropDownArea.ClientID %>");
                     for (var i = 0; i < dropDownArea.options.length; i++) {
                         if (dropDownArea.options[i].text === area) {

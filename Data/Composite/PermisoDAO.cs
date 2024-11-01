@@ -90,14 +90,64 @@ namespace Data.Composite
             }
         }
 
+        public void ActualizarFamiliaUsuario(Usuario usuario, int puestoAnterior)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@IdUsuario", usuario.Id },
+                    { "@PuestoAnterior", puestoAnterior }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_d_usuarioPermisoActualizacion", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar permisos anteriores.", ex);
+            }
+        }
+
+        public void InsertarFamiliaUsuario(Usuario usuario)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@IdPuesto", (int)usuario.Puesto }
+                };
+
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_familiaPatente_porPuesto", parameters);
+                DataTable dt = resultado.Tables[0];
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow rows in dt.Rows)
+                    {
+                        Dictionary<string, object> parametros = new Dictionary<string, object>
+                        {
+                            { "@IdPermiso", int.Parse(rows["IdPermiso"].ToString()) },
+                            { "@IdUsuario", usuario.Id}
+                        };
+
+                        _acceso.ExecuteStoredProcedureReader("sp_i_UsuarioPermiso", parametros);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
         public void AsignarPermisoAUsuario(int idUsuario, int idPatente)
         {
             try
             {
                 Dictionary<string, object> parametros = new Dictionary<string, object>
                 {
-                    { "@parUsuarioId", idUsuario },
-                    { "@parPermisoId", idPatente }
+                    { "@IdPermiso", idPatente },
+                    { "@IdUsuario", idUsuario }
                 };
 
                 _acceso.ExecuteStoredProcedureReader("sp_i_UsuarioPermiso", parametros);
@@ -162,8 +212,8 @@ namespace Data.Composite
                     {
                         Dictionary<string, object> parametros = new Dictionary<string, object>
                         {
-                            { "@parUsuarioId", int.Parse(rows["ID"].ToString()) },
-                            { "@parPermisoId", permisoId }
+                            { "@IdPermiso", permisoId },
+                            { "@IdUsuario", int.Parse(rows["ID"].ToString()) }
                         };
 
                         _acceso.ExecuteStoredProcedureReader("sp_i_UsuarioPermiso", parametros);

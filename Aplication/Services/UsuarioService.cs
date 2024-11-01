@@ -78,6 +78,7 @@ namespace Aplication
                 Usuario usuarioReal = new Usuario()
                 {
                     Email = EncriptacionService.Encriptar_AES(usuario.Email),
+                    Puesto = usuario.Puesto,
                     Area = usuario.Area,
                     Genero = usuario.Genero,
                     Direccion = usuario.Direccion,

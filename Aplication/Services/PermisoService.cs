@@ -422,6 +422,25 @@ namespace Aplication.Services
                 throw new Exception(ex.Message);
             }
         }
+
+        public void ActualizarFamiliaUsuario(Usuario usuario, int puestoAnterior)
+        {
+            try
+            {
+                _permisoDAO.ActualizarFamiliaUsuario(usuario, puestoAnterior);
+                _permisoDAO.InsertarFamiliaUsuario(usuario);
+                _digitoVerificadorService.CalcularDVTabla("UsuarioPermiso");
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         #endregion
 
         #region Tool

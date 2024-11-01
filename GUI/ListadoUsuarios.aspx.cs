@@ -13,11 +13,13 @@ namespace GUI
     public partial class ListadoUsuarios : Page
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly IPermisoService _permisoService;
         private static List<Models.Usuario> listaUsuarios = new List<Models.Usuario>();
 
         public ListadoUsuarios()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
+            _permisoService = Global.Container.Resolve<IPermisoService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -27,6 +29,7 @@ namespace GUI
                 listaUsuarios = _usuarioService.ListarUsuarios();
                 CargarUsuarioDefault();
                 CargarAreas();
+                CargarPuestos();
             }
             CargarCampos();
         }
@@ -44,6 +47,7 @@ namespace GUI
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            int puestoAnterior = int.Parse(hiddenDropDownPuesto.Value);
             lblMensajeModificacion.Text = Validar();
             if (!string.IsNullOrEmpty(lblMensajeModificacion.Text))
             {
@@ -59,6 +63,9 @@ namespace GUI
                 var usuario = CompletarUsuario();
                 var userSession = Session["Usuario"] as Usuario;
                 _usuarioService.ModificarUsuario(usuario, userSession);
+
+                _permisoService.ActualizarFamiliaUsuario(usuario, puestoAnterior);
+
                 CargarUsuarioDefault();
                 LimpiarCampos();
             }
@@ -103,6 +110,15 @@ namespace GUI
             LimpiarCampos();
         }
 
+        private void CargarPuestos()
+        {
+            DropDownPuesto.DataSource = _usuarioService.ObtenerPuestos();
+            DropDownPuesto.DataTextField = "Nombre";
+            DropDownPuesto.DataValueField = "Id";
+            DropDownPuesto.DataBind();
+            DropDownPuesto.Items.Insert(0, new ListItem("Seleccione un Puesto", ""));
+        }
+
         private void CargarAreas()
         {
             DropDownArea.DataSource = _usuarioService.ObtenerAreas();
@@ -124,9 +140,12 @@ namespace GUI
 
         private Usuario CompletarUsuario()
         {
+            var thisUsuario = _usuarioService.ObtenerUsuarioPorEmail(hiddenEmail.Value);
             Usuario usuario = new Usuario()
             {
+                Id = thisUsuario.Id,
                 Email = hiddenEmail.Value,
+                Puesto = (Puesto)Enum.Parse(typeof(Puesto), DropDownPuesto.Text),
                 Area = (Area)Enum.Parse(typeof(Area), DropDownArea.Text),
                 Genero = txtGenero.Text,
                 Direccion = txtDireccion.Text,
@@ -164,6 +183,7 @@ namespace GUI
             txtNumeroDireccion.Text = string.Empty;
             txtPais.Text = string.Empty;
             txtProvincia.Text = string.Empty;
+            DropDownPuesto.SelectedIndex = 0;
             DropDownArea.SelectedIndex = 0;
         }
     }

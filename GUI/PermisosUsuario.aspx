@@ -12,7 +12,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Style/NavBar.css" rel="stylesheet" />
-    <link href="/Style/ListarUsuarios.css" rel="stylesheet" />
+    <link href="/Style/PermisosUsuario.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">

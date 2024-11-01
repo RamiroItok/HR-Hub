@@ -59,6 +59,7 @@ namespace Data.DAO
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "@Email", usuario.Email },
+                    { "@IdPuesto", (int)usuario.Puesto },
                     { "@IdArea", (int)usuario.Area },
                     { "@Genero", usuario.Genero },
                     { "@Direccion", usuario.Direccion },
