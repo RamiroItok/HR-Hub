@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Registro" Language="C#" AutoEventWireup="true" CodeBehind="Registro.aspx.cs" Inherits="GUI.Registro" %>
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
+<%@ Register Src="~/Controls/ValidarEmail.ascx" TagPrefix="uc" TagName="ValidarEmail" %>
 <%@ Register Src="~/Controls/ValidarRegistroUsuarioDatos.ascx" TagPrefix="uc" TagName="ValidarRegistroUsuarioDatos" %>
 
 
@@ -28,23 +29,22 @@
             <div class="filter-container">
                 <div class="form-group">
                     <asp:Label ID="lblNombre" runat="server" Text="Nombre:" AssociatedControlID="txtNombre" />
-                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
+                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" Placeholder="Ingrese su nombre"/>
                 </div>
                 
                 <div class="form-group">
                     <asp:Label ID="lblApellido" runat="server" Text="Apellido:" AssociatedControlID="txtApellido" />
-                    <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" />
+                    <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" Placeholder="Ingrese su apellido"/>
                 </div>
             
                 <div class="form-group">
-                    <asp:Label ID="lblEmail" runat="server" Text="Email:" AssociatedControlID="txtEmail" />
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
+                    <uc:ValidarEmail runat="server" ID="ValidarEmail" />
                 </div>
 
                 <div class="form-group">
                     <asp:Label ID="lblContraseña" runat="server" Text="Contraseña:" AssociatedControlID="txtContraseña" />
                     <div class="input-container">
-                        <asp:TextBox ID="txtContraseña" runat="server" CssClass="form-control" ReadOnly="True"/>
+                        <asp:TextBox ID="txtContraseña" runat="server" CssClass="form-control" ReadOnly="True" />
                         <asp:HiddenField ID="hiddenContraseña" runat="server" />
                         <asp:Button ID="btnGenerarPassword" runat="server" Text="Generar contraseña" CssClass="generate-password-button" OnClick="btnGenerarPassword_Click" />
                     </div>
@@ -58,7 +58,7 @@
                 <div class="form-group">
                     <label for="txtFechaNac">Fecha Nacimiento:</label>
                     <div class="input-container">
-                        <input type="text" ID="txtFechaNac" runat="server" CssClass="form-control" />
+                        <input type="text" ID="txtFechaNac" runat="server" CssClass="form-control" Placeholder="Ingrese su fecha de nacimiento"/>
                         
                         <button type="button" class="calendar-button" onclick="openFlatpickr('txtFechaNac')">
                             <i class="fas fa-calendar-alt"></i>
@@ -92,23 +92,31 @@
         </div>
         </div>
     </form>
+<script>
+    var fpFechaNac;
 
-    <script>
-        var fpFechaNac;
+    document.addEventListener("DOMContentLoaded", function () {
+        var today = new Date();
 
-        document.addEventListener("DOMContentLoaded", function () {
-            fpFechaNac = flatpickr("#<%= txtFechaNac.ClientID %>", {
-                enableTime: false,
-                dateFormat: "Y-m-d",
-            });
+        var minAdultAgeDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+        var maxDate18YearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+        fpFechaNac = flatpickr("#<%= txtFechaNac.ClientID %>", {
+            enableTime: false,
+            dateFormat: "Y-m-d",
+            maxDate: maxDate18YearsAgo,
+            minDate: minAdultAgeDate,
         });
+    });
 
-        function openFlatpickr(fieldId) {
-            if (fieldId === 'txtFechaNac') {
-                fpFechaNac.open();
-            }
+    function openFlatpickr(fieldId) {
+        if (fieldId === 'txtFechaNac') {
+            fpFechaNac.open();
         }
-    </script>
+    }
+</script>
+
+
 
     <script src="Scripts/bootstrap.min.js"></script>
 </body>

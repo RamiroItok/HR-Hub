@@ -44,7 +44,7 @@ namespace GUI
                     {
                         Nombre = txtNombre.Text,
                         Apellido = txtApellido.Text,
-                        Email = txtEmail.Text,
+                        Email = ValidarEmail.Email,
                         Contraseña = hiddenContraseña.Value,
                         Area = (Area)Enum.Parse(typeof(Area), DropDownArea.Text),
                         FechaNacimiento = DateTime.Parse(txtFechaNac.Value),
@@ -90,7 +90,7 @@ namespace GUI
 
         private bool CamposLlenos()
         {
-            if (string.IsNullOrWhiteSpace(txtApellido.Text) || string.IsNullOrWhiteSpace(hiddenContraseña.Value) || string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtFechaNac.Value) || 
+            if (string.IsNullOrWhiteSpace(txtApellido.Text) || string.IsNullOrWhiteSpace(hiddenContraseña.Value) || string.IsNullOrWhiteSpace(ValidarEmail.Email) || string.IsNullOrWhiteSpace(txtFechaNac.Value) || 
                 string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Pais) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Departamento) || 
                 string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Ciudad) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.CodigoPostal) || 
                 string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Direccion) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.NumeroDireccion.ToString()))
@@ -103,7 +103,7 @@ namespace GUI
         {
             txtNombre.Text = String.Empty;
             txtApellido.Text = String.Empty;
-            txtEmail.Text = String.Empty;
+            ValidarEmail.Email = String.Empty;
             txtContraseña.Text = String.Empty;
             txtFechaNac.Value = String.Empty;
             DropDownArea.SelectedIndex = 0;

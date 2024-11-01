@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="GUI.Login" %>
+<%@ Register Src="~/Controls/ValidarEmail.ascx" TagPrefix="uc" TagName="ValidarEmail" %>
 <%@ Register Src="~/Controls/ValidarContraseña.ascx" TagName="ValidarContraseña" TagPrefix="uc" %>
 
 <!DOCTYPE html>
@@ -15,8 +16,7 @@
             <h2>Iniciar Sesión</h2>
 
             <asp:Panel runat="server" CssClass="form-group">
-                <asp:Label runat="server" AssociatedControlID="txtEmail" Text="Email:" CssClass="form-label"></asp:Label>
-                <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" Placeholder="Ingrese su email" />
+                <uc:ValidarEmail ID="ValidarEmailControl" runat="server" />
             </asp:Panel>
 
             <asp:Panel runat="server" CssClass="form-group">

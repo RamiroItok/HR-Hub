@@ -25,24 +25,33 @@ namespace GUI
         {
             try
             {
-                if (PasswordValidator.IsValid)
+                if (ValidarEmailControl.EsEmailValido())
                 {
-                    var usuario = _usuarioService.ObtenerUsuarioPorEmail(txtEmail.Text);
-                    string password = PasswordValidator.Password;
+                    if (PasswordValidator.IsValid)
+                    {
+                        var usuario = _usuarioService.ObtenerUsuarioPorEmail(ValidarEmailControl.Email);
+                        string password = PasswordValidator.Password;
 
-                    lblMensaje.Text = _usuarioService.ValidarUsuario(usuario, txtEmail.Text, password);
+                        lblMensaje.Text = _usuarioService.ValidarUsuario(usuario, ValidarEmailControl.Email, password);
 
-                    if (lblMensaje.Text != "")
-                        lblMensaje.Visible = true;
+                        if (lblMensaje.Text != "")
+                            lblMensaje.Visible = true;
+                        else
+                        {
+                            Session["Usuario"] = usuario;
+                            Response.Redirect("MenuPrincipal.aspx", false);
+                            Context.ApplicationInstance.CompleteRequest();
+                        }
+                    }
                     else
                     {
-                        Session["Usuario"] = usuario;
-                        Response.Redirect("MenuPrincipal.aspx", false);
-                        Context.ApplicationInstance.CompleteRequest();
+                        throw new Exception("Contraseña no valida");
                     }
                 }
-
-                
+                else
+                {
+                    throw new Exception("Email no valido");
+                }
             }
             catch (Exception ex)
             {
