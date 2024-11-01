@@ -90,6 +90,74 @@ namespace Data.Composite
             }
         }
 
+        public void ActualizarFamiliaUsuario(Usuario usuario, int puestoAnterior)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@IdUsuario", usuario.Id },
+                    { "@PuestoAnterior", puestoAnterior }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_d_usuarioPermisoActualizacion", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar permisos anteriores.", ex);
+            }
+        }
+
+        public void InsertarFamiliaUsuario(Usuario usuario)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@IdPuesto", (int)usuario.Puesto }
+                };
+
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_familiaPatente_porPuesto", parameters);
+                DataTable dt = resultado.Tables[0];
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow rows in dt.Rows)
+                    {
+                        Dictionary<string, object> parametros = new Dictionary<string, object>
+                        {
+                            { "@IdPermiso", int.Parse(rows["IdPermiso"].ToString()) },
+                            { "@IdUsuario", usuario.Id}
+                        };
+
+                        _acceso.ExecuteStoredProcedureReader("sp_i_UsuarioPermiso", parametros);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public void AsignarPermisoAUsuario(int idUsuario, int idPatente)
+        {
+            try
+            {
+                Dictionary<string, object> parametros = new Dictionary<string, object>
+                {
+                    { "@IdPermiso", idPatente },
+                    { "@IdUsuario", idUsuario }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_i_UsuarioPermiso", parametros);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al asignar el permiso al usuario.", ex);
+            }
+        }
+
         public void QuitarPermisoAFamilia(int padreId, int hijoId)
         {
             try
@@ -105,6 +173,24 @@ namespace Data.Composite
             catch (Exception ex)
             {
                 throw new Exception("Error al quitar el permiso a la familia.", ex);
+            }
+        }
+
+        public void QuitarPermisoAUsuario(int idUsuario, int idPatente)
+        {
+            try
+            {
+                Dictionary<string, object> parametros = new Dictionary<string, object>
+                {
+                    { "@parUsuarioId", idUsuario },
+                    { "@parPermisoId", idPatente }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_d_UsuarioPermiso", parametros);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al quitar el permiso al usuario.", ex);
             }
         }
 
@@ -126,8 +212,8 @@ namespace Data.Composite
                     {
                         Dictionary<string, object> parametros = new Dictionary<string, object>
                         {
-                            { "@parUsuarioId", int.Parse(rows["ID"].ToString()) },
-                            { "@parPermisoId", permisoId }
+                            { "@IdPermiso", permisoId },
+                            { "@IdUsuario", int.Parse(rows["ID"].ToString()) }
                         };
 
                         _acceso.ExecuteStoredProcedureReader("sp_i_UsuarioPermiso", parametros);
@@ -482,6 +568,16 @@ namespace Data.Composite
             }
         }
 
+        public DataSet ObtenerFamiliaUsuario(int idUsuario)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@IdUsuario", idUsuario }
+            };
+
+            return _acceso.ExecuteStoredProcedureReader("sp_s_familiaUsuario", parameters);
+        }
+
         private void LlenarComponenteFamilia(Componente componente, Componente componenteOriginal, Componente componenteRaiz)
         {
             Componente familia = new Familia();
@@ -525,6 +621,76 @@ namespace Data.Composite
             }
 
             return permisosNoAsignados;
+        }
+
+        public List<Componente> ObtenerPermisosNoAsignadosPorUsuario(int idUsuario)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@IdUsuario", idUsuario }
+            };
+
+            var resultado = _acceso.ExecuteStoredProcedureReader("sp_ObtenerPermisosNoAsignadosPorUsuario", parameters);
+            DataTable dt = resultado.Tables[0];
+
+            List<Componente> permisosNoAsignados = new List<Componente>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string permisoTexto = row["Permiso"].ToString();
+                Componente componente;
+
+                if (string.IsNullOrEmpty(permisoTexto))
+                {
+                    componente = new Familia();
+                }
+                else
+                {
+                    componente = new Patente();
+                    componente.Permiso = (Permiso)Enum.Parse(typeof(Permiso), permisoTexto);
+                }
+                componente.Id = Convert.ToInt32(row["Id"]);
+                componente.Nombre = row["Nombre"].ToString();
+
+                permisosNoAsignados.Add(componente);
+            }
+
+            return permisosNoAsignados;
+        }
+
+        public List<Componente> ObtenerPermisosAsignadosPorUsuario(int idUsuario)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@IdUsuario", idUsuario }
+            };
+
+            var resultado = _acceso.ExecuteStoredProcedureReader("sp_ObtenerPermisosAsignadosPorUsuario", parameters);
+            DataTable dt = resultado.Tables[0];
+
+            List<Componente> permisosAsignados = new List<Componente>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string permisoTexto = row["Permiso"].ToString();
+                Componente componente;
+
+                if (string.IsNullOrEmpty(permisoTexto))
+                {
+                    componente = new Familia();
+                }
+                else
+                {
+                    componente = new Patente();
+                    componente.Permiso = (Permiso)Enum.Parse(typeof(Permiso), permisoTexto);
+                }
+                componente.Id = Convert.ToInt32(row["Id"]);
+                componente.Nombre = row["Nombre"].ToString();
+
+                permisosAsignados.Add(componente);
+            }
+
+            return permisosAsignados;
         }
 
         public List<Componente> ObtenerPermisosPorFamilia(int idFamilia)

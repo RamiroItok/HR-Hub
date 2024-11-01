@@ -169,6 +169,7 @@
     <Content Include="FalloIntegridad.aspx" />
     <Content Include="GestionFamilia.aspx" />
     <Content Include="GestionFamiliaPatente.aspx" />
+    <Content Include="GestionPermisosUsuario.aspx" />
     <Content Include="ListadoEmpresas.aspx" />
     <Content Include="ListadoProductos.aspx" />
     <Content Include="ListadoUsuarios.aspx" />
@@ -244,6 +245,7 @@
     <Content Include="Style\ListarUsuarios.css" />
     <Content Include="Style\Login.css" />
     <Content Include="Style\NavBar.css" />
+    <Content Include="Style\PermisosUsuario.css" />
     <Content Include="Style\Productos.css" />
     <Content Include="Style\Registro.css" />
     <Content Include="Style\SiteMaster.css" />
@@ -332,6 +334,13 @@
     </Compile>
     <Compile Include="GestionFamiliaPatente.aspx.designer.cs">
       <DependentUpon>GestionFamiliaPatente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPermisosUsuario.aspx.cs">
+      <DependentUpon>GestionPermisosUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionPermisosUsuario.aspx.designer.cs">
+      <DependentUpon>GestionPermisosUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoEmpresas.aspx.cs">
       <DependentUpon>ListadoEmpresas.aspx</DependentUpon>

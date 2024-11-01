@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Unity;
@@ -14,11 +15,13 @@ namespace GUI
     public partial class PermisosUsuario : Page
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly IPermisoService _permisoService;
         private static List<Models.Usuario> listaUsuarios = new List<Models.Usuario>();
 
         public PermisosUsuario()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
+            _permisoService = Global.Container.Resolve<IPermisoService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -27,9 +30,7 @@ namespace GUI
             {
                 listaUsuarios = _usuarioService.ListarUsuarios();
                 CargarUsuarioDefault();
-                CargarPuestos();
             }
-            CargarCampos();
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -62,88 +63,54 @@ namespace GUI
             txtBuscar.Text = string.Empty;
             lblMensaje.Visible = false;
             CargarUsuarioDefault();
-            LimpiarCampos();
         }
 
-        protected void btnGuardar_Click(object sender, EventArgs e)
+        protected void dataGridUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            lblMensajeModificacion.Text = Validar();
-            if (!string.IsNullOrEmpty(lblMensajeModificacion.Text))
+            if (e.CommandName == "VerMas")
             {
-                lblMensajeModificacion.Visible = true;
-                lblMensajeModificacion.CssClass = "validation-message-failed";
-            }
-            else
-            {
-                var usuario = CompletarUsuario();
-                var userSession = Session["Usuario"] as Usuario;
-                _usuarioService.ModificarPermisoUsuario(usuario, userSession);
-                CargarUsuarioDefault();
-                LimpiarCampos();
+                int userId = Convert.ToInt32(e.CommandArgument);
+                hiddenSelectedId.Value = userId.ToString();
 
-                lblMensajeModificacion.Text = "Se modificaron correctamente los datos";
-                lblMensajeModificacion.Visible = true;
-                lblMensajeModificacion.CssClass = "validation-message-success";
-            }
-        }
+                var usuario = _usuarioService.ObtenerUsuarioPorId(userId);
+                var familia = _permisoService.ObtenerFamiliaUsuario(usuario.Id);
+                var permisos = _permisoService.ObtenerPermisosAsignadosPorUsuario(usuario.Id);
 
-        protected void btnCancelarModificacion_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
+                string script = $@"
+                    document.getElementById('modalId').innerText = '{usuario.Id}';
+                    document.getElementById('modalNombre').innerText = '{usuario.Nombre}';
+                    document.getElementById('modalApellido').innerText = '{usuario.Apellido}';
+                    document.getElementById('modalEmail').innerText = '{usuario.Email}';
+                    document.getElementById('modalFamilia').innerText = '{familia.Rows[0]["Nombre"]}';
+
+                    var permisosList = document.getElementById('modalPermisos');
+                    permisosList.innerHTML = '';";
+
+                foreach (var permiso in permisos)
+                {
+                    script += $@"
+                var permisoItem = document.createElement('li');
+                permisoItem.textContent = '{permiso.Nombre}';
+                permisosList.appendChild(permisoItem);";
+                }
+
+                script += "$('#verMasModal').modal('show');";
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowModalScript", script, true);
+            }
         }
 
         #region Metodos prviados
+
         private void CargarUsuarioDefault()
         {
             CargarGrilla(_usuarioService.ListarUsuarios());
         }
 
-        private void CargarGrilla(List<Models.Usuario> listadoBitacora)
+        private void CargarGrilla(List<Models.Usuario> listadoUsuarios)
         {
-            dataGridUsuarios.DataSource = listadoBitacora;
+            dataGridUsuarios.DataSource = listadoUsuarios;
             dataGridUsuarios.DataBind();
-        }
-
-        private void CargarPuestos()
-        {
-            DropDownPuesto.DataSource = _usuarioService.ObtenerPuestos();
-            DropDownPuesto.DataTextField = "Nombre";
-            DropDownPuesto.DataValueField = "Id";
-            DropDownPuesto.DataBind();
-            DropDownPuesto.Items.Insert(0, new ListItem("Seleccione un Puesto", ""));
-        }
-
-        private string Validar()
-        {
-            if (string.IsNullOrEmpty(hiddenApellido.Value) || string.IsNullOrEmpty(hiddenEmail.Value) || string.IsNullOrEmpty(hiddenNombre.Value))
-                return "Hay campos sin completar";
-
-            return null;
-        }
-
-        private Usuario CompletarUsuario()
-        {
-            Usuario usuario = new Usuario()
-            {
-                Email = hiddenEmail.Value,
-                Puesto = (Puesto)Enum.Parse(typeof(Puesto), DropDownPuesto.Text),
-            };
-            return usuario;
-        }
-
-        private void CargarCampos()
-        {
-            txtApellido.Text = hiddenApellido.Value;
-            txtNombre.Text = hiddenNombre.Value;
-            txtEmail.Text = hiddenEmail.Value;
-        }
-
-        private void LimpiarCampos()
-        {
-            txtApellido.Text = string.Empty;
-            txtEmail.Text = string.Empty;
-            txtNombre.Text = string.Empty;
-            DropDownPuesto.SelectedIndex = 0;
         }
         #endregion
     }

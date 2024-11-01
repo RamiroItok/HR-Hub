@@ -145,6 +145,9 @@ namespace GUI.Controls
                         case Models.Composite.Permiso.Carrito:
                             carritoLink.Visible = true;
                             break;
+                        case Models.Composite.Permiso.GestionPermisosUsuario:
+                            gestionPermisosUsuarioLink.Visible = true;
+                            break;
                     }
                 }
             }
