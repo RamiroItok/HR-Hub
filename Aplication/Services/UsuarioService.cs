@@ -178,9 +178,6 @@ namespace Aplication
                     return "Hay campos sin completar.";
 
                 var contraseñaReal = EncriptacionService.Encriptar_MD5(contraseña);
-
-                if(contraseña.Length < 8 || !ValidarFormatoContraseña(contraseña))
-                    return "La contraseña no posee el formato correcto.";
                 
                 if(usuario.Estado == 3)
                     return "El usuario está bloqueado. Contacte un administrador para su desbloqueo.";

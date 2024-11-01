@@ -165,6 +165,9 @@
     <Content Include="Carrito.aspx" />
     <Content Include="Compra.aspx" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
+    <Content Include="Controls\ValidarContraseña.ascx" />
+    <Content Include="Controls\ValidarEmail.ascx" />
+    <Content Include="Controls\ValidarRegistroUsuarioDatos.ascx" />
     <Content Include="ErrorDigitoVerificador.aspx" />
     <Content Include="FalloIntegridad.aspx" />
     <Content Include="GestionFamilia.aspx" />
@@ -306,6 +309,27 @@
     </Compile>
     <Compile Include="Compra.aspx.designer.cs">
       <DependentUpon>Compra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ValidarContraseña.ascx.cs">
+      <DependentUpon>ValidarContraseña.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ValidarContraseña.ascx.designer.cs">
+      <DependentUpon>ValidarContraseña.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ValidarEmail.ascx.cs">
+      <DependentUpon>ValidarEmail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ValidarEmail.ascx.designer.cs">
+      <DependentUpon>ValidarEmail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ValidarRegistroUsuarioDatos.ascx.cs">
+      <DependentUpon>ValidarRegistroUsuarioDatos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ValidarRegistroUsuarioDatos.ascx.designer.cs">
+      <DependentUpon>ValidarRegistroUsuarioDatos.ascx</DependentUpon>
     </Compile>
     <Compile Include="ErrorDigitoVerificador.aspx.cs">
       <DependentUpon>ErrorDigitoVerificador.aspx</DependentUpon>
