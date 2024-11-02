@@ -1,4 +1,5 @@
 ﻿using Aplication.Interfaces;
+using GUI.WebService;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,14 @@ namespace GUI
     {
         private readonly ICarritoService _carritoService;
         private readonly ICompraService _compraService;
+        private readonly EnviarMail _enviarMailService;
         protected static List<Models.Carrito> carritoItems;
 
         public Compra()
         {
             _carritoService = Global.Container.Resolve<ICarritoService>();
             _compraService = Global.Container.Resolve<ICompraService>();
+            _enviarMailService = new EnviarMail();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -84,6 +87,7 @@ namespace GUI
                     _compraService.GuardarDetalleCompra(detalleCompra);
                 }
 
+                _enviarMailService.EnviarResumenCompraPorEmail(idCompra);
                 _carritoService.LimpiarCarrito(usuario, false);
 
                 ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showPaymentSuccess",

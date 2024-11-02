@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            color: #007BFF; /* Cambia este color al color primario de tu logo */
+        }
+
+        .header-info p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007BFF; /* Color primario */
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .total {
+            text-align: right;
+            font-weight: bold;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Resumen de Compra</h2>
+        <div class="header-info">
+            <p><strong>ID Usuario:</strong> {{ID_USUARIO}}</p>
+            <p><strong>Nombre:</strong> {{NOMBRE}}</p>
+            <p><strong>Fecha de Compra:</strong> {{FECHA_COMPRA}}</p>
+            <p><strong>Total de la Compra:</strong> {{TOTAL_COMPRA}}</p>
+        </div>
+
+        <h3>Detalles de la Compra:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{DETALLES_COMPRA}}
+            </tbody>
+        </table>
+        <p class="total">Total: {{TOTAL_COMPRA}}</p>
+    </div>
+</body>
+</html>
