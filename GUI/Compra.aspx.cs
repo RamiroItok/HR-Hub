@@ -1,4 +1,5 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Services;
 using GUI.WebService;
 using Models;
 using Models.Composite;
@@ -73,12 +74,16 @@ namespace GUI
             try
             {
                 var usuario = Session["Usuario"] as Usuario;
-                Models.Compra compra = new Models.Compra()
-                {
-                    IdUsuario = usuario.Id,
-                    FechaPago = DateTime.Now,
-                    Total = decimal.Parse(lblTotalCompra.Text, NumberStyles.Currency, CultureInfo.CurrentCulture)
-                };
+                //Models.Compra compra = new Models.Compra()
+                //{
+                //    IdUsuario = usuario.Id,
+                //    FechaPago = DateTime.Now,
+                //    Total = decimal.Parse(lblTotalCompra.Text, NumberStyles.Currency, CultureInfo.CurrentCulture)
+                //};
+
+                CompraFactory compraFactory = new CompraProductoFactory();
+
+                Models.Compra compra = compraFactory.CrearCompra(usuario.Id, decimal.Parse(lblTotalCompra.Text, NumberStyles.Currency));
 
                 var idCompra = _compraService.RealizarCompra(compra, usuario);
 

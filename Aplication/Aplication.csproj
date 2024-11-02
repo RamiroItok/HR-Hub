@@ -54,6 +54,7 @@
     <Compile Include="Services\BackUpService.cs" />
     <Compile Include="Services\BitacoraService.cs" />
     <Compile Include="Services\CarritoService.cs" />
+    <Compile Include="Services\CompraFactory.cs" />
     <Compile Include="Services\CompraService.cs" />
     <Compile Include="Services\DigitoVerificadorService.cs" />
     <Compile Include="Services\EmpresaService.cs" />
