@@ -74,12 +74,6 @@ namespace GUI
             try
             {
                 var usuario = Session["Usuario"] as Usuario;
-                //Models.Compra compra = new Models.Compra()
-                //{
-                //    IdUsuario = usuario.Id,
-                //    FechaPago = DateTime.Now,
-                //    Total = decimal.Parse(lblTotalCompra.Text, NumberStyles.Currency, CultureInfo.CurrentCulture)
-                //};
 
                 CompraFactory compraFactory = new CompraProductoFactory();
 

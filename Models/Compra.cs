@@ -9,9 +9,4 @@ namespace Models
         public DateTime FechaPago { get; set; }
         public decimal Total { get; set; }
     }
-
-    public class CompraProducto : Compra
-    {
-
-    }
 }
