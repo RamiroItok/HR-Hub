@@ -12,14 +12,23 @@ namespace GUI
     {
         private readonly IPermisoService _iPermiso;
         private readonly IBitacoraService _bitacoraService;
+        private readonly IPermisoService _permisoService;
         public GestionFamilia()
         {
             _iPermiso = Global.Container.Resolve<IPermisoService>();
             _bitacoraService = Global.Container.Resolve<IBitacoraService>();
+            _permisoService = Global.Container.Resolve<IPermisoService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_permisoService.TienePermiso(usuario, Permiso.GestionFamilia))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 CargarFamilia();

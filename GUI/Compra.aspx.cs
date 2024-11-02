@@ -1,9 +1,11 @@
 ﻿using Aplication.Interfaces;
 using GUI.WebService;
 using Models;
+using Models.Composite;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Unity;
@@ -14,6 +16,7 @@ namespace GUI
     {
         private readonly ICarritoService _carritoService;
         private readonly ICompraService _compraService;
+        private readonly IPermisoService _permisoService;
         private readonly EnviarMail _enviarMailService;
         protected static List<Models.Carrito> carritoItems;
 
@@ -21,11 +24,18 @@ namespace GUI
         {
             _carritoService = Global.Container.Resolve<ICarritoService>();
             _compraService = Global.Container.Resolve<ICompraService>();
+            _permisoService = Global.Container.Resolve<IPermisoService>();
             _enviarMailService = new EnviarMail();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_permisoService.TienePermiso(usuario, Permiso.Carrito))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
             if (!IsPostBack)
             {
                 CargarCarrito();
