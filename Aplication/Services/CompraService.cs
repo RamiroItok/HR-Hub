@@ -5,6 +5,8 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Web;
 
 namespace Aplication.Services
 {
@@ -43,7 +45,7 @@ namespace Aplication.Services
         {
             try
             {
-                var resultado = _compraDAO.ObtenerCompras(idCompra);
+                var resultado = _compraDAO.ObtenerCompraPorId(idCompra);
                 if (resultado == null)
                     return null;
 
@@ -86,6 +88,33 @@ namespace Aplication.Services
             }
         }
 
+        public List<Compra> ObtenerComprasPorUsuario(int idUsuario)
+        {
+            try
+            {
+                var resultado = _compraDAO.ObtenerComprasPorUsuario(idUsuario);
+                if (resultado == null || resultado.Tables.Count == 0 || resultado.Tables[0].Rows.Count == 0)
+                    return null;
+
+                List<Compra> listaCompras = new List<Compra>();
+                foreach (DataRow compra in resultado.Tables[0].Rows)
+                {
+                    Compra detalle = CompletarCompra(compra);
+                    listaCompras.Add(detalle);
+                }
+
+                return listaCompras;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         private DetalleCompra CompletarDetalleCompra(DataRow row)
         {
             return new DetalleCompra()
@@ -95,6 +124,17 @@ namespace Aplication.Services
                 Cantidad = Convert.ToInt32(row["Cantidad"]),
                 PrecioUnitario = Convert.ToDecimal(row["PrecioUnitario"]),
                 Subtotal = Convert.ToDecimal(row["Subtotal"])
+            };
+        }
+
+        private Compra CompletarCompra(DataRow row)
+        {
+            return new Compra()
+            {
+                Id = Convert.ToInt32(row["Id"]),
+                IdUsuario = (int)row["IdUsuario"],
+                FechaPago = (DateTime)row["FechaPago"],
+                Total = (decimal)row["Total"]
             };
         }
 
@@ -129,6 +169,33 @@ namespace Aplication.Services
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public string CrearMensajeResumenCompra(Models.Compra compra, Usuario usuario, List<DetalleCompra> detallesCompra)
+        {
+            string templatePath = HttpContext.Current.Server.MapPath("~/Templates/ResumenCompraTemplate.html");
+            string templateContent = File.ReadAllText(templatePath);
+
+            templateContent = templateContent.Replace("{{ID_COMPRA}}", compra.Id.ToString());
+            templateContent = templateContent.Replace("{{ID_USUARIO}}", compra.IdUsuario.ToString());
+            templateContent = templateContent.Replace("{{NOMBRE}}", $"{usuario.Nombre} {usuario.Apellido}");
+            templateContent = templateContent.Replace("{{FECHA_COMPRA}}", compra.FechaPago.ToString("dd/MM/yyyy"));
+            templateContent = templateContent.Replace("{{TOTAL_COMPRA}}", compra.Total.ToString("C"));
+
+            string detallesHtml = "";
+            foreach (var detalle in detallesCompra)
+            {
+                detallesHtml += "<tr>";
+                detallesHtml += $"<td>{detalle.NombreProducto}</td>";
+                detallesHtml += $"<td>{detalle.Cantidad}</td>";
+                detallesHtml += $"<td>{detalle.PrecioUnitario:C}</td>";
+                detallesHtml += $"<td>{detalle.Subtotal:C}</td>";
+                detallesHtml += "</tr>";
+            }
+
+            templateContent = templateContent.Replace("{{DETALLES_COMPRA}}", detallesHtml);
+
+            return templateContent;
         }
     }
 }

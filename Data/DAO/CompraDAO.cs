@@ -38,7 +38,7 @@ namespace Data.DAO
             }
         }
 
-        public DataSet ObtenerCompras(int idCompra)
+        public DataSet ObtenerCompraPorId(int idCompra)
         {
             try
             {
@@ -65,6 +65,23 @@ namespace Data.DAO
                 };
 
                 return _acceso.ExecuteStoredProcedureReader("sp_s_detalleCompraIdCompra", parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataSet ObtenerComprasPorUsuario(int idUsuario)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@IdUsuario", idUsuario }
+                };
+
+                return _acceso.ExecuteStoredProcedureReader("sp_s_compras_porUsuario", parameters);
             }
             catch (Exception ex)
             {

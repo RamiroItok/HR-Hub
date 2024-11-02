@@ -1,0 +1,103 @@
+﻿/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+.containerCompras.mt-4 {
+    margin-top: 80px; /* Ajusta este valor según la altura del NavBar */
+}
+
+h2.text-center {
+    color: #6AB547; /* Verde del logo */
+    font-weight: bold;
+    font-size: 28px;
+    margin-top: 100px; /* Ajusta este valor según la altura del NavBar */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+/* Estilos para la tabla de compras */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table-header {
+    background-color: #6AB547;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.table-row, .table-alt-row {
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+    .table-row:hover, .table-alt-row:hover {
+        background-color: #eaf5ea;
+    }
+
+.table-alt-row {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para el botón de "Ver resumen de compra" */
+.btn-primary {
+    background-color: #6AB547;
+    border-color: #6AB547;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #4a8c38;
+    }
+
+/* Estilos del modal */
+.modal-content {
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    background-color: #6AB547;
+    color: white;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.modal-body p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.modal-body .table {
+    margin-top: 15px;
+}
+
+/* Botón de cerrar modal */
+.close {
+    color: white;
+    opacity: 0.8;
+}
+
+    .close:hover {
+        opacity: 1;
+    }
+
+/* Transiciones para el modal */
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out, opacity 0.3s ease;
+    transform: translateY(0);
+    opacity: 1;
+}

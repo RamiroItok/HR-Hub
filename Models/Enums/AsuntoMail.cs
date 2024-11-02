@@ -3,6 +3,7 @@
     public enum AsuntoMail
     {
         RecuperacionContraseña = 0,
-        GeneracionContraseña = 1
+        GeneracionContraseña = 1,
+        CompraProductos = 2
     }
 }

@@ -65,7 +65,12 @@ namespace GUI
                     {
                         var userSession = Session["Usuario"] as Usuario;
                         var id = _usuarioService.RegistrarUsuario(usuario, userSession);
-                        _usuarioService.EnviarMail(usuario.Email, usuario.Contraseña, AsuntoMail.GeneracionContraseña);
+
+                        var body = _usuarioService.ObtenerCuerpoCorreo(AsuntoMail.GeneracionContraseña);
+
+                        body = body.Replace("{{CONTRASEÑA}}", usuario.Contraseña);
+
+                        _usuarioService.EnviarMail(usuario.Email, AsuntoMail.GeneracionContraseña, body);
                         lblMensaje.Visible = true;
                         lblMensaje.Text = "Se ha registrado el usuario correctamente";
                         Limpiar();
