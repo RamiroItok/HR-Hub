@@ -1,7 +1,9 @@
 ﻿using Aplication.Interfaces;
 using Models;
+using Models.Composite;
 using System;
 using System.Data;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Unity;
@@ -21,6 +23,13 @@ namespace GUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_iPermiso.TienePermiso(usuario, Permiso.GestionFamiliaPatente))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 CargarFamilias();

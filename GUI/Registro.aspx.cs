@@ -1,7 +1,9 @@
 ﻿using Aplication.Interfaces;
 using Models;
+using Models.Composite;
 using Models.Enums;
 using System;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Unity;
@@ -11,14 +13,23 @@ namespace GUI
     public partial class Registro : Page
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly IPermisoService _permisoService;
 
         public Registro()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
+            _permisoService = Global.Container.Resolve<IPermisoService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_permisoService.TienePermiso(usuario, Permiso.RegistroUsuario))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
+
             try
             {
                 if (!IsPostBack)

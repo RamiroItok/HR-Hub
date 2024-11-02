@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Aplication.Interfaces;
 using Models;
+using Models.Composite;
 using Unity;
 
 namespace GUI
@@ -12,15 +14,24 @@ namespace GUI
     {
         private readonly ICompraService _compraService;
         private readonly IUsuarioService _usuarioService;
+        private readonly IPermisoService _permisoService;
 
         public MisCompras()
         {
             _compraService = Global.Container.Resolve<ICompraService>();
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
+            _permisoService = Global.Container.Resolve<IPermisoService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_permisoService.TienePermiso(usuario, Permiso.MisCompras))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 CargarCompras();

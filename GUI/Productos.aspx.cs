@@ -1,5 +1,6 @@
 ﻿using Aplication.Interfaces;
 using Models;
+using Models.Composite;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,6 +17,7 @@ namespace GUI
         private readonly IProductoService _productoService;
         private readonly IEmpresaService _empresaService;
         private readonly ICarritoService _carritoService;
+        private readonly IPermisoService _permisoService;
         private static List<Producto> listaProductos;
 
         public Productos()
@@ -23,10 +25,18 @@ namespace GUI
             _productoService = Global.Container.Resolve<IProductoService>();
             _empresaService = Global.Container.Resolve<IEmpresaService>();
             _carritoService = Global.Container.Resolve<ICarritoService>();
+            _permisoService = Global.Container.Resolve<IPermisoService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_permisoService.TienePermiso(usuario, Permiso.Productos))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 listaProductos = _productoService.ObtenerProductos().AsEnumerable().Select(row => new Producto

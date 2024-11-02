@@ -1,5 +1,6 @@
 ﻿using Aplication.Interfaces;
 using Models;
+using Models.Composite;
 using Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,13 @@ namespace GUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_permisoService.TienePermiso(usuario, Permiso.PermisoUsuario))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 listaUsuarios = _usuarioService.ListarUsuarios();

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Aplication.Interfaces;
+using Models;
+using Models.Composite;
 using Unity;
 
 namespace GUI
@@ -24,6 +26,12 @@ namespace GUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_iPermisoService.TienePermiso(usuario, Permiso.Bitacora))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
             try
             {
                 if (!IsPostBack)

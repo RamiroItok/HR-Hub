@@ -1,5 +1,6 @@
 ﻿using Aplication.Interfaces;
 using Models;
+using Models.Composite;
 using Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,22 @@ namespace GUI
     {
         private readonly IBackUpService _iBackupService;
         private readonly IBitacoraService _iBitacoraService;
+        private readonly IPermisoService _permisoService;
 
         public Backup()
         {
             _iBackupService = Global.Container.Resolve<IBackUpService>();
             _iBitacoraService = Global.Container.Resolve<IBitacoraService>();
-            
+            _permisoService = Global.Container.Resolve<IPermisoService>();
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_permisoService.TienePermiso(usuario, Permiso.BackUp))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
         }
 
         protected void btnBackup_Click(object sender, EventArgs e)

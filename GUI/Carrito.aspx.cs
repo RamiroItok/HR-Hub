@@ -1,6 +1,8 @@
 ﻿using Aplication.Interfaces;
 using Models;
+using Models.Composite;
 using System;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Unity;
@@ -10,13 +12,22 @@ namespace GUI
     public partial class Carrito : Page
     {
         private readonly ICarritoService _carritoService;
+        private readonly IPermisoService _permisoService;
         public Carrito()
         {
             _carritoService = Global.Container.Resolve<ICarritoService>();
+            _permisoService = Global.Container.Resolve<IPermisoService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_permisoService.TienePermiso(usuario, Permiso.Carrito))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
+
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-AR");
             if (!IsPostBack)
             {

@@ -1,8 +1,10 @@
 ﻿using Aplication.Interfaces;
 using Models;
+using Models.Composite;
 using System;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Unity;
@@ -13,15 +15,24 @@ namespace GUI
     {
         private readonly IEmpresaService _empresaService;
         private readonly IProductoService _productoService;
+        private readonly IPermisoService _permisoService;
 
         public ListadoProductos()
         {
             _empresaService = Global.Container.Resolve<IEmpresaService>();
             _productoService = Global.Container.Resolve<IProductoService>();
+            _permisoService = Global.Container.Resolve<IPermisoService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_permisoService.TienePermiso(usuario, Permiso.ConfiguracionProducto))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 CargarProductos();

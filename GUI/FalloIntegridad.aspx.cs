@@ -1,8 +1,10 @@
 ﻿using Aplication.Interfaces;
 using Models;
+using Models.Composite;
 using Models.Enums;
 using System;
 using System.IO;
+using System.Linq;
 using Unity;
 
 namespace GUI
@@ -12,16 +14,25 @@ namespace GUI
         private readonly IBackUpService _backUpService;
         private readonly IDigitoVerificadorService _digitoVerificadorService;
         private readonly IBitacoraService _bitacoraService;
+        private readonly IPermisoService _permisoService;
 
         public FalloIntegridad()
         {
             _backUpService = Global.Container.Resolve<IBackUpService>();
             _digitoVerificadorService = Global.Container.Resolve<IDigitoVerificadorService>();
             _bitacoraService = Global.Container.Resolve<IBitacoraService>();
+            _permisoService = Global.Container.Resolve<IPermisoService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if(!_permisoService.TienePermiso(usuario, Permiso.FalloIntegridad))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 MostrarEstadoFallido(Session["ErrorVerificacionDV"] as Models.FalloIntegridad);
