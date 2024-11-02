@@ -39,7 +39,10 @@ namespace GUI
                 string nuevaContraseña = _usuarioService.GenerarContraseña();
                 if(_usuarioService.ActualizarContraseña(usuario, nuevaContraseña, Models.Enums.TipoOperacionContraseña.Recuperacion))
                 {
-                    _usuarioService.EnviarMail(email, nuevaContraseña, AsuntoMail.RecuperacionContraseña);
+                    string body = _usuarioService.ObtenerCuerpoCorreo(AsuntoMail.RecuperacionContraseña);
+                    body = body.Replace("{{CONTRASEÑA}}", nuevaContraseña);
+
+                    _usuarioService.EnviarMail(email, AsuntoMail.RecuperacionContraseña, body);
                     lblMensaje.Text = "Se ha enviado una nueva contraseña a su correo electrónico.";
                     lblMensaje.CssClass = "message-label success";
                 }

@@ -18,6 +18,7 @@
         ConfiguracionEmpresas,
         ConfiguracionProducto,
         Productos,
-        Carrito
+        Carrito,
+        MisCompras
     }
 }

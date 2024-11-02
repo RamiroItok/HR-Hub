@@ -4,6 +4,6 @@
     {
         RecuperacionContraseña = 0,
         GeneracionContraseña = 1,
-        Compra = 2
+        CompraProductos = 2
     }
 }

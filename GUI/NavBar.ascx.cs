@@ -148,6 +148,9 @@ namespace GUI.Controls
                         case Models.Composite.Permiso.GestionPermisosUsuario:
                             gestionPermisosUsuarioLink.Visible = true;
                             break;
+                        case Models.Composite.Permiso.MisCompras:
+                            misComprasLink.Visible = true;
+                            break;
                     }
                 }
             }

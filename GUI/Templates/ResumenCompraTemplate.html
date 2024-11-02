@@ -3,53 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <style>
+        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
-            color: #333;
+            color: #333333;
+            background-color: #f4f4f4;
         }
 
+        /* Contenedor principal */
         .container {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
             border: 1px solid #ddd;
-            background-color: #f9f9f9;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
 
+        /* Encabezado principal */
         h2 {
-            color: #007BFF; /* Cambia este color al color primario de tu logo */
+            color: #6AB547; /* Verde del logo */
+            border-bottom: 2px solid #6AB547;
+            padding-bottom: 5px;
         }
 
-        .header-info p {
-            margin: 5px 0;
-            font-size: 16px;
+        /* Información general de la compra */
+        .header-info {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e9f5e6; /* Fondo suave en verde claro */
+            border-radius: 8px;
         }
 
+            .header-info p {
+                margin: 5px 0;
+                font-size: 16px;
+                color: #333333;
+            }
+
+        /* Tabla de detalles de compra */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: left;
             border: 1px solid #ddd;
         }
 
         th {
-            background-color: #007BFF; /* Color primario */
+            background-color: #6AB547; /* Verde del logo */
             color: white;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
         }
 
+        /* Total */
         .total {
             text-align: right;
             font-weight: bold;
-            color: #007BFF;
+            font-size: 18px;
+            color: #6AB547;
+            margin-top: 10px;
+        }
+
+        /* Acento en el texto */
+        strong {
+            color: #6AB547;
         }
     </style>
 </head>
@@ -57,6 +85,7 @@
     <div class="container">
         <h2>Resumen de Compra</h2>
         <div class="header-info">
+            <p><strong>ID COMPRA:</strong> {{ID_COMPRA}}</p>
             <p><strong>ID Usuario:</strong> {{ID_USUARIO}}</p>
             <p><strong>Nombre:</strong> {{NOMBRE}}</p>
             <p><strong>Fecha de Compra:</strong> {{FECHA_COMPRA}}</p>

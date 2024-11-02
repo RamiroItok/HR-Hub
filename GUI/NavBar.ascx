@@ -54,9 +54,10 @@
             
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" id="miCuentaLink" runat="server">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi cuenta <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi cuenta<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <!--<li><a runat="server" href="~/MisDatos">Mis datos</a></li>-->
+                        <li><a runat="server" id="misComprasLink" href="~/MisCompras">Mis compras</a></li>
                         <li><a runat="server" href="~/CambiarContraseña">Cambiar contraseña</a></li>
                     </ul>
                 </li>

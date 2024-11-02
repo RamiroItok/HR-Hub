@@ -392,13 +392,10 @@ namespace Aplication
             return resultado;
         }
 
-        public void EnviarMail(string email, string contraseña, AsuntoMail asuntoMail)
+        public void EnviarMail(string email, AsuntoMail asuntoMail, string body)
         {
             try
             {
-                string body = ObtenerCuerpoCorreo(asuntoMail);
-                body = body.Replace("{{CONTRASEÑA}}", contraseña);
-
                 MailMessage mensaje = new MailMessage();
                 mensaje.From = new MailAddress("noreply@hrhub.com", "HR Hub");
                 mensaje.To.Add(email);
@@ -492,7 +489,7 @@ namespace Aplication
             return null;
         }
 
-        private string ObtenerCuerpoCorreo(AsuntoMail asuntoMail)
+        public string ObtenerCuerpoCorreo(AsuntoMail asuntoMail)
         {
             string templatePath = "";
             switch (asuntoMail)
@@ -510,7 +507,7 @@ namespace Aplication
             return File.ReadAllText(HttpContext.Current.Server.MapPath(templatePath));
         }
 
-        private string ObtenerAsuntoCorreo(AsuntoMail asuntoMail)
+        public string ObtenerAsuntoCorreo(AsuntoMail asuntoMail)
         {
             switch (asuntoMail)
             {
@@ -518,6 +515,8 @@ namespace Aplication
                     return "Recuperación de contraseña";
                 case AsuntoMail.GeneracionContraseña:
                     return "Generación de contraseña";
+                case AsuntoMail.CompraProductos:
+                    return "Compra de productos";
                 default:
                     throw new ArgumentException("Tipo de asunto no válido");
             }
