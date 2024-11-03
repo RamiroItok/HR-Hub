@@ -104,6 +104,18 @@ namespace Data.DAO
             }
         }
 
+        public DataSet ObtenerProductosMasCompradosPorMesPorAnio()
+        {
+            try
+            {
+                return _acceso.ExecuteStoredProcedureReader("sp_ObtenerProductosMasCompradosPorMesYAnio", null);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public int Registrar(Producto producto)
         {
             try

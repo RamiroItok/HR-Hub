@@ -204,10 +204,13 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="ReporteCompras.aspx" />
     <Content Include="Style\GestionPermisosUsuario.css" />
     <Content Include="Style\MisCompras.css" />
+    <Content Include="Style\Reporte.css" />
     <Content Include="Templates\ResumenCompraTemplate.html" />
     <Content Include="WebService\EnviarMail.asmx" />
+    <Content Include="WebService\ReporteCompras.asmx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Restore.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -483,6 +486,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReporteCompras.aspx.cs">
+      <DependentUpon>ReporteCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteCompras.aspx.designer.cs">
+      <DependentUpon>ReporteCompras.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Restore.aspx.cs">
       <DependentUpon>Restore.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -513,6 +523,10 @@
     </Compile>
     <Compile Include="WebService\EnviarMail.asmx.cs">
       <DependentUpon>EnviarMail.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebService\ReporteCompras.asmx.cs">
+      <DependentUpon>ReporteCompras.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>

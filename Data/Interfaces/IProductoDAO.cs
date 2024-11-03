@@ -11,6 +11,6 @@ namespace Data.Interfaces
         DataSet ObtenerProductos();
         DataSet ObtenerProductoPorId(int id);
         DataSet ObtenerTipoProducto();
-
+        DataSet ObtenerProductosMasCompradosPorMesPorAnio();
     }
 }

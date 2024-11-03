@@ -49,6 +49,7 @@
                 <li><a runat="server" id="bitacoraLink" visible="false" href="~/Bitacora">Bitacora</a></li>
                 <li><a runat="server" id="productosLink" visible="false" href="~/Productos">Productos</a></li>
                 <li><a runat="server" id="carritoLink" visible="false" href="~/Carrito">Carrito</a></li>
+                <li><a runat="server" href="~/ReporteCompras">Reporte Compras</a></li>
                 <li><a runat="server" id="contactoLink" href="~/Contact">Contacto</a></li>
             </ul>
             

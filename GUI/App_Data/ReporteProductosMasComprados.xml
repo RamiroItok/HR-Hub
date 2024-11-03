@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReporteProductosMasComprados>
+  <Anio valor="2024">
+    <Mes nombre="octubre">
+      <Producto>
+        <Nombre>Remera negra</Nombre>
+        <VecesComprado>1</VecesComprado>
+      </Producto>
+    </Mes>
+  </Anio>
+  <Anio valor="2024">
+    <Mes nombre="noviembre">
+      <Producto>
+        <Nombre>Banana</Nombre>
+        <VecesComprado>7</VecesComprado>
+      </Producto>
+      <Producto>
+        <Nombre>Doritos 200gr</Nombre>
+        <VecesComprado>2</VecesComprado>
+      </Producto>
+      <Producto>
+        <Nombre>Remera negra</Nombre>
+        <VecesComprado>2</VecesComprado>
+      </Producto>
+    </Mes>
+  </Anio>
+</ReporteProductosMasComprados>

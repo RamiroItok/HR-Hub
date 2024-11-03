@@ -24,7 +24,6 @@ namespace Data.DAO
                 {
                     { "@IdCompra", detalleCompra.IdCompra },
                     { "@IdProducto", detalleCompra.IdProducto },
-                    { "@NombreProducto", detalleCompra.NombreProducto },
                     { "@Cantidad", detalleCompra.Cantidad },
                     { "@PrecioUnitario", detalleCompra.PrecioUnitario },
                     { "@Subtotal", detalleCompra.Subtotal }

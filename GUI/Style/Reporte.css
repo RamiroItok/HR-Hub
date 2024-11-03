@@ -1,0 +1,110 @@
+﻿/* Fondo de la página */
+body {
+    background-color: #eef3f7; /* Fondo claro y suave */
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal del reporte */
+.containerReporte {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Título principal */
+h2 {
+    color: #4e7e32; /* Verde oscuro del logo */
+    font-weight: bold;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+/* Descripción */
+p {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+/* Botonera */
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+    .button-container .btn {
+        padding: 10px 20px;
+        font-size: 1em;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .button-container .btn-primary {
+        background-color: #67a544; /* Verde principal */
+    }
+
+    .button-container .btn-secondary {
+        background-color: #4e7e32; /* Verde oscuro */
+    }
+
+    .button-container .btn:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+    }
+
+/* Estilo del Dropdown */
+.form-control {
+    font-size: 1em;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: auto;
+}
+
+/* Contenedor general de los gráficos (usando grid) */
+#chartContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+/* Contenedor de cada gráfico */
+.chart-container {
+    width: 100%;
+    max-width: 350px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+    .chart-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .chart-container h3 {
+        color: #4e7e32;
+        margin-bottom: 10px;
+        font-size: 1em;
+    }
+
+    /* Ajuste de tamaño del gráfico */
+    .chart-container canvas {
+        width: 100% !important;
+        height: 180px !important;
+    }
