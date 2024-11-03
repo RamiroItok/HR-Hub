@@ -44,19 +44,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
     <script>
         function renderCharts(data) {
             const container = document.getElementById('chartContainer');
             container.innerHTML = '';
 
-            // Paleta de colores basada en el logo de HR Hub
             const colors = [
-                'rgba(103, 165, 68, 0.8)',  // Verde principal
-                'rgba(78, 126, 50, 0.8)',   // Verde oscuro
-                'rgba(51, 51, 51, 0.8)',    // Gris oscuro
-                'rgba(130, 185, 109, 0.8)', // Verde claro
-                'rgba(200, 200, 200, 0.8)'  // Gris claro
+                'rgba(103, 165, 68, 0.8)', 
+                'rgba(78, 126, 50, 0.8)',  
+                'rgba(51, 51, 51, 0.8)',   
+                'rgba(130, 185, 109, 0.8)',
+                'rgba(200, 200, 200, 0.8)' 
             ];
 
             Object.keys(data).forEach((mes, index) => {
@@ -75,7 +77,6 @@
                 chartContainer.appendChild(canvas);
                 container.appendChild(chartContainer);
 
-                // Crear el gráfico de torta
                 new Chart(canvas.getContext('2d'), {
                     type: 'pie',
                     data: {
@@ -97,12 +98,12 @@
                             legend: { position: 'top' },
                             title: { display: true, text: `Productos Vendidos en ${mes}` },
                             datalabels: {
-                                color: '#fff', // Color del texto
+                                color: '#fff',
                                 font: {
                                     weight: 'bold'
                                 },
                                 formatter: (value, context) => {
-                                    return `${value}`; // Muestra la cantidad en cada sección
+                                    return `${value}`;
                                 },
                                 anchor: 'center',
                                 align: 'center'

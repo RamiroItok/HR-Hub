@@ -20,6 +20,8 @@
         Productos,
         Carrito,
         MisCompras,
-        MiCuenta
+        MiCuenta,
+        Reportes,
+        ReporteCompras
     }
 }
