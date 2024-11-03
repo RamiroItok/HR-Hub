@@ -13,10 +13,12 @@ namespace GUI
     {
         private readonly ICarritoService _carritoService;
         private readonly IPermisoService _permisoService;
+        private readonly IProductoService _productoService;
         public Carrito()
         {
             _carritoService = Global.Container.Resolve<ICarritoService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _productoService = Global.Container.Resolve<IProductoService>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,7 +37,7 @@ namespace GUI
             }
         }
 
-        private void CargarCarrito()
+        protected void CargarCarrito()
         {
             var userSession = Session["Usuario"] as Usuario;
             var carrito = _carritoService.ObtenerCarrito(userSession.Id);
@@ -57,6 +59,17 @@ namespace GUI
 
                 gvCarrito.DataSource = carrito;
                 gvCarrito.DataBind();
+
+                foreach (GridViewRow row in gvCarrito.Rows)
+                {
+                    var txtCantidad = (TextBox)row.FindControl("txtCantidad");
+                    var productoId = (int)gvCarrito.DataKeys[row.RowIndex].Value;
+
+                    var producto = _productoService.ObtenerProductoPorId(productoId);
+
+                    txtCantidad.Attributes["data-stock"] = producto.Cantidad.ToString();
+                }
+
                 CalcularTotalCarrito();
             }
         }

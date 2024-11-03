@@ -32,6 +32,7 @@ namespace GUI.Controls
                     configuracionProductosLink.Visible = false;
                     productosLink.Visible = false;
                     carritoLink.Visible = false;
+                    misComprasLink.Visible = false;
                 }
 
                 VisualizarMenu(usuario);
@@ -77,6 +78,7 @@ namespace GUI.Controls
                 configuraciónEmpresaLink.Visible = false;
                 productosLink.Visible = false;
                 carritoLink.Visible = false;
+                misComprasLink.Visible = false;
                 return;
             }
             else if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto != Models.Enums.Puesto.WebMaster)
@@ -90,6 +92,7 @@ namespace GUI.Controls
                 configuraciónEmpresaLink.Visible = false;
                 productosLink.Visible = false;
                 carritoLink.Visible = false;
+                misComprasLink.Visible = false;
                 return;
             }
             
@@ -150,6 +153,9 @@ namespace GUI.Controls
                             break;
                         case Models.Composite.Permiso.MisCompras:
                             misComprasLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.MiCuenta:
+                            miCuentaLink.Visible = true;
                             break;
                     }
                 }

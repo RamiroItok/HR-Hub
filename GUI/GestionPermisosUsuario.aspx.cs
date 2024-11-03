@@ -102,6 +102,8 @@ namespace GUI
 
                 CargarPermisosNoAsignados(idUsuario);
                 CargarPermisosAsignados(idUsuario);
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "PermisosAsignados", "mostrarMensaje('asignado');", true);
             }
             catch (Exception ex)
             {
@@ -128,6 +130,8 @@ namespace GUI
 
                 CargarPermisosNoAsignados(idUsuario);
                 CargarPermisosAsignados(idUsuario);
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "PermisosQuitados", "mostrarMensaje('quitado');", true);
             }
             catch (Exception ex)
             {

@@ -61,7 +61,10 @@
                                                 <p class="card-text">Tipo de Producto: <%# Eval("TipoProducto.Nombre") %></p>
                                                 <p class="card-text">Cantidad: <%# Eval("Cantidad") %></p>
                                                 <p class="card-text">Precio: $<%# Eval("PrecioUnitario") %></p>
-                                                <asp:Button runat="server" Text="Agregar al carrito" CssClass="btn btn-add-cart" CommandArgument='<%# Eval("Id") %>' CommandName="Agregar" OnClientClick="showCartModal();" OnCommand="AgregarAlCarrito_Command" />
+
+                                                <asp:Button runat="server" Text="Agregar al carrito" CssClass="btn btn-add-cart" CommandArgument='<%# Eval("Id") %>' CommandName="Agregar" OnClientClick="showCartModal();" OnCommand="AgregarAlCarrito_Command" Visible='<%# Convert.ToInt32(Eval("Cantidad")) > 0 %>' />
+
+                                                <asp:Label ID="lblNoStock" runat="server" Text="No hay stock" CssClass="no-stock-label" Visible='<%# Convert.ToInt32(Eval("Cantidad")) <= 0 %>' />
                                             </div>
                                         </div>
                                     </div>

@@ -1,38 +1,81 @@
-﻿/* Hacer que la página ocupe toda la pantalla */
-html, body {
-    height: 100%;
+﻿/* Fondo de la página */
+.error-page {
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
 }
 
-.digito-verificador-page {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px;
-    color: #333;
-    /* Flexbox para centrar el contenido */
-    display: flex;
-    justify-content: center; /* Centrado horizontal */
-    align-items: center; /* Centrado vertical */
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
+/* Contenedor principal */
+.error-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 90%;
     text-align: center;
+    animation: fadeInUp 1s ease-out;
 }
 
-    .digito-verificador-page label {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
+/* Título de error */
+.error-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #f44336;
+    margin-bottom: 20px;
+    animation: fadeInDown 0.8s ease;
+}
+
+/* Mensaje de alerta */
+.error-alert {
+    font-size: 1.2em;
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mensaje de ayuda */
+.error-message {
+    color: #333;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Botón de Aceptar */
+.btn-primary {
+    background-color: #76b041;
+    border-color: #76b041;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 10px 30px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+    .btn-primary:hover {
+        background-color: #5a8b32;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     }
 
-    .digito-verificador-page .btn-calcular {
-        background-color: #76B041;
-        color: white;
-        font-weight: bold;
-        padding: 10px 20px;
-        border: none;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s ease;
+@media (max-width: 768px) {
+    .error-title {
+        font-size: 2em;
     }
 
-        .digito-verificador-page .btn-calcular:hover {
-            background-color: #5c8f34;
-        }
+    .error-content {
+        padding: 20px;
+    }
+}

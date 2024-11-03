@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MisCompras.aspx.cs" Inherits="GUI.MisCompras" %>
-
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
 <!DOCTYPE html>
@@ -106,7 +105,6 @@
                 aplicarFondo();
             });
         });
-
     </script>
 </body>
 </html>

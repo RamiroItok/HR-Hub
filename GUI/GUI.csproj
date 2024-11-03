@@ -166,6 +166,7 @@
     <Content Include="Carrito.aspx" />
     <Content Include="Compra.aspx" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
+    <Content Include="Controls\ValidarCantidad.ascx" />
     <Content Include="Controls\ValidarContraseña.ascx" />
     <Content Include="Controls\ValidarEmail.ascx" />
     <Content Include="Controls\ValidarRegistroUsuarioDatos.ascx" />
@@ -203,6 +204,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Style\GestionPermisosUsuario.css" />
     <Content Include="Style\MisCompras.css" />
     <Content Include="Templates\ResumenCompraTemplate.html" />
     <Content Include="WebService\EnviarMail.asmx" />
@@ -321,6 +323,13 @@
     </Compile>
     <Compile Include="Compra.aspx.designer.cs">
       <DependentUpon>Compra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ValidarCantidad.ascx.cs">
+      <DependentUpon>ValidarCantidad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ValidarCantidad.ascx.designer.cs">
+      <DependentUpon>ValidarCantidad.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\ValidarContraseña.ascx.cs">
       <DependentUpon>ValidarContraseña.ascx</DependentUpon>

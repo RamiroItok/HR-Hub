@@ -19,6 +19,7 @@
         ConfiguracionProducto,
         Productos,
         Carrito,
-        MisCompras
+        MisCompras,
+        MiCuenta
     }
 }

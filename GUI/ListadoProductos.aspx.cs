@@ -26,18 +26,28 @@ namespace GUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var usuario = Session["Usuario"] as Usuario;
-            if(!_permisoService.TienePermiso(usuario, Permiso.ConfiguracionProducto))
+            try
             {
-                Response.Redirect("AccesoDenegado.aspx");
-                return;
-            }
+                var usuario = Session["Usuario"] as Usuario;
+                if (!_permisoService.TienePermiso(usuario, Permiso.ConfiguracionProducto))
+                {
+                    Response.Redirect("AccesoDenegado.aspx");
+                    return;
+                }
 
-            if (!IsPostBack)
+                if (!IsPostBack)
+                {
+                    CargarProductos();
+                    CargarEmpresas();
+                    CargarTiposProducto();
+                }
+            }
+            catch (Exception ex)
             {
-                CargarProductos();
-                CargarEmpresas();
-                CargarTiposProducto();
+                lblMensaje.Text = ex.Message;
+                lblMensaje.CssClass = string.Empty;
+                lblMensaje.CssClass = "alert alert-danger";
+                lblMensaje.Visible = true;
             }
         }
 
@@ -66,74 +76,88 @@ namespace GUI
 
         protected void btnEliminar_Command(object sender, CommandEventArgs e)
         {
-            if (e.CommandName == "Eliminar")
+            try
             {
-                int idEmpresa = Convert.ToInt32(e.CommandArgument);
+                if (e.CommandName == "Eliminar")
+                {
+                    int idProducto = Convert.ToInt32(e.CommandArgument);
 
-                Producto producto = new Producto();
-                producto.Id = int.Parse(IdProducto.Value);
-                producto.Nombre = txtNombreProducto.Text;
+                    var producto = _productoService.ObtenerProductoPorId(idProducto);
 
-                var userSession = Session["Usuario"] as Usuario;
+                    var userSession = Session["Usuario"] as Usuario;
 
-                _productoService.Eliminar(producto, userSession);
-                CargarProductos();
+                    _productoService.Eliminar(producto, userSession);
+                    CargarProductos();
 
-                lblMensaje.Text = "El producto ha sido eliminado correctamente.";
+                    lblMensaje.Text = "El producto ha sido eliminado correctamente.";
+                    lblMensaje.CssClass = string.Empty;
+                    lblMensaje.CssClass = "alert alert-success";
+                    lblMensaje.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Text = ex.Message;
                 lblMensaje.CssClass = string.Empty;
-                lblMensaje.CssClass = "alert alert-success";
+                lblMensaje.CssClass = "alert alert-danger";
                 lblMensaje.Visible = true;
             }
         }
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtNombreProducto.Text) || string.IsNullOrEmpty(txtCantidad.Text) || string.IsNullOrEmpty(txtDescripcion.Text) || string.IsNullOrEmpty(txtPrecioUnitario.Text))
+            try
             {
-                lblMensaje.Text = "Hay campos sin completar.";
-                lblMensaje.CssClass = string.Empty;
-                lblMensaje.CssClass = "alert alert-danger";
-                lblMensaje.Visible = true;
-                return;
-            }
-
-            byte[] imagen = null;
-
-            if (fileImagenProducto.HasFile)
-            {
-                using (BinaryReader br = new BinaryReader(fileImagenProducto.PostedFile.InputStream))
+                if (string.IsNullOrEmpty(txtNombreProducto.Text) || string.IsNullOrEmpty(txtCantidad.Text) || string.IsNullOrEmpty(txtDescripcion.Text) || string.IsNullOrEmpty(txtPrecioUnitario.Text))
                 {
-                    imagen = br.ReadBytes(fileImagenProducto.PostedFile.ContentLength);
+                    throw new Exception("Hay campos sin completar");
                 }
-            }
 
-            Producto producto = new Producto()
-            {
-                Id = Convert.ToInt32(IdProducto.Value),
-                Nombre = string.IsNullOrEmpty(txtNombreProducto.Text) ? string.Empty : txtNombreProducto.Text,
-                Empresa = new Empresa()
+                byte[] imagen = null;
+
+                if (fileImagenProducto.HasFile)
+                {
+                    using (BinaryReader br = new BinaryReader(fileImagenProducto.PostedFile.InputStream))
+                    {
+                        imagen = br.ReadBytes(fileImagenProducto.PostedFile.ContentLength);
+                    }
+                }
+
+                Producto producto = new Producto()
+                {
+                    Id = Convert.ToInt32(IdProducto.Value),
+                    Nombre = string.IsNullOrEmpty(txtNombreProducto.Text) ? string.Empty : txtNombreProducto.Text,
+                    Empresa = new Empresa()
                     {
                         Id = (int)(string.IsNullOrEmpty(DropDownEmpresa.SelectedValue) ? (int?)null : int.Parse(DropDownEmpresa.SelectedValue))
                     },
-                Imagen = imagen,
-                Descripcion = string.IsNullOrEmpty(txtDescripcion.Text) ? string.Empty : txtDescripcion.Text,
-                TipoProducto = new TipoProducto() 
+                    Imagen = imagen,
+                    Descripcion = string.IsNullOrEmpty(txtDescripcion.Text) ? string.Empty : txtDescripcion.Text,
+                    TipoProducto = new TipoProducto()
                     {
                         Id = (int)(string.IsNullOrEmpty(DropDownTipoProducto.SelectedValue) ? (int?)null : int.Parse(DropDownTipoProducto.SelectedValue))
                     },
-                Cantidad = string.IsNullOrEmpty(txtCantidad.Text) ? (int?)null : int.Parse(txtCantidad.Text),
-                PrecioUnitario = string.IsNullOrEmpty(txtPrecioUnitario.Text) ? (decimal?)null : decimal.Parse(txtPrecioUnitario.Text)
-            };
+                    Cantidad = string.IsNullOrEmpty(txtCantidad.Text) ? (int?)null : int.Parse(txtCantidad.Text),
+                    PrecioUnitario = string.IsNullOrEmpty(txtPrecioUnitario.Text) ? (decimal?)null : decimal.Parse(txtPrecioUnitario.Text)
+                };
 
-            var userSession = Session["Usuario"] as Usuario;
-            _productoService.Modificar(producto, userSession);
+                var userSession = Session["Usuario"] as Usuario;
+                _productoService.Modificar(producto, userSession);
 
-            lblMensaje.Text = "El producto ha sido modificado correctamente";
-            lblMensaje.CssClass = string.Empty;
-            lblMensaje.CssClass = "alert alert-success";
-            lblMensaje.Visible = true;
+                lblMensaje.Text = "El producto ha sido modificado correctamente";
+                lblMensaje.CssClass = string.Empty;
+                lblMensaje.CssClass = "alert alert-success";
+                lblMensaje.Visible = true;
 
-            CargarProductos();
+                CargarProductos();
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Text = ex.Message;
+                lblMensaje.CssClass = string.Empty;
+                lblMensaje.CssClass = "alert alert-danger";
+                lblMensaje.Visible = true;
+            }
         }
     }
 }
