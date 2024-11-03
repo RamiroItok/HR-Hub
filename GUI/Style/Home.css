@@ -1,0 +1,229 @@
+﻿/* Estilo Global */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo de la línea divisoria */
+.section-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    width: 80%;
+    margin: 20px auto;
+}
+
+/* Estilo de Títulos de Secciones */
+.section-title {
+    font-size: 2.5em;
+    color: #ffffff; /* Texto en blanco */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+    /* Líneas verdes arriba y abajo del título */
+    .section-title::before, .section-title::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 3px;
+        background-color: #76B041; /* Línea en verde */
+        margin: 10px auto;
+    }
+
+    .section-title::before {
+        margin-top: -20px; /* Ajuste del espaciado superior */
+    }
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 100px 20px;
+    color: #f5f5f5;
+    background: none;
+}
+
+.hero-logo {
+    width: 150px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+    .hero-logo:hover {
+        transform: scale(1.1);
+    }
+
+.hero-section h1 {
+    font-size: 3em;
+    color: #f5f5f5;
+    margin-bottom: 10px;
+}
+
+.hero-section p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #e0e0e0;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.cta-button, .info-button, .contact-button {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 8px;
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button {
+    background-color: #76B041;
+}
+
+    .cta-button:hover {
+        background-color: #669933;
+        transform: scale(1.05);
+    }
+
+.info-button {
+    background-color: #3a7bd5;
+}
+
+    .info-button:hover {
+        background-color: #3366cc;
+        transform: scale(1.05);
+    }
+
+.contact-button {
+    background-color: #e67e22;
+}
+
+    .contact-button:hover {
+        background-color: #cc6600;
+        transform: scale(1.05);
+    }
+
+/* Contenedor de Pilares y Servicios */
+.background-section {
+    color: #f5f5f5;
+    text-align: center;
+}
+
+/* Sección de Pilares */
+.pillars-section {
+    padding: 80px 20px;
+}
+
+.pillars-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.pillar {
+    flex: 1 1 300px;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+    /* Hover para las tarjetas de Pilares */
+    .pillar:hover {
+        transform: translateY(-5px); /* Efecto de elevación */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+    }
+
+    .pillar h3 {
+        font-size: 1.5em;
+        color: #2e7d32;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .pillar p {
+        color: #666;
+        margin-bottom: 0;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+/* Servicios */
+.services-section {
+    padding: 80px 20px;
+    color: #f5f5f5;
+    text-align: center;
+    margin-bottom: 0; /* Asegúrate de que no haya margen inferior */
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.service {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #333;
+}
+
+    .service:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .service h4 {
+        font-size: 1.3em;
+        color: #2e7d32;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .service p {
+        font-size: 1em;
+        color: #666;
+        line-height: 1.6;
+    }
+
+.more-services {
+    margin-top: 30px;
+    font-size: 1.1em;
+    color: #f0f0f0;
+    font-style: italic;
+}
+
+/* Footer */
+.footer {
+    background-color: #222;
+    color: #999;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    margin-top: 0;
+}
+
+form1 {
+    margin: 0;
+    padding: 0;
+}

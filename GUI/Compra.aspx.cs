@@ -87,7 +87,6 @@ namespace GUI
                     {
                         IdCompra = idCompra,
                         IdProducto = item.IdProducto,
-                        NombreProducto = item.Producto.Nombre,
                         Cantidad = item.Cantidad,
                         PrecioUnitario = (decimal)item.Producto.PrecioUnitario,
                         Subtotal = (decimal)(item.Cantidad * item.Producto.PrecioUnitario)

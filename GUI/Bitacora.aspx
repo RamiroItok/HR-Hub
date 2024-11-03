@@ -15,16 +15,15 @@
     <link href="~/Style/NavBar.css" rel="stylesheet" />
     <link href="~/Style/Bitacora.css" rel="stylesheet" />
 </head>
-<body>
-    <form id="form1" runat="server">
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/Content/imagenes/Fondo1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center;">
+    <form id="form1" runat="server" style="width: 100%; max-width: 1200px; margin: 0 auto;">
         <uc:NavBar runat="server" ID="NavBarControl" />
         <div class="bitacora-page">
-            <div class="container">
             <h1 class="titulo-bitacora">Bitácora</h1>
             <div class="filter-container">
                 <div class="form-group">
                     <asp:Label ID="lblSearch" runat="server" Text="Texto de Búsqueda:" AssociatedControlID="txtSearch" />
-                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" />
+                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" Placeholder="Ingrese una descripción"/>
                 </div>
                 
                 <div class="form-group">
@@ -42,39 +41,30 @@
                     <asp:DropDownList ID="drpCriticidad" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
             
+                <!-- Ajuste de los campos de fecha para que tengan la misma longitud -->
                 <div class="form-group">
-                    <label for="txtFechaDesde">Fecha Desde:</label>
-                    <div class="input-container">
-                        <input type="text" ID="txtFechaDesde" runat="server" CssClass="form-control" />
-                        
-                        <button type="button" class="calendar-button" onclick="openFlatpickr('txtFechaDesde')">
-                            <i class="fas fa-calendar-alt"></i>
-                        </button>
-                    </div>
+                    <asp:Label ID="lblFechaDesde" runat="server" Text="Fecha Desde:" AssociatedControlID="txtFechaDesde" />
+                    <asp:TextBox ID="txtFechaDesde" runat="server" CssClass="form-control datepicker" />
                 </div>
                 
                 <div class="form-group">
-                    <label for="txtFechaHasta">Fecha Hasta:</label>
-                    <div class="input-container">
-                        <input type="text" ID="txtFechaHasta" runat="server" CssClass="form-control" />
-                        <button type="button" class="calendar-button" onclick="openFlatpickr('txtFechaHasta')">
-                            <i class="fas fa-calendar-alt"></i>
-                        </button>
-                    </div>
+                    <asp:Label ID="lblFechaHasta" runat="server" Text="Fecha Hasta:" AssociatedControlID="txtFechaHasta" />
+                    <asp:TextBox ID="txtFechaHasta" runat="server" CssClass="form-control datepicker" />
                 </div>
             
                 <div class="button-group">
                     <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" />
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-primary" OnClick="btnCancelar_Click" />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
                 </div>
             </div>
-                <asp:Panel runat="server" CssClass="form-group">
-                    <asp:Label runat="server" ID="lblMensaje" CssClass="message-label" Visible="false"></asp:Label>                
-            </asp:Panel>
 
+            <!-- Mensaje de información o error -->
+            <asp:Label ID="lblMensaje" runat="server" CssClass="message-label" Visible="false" />
+
+            <!-- Tabla de datos -->
             <asp:GridView ID="gvBitacora" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" 
                           AllowPaging="True" PageSize="15" OnPageIndexChanging="gvBitacora_PageIndexChanging" PagerStyle-CssClass="gridview-pagination"
-                          PagerSettings-Mode="Numeric" PagerStyle-HorizontalAlign="Center" >
+                          PagerSettings-Mode="Numeric" PagerStyle-HorizontalAlign="Center">
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="ID" />
                     <asp:BoundField DataField="Email" HeaderText="Email" />
@@ -84,7 +74,6 @@
                     <asp:BoundField DataField="Criticidad" HeaderText="Criticidad" />
                 </Columns>
             </asp:GridView>
-        </div>
         </div>
     </form>
 
@@ -102,14 +91,6 @@
                 dateFormat: "Y-m-d H:i",
             });
         });
-
-        function openFlatpickr(fieldId) {
-            if (fieldId === 'txtFechaDesde') {
-                fpFechaDesde.open();
-            } else if (fieldId === 'txtFechaHasta') {
-                fpFechaHasta.open();
-            }
-        }
     </script>
 
     <script src="Scripts/bootstrap.min.js"></script>

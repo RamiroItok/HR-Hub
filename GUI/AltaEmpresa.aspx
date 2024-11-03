@@ -14,8 +14,8 @@
     <link href="/Style/NavBar.css" rel="stylesheet" />
     <link href="~/Style/AltaEmpresa.css" rel="stylesheet" />
 </head>
-<body>
-    <form id="form1" runat="server">
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('Content/imagenes/Fondo.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0;">
+    <form id="form1" runat="server" style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
         <uc:NavBar runat="server" ID="NavBarControl" />
         
         <div class="containerEmpresas">

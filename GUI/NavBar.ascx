@@ -45,19 +45,26 @@
                         <li><a runat="server" href="~/ListadoProductos">Listado de Productos</a></li>
                     </ul>
                 </li>
+                <li class="dropdown" visible="false" id="reportesLink" runat="server">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a runat="server" id="reporteComprasLink" href="~/ReporteCompras">Reporte de compras</a></li>
+                    </ul>
+                </li>
                 <li><a runat="server" id="falloIntegridadLink" visible="false" href="~/FalloIntegridad">Fallo de integridad</a></li>
                 <li><a runat="server" id="bitacoraLink" visible="false" href="~/Bitacora">Bitacora</a></li>
                 <li><a runat="server" id="productosLink" visible="false" href="~/Productos">Productos</a></li>
                 <li><a runat="server" id="carritoLink" visible="false" href="~/Carrito">Carrito</a></li>
+                
                 <li><a runat="server" id="contactoLink" href="~/Contact">Contacto</a></li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown" id="miCuentaLink" runat="server">
+                <li class="dropdown" visible="false" id="miCuentaLink" runat="server">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mi cuenta<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <!--<li><a runat="server" href="~/MisDatos">Mis datos</a></li>-->
-                        <li><a runat="server" id="misComprasLink" href="~/MisCompras">Mis compras</a></li>
+                        <li><a runat="server" visible="false" id="misComprasLink" href="~/MisCompras">Mis compras</a></li>
                         <li><a runat="server" href="~/CambiarContraseña">Cambiar contraseña</a></li>
                     </ul>
                 </li>

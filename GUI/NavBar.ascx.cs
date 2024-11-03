@@ -32,6 +32,9 @@ namespace GUI.Controls
                     configuracionProductosLink.Visible = false;
                     productosLink.Visible = false;
                     carritoLink.Visible = false;
+                    misComprasLink.Visible = false;
+                    reportesLink.Visible = false;
+                    reporteComprasLink.Visible = false;
                 }
 
                 VisualizarMenu(usuario);
@@ -77,6 +80,9 @@ namespace GUI.Controls
                 configuraciónEmpresaLink.Visible = false;
                 productosLink.Visible = false;
                 carritoLink.Visible = false;
+                misComprasLink.Visible = false;
+                reportesLink.Visible = false;
+                reporteComprasLink.Visible = false;
                 return;
             }
             else if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto != Models.Enums.Puesto.WebMaster)
@@ -90,6 +96,9 @@ namespace GUI.Controls
                 configuraciónEmpresaLink.Visible = false;
                 productosLink.Visible = false;
                 carritoLink.Visible = false;
+                misComprasLink.Visible = false;
+                reportesLink.Visible = false;
+                reporteComprasLink.Visible = false;
                 return;
             }
             
@@ -150,6 +159,15 @@ namespace GUI.Controls
                             break;
                         case Models.Composite.Permiso.MisCompras:
                             misComprasLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.MiCuenta:
+                            miCuentaLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.Reportes:
+                            reportesLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.ReporteCompras:
+                            reporteComprasLink.Visible = true;
                             break;
                     }
                 }

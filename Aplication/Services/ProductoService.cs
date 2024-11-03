@@ -5,9 +5,6 @@ using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aplication.Services
 {
@@ -152,6 +149,22 @@ namespace Aplication.Services
                 _iDigitoVerificadorService.CalcularDVTabla("Producto");
 
                 return id;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataSet ObtenerProductosMasCompradosPorMesPorAnio()
+        {
+            try
+            {
+                return _iProductoDAO.ObtenerProductosMasCompradosPorMesPorAnio();
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {

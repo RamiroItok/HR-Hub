@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="ListadoProductos" Language="C#" AutoEventWireup="true" CodeBehind="ListadoProductos.aspx.cs" Inherits="GUI.ListadoProductos" %>
+
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
 <!DOCTYPE html>
@@ -7,17 +8,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HR Hub - Listado de Productos</title>
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Style/NavBar.css" rel="stylesheet" />
     <link href="/Style/ListadoProductos.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
     <form id="form1" runat="server">
         <asp:ScriptManager runat="server" />
-        
+
         <uc:NavBar runat="server" ID="NavBarControl" />
 
         <div class="container mt-5">
@@ -43,8 +44,8 @@
                                 </div>
 
                                 <div class="card-footer text-center">
-                                    <button type="button" class="btn btn-success mr-2" 
-                                            onclick="openModal('<%# Eval("Id") %>', 
+                                    <button type="button" class="btn btn-success mr-2"
+                                        onclick="openModal('<%# Eval("Id") %>', 
                                                                '<%# Eval("Nombre") %>', 
                                                                '<%# Eval("Descripcion") %>', 
                                                                '<%# Eval("Cantidad") %>', 
@@ -53,14 +54,14 @@
                                                                '<%# Eval("IdTipoProducto") %>')">
                                         Modificar
                                     </button>
-                                    <asp:Button ID="btnEliminar" 
-                                                runat="server" 
-                                                Text="Eliminar" 
-                                                CssClass="btn btn-danger" 
-                                                CommandName="Eliminar" 
-                                                CommandArgument='<%# Eval("Id") %>' 
-                                                OnCommand="btnEliminar_Command" 
-                                                OnClientClick="return confirm('¿Está seguro de que desea eliminar este producto?');" />
+                                    <asp:Button ID="btnEliminar"
+                                        runat="server"
+                                        Text="Eliminar"
+                                        CssClass="btn btn-danger"
+                                        CommandName="Eliminar"
+                                        CommandArgument='<%# Eval("Id") %>'
+                                        OnCommand="btnEliminar_Command"
+                                        OnClientClick="return confirm('¿Está seguro de que desea eliminar este producto?');" />
                                 </div>
                             </div>
                         </div>
@@ -109,13 +110,13 @@
                             <asp:TextBox ID="txtPrecioUnitario" runat="server" CssClass="form-control" placeholder="Precio unitario" />
                         </div>
                     </div>
-                  <div class="modal-footer">
-                    <asp:Button ID="btnGuardarCambios" runat="server" Text="Guardar Cambios" OnClick="btnGuardarCambios_Click" CssClass="btn btn-primary" />
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnGuardarCambios" runat="server" Text="Guardar Cambios" OnClick="btnGuardarCambios_Click" CssClass="btn btn-primary" />
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
-              </div>
             </div>
+        </div>
     </form>
     <script>
         function openModal(id, nombre, descripcion, cantidad, precio, empresaId, tipoProductoId) {

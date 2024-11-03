@@ -63,7 +63,6 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     
-        <!-- Modal de confirmación de pago -->
         <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -88,6 +87,23 @@
         function redirectToProducts() {
             window.location.href = '/Carrito.aspx';
         }
+
+        function aplicarFondo() {
+            document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('<%= ResolveUrl("~/Content/imagenes/Fondo.jpg") %>')";
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundAttachment = "fixed";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            aplicarFondo();
+
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            prm.add_endRequest(function () {
+                aplicarFondo();
+            });
+        });
+
     </script>
     <script src="Scripts/jquery-3.4.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>

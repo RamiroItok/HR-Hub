@@ -1,4 +1,5 @@
 ﻿using Models;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Aplication.Interfaces
@@ -11,5 +12,6 @@ namespace Aplication.Interfaces
         DataTable ObtenerProductos();
         Producto ObtenerProductoPorId(int id);
         DataTable ObtenerTipoProducto();
+        DataSet ObtenerProductosMasCompradosPorMesPorAnio();
     }
 }

@@ -103,8 +103,8 @@ namespace GUI
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            DateTime? fechaDesde = string.IsNullOrEmpty(txtFechaDesde.Value) ? (DateTime?)null : DateTime.Parse(txtFechaDesde.Value);
-            DateTime? fechaHasta = string.IsNullOrEmpty(txtFechaHasta.Value) ? (DateTime?)null : DateTime.Parse(txtFechaHasta.Value);
+            DateTime? fechaDesde = string.IsNullOrEmpty(txtFechaDesde.Text) ? (DateTime?)null : DateTime.Parse(txtFechaDesde.Text);
+            DateTime? fechaHasta = string.IsNullOrEmpty(txtFechaHasta.Text) ? (DateTime?)null : DateTime.Parse(txtFechaHasta.Text);
 
 
             if ((fechaDesde.HasValue && fechaHasta.HasValue) && fechaDesde.Value > fechaHasta.Value)
@@ -155,8 +155,8 @@ namespace GUI
         private void Limpiar()
         {
             txtSearch.Text = String.Empty;
-            txtFechaDesde.Value = String.Empty;
-            txtFechaHasta.Value = String.Empty;
+            txtFechaDesde.Text = String.Empty;
+            txtFechaHasta.Text = String.Empty;
             drpUsuarios.SelectedIndex = 0;
             drpTipoUsuario.SelectedIndex = 0;
             drpCriticidad.SelectedIndex = 0;

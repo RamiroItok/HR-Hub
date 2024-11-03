@@ -15,12 +15,14 @@ namespace Aplication.Services
         private readonly ICompraDAO _compraDAO;
         private readonly IDigitoVerificadorService _digitoVerificadorService;
         private readonly IBitacoraService _bitacoraService;
+        private readonly IProductoService _productoService;
 
-        public CompraService(IDigitoVerificadorService digitoVerificadorService, IBitacoraService bitacoraService)
+        public CompraService(IDigitoVerificadorService digitoVerificadorService, IBitacoraService bitacoraService, IProductoService productoService)
         {
             _compraDAO = new CompraDAO();
             _digitoVerificadorService = digitoVerificadorService;
             _bitacoraService = bitacoraService;
+            _productoService = productoService;
         }
 
         public void GuardarDetalleCompra(DetalleCompra detalleCompra)
@@ -73,6 +75,8 @@ namespace Aplication.Services
                 foreach (DataRow compra in resultado.Tables[0].Rows)
                 {
                     DetalleCompra detalle = CompletarDetalleCompra(compra);
+                    var prod = _productoService.ObtenerProductoPorId(detalle.IdProducto);
+                    detalle.NombreProducto = prod.Nombre;
                     detallesCompra.Add(detalle);
                 }
 
@@ -120,7 +124,7 @@ namespace Aplication.Services
             return new DetalleCompra()
             {
                 IdCompra = Convert.ToInt32(row["IdCompra"]),
-                NombreProducto = row["NombreProducto"].ToString(),
+                IdProducto = Convert.ToInt32(row["IdProducto"]),
                 Cantidad = Convert.ToInt32(row["Cantidad"]),
                 PrecioUnitario = Convert.ToDecimal(row["PrecioUnitario"]),
                 Subtotal = Convert.ToDecimal(row["Subtotal"])
@@ -185,8 +189,9 @@ namespace Aplication.Services
             string detallesHtml = "";
             foreach (var detalle in detallesCompra)
             {
+                var producto = _productoService.ObtenerProductoPorId(detalle.IdProducto);
                 detallesHtml += "<tr>";
-                detallesHtml += $"<td>{detalle.NombreProducto}</td>";
+                detallesHtml += $"<td>{producto.Nombre}</td>";
                 detallesHtml += $"<td>{detalle.Cantidad}</td>";
                 detallesHtml += $"<td>{detalle.PrecioUnitario:C}</td>";
                 detallesHtml += $"<td>{detalle.Subtotal:C}</td>";

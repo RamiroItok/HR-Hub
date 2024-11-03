@@ -1,142 +1,39 @@
 ﻿/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
 .containerEmpresas {
     max-width: 600px;
-    margin: 30px auto;
+    margin: 0 auto; /* Centro en la pantalla */
     padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    transition: transform 0.3s ease;
 }
 
-    .containerEmpresas:hover {
-        transform: scale(1.02);
-    }
-
-/* Título */
-.content-box h2 {
-    color: #76B041;
-    font-weight: 700;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-}
-
-/* Estilos de los elementos de formulario */
-.form-group label {
-    font-weight: 600;
-    color: #333;
-}
-
-.form-control {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    width: 100%;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-    .form-control:focus {
-        border-color: #76B041;
-        box-shadow: 0 0 8px rgba(118, 176, 65, 0.2);
-    }
-
-    /* Ajustes para DropDownList */
-    .form-control select, .form-control {
-        height: 40px; /* Ajusta la altura de los dropdowns */
-        line-height: 1.5; /* Aumenta la altura de línea para mejor legibilidad */
-        padding-top: 8px; /* Ajuste adicional para centrar el texto verticalmente */
-    }
-
-/* Botones */
-.btn-primary {
-    background-color: #76B041;
-    border-color: #76B041;
-    color: #fff;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-    .btn-primary:hover {
-        background-color: #5e9134;
-        transform: scale(1.05);
-    }
-
-.btn-secondary {
-    background-color: #555;
-    border-color: #555;
-    color: #fff;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
-
-    .btn-secondary:hover {
-        background-color: #333;
-        color: #fff; /* Cambia el texto a blanco en el hover */
-        transform: scale(1.05);
-    }
-
-/* Mensaje de éxito */
-.text-success {
-    color: #76B041;
-    font-weight: 600;
-}
-
-/* Transiciones y animaciones */
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-control-file {
-    margin-top: 10px;
-    padding: 5px;
-    border: 1px dashed #ccc;
-    border-radius: 4px;
-    transition: border-color 0.3s ease;
-}
-
-    .form-control-file:hover {
-        border-color: #76B041;
-    }
-
-.text-center {
-    margin-top: 20px;
-}
-
-/* Efecto de sombra y redondeo */
 .content-box {
     padding: 20px 30px;
     border-radius: 8px;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-/* Efecto hover en etiquetas */
-label:hover {
+    .content-box:hover {
+        transform: scale(1.02);
+    }
+
+h2 {
     color: #76B041;
-    transition: color 0.3s ease;
-}
-
-
-/* Estilo profesional para el título */
-.content-box h2 {
-    color: #76B041; /* Color verde del título */
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;
-    position: relative;
     font-size: 1.8rem;
     margin-bottom: 30px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #76B041; /* Línea verde debajo del título */
 }
 
-    .content-box h2::after {
+    h2::after {
         content: '';
         width: 50px;
         height: 3px;
@@ -144,4 +41,108 @@ label:hover {
         display: block;
         margin: 8px auto 0;
         border-radius: 5px;
+    }
+
+/* Estilos de los elementos de formulario */
+.form-group label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Estilo para DropDownList */
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px; /* Padding para asegurar espacio dentro del campo */
+    font-size: 1rem;
+    line-height: 1.5; /* Asegura que el texto se centre verticalmente */
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .form-control select {
+        appearance: none; /* Elimina estilos por defecto */
+        height: auto; /* Asegura que el texto se ajuste a la altura */
+        padding: 10px 8px; /* Ajusta el padding para evitar el texto cortado */
+        line-height: 1.5; /* Altura de línea adecuada para que el texto no se corte */
+        font-size: 1rem;
+    }
+
+    /* Enfoque visual para el campo */
+    .form-control:focus {
+        border-color: #76B041;
+        box-shadow: 0 0 8px rgba(118, 176, 65, 0.2);
+    }
+
+
+/* Tamaño y estilo de fuente uniforme para todos los controles */
+input[type="text"],
+input[type="number"],
+select,
+button,
+textarea {
+    font-size: 1.2rem; /* Tamaño uniforme para todos los elementos */
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilo específico para el select */
+select {
+    height: auto;
+    line-height: 1.5;
+    appearance: none; /* Remueve estilos predeterminados */
+}
+
+    /* Ajusta el tamaño de fuente en las opciones del Dropdown */
+    select option {
+        font-size: 1.2rem; /* Mantiene el mismo tamaño de fuente para las opciones */
+    }
+
+    /* Estilo de enfoque para todos los controles */
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #76B041;
+        box-shadow: 0 0 8px rgba(118, 176, 65, 0.2);
+    }
+
+/* Estilo de botones */
+button, .btn-primary, .btn-secondary {
+    font-size: 1.2rem; /* Tamaño uniforme en los botones */
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Botón primario */
+.btn-primary {
+    background-color: #76B041;
+    border-color: #76B041;
+    color: #fff;
+}
+
+    .btn-primary:hover {
+        background-color: #5e9134;
+        transform: scale(1.05);
+    }
+
+/* Botón secundario */
+.btn-secondary {
+    background-color: #555;
+    border-color: #555;
+    color: #fff;
+}
+
+    .btn-secondary:hover {
+        background-color: #333;
+        transform: scale(1.05);
     }

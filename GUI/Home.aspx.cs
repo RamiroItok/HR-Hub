@@ -24,12 +24,12 @@ namespace GUI
                 var nombre = EncriptacionService.Decrypt_AES(usuario.Nombre);
                 var apellido = EncriptacionService.Decrypt_AES(usuario.Apellido);
                 
-                lblBienvenido.Text = $"Bienvenido {usuario.Puesto}, {nombre} {apellido}!";
-                lblBienvenido.Visible = true;
+                //lblBienvenido.Text = $"Bienvenido {usuario.Puesto}, {nombre} {apellido}!";
+                //lblBienvenido.Visible = true;
             }
             else
             {
-                lblBienvenido.Visible = false;
+                //lblBienvenido.Visible = false;
             }
         }
     }

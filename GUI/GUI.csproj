@@ -166,6 +166,7 @@
     <Content Include="Carrito.aspx" />
     <Content Include="Compra.aspx" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
+    <Content Include="Controls\ValidarCantidad.ascx" />
     <Content Include="Controls\ValidarContraseña.ascx" />
     <Content Include="Controls\ValidarEmail.ascx" />
     <Content Include="Controls\ValidarRegistroUsuarioDatos.ascx" />
@@ -203,9 +204,13 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="ReporteCompras.aspx" />
+    <Content Include="Style\GestionPermisosUsuario.css" />
     <Content Include="Style\MisCompras.css" />
+    <Content Include="Style\Reporte.css" />
     <Content Include="Templates\ResumenCompraTemplate.html" />
     <Content Include="WebService\EnviarMail.asmx" />
+    <Content Include="WebService\ReporteCompras.asmx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Restore.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -256,7 +261,7 @@
     <Content Include="Style\PermisosUsuario.css" />
     <Content Include="Style\Productos.css" />
     <Content Include="Style\Registro.css" />
-    <Content Include="Style\SiteMaster.css" />
+    <Content Include="Style\Home.css" />
     <Content Include="Templates\GenerarContraseñaTemplate.html" />
     <Content Include="Templates\RecuperarContraseñaTemplate.html" />
     <Content Include="ViewSwitcher.ascx" />
@@ -321,6 +326,13 @@
     </Compile>
     <Compile Include="Compra.aspx.designer.cs">
       <DependentUpon>Compra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ValidarCantidad.ascx.cs">
+      <DependentUpon>ValidarCantidad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ValidarCantidad.ascx.designer.cs">
+      <DependentUpon>ValidarCantidad.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\ValidarContraseña.ascx.cs">
       <DependentUpon>ValidarContraseña.ascx</DependentUpon>
@@ -474,6 +486,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReporteCompras.aspx.cs">
+      <DependentUpon>ReporteCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteCompras.aspx.designer.cs">
+      <DependentUpon>ReporteCompras.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Restore.aspx.cs">
       <DependentUpon>Restore.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -504,6 +523,10 @@
     </Compile>
     <Compile Include="WebService\EnviarMail.asmx.cs">
       <DependentUpon>EnviarMail.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebService\ReporteCompras.asmx.cs">
+      <DependentUpon>ReporteCompras.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
