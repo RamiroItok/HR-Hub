@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="AltaProducto" Language="C#" AutoEventWireup="true" CodeBehind="AltaProducto.aspx.cs" Inherits="GUI.AltaProducto" %>
+
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
 <!DOCTYPE html>
@@ -7,17 +8,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HR Hub - Alta de Producto</title>
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="/Style/NavBar.css" rel="stylesheet" />
     <link href="/Style/AltaProducto.css" rel="stylesheet" />
 </head>
-<body>
-    <form id="form1" runat="server">
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center;">
+    <form id="form1" runat="server" style="width: 100%; display: flex; justify-content: center;">
         <uc:NavBar runat="server" ID="NavBarControl" />
-        
+
         <div class="containerEmpresas">
             <div class="content-box">
                 <h2 class="text-center mb-4">Alta de Producto</h2>
@@ -31,7 +32,7 @@
                     <asp:Label runat="server" AssociatedControlID="DropDownEmpresa" Text="Empresa:" CssClass="form-label"></asp:Label>
                     <asp:DropDownList runat="server" ID="DropDownEmpresa" CssClass="form-control"></asp:DropDownList>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="fileProducto">Imagen del Producto:</label>
                     <asp:FileUpload ID="fileProducto" runat="server" CssClass="form-control-file" />
@@ -51,7 +52,7 @@
                     <label for="txtCantidad">Cantidad:</label>
                     <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" placeholder="Ingrese la cantidad" TextMode="Number"></asp:TextBox>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="txtPrecioUnitario">Precio Unitario:</label>
                     <asp:TextBox ID="txtPrecioUnitario" runat="server" CssClass="form-control" placeholder="Ingrese el precio unitario" TextMode="Number"></asp:TextBox>
@@ -71,17 +72,17 @@
 
     <script>
         // Validación en tiempo real para evitar números negativos
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const cantidadInput = document.getElementById("<%= txtCantidad.ClientID %>");
             const precioUnitarioInput = document.getElementById("<%= txtPrecioUnitario.ClientID %>");
-    
+
             // Función que valida que el valor sea mayor o igual a 0
             function validarNumeroPositivo(event) {
                 if (event.target.value < 0) {
                     event.target.value = ""; // Borra el valor si es negativo
                 }
             }
-    
+
             // Asigna el evento de validación en tiempo real a los inputs
             cantidadInput.addEventListener("input", validarNumeroPositivo);
             precioUnitarioInput.addEventListener("input", validarNumeroPositivo);

@@ -96,7 +96,7 @@
         }
     </style>
 </head>
-<body>
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
     <div class="error-container">
         <div class="error-code">403</div>
         <div class="error-title">Acceso Denegado</div>

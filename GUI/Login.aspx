@@ -10,7 +10,7 @@
     <title>Inicio de Sesión</title>
     <link rel="stylesheet" href="Style/Login.css">
 </head>
-<body>
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
     <form id="form1" runat="server">
         <div class="login-container">
             <h2>Iniciar Sesión</h2>

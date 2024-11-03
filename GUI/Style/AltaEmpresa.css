@@ -1,24 +1,21 @@
-﻿body {
-    background-color: #f8f9fa;
+﻿/* Estilo Global */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
 }
 
+/* Contenedor del Formulario */
 .containerEmpresas {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     min-height: 100vh;
-    background-color: #f8f9fa;
 }
 
 .content-box {
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);

@@ -90,6 +90,23 @@
         function showResumenCompraModal() {
             $('#resumenCompraModal').modal('show');
         }
+
+        function aplicarFondo() {
+            document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('<%= ResolveUrl("~/Content/imagenes/Fondo.jpg") %>')";
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundAttachment = "fixed";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            aplicarFondo();
+
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            prm.add_endRequest(function () {
+                aplicarFondo();
+            });
+        });
+
     </script>
 </body>
 </html>

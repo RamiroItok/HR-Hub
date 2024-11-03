@@ -16,7 +16,7 @@
     <link href="/Style/Carrito.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" style="width: 100%; max-width: 900px; margin: 0 auto;">
         <uc:NavBar ID="NavBar" runat="server" />
 
         <div class="containerCarrito mt-4">
@@ -68,14 +68,14 @@
                         </Columns>
                     </asp:GridView>
         
-                      <div class="cart-footer">
-                          <asp:Button ID="btnLimpiarCarrito" runat="server" Text="Limpiar Carrito" CssClass="btn btn-warning" OnClick="btnLimpiarCarrito_Click" />
-                          
-                          <div class="total-container">
-                              <h4>Total del Carrito: <asp:Label ID="lblTotalCarrito" runat="server" Text="0.00" CssClass="font-weight-bold"></asp:Label></h4>
-                              <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" CssClass="btn btn-finalizar-compra mt-3" OnClick="btnFinalizarCompra_Click" />
-                          </div>
-                      </div>
+                    <div class="cart-footer">
+                        <asp:Button ID="btnLimpiarCarrito" runat="server" Text="Limpiar Carrito" CssClass="btn btn-warning" OnClick="btnLimpiarCarrito_Click" />
+                        
+                        <div class="total-container">
+                            <h4>Total del Carrito: <asp:Label ID="lblTotalCarrito" runat="server" Text="0.00" CssClass="font-weight-bold"></asp:Label></h4>
+                            <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" CssClass="btn btn-finalizar-compra mt-3" OnClick="btnFinalizarCompra_Click" />
+                        </div>
+                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
@@ -116,6 +116,22 @@
             confirmButtonColor: '#4CAF50'
         });
     }
+
+    function aplicarFondo() {
+        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('<%= ResolveUrl("~/Content/imagenes/Fondo.jpg") %>')";
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+        document.body.style.backgroundAttachment = "fixed";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        aplicarFondo();
+
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        prm.add_endRequest(function () {
+            aplicarFondo();
+        });
+    });
 </script>
 
 </body>
