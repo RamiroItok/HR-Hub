@@ -256,7 +256,7 @@
     <Content Include="Style\PermisosUsuario.css" />
     <Content Include="Style\Productos.css" />
     <Content Include="Style\Registro.css" />
-    <Content Include="Style\SiteMaster.css" />
+    <Content Include="Style\Home.css" />
     <Content Include="Templates\GenerarContraseñaTemplate.html" />
     <Content Include="Templates\RecuperarContraseñaTemplate.html" />
     <Content Include="ViewSwitcher.ascx" />
