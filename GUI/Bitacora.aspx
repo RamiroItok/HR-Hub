@@ -18,8 +18,15 @@
 <body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/Content/imagenes/Fondo1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center;">
     <form id="form1" runat="server" style="width: 100%; max-width: 1200px; margin: 0 auto;">
         <uc:NavBar runat="server" ID="NavBarControl" />
+
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true"
+            OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
+            <asp:ListItem Text="Español" Value="es"></asp:ListItem>
+            <asp:ListItem Text="English" Value="en"></asp:ListItem>
+        </asp:DropDownList>
+
         <div class="bitacora-page">
-            <h1 class="titulo-bitacora">Bitácora</h1>
+            <h1 class="titulo-bitacora"><asp:Literal ID="litTituloBitacora" runat="server" /></h1>
             <div class="filter-container">
                 <div class="form-group">
                     <asp:Label ID="lblSearch" runat="server" Text="Texto de Búsqueda:" AssociatedControlID="txtSearch" />

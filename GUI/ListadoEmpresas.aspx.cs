@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using System;
@@ -11,15 +13,18 @@ using Unity;
 
 namespace GUI
 {
-    public partial class ListadoEmpresas : Page
+    public partial class ListadoEmpresas : Page, IIdiomaService
     {
         private readonly IEmpresaService _empresaService;
         private readonly IPermisoService _permisoService;
+        private readonly IdiomaService _idiomaService;
 
         public ListadoEmpresas()
         {
             _empresaService = Global.Container.Resolve<IEmpresaService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -33,7 +38,46 @@ namespace GUI
 
             if (!IsPostBack)
             {
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                _idiomaService.CurrentLanguage = selectedLanguage;
                 CargarEmpresas();
+                CargarTextos();
+            }
+        }
+
+        private void CargarTextos()
+        {
+            if (!(litPageTitle == null))
+            {
+                litPageTitle.Text = _idiomaService.GetTranslation("PageTitleListadoEmpresas");
+                litTitle.Text = _idiomaService.GetTranslation("TituloListadoEmpresas");
+                litModalTitle.Text = _idiomaService.GetTranslation("TituloModalModificarEmpresa");
+                litNombreLabel.Text = _idiomaService.GetTranslation("LabelNombre");
+                litURLLabel.Text = _idiomaService.GetTranslation("LabelURL");
+                litLogoLabel.Text = _idiomaService.GetTranslation("LabelLogo");
+                btnGuardarCambios.Text = _idiomaService.GetTranslation("BotonGuardarCambios");
+                litCloseButton.Text = _idiomaService.GetTranslation("BotonCerrar");
+            }
+        }
+
+        protected void rptEmpresas_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var btnModificar = (LinkButton)e.Item.FindControl("btnModificar");
+                var litModificar = (Literal)e.Item.FindControl("litModificar");
+
+                if (btnModificar != null && litModificar != null)
+                {
+                    litModificar.Text = _idiomaService.GetTranslation("BotonModificar");
+
+                    var dataItem = (DataRowView)e.Item.DataItem;
+                    var id = dataItem["Id"].ToString();
+                    var nombre = dataItem["Nombre"].ToString();
+                    var url = dataItem["URLEmpresa"].ToString();
+
+                    btnModificar.OnClientClick = $"openModal('{id}', '{nombre}', '{url}'); return false;";
+                }
             }
         }
 
@@ -56,7 +100,7 @@ namespace GUI
                 _empresaService.Eliminar(empresa, userSession);
                 CargarEmpresas();
 
-                lblMensaje.Text = "La empresa ha sido eliminada exitosamente.";
+                lblMensaje.Text = _idiomaService.GetTranslation("MensajeEmpresaEliminada");
                 lblMensaje.CssClass = string.Empty;
                 lblMensaje.CssClass = "alert alert-success";
                 lblMensaje.Visible = true;
@@ -67,7 +111,7 @@ namespace GUI
         {
             if (string.IsNullOrEmpty(txtNombreEmpresa.Text) || string.IsNullOrEmpty(txtURLEmpresa.Text))
             {
-                lblMensaje.Text = "Error: Hay campos que faltan completar.";
+                lblMensaje.Text = _idiomaService.GetTranslation("MensajeErrorCamposFaltantes");
                 lblMensaje.CssClass = string.Empty;
                 lblMensaje.CssClass = "alert alert-danger";
                 lblMensaje.Visible = true;
@@ -95,7 +139,7 @@ namespace GUI
             var userSession = Session["Usuario"] as Usuario;
             _empresaService.Modificar(empresa, userSession);
 
-            lblMensaje.Text = "La empresa ha sido modificada exitosamente.";
+            lblMensaje.Text = _idiomaService.GetTranslation("MensajeEmpresaModificada");
             lblMensaje.CssClass = string.Empty;
             lblMensaje.CssClass = "alert alert-success";
             lblMensaje.Visible = true;
@@ -110,6 +154,17 @@ namespace GUI
                 url = "http://" + url;
             }
             return url;
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
         }
     }
 }

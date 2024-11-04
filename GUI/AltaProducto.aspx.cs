@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using System;
@@ -9,17 +11,20 @@ using Unity;
 
 namespace GUI
 {
-    public partial class AltaProducto : System.Web.UI.Page
+    public partial class AltaProducto : System.Web.UI.Page, IIdiomaService
     {
         private readonly IProductoService _productoService;
         private readonly IEmpresaService _empresaService;
         private readonly IPermisoService _permisoService;
+        private readonly IdiomaService _idiomaService;
 
         public AltaProducto()
         {
             _productoService = Global.Container.Resolve<IProductoService>();
             _empresaService = Global.Container.Resolve<IEmpresaService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,16 +40,39 @@ namespace GUI
             {
                 if (!IsPostBack)
                 {
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
                     CargarEmpresas();
                     CargarTipoProducto();
+                    CargarTextos();
                 }
             }
             catch (Exception ex)
             {
                 lblMensaje.Visible = true;
                 lblMensaje.CssClass = "text-danger";
-                lblMensaje.Text = ex.Message;
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {ex.Message}";
             }
+        }
+
+        private void CargarTextos()
+        {
+            Page.Title = _idiomaService.GetTranslation("PageTitleAltaProducto");
+            tituloRegistro.InnerText = _idiomaService.GetTranslation("TituloAltaProducto");
+            lblNombreProducto.InnerText = _idiomaService.GetTranslation("LabelNombreProducto");
+            txtNombreProducto.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombreProducto");
+            lblEmpresa.Text = _idiomaService.GetTranslation("LabelEmpresa");
+            lblImagenProducto.InnerText = _idiomaService.GetTranslation("LabelImagenProducto");
+            lblDescripcion.InnerText = _idiomaService.GetTranslation("LabelDescripcion");
+            txtDescripcion.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderDescripcion");
+            lblTipo.Text = _idiomaService.GetTranslation("LabelTipo");
+            lblCantidad.InnerText = _idiomaService.GetTranslation("LabelCantidad");
+            txtCantidad.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCantidad");
+            lblPrecioUnitario.InnerText = _idiomaService.GetTranslation("LabelPrecioUnitario");
+            txtPrecioUnitario.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderPrecioUnitario");
+            btnSubmit.Text = _idiomaService.GetTranslation("ButtonRegistrar");
+            btnCancel.Text = _idiomaService.GetTranslation("ButtonCancelar");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -80,21 +108,21 @@ namespace GUI
                     var id = _productoService.Registrar(producto, userSession);
 
                     lblMensaje.CssClass = "text-success";
-                    lblMensaje.Text = "Producto registrado con éxito!";
+                    lblMensaje.Text = _idiomaService.GetTranslation("MensajeRegistroExitosoProducto");
                     lblMensaje.Visible = true;
                     Limpiar();
                 }
                 else
                 {
                     lblMensaje.CssClass = "text-danger"; 
-                    lblMensaje.Text = "Hay campos sin completar";
+                    lblMensaje.Text = _idiomaService.GetTranslation("MensajeCamposIncompletos");
                     lblMensaje.Visible = true; 
                 }
             }
             catch (Exception ex)
             {
                 lblMensaje.CssClass = "text-danger";
-                lblMensaje.Text = ex.Message;
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {ex.Message}";
                 lblMensaje.Visible = true;
             }
         }
@@ -110,7 +138,7 @@ namespace GUI
             DropDownEmpresa.DataTextField = "Nombre";
             DropDownEmpresa.DataValueField = "Id";
             DropDownEmpresa.DataBind();
-            DropDownEmpresa.Items.Insert(0, new ListItem("Seleccione una empresa", ""));
+            DropDownEmpresa.Items.Insert(0, new ListItem(_idiomaService.GetTranslation("DefaultSelectEmpresa"), ""));
         }
 
         private void CargarTipoProducto()
@@ -119,7 +147,7 @@ namespace GUI
             DropDownTipoProducto.DataTextField = "Nombre";
             DropDownTipoProducto.DataValueField = "Id";
             DropDownTipoProducto.DataBind();
-            DropDownTipoProducto.Items.Insert(0, new ListItem("Seleccione un tipo", ""));
+            DropDownTipoProducto.Items.Insert(0, new ListItem(_idiomaService.GetTranslation("DefaultSelectTipo"), ""));  
         }
 
         private void Limpiar()
@@ -130,6 +158,24 @@ namespace GUI
             txtPrecioUnitario.Text = string.Empty;
             DropDownEmpresa.SelectedIndex = 0;
             DropDownTipoProducto.SelectedIndex = 0;
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

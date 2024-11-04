@@ -6,11 +6,10 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HR Hub - Gestión de Permisos de Usuario</title>
+    <title><asp:Literal ID="litPageTitle" runat="server"></asp:Literal></title>
     
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Style/NavBar.css" rel="stylesheet" />
     <link href="/Style/GestionPermisosUsuario.css" rel="stylesheet" />
@@ -21,19 +20,18 @@
         <uc:NavBar ID="NavBar" runat="server" />
 
         <div class="container-permissions">
-            <h2 class="title">Gestión de Permisos de Usuario</h2>
+            <h2 class="title"><asp:Literal ID="litTitle" runat="server"></asp:Literal></h2>
             
             <div class="form-group">
-                <label for="drpUsuarios" class="label">Seleccionar Usuario:</label>
+                <label for="drpUsuarios" class="label"><asp:Literal ID="litSelectUserLabel" runat="server"></asp:Literal></label>
                 <asp:DropDownList ID="drpUsuarios" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="drpUsuarios_SelectedIndexChanged">
                 </asp:DropDownList>
             </div>
 
-            <!-- Tabla de Permisos No Asignados -->
             <asp:UpdatePanel ID="UpdatePanelNoAsignados" runat="server">
                 <ContentTemplate>
-                    <h4 class="subtitle">Permisos No Asignados</h4>
-                    <asp:Label ID="lblNoPermisosNoAsignados" runat="server" Text="No hay permisos no asignados para este usuario." Visible="false" CssClass="text-muted"></asp:Label>
+                    <h4 class="subtitle"><asp:Literal ID="litUnassignedPermissionsTitle" runat="server"></asp:Literal></h4>
+                    <asp:Label ID="lblNoPermisosNoAsignados" runat="server" CssClass="text-muted" Visible="false"></asp:Label>
                     <asp:GridView ID="gvPermisosNoAsignados" runat="server" CssClass="table table-permissions" AutoGenerateColumns="False" DataKeyNames="Id">
                         <Columns>
                             <asp:TemplateField>
@@ -42,22 +40,21 @@
                                     <asp:CheckBox ID="chkSelect" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="Id" HeaderText="Id" />
-                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                            <asp:BoundField DataField="Id"  HeaderText="Id" />
+                            <asp:BoundField DataField="Nombre"  HeaderText="Nombre" />
                         </Columns>
                     </asp:GridView>
                     
                     <div class="button-container">
-                        <asp:Button ID="btnAsignarPermisos" runat="server" Text="Asignar Permisos" CssClass="btn btn-assign" OnClick="btnAsignarPermisos_Click" />
+                        <asp:Button ID="btnAsignarPermisos" runat="server" CssClass="btn btn-assign" OnClick="btnAsignarPermisos_Click" />
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
 
-            <!-- Tabla de Permisos Asignados -->
             <asp:UpdatePanel ID="UpdatePanelAsignados" runat="server">
                 <ContentTemplate>
-                    <h4 class="subtitle">Permisos Asignados</h4>
-                    <asp:Label ID="lblNoPermisosAsignados" runat="server" Text="No hay permisos asignados a este usuario." Visible="false" CssClass="text-muted"></asp:Label>
+                    <h4 class="subtitle"><asp:Literal ID="litAssignedPermissionsTitle" runat="server"></asp:Literal></h4>
+                    <asp:Label ID="lblNoPermisosAsignados" runat="server" CssClass="text-muted" Visible="false"></asp:Label>
                     <asp:GridView ID="gvPermisosAsignados" runat="server" CssClass="table table-permissions" AutoGenerateColumns="False" DataKeyNames="Id">
                         <Columns>
                             <asp:TemplateField>
@@ -66,13 +63,13 @@
                                     <asp:CheckBox ID="chkSelect" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="Id" HeaderText="Id" />
-                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                            <asp:BoundField DataField="Id"  HeaderText="Id" />
+                            <asp:BoundField DataField="Nombre"  HeaderText="Nombre" />
                         </Columns>
                     </asp:GridView>
 
                     <div class="button-container">
-                        <asp:Button ID="btnQuitarPermisos" runat="server" Text="Quitar Permisos" CssClass="btn btn-remove" OnClick="btnQuitarPermisos_Click" />
+                        <asp:Button ID="btnQuitarPermisos" runat="server" CssClass="btn btn-remove" OnClick="btnQuitarPermisos_Click" />
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -89,23 +86,16 @@
             }
         }
 
-        // Función para mostrar el mensaje de éxito usando SweetAlert
         function mostrarMensaje(tipo) {
+            let titulo, texto;
             if (tipo === 'asignado') {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Permisos asignados correctamente',
-                    text: 'Los permisos seleccionados se asignaron con éxito.',
-                    confirmButtonColor: '#4CAF50'
-                });
+                titulo = mensajes.PermisosAsignadosTitulo;
+                texto = mensajes.PermisosAsignadosTexto;
             } else if (tipo === 'quitado') {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Permisos quitados correctamente',
-                    text: 'Los permisos seleccionados se quitaron con éxito.',
-                    confirmButtonColor: '#f44336'
-                });
+                titulo = mensajes.PermisosQuitadosTitulo;
+                texto = mensajes.PermisosQuitadosTexto;
             }
+            Swal.fire({ icon: 'success', title: titulo, text: texto, confirmButtonColor: '#4CAF50' });
         }
 
         function aplicarFondo() {
@@ -117,11 +107,8 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             aplicarFondo();
-
             var prm = Sys.WebForms.PageRequestManager.getInstance();
-            prm.add_endRequest(function () {
-                aplicarFondo();
-            });
+            prm.add_endRequest(function () { aplicarFondo(); });
         });
     </script>
 </body>

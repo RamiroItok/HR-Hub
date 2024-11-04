@@ -1,24 +1,45 @@
 ﻿using Models;
 using System;
+using Aplication.Services.Observer;
+using Unity;
+using Aplication.Interfaces.Observer;
 
 namespace GUI
 {
-    public partial class ErrorDigitoVerificador : System.Web.UI.Page
+    public partial class ErrorDigitoVerificador : System.Web.UI.Page, IIdiomaService
     {
+        private readonly IdiomaService _idiomaService;
+
+        public ErrorDigitoVerificador()
+        {
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                _idiomaService.CurrentLanguage = selectedLanguage;
+
                 string tabla = Request.QueryString["mensaje"];
-                if (!string.IsNullOrEmpty(tabla))
-                {
-                    lblErrorMessage.Text = $"Hubo un error al ingresar al sistema";
-                }
-                else
-                {
-                    lblErrorMessage.Text = "Se ha producido un error desconocido.";
-                }
+                lblErrorMessage.Text = !string.IsNullOrEmpty(tabla)
+                    ? _idiomaService.GetTranslation("ErrorIngresarSistema")
+                    : _idiomaService.GetTranslation("ErrorDesconocido");
+
+                CargarTextos();
+            }
+        }
+
+        private void CargarTextos()
+        {
+            if (!(litPageTitle == null))
+            {
+                litPageTitle.Text = _idiomaService.GetTranslation("PageTitleErrorVerificador");
+                litErrorTitle.Text = _idiomaService.GetTranslation("TituloErrorVerificador");
+                litContactMessage.Text = _idiomaService.GetTranslation("MensajeContactoAdmin");
+                btnOk.Text = _idiomaService.GetTranslation("BotonAceptar");
             }
         }
 
@@ -34,6 +55,17 @@ namespace GUI
             {
                 Response.Redirect("MenuPrincipal.aspx");
             }
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
         }
     }
 }

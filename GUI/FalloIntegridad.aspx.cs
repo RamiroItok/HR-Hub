@@ -1,20 +1,22 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using Models.Enums;
 using System;
 using System.IO;
-using System.Linq;
 using Unity;
 
 namespace GUI
 {
-    public partial class FalloIntegridad : System.Web.UI.Page
+    public partial class FalloIntegridad : System.Web.UI.Page, IIdiomaService
     {
         private readonly IBackUpService _backUpService;
         private readonly IDigitoVerificadorService _digitoVerificadorService;
         private readonly IBitacoraService _bitacoraService;
         private readonly IPermisoService _permisoService;
+        private readonly IdiomaService _idiomaService;
 
         public FalloIntegridad()
         {
@@ -22,6 +24,8 @@ namespace GUI
             _digitoVerificadorService = Global.Container.Resolve<IDigitoVerificadorService>();
             _bitacoraService = Global.Container.Resolve<IBitacoraService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -36,7 +40,21 @@ namespace GUI
             if (!IsPostBack)
             {
                 MostrarEstadoFallido(Session["ErrorVerificacionDV"] as Models.FalloIntegridad);
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                _idiomaService.CurrentLanguage = selectedLanguage;
+                CargarTextos();
             }
+        }
+
+        private void CargarTextos()
+        {
+            litPageTitle.Text = _idiomaService.GetTranslation("PageTitleFalloIntegridad");
+            litRecalcularTitulo.Text = _idiomaService.GetTranslation("TituloRecalcularDV");
+            litRestoreTitulo.Text = _idiomaService.GetTranslation("TituloRestore");
+            litSeleccionarArchivo.Text = _idiomaService.GetTranslation("LabelSeleccionarArchivo");
+            btnRecalcular.Text = _idiomaService.GetTranslation("BotonRecalcularDV");
+            btnRestore.Text = _idiomaService.GetTranslation("BotonRealizarRestore");
+            btnCancelar.Text = _idiomaService.GetTranslation("BotonCancelar");
         }
 
         protected void btnRecalcular_Click(object sender, EventArgs e)
@@ -51,13 +69,13 @@ namespace GUI
                 if (lblEstadoIntegridad.Text == "Estado: Saludable")
                 {
                     lblMensajeRecalcular.Visible = true;
-                    lblMensajeRecalcular.Text = "Se recalcularon correctamente los digitos verificadores del sistema";
+                    lblMensajeRecalcular.Text = _idiomaService.GetTranslation("MensajeRecalculoExito");
                     lblMensajeRecalcular.CssClass = "fallo-text-success";
                 }
             }
             catch
             {
-                lblMensajeRecalcular.Text = "Se produjo un error al intentar recalcular los digitos verificadores";
+                lblMensajeRecalcular.Text = _idiomaService.GetTranslation("MensajeErrorRecalculo");
             }
         }
 
@@ -75,21 +93,21 @@ namespace GUI
                     var resultado = _backUpService.RealizarRestore(rutaDestino, usuario);
                     _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Se realizó un restore.", Criticidad.ALTA);
 
-                    lblMensajeRestore.Text = resultado;
+                    lblMensajeRestore.Text = _backUpService.RealizarRestore(rutaDestino, usuario);
                     lblMensajeRestore.Visible = true;
                     lblMensajeRestore.CssClass = "fallo-text-success";
                 }
                 else
                 {
-                    lblMensajeRestore.Text = "Debe seleccionar un archivo";
-                    lblMensajeRestore.Visible = true;
-                    lblMensajeRestore.CssClass = "fallo-text-failed";
+                    throw new Exception(_idiomaService.GetTranslation("MensajeArchivoNoSeleccionado"));
                 }
                 
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                lblMensajeRestore.Text = _idiomaService.GetTranslation("MensajeErrorRestore") + ex.Message;
+                lblMensajeRestore.Visible = true;
+                lblMensajeRestore.CssClass = "fallo-text-failed";
             }
         }
 
@@ -97,17 +115,17 @@ namespace GUI
         {
             if (falloIntegridad != null)
             {
-                lblTablaFallo.Text = $"Fallo en tabla: {falloIntegridad.Tabla}";
+                lblTablaFallo.Text = _idiomaService.GetTranslation("LabelTablaFallo") + falloIntegridad.Tabla;
                 lblTablaFallo.CssClass = "fallo-text-failed";
 
-                lblEstadoIntegridad.Text = "Estado: no saludable";
+                lblEstadoIntegridad.Text = _idiomaService.GetTranslation("EstadoNoSaludable");
                 lblEstadoIntegridad.CssClass = "fallo-text-failed";
             }
             else
             {
-                lblEstadoIntegridad.Text = "Estado: Saludable";
+                lblEstadoIntegridad.Text = _idiomaService.GetTranslation("EstadoSaludable");
                 lblEstadoIntegridad.CssClass = "fallo-text-success";
-                lblTablaFallo.Text = "Fallo en la tabla: -";
+                lblTablaFallo.Text = _idiomaService.GetTranslation("LabelTablaFalloSaludable");
                 lblTablaFallo.CssClass = "fallo-text-success";
             }
         }
@@ -116,6 +134,17 @@ namespace GUI
         {
             fileBackup = null;
             lblMensajeRestore.Visible = false;
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
         }
     }
 }

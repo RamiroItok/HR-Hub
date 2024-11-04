@@ -5,7 +5,6 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Acceso Denegado</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <style>
         /* Fondo con un gradiente sutil */
@@ -96,12 +95,14 @@
         }
     </style>
 </head>
-<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
-    <div class="error-container">
-        <div class="error-code">403</div>
-        <div class="error-title">Acceso Denegado</div>
-        <p class="error-message">Lo sentimos, pero no posee los permisos necesarios para acceder a este contenido.</p>
-        <a href="/MenuPrincipal.aspx" class="btn-home">Ir a la página principal</a>
-    </div>
+<body>
+    <form id="form1" runat="server">
+        <div class="error-container">
+            <div class="error-code" runat="server" id="errorCode"></div>
+            <div class="error-title" runat="server" id="errorTitle"></div>
+            <p class="error-message" runat="server" id="errorMessage"></p>
+            <a href="/MenuPrincipal.aspx" class="btn-home" runat="server" id="btnHome"></a>
+        </div>
+    </form>
 </body>
 </html>

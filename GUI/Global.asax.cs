@@ -1,6 +1,8 @@
 ﻿using Aplication;
 using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
 using Aplication.Services;
+using Aplication.Services.Observer;
 using Data.Composite;
 using Data.DAO;
 using Data.Interfaces;
@@ -9,6 +11,7 @@ using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Unity;
+using Unity.Lifetime;
 
 namespace GUI
 {
@@ -37,6 +40,7 @@ namespace GUI
             Container.RegisterType<ICompraDAO, CompraDAO>();
             Container.RegisterType<IDigitoVerificadorDAO, DigitoVerificadorDAO>();
             Container.RegisterType<IDigitoVerificadorService, DigitoVerificadorService>();
+            Container.RegisterType<IdiomaService>(new ContainerControlledLifetimeManager());  //SINGLETON
             Container.RegisterType<IEmpresaDAO, EmpresaDAO>();
             Container.RegisterType<IEmpresaService, EmpresaService>();
             Container.RegisterType<IPermisoService, PermisoService>();

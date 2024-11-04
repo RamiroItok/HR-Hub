@@ -8,7 +8,7 @@ namespace Models.Enums
 {
     public enum Idioma
     {
-        Castellano = 0, 
+        Español = 0, 
         Ingles = 1
     }
 }

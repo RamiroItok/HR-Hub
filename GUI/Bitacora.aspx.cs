@@ -4,17 +4,20 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using Unity;
 
 namespace GUI
 {
-    public partial class Bitacora : Page
+    public partial class Bitacora : Page, IIdiomaService
     {
         private readonly IBitacoraService _iBitacoraService;
         private readonly IUsuarioService _iUsuarioService;
         private readonly IPermisoService _iPermisoService;
+        private readonly IdiomaService _idiomaService;
         private static List<Models.Bitacora> listaEventos = new List<Models.Bitacora>();
 
         public Bitacora()
@@ -22,6 +25,8 @@ namespace GUI
             _iBitacoraService = Global.Container.Resolve<IBitacoraService>();
             _iUsuarioService = Global.Container.Resolve<IUsuarioService>();
             _iPermisoService = Global.Container.Resolve<IPermisoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -36,11 +41,15 @@ namespace GUI
             {
                 if (!IsPostBack)
                 {
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
                     listaEventos = _iBitacoraService.ListarEventos();
                     CargarEventosDefault();
                     CargarUsuarios();
                     CargarTipoUsuario();
                     CargarCriticidad();
+                    CargarTextos();
                 }
             }
             catch (Exception ex)
@@ -49,6 +58,21 @@ namespace GUI
                 lblMensaje.Visible = true;
                 lblMensaje.Text = ex.Message;
             }
+        }
+
+        private void CargarTextos()
+        {
+            Page.Title = _idiomaService.GetTranslation("PageTitleBitacora");
+            litTituloBitacora.Text = _idiomaService.GetTranslation("TituloBitacora");
+            lblSearch.Text = _idiomaService.GetTranslation("LabelTextoBusqueda");
+            txtSearch.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderTextoBusqueda");
+            lblUsuario.Text = _idiomaService.GetTranslation("LabelUsuario");
+            lblTipoUsuario.Text = _idiomaService.GetTranslation("LabelTipoUsuario");
+            lblCriticidad.Text = _idiomaService.GetTranslation("LabelCriticidad");
+            lblFechaDesde.Text = _idiomaService.GetTranslation("LabelFechaDesde");
+            lblFechaHasta.Text = _idiomaService.GetTranslation("LabelFechaHasta");
+            btnBuscar.Text = _idiomaService.GetTranslation("ButtonBuscar");
+            btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancelar");
         }
 
         protected void gvBitacora_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -81,7 +105,7 @@ namespace GUI
             drpUsuarios.DataTextField = "Email";
             drpUsuarios.DataValueField = "Id";
             drpUsuarios.DataBind();
-            drpUsuarios.Items.Insert(0, new ListItem("Seleccione un usuario", ""));
+            drpUsuarios.Items.Insert(0, new ListItem(_idiomaService.GetTranslation("SeleccioneUsuario"), ""));
         }
 
         private void CargarTipoUsuario()
@@ -90,7 +114,7 @@ namespace GUI
             drpTipoUsuario.DataTextField = "Nombre";
             drpTipoUsuario.DataValueField = "Id";
             drpTipoUsuario.DataBind();
-            drpTipoUsuario.Items.Insert(0, new ListItem("Seleccione un tipo de usuario", ""));
+            drpTipoUsuario.Items.Insert(0, new ListItem(_idiomaService.GetTranslation("SeleccioneTipoUsuario"), ""));
         }
 
         private void CargarCriticidad()
@@ -98,7 +122,7 @@ namespace GUI
             List<string> items = new List<string> { "BAJA", "MEDIA", "ALTA" };
             drpCriticidad.DataSource = items;
             drpCriticidad.DataBind();
-            drpCriticidad.Items.Insert(0, new ListItem("Seleccione una criticidad", ""));
+            drpCriticidad.Items.Insert(0, new ListItem(_idiomaService.GetTranslation("SeleccioneCriticidad"), ""));
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -111,7 +135,7 @@ namespace GUI
             {
                 lblMensaje.CssClass = "text-danger";
                 lblMensaje.Visible = true;
-                lblMensaje.Text = "El campo 'Fecha Desde' no puede ser mayor que el campo 'Fecha Hasta'";
+                lblMensaje.Text = _idiomaService.GetTranslation("ErrorFecha");
             }
             else
             {
@@ -162,6 +186,24 @@ namespace GUI
             drpCriticidad.SelectedIndex = 0;
             lblMensaje.Text = String.Empty;
             lblMensaje.Visible = false;
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

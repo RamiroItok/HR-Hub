@@ -211,6 +211,8 @@
     <Content Include="Templates\ResumenCompraTemplate.html" />
     <Content Include="WebService\EnviarMail.asmx" />
     <Content Include="WebService\ReporteCompras.asmx" />
+    <Content Include="Lang\es.json" />
+    <Content Include="Lang\en.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Restore.aspx" />
     <Content Include="Scripts\bootstrap.js" />

@@ -1,17 +1,29 @@
-﻿using System;
+﻿using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Unity;
 
 namespace GUI.Controls
 {
-    public partial class ValidarContraseña : System.Web.UI.UserControl
+    public partial class ValidarContraseña : System.Web.UI.UserControl, IIdiomaService
     {
+        private readonly IdiomaService _idiomaService;
+
+        public ValidarContraseña()
+        {
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            CargarTextos();
             cvPassword.ErrorMessage = "";
         }
 
@@ -29,7 +41,7 @@ namespace GUI.Controls
             else
             {
                 args.IsValid = false;
-                cvPassword.ErrorMessage = "La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.";
+                cvPassword.ErrorMessage = _idiomaService.GetTranslation("ErrorPassword");
             }
         }
 
@@ -52,6 +64,27 @@ namespace GUI.Controls
         public void LimpiarPassword()
         {
             Password = string.Empty;
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        private void CargarTextos()
+        {
+            if (!(lblPassword == null))
+            {
+                lblPassword.Text = _idiomaService.GetTranslation("LabelPassword");
+                txtPassword.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderPassword");
+                cvPassword.ErrorMessage = _idiomaService.GetTranslation("ErrorPassword");
+            }
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
         }
     }
 }

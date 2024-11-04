@@ -31,5 +31,9 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnOk;
+
+        protected global::System.Web.UI.WebControls.Literal litPageTitle;
+        protected global::System.Web.UI.WebControls.Literal litErrorTitle;
+        protected global::System.Web.UI.WebControls.Literal litContactMessage;
     }
 }

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="MenuPrincipal" Language="C#" AutoEventWireup="true" CodeBehind="MenuPrincipal.aspx.cs" Inherits="GUI.MenuPrincipal" %>
+
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
 <!DOCTYPE html>
@@ -6,7 +7,8 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HR Hub - Gestión de Recursos Humanos</title>
+    <title>
+        <asp:Literal ID="litTituloPagina" runat="server"></asp:Literal></title>
     <link href="~/Style/MenuPrincipal.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
@@ -19,7 +21,8 @@
         <br />
         <div class="welcome-section">
             <div class="welcome-content">
-                <h1>Bienvenido <asp:Label ID="lblNombreUsuario" runat="server"></asp:Label>. Nos alegra que estés aquí. 👋</h1>
+                <h1>
+                    <asp:Label ID="lblNombreUsuario" runat="server"></asp:Label>👋</h1>
             </div>
         </div>
 
@@ -29,39 +32,55 @@
                     <h3 class="card-title">
                         <asp:Label ID="lblNombreUsuarioProfile" runat="server"></asp:Label>
                     </h3>
-                    <p class="card-text">Gestiona tu perfil y solicitudes</p>
+                    <p class="card-text">
+                        <asp:Literal ID="litGestionaPerfil" runat="server"></asp:Literal></p>
                     <button class="btn btn-primary">
-                        <i class="fas fa-user-circle"></i> Ir a mi perfil
+                        <i class="fas fa-user-circle"></i>
+                        <asp:Literal ID="litIrPerfil" runat="server"></asp:Literal>
                     </button>
                     <button class="btn btn-outline-primary">
-                        <i class="fas fa-coffee"></i> Solicitar tiempo de descanso
+                        <i class="fas fa-coffee"></i>
+                        <asp:Literal ID="litSolicitarDescanso" runat="server"></asp:Literal>
                     </button>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title">Mis tareas</h3>
-                    <p class="card-text">Consulta tus tareas pendientes</p>
+                    <h3 class="card-title">
+                        <asp:Literal ID="litMisTareas" runat="server"></asp:Literal></h3>
+                    <p class="card-text">
+                        <asp:Literal ID="litConsultaTareas" runat="server"></asp:Literal></p>
                     <button class="btn btn-primary">
-                        <i class="fas fa-tasks"></i> Ver mis tareas
+                        <i class="fas fa-tasks"></i>
+                        <asp:Literal ID="litVerTareas" runat="server"></asp:Literal>
                     </button>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title">Mis documentos</h3>
-                    <p class="card-text">Accede a tus documentos importantes</p>
+                    <h3 class="card-title">
+                        <asp:Literal ID="litMisDocumentos" runat="server"></asp:Literal></h3>
+                    <p class="card-text">
+                        <asp:Literal ID="litAccedeDocumentos" runat="server"></asp:Literal></p>
                     <button class="btn btn-primary">
-                        <i class="fas fa-file-alt"></i> Ver mis documentos
+                        <i class="fas fa-file-alt"></i>
+                        <asp:Literal ID="litVerDocumentos" runat="server"></asp:Literal>
                     </button>
                 </div>
             </div>
         </div>
 
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true"
+            OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
+            <asp:ListItem Text="Español" Value="es"></asp:ListItem>
+            <asp:ListItem Text="English" Value="en"></asp:ListItem>
+        </asp:DropDownList>
+
         <div class="footer">
-            <p>&copy; 2024 HR Hub. Todos los derechos reservados.</p>
+            <p>
+                <asp:Literal ID="litFooterText" runat="server"></asp:Literal></p>
         </div>
     </form>
 
