@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Compra" Language="C#" AutoEventWireup="true" CodeBehind="Compra.aspx.cs" Inherits="GUI.Compra" %>
+
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
 <!DOCTYPE html>
@@ -18,14 +19,16 @@
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    
+
         <uc:NavBar ID="NavBar" runat="server" />
-    
+
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div class="containerCompra">
                     <div class="card-centered">
-                        <h3 class="card-title">Resumen de la Compra</h3>
+                        <h3 class="card-title">
+                            <asp:Label ID="lblCompraResumenTitle" runat="server" Text="Resumen de la Compra"></asp:Label>
+                        </h3>
                         <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">
                             <Columns>
                                 <asp:BoundField DataField="Producto.Nombre" HeaderText="Producto" />
@@ -35,26 +38,39 @@
                             </Columns>
                         </asp:GridView>
                         <div class="text-right mt-3">
-                            <h4>Total del Carrito: <asp:Label ID="lblTotalCompra" runat="server" Text="$0.00" CssClass="font-weight-bold"></asp:Label></h4>
+                            <h4>
+                                <asp:Label ID="lblTotalCompraLabel" runat="server" Text="Total del Carrito:"></asp:Label>
+                                <asp:Label ID="lblTotalCompra" runat="server" Text="$0.00" CssClass="font-weight-bold"></asp:Label>
+                            </h4>
                         </div>
                     </div>
-    
+
                     <div class="card-centered payment-details">
-                        <h3 class="card-title payment-title">Detalles de Pago</h3>
+                        <h3 class="card-title payment-title">
+                            <asp:Label ID="lblPaymentDetailsTitle" runat="server" Text="Detalles de Pago"></asp:Label>
+                        </h3>
                         <div class="form-group">
-                            <label for="txtNumeroTarjeta">Número de Tarjeta</label>
+                            <label for="txtNumeroTarjeta">
+                                <asp:Label ID="lblCardNumberLabel" runat="server" Text="Número de Tarjeta"></asp:Label>
+                            </label>
                             <asp:TextBox ID="txtNumeroTarjeta" runat="server" CssClass="form-control" placeholder="XXXX XXXX XXXX XXXX" MaxLength="16"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <label for="txtNombreTitular">Nombre del Titular</label>
+                            <label for="txtNombreTitular">
+                                <asp:Label ID="lblCardHolderLabel" runat="server" Text="Nombre del Titular"></asp:Label>
+                            </label>
                             <asp:TextBox ID="txtNombreTitular" runat="server" CssClass="form-control" placeholder="Nombre como aparece en la tarjeta"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <label for="txtFechaVencimiento">Fecha de Vencimiento</label>
+                            <label for="txtFechaVencimiento">
+                                <asp:Label ID="lblExpiryDateLabel" runat="server" Text="Fecha de Vencimiento"></asp:Label>
+                            </label>
                             <asp:TextBox ID="txtFechaVencimiento" runat="server" CssClass="form-control" placeholder="MM/AA" MaxLength="5"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <label for="txtCVC">CVC</label>
+                            <label for="txtCVC">
+                                <asp:Label ID="lblCVCLabel" runat="server" Text="CVC"></asp:Label>
+                            </label>
                             <asp:TextBox ID="txtCVC" runat="server" CssClass="form-control" placeholder="XXX" MaxLength="3"></asp:TextBox>
                         </div>
                         <asp:Button ID="btnPagar" runat="server" Text="Pagar" CssClass="btn btn-success" OnClick="btnPagar_Click" />
@@ -62,7 +78,7 @@
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-    
+
         <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">

@@ -33,6 +33,15 @@ namespace GUI
         protected global::GUI.Controls.NavBar NavBar;
 
         /// <summary>
+        /// Control lblCarritoTitulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCarritoTitulo;
+
+        /// <summary>
         /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
@@ -60,6 +69,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.Panel pnlCarritoVacio;
 
         /// <summary>
+        /// Control lblCarritoVacioMessage.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCarritoVacioMessage;
+
+        /// <summary>
         /// Control gvCarrito.
         /// </summary>
         /// <remarks>
@@ -76,6 +94,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLimpiarCarrito;
+
+        /// <summary>
+        /// Control lblTotalCarritoLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalCarritoLabel;
 
         /// <summary>
         /// Control lblTotalCarrito.

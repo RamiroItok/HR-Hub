@@ -1,5 +1,7 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
 using Aplication.Services;
+using Aplication.Services.Observer;
 using GUI.WebService;
 using Models;
 using Models.Composite;
@@ -13,11 +15,12 @@ using Unity;
 
 namespace GUI
 {
-    public partial class Compra : Page
+    public partial class Compra : Page, IIdiomaService
     {
         private readonly ICarritoService _carritoService;
         private readonly ICompraService _compraService;
         private readonly IPermisoService _permisoService;
+        private readonly IdiomaService _idiomaService;
         private readonly EnviarMail _enviarMailService;
         protected static List<Models.Carrito> carritoItems;
 
@@ -26,6 +29,8 @@ namespace GUI
             _carritoService = Global.Container.Resolve<ICarritoService>();
             _compraService = Global.Container.Resolve<ICompraService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
             _enviarMailService = new EnviarMail();
         }
 
@@ -40,7 +45,34 @@ namespace GUI
             if (!IsPostBack)
             {
                 CargarCarrito();
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                _idiomaService.CurrentLanguage = selectedLanguage;
+                CargarTextos();
             }
+        }
+
+        private void CargarTextos()
+        {
+            Page.Title = _idiomaService.GetTranslation("PageTitleCompra");
+            lblCompraResumenTitle.Text = _idiomaService.GetTranslation("CompraResumenTitle");
+            lblTotalCompraLabel.Text = _idiomaService.GetTranslation("TotalCompraLabel");
+            lblPaymentDetailsTitle.Text = _idiomaService.GetTranslation("PaymentDetailsTitle");
+            lblCardNumberLabel.Text = _idiomaService.GetTranslation("CardNumberLabel");
+            lblCardHolderLabel.Text = _idiomaService.GetTranslation("CardHolderLabel");
+            lblExpiryDateLabel.Text = _idiomaService.GetTranslation("ExpiryDateLabel");
+            lblCVCLabel.Text = _idiomaService.GetTranslation("CVCLabel");
+            btnPagar.Text = _idiomaService.GetTranslation("ButtonPay");
+            txtNumeroTarjeta.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCardNumber");
+            txtNombreTitular.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCardHolder");
+            txtFechaVencimiento.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderExpiryDate");
+            txtCVC.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCVC");
+
+            gvCarrito.Columns[0].HeaderText = _idiomaService.GetTranslation("ColumnProduct");
+            gvCarrito.Columns[1].HeaderText = _idiomaService.GetTranslation("ColumnPrice");
+            gvCarrito.Columns[2].HeaderText = _idiomaService.GetTranslation("ColumnQuantity");
+            gvCarrito.Columns[3].HeaderText = _idiomaService.GetTranslation("ColumnSubtotal");
+
+            gvCarrito.DataBind();
         }
 
         private void CargarCarrito()
@@ -98,20 +130,41 @@ namespace GUI
                 _enviarMailService.EnviarResumenCompraPorEmail(idCompra);
                 _carritoService.LimpiarCarrito(usuario, false);
 
-                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showPaymentSuccess",
-                    "Swal.fire({ " +
-                    "  icon: 'success', " +
-                    "  title: 'Pago realizado', " +
-                    "  text: '¡El pago se ha realizado correctamente!', " +
-                    "  confirmButtonText: 'Aceptar', " +
-                    "  customClass: { popup: 'animated fadeInDown' } " +
-                    "}).then((result) => { if (result.isConfirmed) { window.location.href = '/Carrito.aspx'; }});",
-                    true);
+                MostrarNotificacionPagoExitoso();
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        private void MostrarNotificacionPagoExitoso()
+        {
+            string title = _idiomaService.GetTranslation("PaymentSuccessTitle");
+            string message = _idiomaService.GetTranslation("PaymentSuccessMessage");
+            string confirmButton = _idiomaService.GetTranslation("ConfirmButtonText");
+
+            string script = $@"
+                Swal.fire({{
+                    icon: 'success',
+                    title: '{title}',
+                    text: '{message}',
+                    confirmButtonText: '{confirmButton}',
+                    customClass: {{ popup: 'animated fadeInDown' }}
+                }}).then((result) => {{ if (result.isConfirmed) {{ window.location.href = '/Carrito.aspx'; }} }});";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "showPaymentSuccess", script, true);
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
         }
     }
 }

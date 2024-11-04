@@ -51,6 +51,15 @@ namespace GUI
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
+        /// Control lblCompraResumenTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCompraResumenTitle;
+
+        /// <summary>
         /// Control gvCarrito.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvCarrito;
+
+        /// <summary>
+        /// Control lblTotalCompraLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalCompraLabel;
 
         /// <summary>
         /// Control lblTotalCompra.
@@ -69,6 +87,24 @@ namespace GUI
         protected global::System.Web.UI.WebControls.Label lblTotalCompra;
 
         /// <summary>
+        /// Control lblPaymentDetailsTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPaymentDetailsTitle;
+
+        /// <summary>
+        /// Control lblCardNumberLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCardNumberLabel;
+
+        /// <summary>
         /// Control txtNumeroTarjeta.
         /// </summary>
         /// <remarks>
@@ -76,6 +112,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNumeroTarjeta;
+
+        /// <summary>
+        /// Control lblCardHolderLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCardHolderLabel;
 
         /// <summary>
         /// Control txtNombreTitular.
@@ -87,6 +132,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.TextBox txtNombreTitular;
 
         /// <summary>
+        /// Control lblExpiryDateLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblExpiryDateLabel;
+
+        /// <summary>
         /// Control txtFechaVencimiento.
         /// </summary>
         /// <remarks>
@@ -94,6 +148,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaVencimiento;
+
+        /// <summary>
+        /// Control lblCVCLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCVCLabel;
 
         /// <summary>
         /// Control txtCVC.

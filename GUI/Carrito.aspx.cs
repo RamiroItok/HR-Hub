@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using System;
@@ -9,16 +11,20 @@ using Unity;
 
 namespace GUI
 {
-    public partial class Carrito : Page
+    public partial class Carrito : Page, IIdiomaService
     {
         private readonly ICarritoService _carritoService;
         private readonly IPermisoService _permisoService;
         private readonly IProductoService _productoService;
+        private readonly IdiomaService _idiomaService;
+
         public Carrito()
         {
             _carritoService = Global.Container.Resolve<ICarritoService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
             _productoService = Global.Container.Resolve<IProductoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -34,7 +40,42 @@ namespace GUI
             if (!IsPostBack)
             {
                 CargarCarrito();
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                _idiomaService.CurrentLanguage = selectedLanguage;
+                CargarTextos();
             }
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        private void CargarTextos()
+        {
+            if (!(lblCarritoTitulo == null))
+            {
+                lblCarritoTitulo.Text = _idiomaService.GetTranslation("CarritoCompras");
+                Page.Title = _idiomaService.GetTranslation("PageTitleCarrito");
+                btnLimpiarCarrito.Text = _idiomaService.GetTranslation("ButtonLimpiarCarrito");
+                btnFinalizarCompra.Text = _idiomaService.GetTranslation("ButtonFinalizarCompra");
+                lblTotalCarritoLabel.Text = _idiomaService.GetTranslation("TotalCarritoLabel");
+                lblCarritoVacioMessage.Text = _idiomaService.GetTranslation("EmptyCartMessage");
+
+                gvCarrito.Columns[0].HeaderText = _idiomaService.GetTranslation("ColumnImage");
+                gvCarrito.Columns[1].HeaderText = _idiomaService.GetTranslation("ColumnProduct");
+                gvCarrito.Columns[2].HeaderText = _idiomaService.GetTranslation("ColumnPrice");
+                gvCarrito.Columns[3].HeaderText = _idiomaService.GetTranslation("ColumnQuantity");
+                gvCarrito.Columns[4].HeaderText = _idiomaService.GetTranslation("ColumnSubtotal");
+                gvCarrito.Columns[5].HeaderText = _idiomaService.GetTranslation("ColumnDelete");
+                gvCarrito.DataBind();
+            }
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
         }
 
         protected void CargarCarrito()
@@ -69,7 +110,6 @@ namespace GUI
 
                     txtCantidad.Attributes["data-stock"] = producto.Cantidad.ToString();
                 }
-
                 CalcularTotalCarrito();
             }
         }
@@ -100,6 +140,9 @@ namespace GUI
 
                 Label lblSubtotal = (Label)e.Row.FindControl("lblSubtotal");
                 lblSubtotal.Text = subtotal.ToString("C");
+
+                LinkButton btnEliminar = (LinkButton)e.Row.FindControl("btnEliminar");
+                btnEliminar.Text = _idiomaService.GetTranslation("ButtonDelete");
             }
         }
 
@@ -126,8 +169,46 @@ namespace GUI
                 _carritoService.EliminarProducto(idCarrito, userSession);
                 CargarCarrito();
 
-                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showEliminacionPopup", "mostrarNotificacionEliminacion();", true);
+                MostrarNotificacionProductoEliminado();
             }
+        }
+
+        private void MostrarNotificacionProductoEliminado()
+        {
+            string title = _idiomaService.GetTranslation("PopupProductDeletedTitle");
+            string message = _idiomaService.GetTranslation("PopupProductDeletedMessage");
+            string confirmButton = _idiomaService.GetTranslation("PopupConfirmButton");
+
+            string script = string.Format(
+                @"Swal.fire({{
+                    icon: 'warning',
+                    title: '<span style=""font-size: 1.5em;"">{0}</span>',
+                    html: '<span style=""font-size: 1.2em;"">{1}</span>',
+                    showConfirmButton: true,
+                    confirmButtonText: '<span style=""font-size: 1.1em;"">{2}</span>'
+                }});",
+                title, message, confirmButton);
+            
+            ScriptManager.RegisterStartupScript(this, GetType(), "showProductDeletedPopup", script, true);
+        }
+
+        private void MostrarNotificacionCarritoVaciado()
+        {
+            string title = _idiomaService.GetTranslation("PopupCartEmptiedTitle");
+            string message = _idiomaService.GetTranslation("PopupCartEmptiedMessage");
+            string confirmButton = _idiomaService.GetTranslation("PopupConfirmButton");
+
+            string script = $@"
+                Swal.fire({{
+                    icon: 'success',
+                    title: '{title}',
+                    text: '{message}',
+                    showConfirmButton: true,
+                    confirmButtonText: '{confirmButton}',
+                    confirmButtonColor: '#4CAF50'
+                }});";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "showCartEmptiedPopup", script, true);
         }
 
         public string ConvertirImagenABase64(byte[] imagen)
@@ -153,7 +234,7 @@ namespace GUI
 
                 CargarCarrito();
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "carritoVaciado", "mostrarNotificacionCarritoVacio();", true);
+                MostrarNotificacionCarritoVaciado();
             }
             catch (Exception ex)
             {
