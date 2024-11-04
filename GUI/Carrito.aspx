@@ -22,14 +22,14 @@
         <uc:NavBar ID="NavBar" runat="server" />
 
         <div class="containerCarrito mt-4">
-            <h2>Carrito de Compras</h2>
+            <h2><asp:Label ID="lblCarritoTitulo" runat="server" Text="Carrito de Compras"></asp:Label></h2>
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
 
                     <asp:Panel ID="pnlCarritoVacio" runat="server" Visible="false" CssClass="empty-cart-message">
-                        <h4>¡No hay productos en el carrito!</h4>
+                        <h4><asp:Label ID="lblCarritoVacioMessage" runat="server" Text="¡No hay productos en el carrito!"></asp:Label></h4>
                     </asp:Panel>
 
                     <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
@@ -80,8 +80,9 @@
                         <asp:Button ID="btnLimpiarCarrito" runat="server" Text="Limpiar Carrito" CssClass="btn btn-warning" OnClick="btnLimpiarCarrito_Click" />
 
                         <div class="total-container">
-                            <h4>Total del Carrito:
-                                <asp:Label ID="lblTotalCarrito" runat="server" Text="0.00" CssClass="font-weight-bold"></asp:Label></h4>
+                            <h4><asp:Label ID="lblTotalCarritoLabel" runat="server" Text="Total del Carrito:"></asp:Label>
+                                <asp:Label ID="lblTotalCarrito" runat="server" Text="0.00" CssClass="font-weight-bold"></asp:Label>
+                            </h4>
                             <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" CssClass="btn btn-finalizar-compra mt-3" OnClick="btnFinalizarCompra_Click" />
                         </div>
                     </div>

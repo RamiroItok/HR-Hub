@@ -30,7 +30,10 @@ namespace Aplication.Services.Observer
 
         public void Subscribe(IIdiomaService observer)
         {
-            _observers.Add(observer);
+            if (!_observers.Contains(observer))
+            {
+                _observers.Add(observer);
+            }
         }
 
         public void Unsubscribe(IIdiomaService observer)
