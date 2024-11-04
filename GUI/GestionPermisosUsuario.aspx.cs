@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using System;
@@ -11,15 +13,18 @@ using Unity;
 
 namespace GUI
 {
-    public partial class GestionPermisosUsuario : System.Web.UI.Page
+    public partial class GestionPermisosUsuario : Page, IIdiomaService
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IPermisoService _permisoService;
+        private readonly IdiomaService _idiomaService;
 
         public GestionPermisosUsuario()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -34,6 +39,27 @@ namespace GUI
             if (!IsPostBack)
             {
                 CargarUsuarios();
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                _idiomaService.CurrentLanguage = selectedLanguage;
+                CargarTextos();
+            }
+        }
+
+        private void CargarTextos()
+        {
+            if (!(litPageTitle == null))
+            {
+                litPageTitle.Text = _idiomaService.GetTranslation("PageTitleGestionPermisosUsuario");
+                litTitle.Text = _idiomaService.GetTranslation("TituloGestionPermisosUsuario");
+                litSelectUserLabel.Text = _idiomaService.GetTranslation("LabelSeleccionarUsuario");
+                litUnassignedPermissionsTitle.Text = _idiomaService.GetTranslation("TituloPermisosNoAsignados");
+                litAssignedPermissionsTitle.Text = _idiomaService.GetTranslation("TituloPermisosAsignados");
+                lblNoPermisosNoAsignados.Text = _idiomaService.GetTranslation("MensajeNoPermisosNoAsignados");
+                lblNoPermisosAsignados.Text = _idiomaService.GetTranslation("MensajeNoPermisosAsignados");
+                btnAsignarPermisos.Text = _idiomaService.GetTranslation("BotonAsignarPermisos");
+                btnQuitarPermisos.Text = _idiomaService.GetTranslation("BotonQuitarPermisos");
+                lblNoPermisosNoAsignados.Visible = true;
+                lblNoPermisosAsignados.Visible = true;
             }
         }
 
@@ -43,7 +69,13 @@ namespace GUI
             drpUsuarios.DataTextField = "Email";
             drpUsuarios.DataValueField = "Id";
             drpUsuarios.DataBind();
-            drpUsuarios.Items.Insert(0, new ListItem("Seleccione un usuario", "0"));
+            drpUsuarios.Items.Insert(0, new ListItem(_idiomaService.GetTranslation("DropdownSeleccionarUsuario"), "0"));
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
         }
 
         protected void drpUsuarios_SelectedIndexChanged(object sender, EventArgs e)
@@ -137,6 +169,11 @@ namespace GUI
             {
                 throw new Exception("Error al quitar permisos: " + ex.Message);
             }
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
         }
     }
 }

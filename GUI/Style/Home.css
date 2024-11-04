@@ -227,3 +227,20 @@ form1 {
     margin: 0;
     padding: 0;
 }
+
+
+#ddlLanguage {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+    #ddlLanguage option {
+        color: #333;
+    }

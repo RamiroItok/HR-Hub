@@ -1,15 +1,28 @@
-﻿<%@ Page Title="Gestión de Familias" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GestionFamilia.aspx.cs" Inherits="GUI.GestionFamilia" %>
+﻿<%@ Page Title="Gestión de Familias" Language="C#" AutoEventWireup="true" CodeBehind="GestionFamilia.aspx.cs" Inherits="GUI.GestionFamilia" %>
+<%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HR Hub - Gestión de Permisos de Usuario</title>
+    
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Style/NavBar.css" rel="stylesheet" />
+    <link href="/Style/GestionFamilia.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server" style="width: 100%; max-width: 1000px; margin: 0 auto;">
+        <uc:NavBar ID="NavBar" runat="server" />
+                    <h1 class="title">Gestión de Permisos de Usuario</h1>
+    <div class="containerFamilia">
         <div class="row">
             <div class="col-md-4">
                 <asp:Label ID="lblNombreFamilia" runat="server" Text="Nombre de familia"></asp:Label>
                 <asp:TextBox ID="txtFamilia" runat="server" CssClass="form-control" />
-                <br />
                 <asp:Button ID="btnAceptar" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
                 <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-default" OnClick="btnCancelar_Click" />
-                <br />
             </div>
 
             <div class="form-group">
@@ -27,5 +40,9 @@
                 </asp:GridView>
             </div>
         </div>
-    </div>
-</asp:Content>
+    </div>         
+    </form>
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+</body>
+</html>

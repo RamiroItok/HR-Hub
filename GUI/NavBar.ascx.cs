@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using System;
 using System.Web.UI;
@@ -6,38 +8,23 @@ using Unity;
 
 namespace GUI.Controls
 {
-    public partial class NavBar : UserControl
+    public partial class NavBar : UserControl, IIdiomaService
     {
         private readonly IBitacoraService _bitacoraService;
+        private readonly IdiomaService _idiomaService;
         public NavBar()
         {
             _bitacoraService = Global.Container.Resolve<IBitacoraService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                var usuario = Session["Usuario"] as Usuario;
-                if (usuario == null)
-                {
-                    loginLink.Visible = true;
-                    logoutLink.Visible = false;
-                    seguridadLink.Visible = false;
-                    registroLink.Visible = false;
-                    bitacoraLink.Visible = false;
-                    miCuentaLink.Visible = false;
-                    falloIntegridadLink.Visible = false;
-                    configuraciónEmpresaLink.Visible = false;
-                    configuracionProductosLink.Visible = false;
-                    productosLink.Visible = false;
-                    carritoLink.Visible = false;
-                    misComprasLink.Visible = false;
-                    reportesLink.Visible = false;
-                    reporteComprasLink.Visible = false;
-                }
-
-                VisualizarMenu(usuario);
+                VisualizarMenu();
+                CargarTextos();
             }
         }
 
@@ -66,8 +53,27 @@ namespace GUI.Controls
             }
         }
 
-        private void VisualizarMenu(Usuario usuario)
+        private void VisualizarMenu()
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if (usuario == null)
+            {
+                loginLink.Visible = true;
+                logoutLink.Visible = false;
+                seguridadLink.Visible = false;
+                registroLink.Visible = false;
+                bitacoraLink.Visible = false;
+                miCuentaLink.Visible = false;
+                falloIntegridadLink.Visible = false;
+                configuracionEmpresaLink.Visible = false;
+                configuracionProductosLink.Visible = false;
+                productosLink.Visible = false;
+                carritoLink.Visible = false;
+                misComprasLink.Visible = false;
+                reportesLink.Visible = false;
+                reporteComprasLink.Visible = false;
+            }
+
             if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto == Models.Enums.Puesto.WebMaster)
             {
                 falloIntegridadLink.Visible = true;
@@ -77,7 +83,7 @@ namespace GUI.Controls
                 loginLink.Visible = false;
                 contactoLink.Visible = false;
                 miCuentaLink.Visible = false;
-                configuraciónEmpresaLink.Visible = false;
+                configuracionEmpresaLink.Visible = false;
                 productosLink.Visible = false;
                 carritoLink.Visible = false;
                 misComprasLink.Visible = false;
@@ -93,7 +99,7 @@ namespace GUI.Controls
                 contactoLink.Visible = false;
                 miCuentaLink.Visible = false;
                 falloIntegridadLink.Visible = false;
-                configuraciónEmpresaLink.Visible = false;
+                configuracionEmpresaLink.Visible = false;
                 productosLink.Visible = false;
                 carritoLink.Visible = false;
                 misComprasLink.Visible = false;
@@ -143,7 +149,7 @@ namespace GUI.Controls
                             permisosUsuarioLink.Visible = true;
                             break;
                         case Models.Composite.Permiso.ConfiguracionEmpresas:
-                            configuraciónEmpresaLink.Visible = true;
+                            configuracionEmpresaLink.Visible = true;
                             break;
                         case Models.Composite.Permiso.ConfiguracionProducto:
                             configuracionProductosLink.Visible = true;
@@ -172,6 +178,53 @@ namespace GUI.Controls
                     }
                 }
             }
+        }
+        private void CargarTextos()
+        {
+            if (!(litHRHub == null))
+            {
+                litHRHub.Text = _idiomaService.GetTranslation("HRHub");
+                litRegistro.Text = _idiomaService.GetTranslation("Registro");
+                litListarUsuarios.Text = _idiomaService.GetTranslation("ListarUsuarios");
+                litRegistrarUsuario.Text = _idiomaService.GetTranslation("RegistrarUsuario");
+                litSeguridad.Text = _idiomaService.GetTranslation("Seguridad");
+                litGestionFamilia.Text = _idiomaService.GetTranslation("GestionFamilia");
+                litGestionFamiliaPatente.Text = _idiomaService.GetTranslation("GestionFamiliaPatente");
+                litGestionPermisosUsuario.Text = _idiomaService.GetTranslation("GestionPermisosUsuario");
+                litPermisosUsuario.Text = _idiomaService.GetTranslation("PermisosUsuario");
+                litBackup.Text = _idiomaService.GetTranslation("Backup");
+                litRestore.Text = _idiomaService.GetTranslation("Restore");
+                litFalloIntegridad1.Text = _idiomaService.GetTranslation("FalloIntegridad");
+                litFalloIntegridad.Text = _idiomaService.GetTranslation("FalloIntegridad");
+                litConfigEmpresa.Text = _idiomaService.GetTranslation("ConfiguracionEmpresas");
+                litAltaEmpresa.Text = _idiomaService.GetTranslation("AltaEmpresa");
+                litListadoEmpresas.Text = _idiomaService.GetTranslation("ListadoEmpresas");
+                litConfigProductos.Text = _idiomaService.GetTranslation("ConfiguracionProductos");
+                litAltaProducto.Text = _idiomaService.GetTranslation("AltaProducto");
+                litListadoProductos.Text = _idiomaService.GetTranslation("ListadoProductos");
+                litReportes.Text = _idiomaService.GetTranslation("Reportes");
+                litReporteCompras.Text = _idiomaService.GetTranslation("ReporteCompras");
+                litBitacora.Text = _idiomaService.GetTranslation("Bitacora");
+                litProductos.Text = _idiomaService.GetTranslation("Productos");
+                litCarrito.Text = _idiomaService.GetTranslation("Carrito");
+                litContacto.Text = _idiomaService.GetTranslation("Contacto");
+                litLogin.Text = _idiomaService.GetTranslation("Login");
+                litLogout.Text = _idiomaService.GetTranslation("CerrarSesion");
+                litMiCuenta.Text = _idiomaService.GetTranslation("MiCuenta");
+                litMisCompras.Text = _idiomaService.GetTranslation("MisCompras");
+                litCambiarContraseña.Text = _idiomaService.GetTranslation("CambiarContrasena");
+            }
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
         }
     }
 }

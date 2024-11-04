@@ -47,7 +47,7 @@ namespace Data.DAO
                     {
                         foreach (DataColumn dc in dt3.Columns)
                         {
-                            if (dc.ColumnName.ToString().Substring(0, 2).ToUpper() != "ID")
+                            if (dc.ColumnName.ToString().ToUpper() != "ID")
                             {
                                 if (dc.ColumnName.ToString().ToUpper() != "DVH")
                                 {
@@ -102,7 +102,7 @@ namespace Data.DAO
                         int dvh_fila = 0;
                         foreach (DataColumn dc in dt2.Columns)
                         {
-                            if (dc.ColumnName.ToString().Substring(0, 2).ToUpper() != "ID")
+                            if (dc.ColumnName.ToString().ToUpper() != "ID")
                             {
                                 if (dc.ColumnName.ToString().ToUpper() != "DVH")
                                 {
@@ -220,7 +220,7 @@ namespace Data.DAO
 
                     foreach (DataColumn dc in dt2.Columns)
                     {
-                        if (dc.ColumnName.ToString().Substring(0, 2).ToUpper() != "ID")
+                        if (dc.ColumnName.ToString().ToUpper() != "ID")
                         {
                             if (dc.ColumnName.ToString().ToUpper() != "DVH")
                             {

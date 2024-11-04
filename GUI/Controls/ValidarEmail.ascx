@@ -1,8 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ValidarEmail.ascx.cs" Inherits="GUI.Controls.ValidarEmail" %>
 
 <div class="form-group">
-    <asp:Label ID="lblEmail" runat="server" Text="Email:" AssociatedControlID="txtEmail" CssClass="form-label"/>
-    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" onblur="validateEmailFormat(this)" Placeholder="Ingrese su email"/>
+    <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" CssClass="form-label"></asp:Label>
+    
+    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" onblur="validateEmailFormat(this)"></asp:TextBox>
+    
     <asp:Label ID="lblEmailError" runat="server" CssClass="error-message" Style="color: red; display: none;"></asp:Label>
 </div>
 
@@ -10,9 +12,11 @@
     function validateEmailFormat(input) {
         var emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
         var errorLabel = document.getElementById("<%= lblEmailError.ClientID %>");
-        
+
+        var errorMessage = "<%= lblEmailError.Text %>";
+
         if (!emailPattern.test(input.value)) {
-            errorLabel.textContent = "Formato de email no válido. Ejemplo: usuario@dominio.com";
+            errorLabel.textContent = errorMessage;
             errorLabel.style.display = "block";
         } else {
             errorLabel.style.display = "none";

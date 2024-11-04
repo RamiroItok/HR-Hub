@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using Models.Enums;
@@ -12,17 +14,20 @@ using Unity;
 
 namespace GUI
 {
-    public partial class Backup : Page
+    public partial class Backup : Page, IIdiomaService
     {
         private readonly IBackUpService _iBackupService;
         private readonly IBitacoraService _iBitacoraService;
         private readonly IPermisoService _permisoService;
+        private readonly IdiomaService _idiomaService;
 
         public Backup()
         {
             _iBackupService = Global.Container.Resolve<IBackUpService>();
             _iBitacoraService = Global.Container.Resolve<IBitacoraService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,6 +37,25 @@ namespace GUI
                 Response.Redirect("AccesoDenegado.aspx");
                 return;
             }
+            if (!IsPostBack)
+            {
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                ddlLanguage.SelectedValue = selectedLanguage;
+                _idiomaService.CurrentLanguage = selectedLanguage;
+                CargarTextos();
+            }
+        }
+
+        private void CargarTextos()
+        {
+            Page.Title = _idiomaService.GetTranslation("PageTitleBackup");
+            lblTituloBackup.Text = _idiomaService.GetTranslation("TituloBackup");
+            lblRutaBackup.Text = _idiomaService.GetTranslation("LabelRutaBackup");
+            txtRuta.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderRutaBackup");
+            lblNombreBackup.Text = _idiomaService.GetTranslation("LabelNombreBackup");
+            txtNombre.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombreBackup");
+            btnBackup.Text = _idiomaService.GetTranslation("ButtonRealizarBackup");
+            btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancelar");
         }
 
         protected void btnBackup_Click(object sender, EventArgs e)
@@ -45,12 +69,12 @@ namespace GUI
                 var resultado = _iBackupService.RealizarBackup(ruta, nombre, usuario);
                 _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Se realizó una copia de seguridad", Criticidad.ALTA);
 
-                lblMensaje.Text = resultado;
+                lblMensaje.Text = _idiomaService.GetTranslation("MensajeExitoBackup");
                 lblMensaje.Visible = true;
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception($"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {ex.Message}");
             }
         }
 
@@ -58,6 +82,24 @@ namespace GUI
         {
             txtNombre.Text = string.Empty;
             txtRuta.Text = string.Empty;
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HR Hub - Empresas Clientes</title>
+    <title></title>
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
@@ -18,22 +18,28 @@
     <form id="form1" runat="server" style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
         <uc:NavBar runat="server" ID="NavBarControl" />
         
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true"
+            OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
+            <asp:ListItem Text="Español" Value="es"></asp:ListItem>
+            <asp:ListItem Text="English" Value="en"></asp:ListItem>
+        </asp:DropDownList>
+
         <div class="containerEmpresas">
             <div class="content-box">
-                <h2 class="text-center mb-4">Registro de Empresas</h2>
+                <h2 class="text-center mb-4" runat="server" id="tituloRegistro">Registro de Empresas</h2>
 
                 <div class="form-group">
-                    <label for="txtNombreEmpresa">Nombre de la Empresa:</label>
+                    <label for="txtNombreEmpresa" runat="server" id="lblNombreEmpresa">Nombre de la Empresa:</label>
                     <asp:TextBox ID="txtNombreEmpresa" runat="server" CssClass="form-control" placeholder="Ingrese el nombre"></asp:TextBox>
                 </div>
                 
                 <div class="form-group">
-                    <label for="fileLogo">Logo de la Empresa:</label>
+                    <label for="fileLogo" runat="server" id="lblLogoEmpresa">Logo de la Empresa:</label>
                     <asp:FileUpload ID="fileLogo" runat="server" CssClass="form-control-file" />
                 </div>
 
                 <div class="form-group">
-                    <label for="txtURLEmpresa">URL de la Empresa:</label>
+                    <label for="txtURLEmpresa" runat="server" id="lblURLEmpresa">URL de la Empresa:</label>
                     <asp:TextBox ID="txtURLEmpresa" runat="server" CssClass="form-control" placeholder="https://www.ejemplo.com"></asp:TextBox>
                 </div>
 
