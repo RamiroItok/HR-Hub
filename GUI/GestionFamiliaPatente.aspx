@@ -1,8 +1,24 @@
-﻿<%@ Page Title="Gestión Familia Patente" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GestionFamiliaPatente.aspx.cs" Inherits="GUI.GestionFamiliaPatente" EnableEventValidation="false" %>
+﻿<%@ Page Title="Gestión Familia Patente" Language="C#" AutoEventWireup="true" CodeBehind="GestionFamiliaPatente.aspx.cs" Inherits="GUI.GestionFamiliaPatente" EnableEventValidation="true" %>
+<%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
-        <h2>Gestión Familia Patente</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HR Hub - Gestión de Permisos de Usuario</title>
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Style/NavBar.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server" style="width: 100%; max-width: 1000px; margin: 0 auto;">
+        <uc:NavBar ID="NavBar" runat="server" />
+
+        <h1 class="title">
+            <asp:Literal ID="litTituloPagina" runat="server" Text="Gestión Familia Patente"></asp:Literal>
+        </h1>
+
         <div class="form-group">
             <asp:Label ID="lblMessage" runat="server" CssClass="text-danger"></asp:Label>
         </div>
@@ -15,9 +31,9 @@
             <asp:Button ID="btn_Listar" runat="server" Text="Listar" CssClass="btn btn-primary" OnClick="btn_Listar_Click" />
         </div>
 
-        <h3>Permisos no asignados</h3>
+        <h3><asp:Label ID="lblPermisosNoAsignadosTitle" runat="server" Text="Permisos no asignados"></asp:Label></h3>
         <div class="form-group">
-            <asp:GridView ID="gvPermisosNoAsignados" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" EmptyDataText="No hay permisos disponibles para asignar." DataKeyNames="Id">
+            <asp:GridView ID="gvPermisosNoAsignados" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" DataKeyNames="Id">
                 <Columns>
                     <asp:TemplateField HeaderText="Seleccionar" ItemStyle-Width="50px">
                         <ItemTemplate>
@@ -39,9 +55,9 @@
             <asp:Label ID="lblMensajeAsignacion" runat="server" CssClass="text-success"></asp:Label>
         </div>
 
-        <h3>Permisos asignados</h3>
+        <h3><asp:Label ID="lblPermisosAsignadosTitle" runat="server" Text="Permisos asignados"></asp:Label></h3>
         <div class="form-group">
-            <asp:GridView ID="gvPermisosAsignados" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" EmptyDataText="No hay permisos disponibles para asignar." DataKeyNames="Id">
+            <asp:GridView ID="gvPermisosAsignados" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" DataKeyNames="Id">
                 <Columns>
                     <asp:TemplateField HeaderText="Seleccionar" ItemStyle-Width="50px">
                         <ItemTemplate>
@@ -62,17 +78,14 @@
         <div class="form-group">
             <asp:Label ID="lblMensajeEliminar" runat="server" CssClass="text-success"></asp:Label>
         </div>
-
-        <script type="text/javascript">
-            function selectRow(checkbox) {
-                var row = checkbox.parentElement.parentElement;
-
-                if (checkbox.checked) {
-                    row.style.backgroundColor = '#c3e6cb';
-                } else {
-                    row.style.backgroundColor = '';
-                }
-            }
-        </script>
-    </div>
-</asp:Content>
+    </form>
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function selectRow(checkbox) {
+            var row = checkbox.parentElement.parentElement;
+            row.style.backgroundColor = checkbox.checked ? '#c3e6cb' : '';
+        }
+    </script>
+</body>
+</html>

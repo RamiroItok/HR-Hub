@@ -53,26 +53,29 @@ namespace GUI
 
         private void CargarTextos()
         {
-            Page.Title = _idiomaService.GetTranslation("PageTitleCompra");
-            lblCompraResumenTitle.Text = _idiomaService.GetTranslation("CompraResumenTitle");
-            lblTotalCompraLabel.Text = _idiomaService.GetTranslation("TotalCompraLabel");
-            lblPaymentDetailsTitle.Text = _idiomaService.GetTranslation("PaymentDetailsTitle");
-            lblCardNumberLabel.Text = _idiomaService.GetTranslation("CardNumberLabel");
-            lblCardHolderLabel.Text = _idiomaService.GetTranslation("CardHolderLabel");
-            lblExpiryDateLabel.Text = _idiomaService.GetTranslation("ExpiryDateLabel");
-            lblCVCLabel.Text = _idiomaService.GetTranslation("CVCLabel");
-            btnPagar.Text = _idiomaService.GetTranslation("ButtonPay");
-            txtNumeroTarjeta.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCardNumber");
-            txtNombreTitular.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCardHolder");
-            txtFechaVencimiento.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderExpiryDate");
-            txtCVC.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCVC");
+            if (!(lblCompraResumenTitle == null))
+            {
+                lblCompraResumenTitle.Text = _idiomaService.GetTranslation("CompraResumenTitle");
+                Page.Title = _idiomaService.GetTranslation("PageTitleCompra");
+                lblTotalCompraLabel.Text = _idiomaService.GetTranslation("TotalCompraLabel");
+                lblPaymentDetailsTitle.Text = _idiomaService.GetTranslation("PaymentDetailsTitle");
+                lblCardNumberLabel.Text = _idiomaService.GetTranslation("CardNumberLabel");
+                lblCardHolderLabel.Text = _idiomaService.GetTranslation("CardHolderLabel");
+                lblExpiryDateLabel.Text = _idiomaService.GetTranslation("ExpiryDateLabel");
+                lblCVCLabel.Text = _idiomaService.GetTranslation("CVCLabel");
+                btnPagar.Text = _idiomaService.GetTranslation("ButtonPay");
+                txtNumeroTarjeta.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCardNumber");
+                txtNombreTitular.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCardHolder");
+                txtFechaVencimiento.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderExpiryDate");
+                txtCVC.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCVC");
 
-            gvCarrito.Columns[0].HeaderText = _idiomaService.GetTranslation("ColumnProduct");
-            gvCarrito.Columns[1].HeaderText = _idiomaService.GetTranslation("ColumnPrice");
-            gvCarrito.Columns[2].HeaderText = _idiomaService.GetTranslation("ColumnQuantity");
-            gvCarrito.Columns[3].HeaderText = _idiomaService.GetTranslation("ColumnSubtotal");
+                gvCarrito.Columns[0].HeaderText = _idiomaService.GetTranslation("ColumnProduct");
+                gvCarrito.Columns[1].HeaderText = _idiomaService.GetTranslation("ColumnPrice");
+                gvCarrito.Columns[2].HeaderText = _idiomaService.GetTranslation("ColumnQuantity");
+                gvCarrito.Columns[3].HeaderText = _idiomaService.GetTranslation("ColumnSubtotal");
 
-            gvCarrito.DataBind();
+                gvCarrito.DataBind();
+            }
         }
 
         private void CargarCarrito()

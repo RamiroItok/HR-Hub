@@ -75,17 +75,20 @@ namespace GUI
 
         private void CargarTextos()
         {
-            Page.Title = _idiomaService.GetTranslation("PageTitleProductos");
-            lblProductosTitle.Text = _idiomaService.GetTranslation("ProductosTitle");
-            txtNombre.Attributes["placeholder"] = _idiomaService.GetTranslation("FilterByName");
-            txtDescripcion.Attributes["placeholder"] = _idiomaService.GetTranslation("FilterByDescription");
-            btnFiltrar.Text = _idiomaService.GetTranslation("ButtonFilter");
-            btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancel");
+            if (!(lblProductosTitle == null))
+            {
+                lblProductosTitle.Text = _idiomaService.GetTranslation("ProductosTitle");
+                Page.Title = _idiomaService.GetTranslation("PageTitleProductos");
+                txtNombre.Attributes["placeholder"] = _idiomaService.GetTranslation("FilterByName");
+                txtDescripcion.Attributes["placeholder"] = _idiomaService.GetTranslation("FilterByDescription");
+                btnFiltrar.Text = _idiomaService.GetTranslation("ButtonFilter");
+                btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancel");
 
-            lblModalTitle.Text = _idiomaService.GetTranslation("ModalProductAddedTitle");
-            lblModalMessage.Text = _idiomaService.GetTranslation("ModalProductAddedMessage");
-            lblModalCloseButton.Text = _idiomaService.GetTranslation("ModalCloseButton");
-            litTextoPiePagina.Text = _idiomaService.GetTranslation("TextoPiePagina");
+                lblModalTitle.Text = _idiomaService.GetTranslation("ModalProductAddedTitle");
+                lblModalMessage.Text = _idiomaService.GetTranslation("ModalProductAddedMessage");
+                lblModalCloseButton.Text = _idiomaService.GetTranslation("ModalCloseButton");
+                litTextoPiePagina.Text = _idiomaService.GetTranslation("TextoPiePagina");
+            }
         }
 
         private void CargarProductos(List<Producto> productosFiltrados)
@@ -130,7 +133,6 @@ namespace GUI
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                // Obtener cada control de la tarjeta de producto
                 var lblDescripcion = (Label)e.Item.FindControl("lblDescripcion");
                 var lblEmpresa = (Label)e.Item.FindControl("lblEmpresa");
                 var lblTipoProducto = (Label)e.Item.FindControl("lblTipoProducto");
@@ -139,14 +141,11 @@ namespace GUI
 
                 var btnAgregarCarrito = (Button)e.Item.FindControl("btnAgregarCarrito");
 
-                // Asignar los textos traducidos a cada control
                 lblDescripcion.Text = _idiomaService.GetTranslation("CardProductDescription");
                 lblEmpresa.Text = _idiomaService.GetTranslation("CardCompany");
                 lblTipoProducto.Text = _idiomaService.GetTranslation("CardProductType");
                 lblCantidad.Text = _idiomaService.GetTranslation("CardQuantity");
                 lblPrecio.Text = _idiomaService.GetTranslation("CardPrice");
-
-                // Asignar el texto traducido al botón de agregar al carrito
                 btnAgregarCarrito.Text = _idiomaService.GetTranslation("ButtonAddToCart");
             }
         }

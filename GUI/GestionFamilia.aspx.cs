@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using System;
@@ -8,16 +10,20 @@ using Unity;
 
 namespace GUI
 {
-    public partial class GestionFamilia : System.Web.UI.Page
+    public partial class GestionFamilia : System.Web.UI.Page, IIdiomaService
     {
         private readonly IPermisoService _iPermiso;
         private readonly IBitacoraService _bitacoraService;
         private readonly IPermisoService _permisoService;
+        private readonly IdiomaService _idiomaService;
+
         public GestionFamilia()
         {
             _iPermiso = Global.Container.Resolve<IPermisoService>();
             _bitacoraService = Global.Container.Resolve<IBitacoraService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -32,6 +38,9 @@ namespace GUI
             if (!IsPostBack)
             {
                 CargarFamilia();
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                _idiomaService.CurrentLanguage = selectedLanguage;
+                CargarTextos();
             }
         }
 
@@ -45,7 +54,7 @@ namespace GUI
                     if (existeFamilia == true)
                     {
                         Limpiar();
-                        throw new Exception("La familia ya existe");
+                        throw new Exception(_idiomaService.GetTranslation("FamiliaYaExiste"));
                     }
 
                     Familia familia = new Familia()
@@ -59,14 +68,44 @@ namespace GUI
                     _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Da de alta una patente", Models.Enums.Criticidad.ALTA);
 
                     lblMessage.CssClass = "text-success";
-                    lblMessage.Text = "Se ha dado de alta la familia correctamente.";
+                    lblMessage.Text = _idiomaService.GetTranslation("FamiliaAltaExitosa");
                     CargarFamilia();
                     Limpiar();
+                }
+                else
+                {
+                    throw new Exception(_idiomaService.GetTranslation("MensajeCamposIncompletos"));
                 }
             }
             catch (Exception ex)
             {
+                lblMessage.CssClass = "text-danger";
                 lblMessage.Text = ex.Message;
+            }
+            finally
+            {
+                lblMessage.Visible = true;
+            }
+        }
+
+        private void CargarTextos()
+        {
+            if (!(litTituloPagina == null))
+            {
+                litTituloPagina.Text = _idiomaService.GetTranslation("GestionFamiliaTituloPagina");
+
+                lblNombreFamilia.Text = _idiomaService.GetTranslation("NombreFamilia");
+                lblListadoFamilias.Text = _idiomaService.GetTranslation("ListadoFamilias");
+                btnAceptar.Text = _idiomaService.GetTranslation("ButtonAlta");
+                btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancelar");
+
+                lblMessage.Text = _idiomaService.GetTranslation("FamiliaAltaExitosa");
+
+                gridFamilia.Columns[0].HeaderText = _idiomaService.GetTranslation("ColumnNombre");
+                gridFamilia.Columns[1].HeaderText = _idiomaService.GetTranslation("ColumnHijos");
+                gridFamilia.Columns[2].HeaderText = _idiomaService.GetTranslation("ColumnPermiso");
+
+                gridFamilia.DataBind();
             }
         }
 
@@ -100,6 +139,17 @@ namespace GUI
         private void Limpiar()
         {
             txtFamilia.Text = String.Empty;
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using System;
@@ -10,15 +12,18 @@ using Unity;
 
 namespace GUI
 {
-    public partial class GestionFamiliaPatente : Page
+    public partial class GestionFamiliaPatente : Page, IIdiomaService
     {
         private readonly IPermisoService _iPermiso;
         private readonly IBitacoraService _iBitacoraService;
+        private readonly IdiomaService _idiomaService;
 
         public GestionFamiliaPatente()
         {
             _iPermiso = Global.Container.Resolve<IPermisoService>();
             _iBitacoraService = Global.Container.Resolve<IBitacoraService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -34,6 +39,47 @@ namespace GUI
             {
                 CargarFamilias();
                 CargarDataGrids();
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                _idiomaService.CurrentLanguage = selectedLanguage;
+                CargarTextos();
+            }
+        }
+
+        private void CargarTextos()
+        {
+            if (!(litTituloPagina == null))
+            {
+                litTituloPagina.Text = _idiomaService.GetTranslation("GestionFamiliaPatenteTituloPagina");
+
+                lblFamilia1.Text = _idiomaService.GetTranslation("LabelFamilia");
+                btn_Listar.Text = _idiomaService.GetTranslation("ButtonListar");
+                btn_AsignarPermiso.Text = _idiomaService.GetTranslation("ButtonAsignarPermiso");
+                btn_EliminarPatente.Text = _idiomaService.GetTranslation("ButtonEliminarPatente");
+
+                lblPermisosNoAsignadosTitle.Text = _idiomaService.GetTranslation("PermisosNoAsignados");
+                lblPermisosAsignadosTitle.Text = _idiomaService.GetTranslation("PermisosAsignados");
+
+                cmb_Familia1.Items[0].Text = _idiomaService.GetTranslation("SeleccionaUnaOpcion");
+
+                lblMensajeAsignacion.Text = string.Empty;
+                lblMensajeEliminar.Text = string.Empty;
+                lblMessage.Text = string.Empty;
+
+                gvPermisosNoAsignados.Columns[0].HeaderText = _idiomaService.GetTranslation("SeleccionarHeader");
+                gvPermisosNoAsignados.Columns[1].HeaderText = _idiomaService.GetTranslation("ColumnId");
+                gvPermisosNoAsignados.Columns[2].HeaderText = _idiomaService.GetTranslation("ColumnNombre");
+                gvPermisosNoAsignados.Columns[3].HeaderText = _idiomaService.GetTranslation("ColumnPermiso");
+
+                gvPermisosAsignados.Columns[0].HeaderText = _idiomaService.GetTranslation("SeleccionarHeader");
+                gvPermisosAsignados.Columns[1].HeaderText = _idiomaService.GetTranslation("ColumnId");
+                gvPermisosAsignados.Columns[2].HeaderText = _idiomaService.GetTranslation("ColumnNombre");
+                gvPermisosAsignados.Columns[3].HeaderText = _idiomaService.GetTranslation("ColumnPermiso");
+
+                gvPermisosNoAsignados.EmptyDataText = _idiomaService.GetTranslation("NoPermisosAsignar");
+                gvPermisosAsignados.EmptyDataText = _idiomaService.GetTranslation("NoPermisosAsignados");
+
+                gvPermisosNoAsignados.DataBind();
+                gvPermisosAsignados.DataBind();
             }
         }
 
@@ -73,7 +119,7 @@ namespace GUI
             else
             {
                 CargarDataGrids();
-                lblMessage.Text = "Debe seleccionar una familia";
+                lblMessage.Text = _idiomaService.GetTranslation("SeleccionarFamilia");
                 lblMessage.ForeColor = System.Drawing.Color.Red;
             }
         }
@@ -88,7 +134,7 @@ namespace GUI
                 if (gvPermisosNoAsignados.Rows.Count == 0)
                 {
                     Limpiar();
-                    lblMensajeAsignacion.Text = "No hay permisos para asignar";
+                    lblMensajeAsignacion.Text = _idiomaService.GetTranslation("NoPermisosParaAsignar");
                     lblMensajeAsignacion.ForeColor = System.Drawing.Color.Red;
                 }
                 else
@@ -118,12 +164,12 @@ namespace GUI
                         var usuario = Session["Usuario"] as Usuario;
                         _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Asigna patente a familia", Models.Enums.Criticidad.ALTA);
 
-                        lblMensajeAsignacion.Text = "Se realizó la operación correctamente.";
+                        lblMensajeAsignacion.Text = _idiomaService.GetTranslation("OperacionExitosa");
                         lblMensajeAsignacion.ForeColor = System.Drawing.Color.Green;
                     }
                     else
                     {
-                        lblMensajeAsignacion.Text = "Debe seleccionar al menos un permiso para asignar.";
+                        lblMensajeAsignacion.Text = _idiomaService.GetTranslation("SeleccionarPermisoParaAsignar");
                         lblMensajeAsignacion.ForeColor = System.Drawing.Color.Red;
                     }
                 }
@@ -131,7 +177,7 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "Ocurrió un error al asignar permisos: " + ex.Message;
+                lblMessage.Text = _idiomaService.GetTranslation("ErrorAlAsignarPermisos") + ex.Message;
                 lblMessage.ForeColor = System.Drawing.Color.Red;
             }
         }
@@ -146,7 +192,7 @@ namespace GUI
                 if (gvPermisosAsignados.Rows.Count == 0)
                 {
                     Limpiar();
-                    lblMensajeAsignacion.Text = "No hay permisos para quitar";
+                    lblMensajeAsignacion.Text = _idiomaService.GetTranslation("NoPermisosParaQuitar");
                     lblMensajeAsignacion.ForeColor = System.Drawing.Color.Red;
                 }
                 else
@@ -172,12 +218,12 @@ namespace GUI
                     Listar(familiaId);
                     if (isSelected)
                     {
-                        lblMensajeEliminar.Text = "Se realizó la operación correctamente.";
+                        lblMensajeEliminar.Text = _idiomaService.GetTranslation("OperacionExitosa");
                         lblMensajeEliminar.ForeColor = System.Drawing.Color.Green;
                     }
                     else
                     {
-                        lblMensajeEliminar.Text = "Debe seleccionar al menos un permiso para asignar.";
+                        lblMensajeEliminar.Text = _idiomaService.GetTranslation("SeleccionarPermisoParaAsignar");
                         lblMensajeEliminar.ForeColor = System.Drawing.Color.Red;
                     }
                 }
@@ -205,5 +251,15 @@ namespace GUI
             lblMessage.Text = String.Empty;
         }
 
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
+        }
     }
 }
