@@ -48,14 +48,17 @@ namespace GUI
 
         private void CargarTextos()
         {
-            Page.Title = _idiomaService.GetTranslation("PageTitleBackup");
-            lblTituloBackup.Text = _idiomaService.GetTranslation("TituloBackup");
-            lblRutaBackup.Text = _idiomaService.GetTranslation("LabelRutaBackup");
-            txtRuta.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderRutaBackup");
-            lblNombreBackup.Text = _idiomaService.GetTranslation("LabelNombreBackup");
-            txtNombre.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombreBackup");
-            btnBackup.Text = _idiomaService.GetTranslation("ButtonRealizarBackup");
-            btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancelar");
+            if (!(lblTituloBackup == null))
+            {
+                lblTituloBackup.Text = _idiomaService.GetTranslation("TituloBackup");
+                Page.Title = _idiomaService.GetTranslation("PageTitleBackup");
+                lblRutaBackup.Text = _idiomaService.GetTranslation("LabelRutaBackup");
+                txtRuta.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderRutaBackup");
+                lblNombreBackup.Text = _idiomaService.GetTranslation("LabelNombreBackup");
+                txtNombre.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombreBackup");
+                btnBackup.Text = _idiomaService.GetTranslation("ButtonRealizarBackup");
+                btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancelar");
+            }
         }
 
         protected void btnBackup_Click(object sender, EventArgs e)
@@ -66,15 +69,24 @@ namespace GUI
 
             try
             {
+                if(string.IsNullOrEmpty(ruta) || string.IsNullOrEmpty(nombre))
+                {
+                    throw new Exception(_idiomaService.GetTranslation("MensajeCamposIncompletos"));
+                }
                 var resultado = _iBackupService.RealizarBackup(ruta, nombre, usuario);
                 _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Se realizó una copia de seguridad", Criticidad.ALTA);
 
                 lblMensaje.Text = _idiomaService.GetTranslation("MensajeExitoBackup");
-                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-success";
             }
             catch (Exception ex)
             {
-                throw new Exception($"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {ex.Message}");
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {ex.Message}";
+                lblMensaje.CssClass = "text-danger";
+            }
+            finally
+            {
+                lblMensaje.Visible = true;
             }
         }
 
@@ -82,6 +94,7 @@ namespace GUI
         {
             txtNombre.Text = string.Empty;
             txtRuta.Text = string.Empty;
+            lblMensaje.Visible = false;
         }
 
         public void UpdateLanguage(string language)

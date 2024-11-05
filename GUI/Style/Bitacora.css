@@ -27,6 +27,10 @@
     margin-bottom: 20px;
 }
 
+.text-danger {
+    color: #a94442;
+}
+
 /* Estilos para los campos de texto y dropdown */
 .form-group {
     flex: 1 1 45%;

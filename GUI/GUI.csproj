@@ -205,9 +205,11 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="ReporteCompras.aspx" />
+    <Content Include="Style\Backup.css" />
     <Content Include="Style\GestionPermisosUsuario.css" />
     <Content Include="Style\MisCompras.css" />
     <Content Include="Style\Reporte.css" />
+    <Content Include="Style\Restore.css" />
     <Content Include="Templates\ResumenCompraTemplate.html" />
     <Content Include="WebService\EnviarMail.asmx" />
     <Content Include="WebService\ReporteCompras.asmx" />

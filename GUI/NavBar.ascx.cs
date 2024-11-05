@@ -77,6 +77,7 @@ namespace GUI.Controls
             if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto == Models.Enums.Puesto.WebMaster)
             {
                 falloIntegridadLink.Visible = true;
+                bitacoraLink.Visible = true;
                 seguridadLink.Visible = false;
                 restoreLink.Visible = false;
                 registroLink.Visible = false;

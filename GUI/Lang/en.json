@@ -182,6 +182,7 @@
   "LabelTablaFalloSaludable": "Failure in table: -",
   "EstadoNoSaludable": "Status: Unhealthy",
   "EstadoSaludable": "Status: Healthy",
+  "RestoreExitoso": "The system was successfully restored. You need to log in again.",
 
   "PageTitleGestionPermisosUsuario": "User Permission Management",
   "TituloGestionPermisosUsuario": "User Permission Management",
@@ -350,5 +351,10 @@
   "MensajeReporteExitoso": "The XML report has been successfully generated.",
   "MensajeNoDatosAnio": "No data for the selected year.",
   "TituloGrafico": "Products sold in",
-  "TextoSinDatos": "No data"
+  "TextoSinDatos": "No data",
+
+  "PageTitleRestore": "System Restore",
+  "DescripcionRestore": "Upload the backup file to restore the system to a previous state.",
+  "ButtonRealizarRestore": "Perform Restore",
+  "MensajeRestoreExito": "The restore was completed successfully. Please log in again."
 }

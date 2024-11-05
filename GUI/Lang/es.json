@@ -182,6 +182,7 @@
   "LabelTablaFalloSaludable": "Fallo en la tabla: -",
   "EstadoNoSaludable": "Estado: No saludable",
   "EstadoSaludable": "Estado: Saludable",
+  "RestoreExitoso": "Se restauro el sistema de manera correcta. Debes volver a iniciar sesion",
 
   "PageTitleGestionPermisosUsuario": "Gestion de Permisos de Usuario",
   "TituloGestionPermisosUsuario": "Gestion de Permisos de Usuario",
@@ -350,5 +351,10 @@
   "MensajeReporteExitoso": "El reporte XML ha sido generado exitosamente.",
   "MensajeNoDatosAnio": "No hay datos para el ano seleccionado.",
   "TituloGrafico": "Productos vendidos en",
-  "TextoSinDatos": "Sin datos"
+  "TextoSinDatos": "Sin datos",
+
+  "PageTitleRestore": "Restauracion del Sistema",
+  "DescripcionRestore": "Sube el archivo de respaldo para restaurar el sistema a un estado anterior.",
+  "ButtonRealizarRestore": "Realizar Restauracion",
+  "MensajeRestoreExito": "La restauración se completo correctamente. Por favor, vuelve a iniciar sesion."
 }
