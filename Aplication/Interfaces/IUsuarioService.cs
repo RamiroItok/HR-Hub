@@ -19,7 +19,7 @@ namespace Aplication.Interfaces
         bool ValidarFormatoContraseña(string contraseña);
         string GenerarContraseña();
         bool ActualizarContraseña(Usuario usuario, string contraseña, TipoOperacionContraseña tipoOperacionContraseña);
-        void EnviarMail(string email, AsuntoMail asuntoMail, string body);
+        void EnviarMail(string email, AsuntoMail asuntoMail, string body, byte[] attachment = null);
         string ValidarContraseñas(Usuario usuario, string contraseñaActual, string contraseñaNueva, string confirmarContraseña);
         int ModificarUsuario(Usuario usuario, Usuario userSession);
         void ModificarPermisoUsuario(Usuario usuario, Usuario userSession);

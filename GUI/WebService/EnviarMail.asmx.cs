@@ -1,4 +1,5 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Services;
 using System;
 using System.Web.Services;
 using Unity;
@@ -38,9 +39,10 @@ namespace GUI.WebService
                     throw new Exception("La compra no tiene productos.");
 
                 string body = _compraService.CrearMensajeResumenCompra(compra, usuario, detallesCompra);
+                GenerarPDFService generarPDFService = new GenerarPDFService();
+                byte[] pdfBytes = generarPDFService.GenerarPdf(compra, usuario, detallesCompra);
 
-                _usuarioService.EnviarMail(usuario.Email, Models.Enums.AsuntoMail.CompraProductos, body);
-
+                _usuarioService.EnviarMail(usuario.Email, Models.Enums.AsuntoMail.CompraProductos, body, pdfBytes);
                 return "Correo enviado exitosamente a: " + usuario.Email;
             }
             catch (Exception ex)
