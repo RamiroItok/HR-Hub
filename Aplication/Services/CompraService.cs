@@ -175,7 +175,7 @@ namespace Aplication.Services
             }
         }
 
-        public string CrearMensajeResumenCompra(Models.Compra compra, Usuario usuario, List<DetalleCompra> detallesCompra)
+        public string CrearMensajeResumenCompra(Compra compra, Usuario usuario, List<DetalleCompra> detallesCompra)
         {
             string templatePath = HttpContext.Current.Server.MapPath("~/Templates/ResumenCompraTemplate.html");
             string templateContent = File.ReadAllText(templatePath);

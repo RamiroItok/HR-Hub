@@ -401,7 +401,7 @@ namespace Aplication
             return resultado;
         }
 
-        public void EnviarMail(string email, AsuntoMail asuntoMail, string body)
+        public void EnviarMail(string email, AsuntoMail asuntoMail, string body, byte[] attachment = null)
         {
             try
             {
@@ -413,11 +413,28 @@ namespace Aplication
                 mensaje.Body = body;
                 mensaje.IsBodyHtml = true;
 
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-                smtp.Port = 587;
-                smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["EmailUser"], ConfigurationManager.AppSettings["EmailPassword"]);
-                smtp.EnableSsl = true;
-                smtp.Send(mensaje);
+                if (attachment != null)
+                {
+                    using (MemoryStream ms = new MemoryStream(attachment))
+                    {
+                        Attachment pdfAttachment = new Attachment(ms, "ResumenCompra.pdf", "application/pdf");
+                        mensaje.Attachments.Add(pdfAttachment);
+
+                        SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                        smtp.Port = 587;
+                        smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["EmailUser"], ConfigurationManager.AppSettings["EmailPassword"]);
+                        smtp.EnableSsl = true;
+                        smtp.Send(mensaje);
+                    }
+                }
+                else
+                {
+                    SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                    smtp.Port = 587;
+                    smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["EmailUser"], ConfigurationManager.AppSettings["EmailPassword"]);
+                    smtp.EnableSsl = true;
+                    smtp.Send(mensaje);
+                }
             }
             catch (Exception ex)
             {
