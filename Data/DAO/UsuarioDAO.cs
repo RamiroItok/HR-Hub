@@ -215,6 +215,18 @@ namespace Data.DAO
             }
         }
 
+        public DataSet ObtenerUsuariosBloqueados()
+        {
+            try
+            {
+                return _acceso.ExecuteStoredProcedureReader("sp_s_usuariosBloqueados", null);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public void EstadoBloqueoUsuario(string email)
         {
             try

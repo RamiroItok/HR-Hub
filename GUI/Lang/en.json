@@ -78,6 +78,7 @@
   "MiCuenta": "My Account",
   "MisCompras": "My Purchases",
   "CambiarContrasena": "Change Password",
+  "DesbloquearUsuarios": "Blocked Users",
 
   "LabelEmail": "Email",
   "ErrorFormatoEmail": "Invalid email format. Example: user@domain.com",
@@ -356,5 +357,22 @@
   "PageTitleRestore": "System Restore",
   "DescripcionRestore": "Upload the backup file to restore the system to a previous state.",
   "ButtonRealizarRestore": "Perform Restore",
-  "MensajeRestoreExito": "The restore was completed successfully. Please log in again."
+  "MensajeRestoreExito": "The restore was completed successfully. Please log in again.",
+
+  "PageTitleDesbloquearUsuarios": "Unlock Users",
+  "TituloDesbloquearUsuarios": "Blocked Users List",
+  "ButtonDesbloquear": "Unlock",
+  "ConfirmacionDesbloqueo": "Are you sure?",
+  "TextoConfirmacionDesbloqueo": "Do you want to unlock this user?",
+  "BotonConfirmarDesbloqueo": "Yes, unlock",
+  "BotonCancelarDesbloqueo": "Cancel",
+  "MensajeUsuarioDesbloqueadoExito": "The user has been successfully unlocked.",
+  "MensajeErrorDesbloqueo": "An error occurred while trying to unlock the user.",
+  "MensajeSeleccionUsuarioError": "Please select a user to unlock.",
+  "ID": "ID",
+  "Nombre": "Name",
+  "Apellido": "Last name",
+  "Email": "Email",
+  "Estado": "Status",
+  "MensajeNoUsuariosBloqueados": "No blocked users."
 }

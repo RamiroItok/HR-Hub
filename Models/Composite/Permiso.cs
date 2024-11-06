@@ -22,6 +22,7 @@
         MisCompras,
         MiCuenta,
         Reportes,
-        ReporteCompras
+        ReporteCompras,
+        DesbloquearUsuario
     }
 }

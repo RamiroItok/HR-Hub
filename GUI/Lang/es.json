@@ -32,7 +32,6 @@
   "TextoPiePagina": "&copy; 2024 HR Hub. Todos los derechos reservados.",
   "TituloPaginaLogin": "Inicio de Sesion",
   "TituloFormularioLogin": "Iniciar Sesion",
-  "BotonIniciarSesion": "Iniciar Sesion",
   "EnlaceRecuperarContrasena": "Olvidaste tu contrasena?",
   "ErrorEmailNoValido": "Email no valido",
   "ErrorContrasenaNoValida": "Contrasena no valida",
@@ -46,7 +45,6 @@
   "MisDocumentos": "Mis documentos",
   "AccedeDocumentos": "Accede a tus documentos importantes",
   "VerDocumentos": "Ver mis documentos",
-  "TextoPiePagina": "&copy; 2024 HR Hub. Todos los derechos reservados.",
 
   "HRHub": "HR Hub",
   "Registro": "Registro",
@@ -78,6 +76,7 @@
   "MiCuenta": "Mi cuenta",
   "MisCompras": "Mis compras",
   "CambiarContrasena": "Cambiar contrasena",
+  "DesbloquearUsuarios": "Usuarios Bloqueados",
 
   "LabelEmail": "Correo Electronico",
   "ErrorFormatoEmail": "Formato de email no valido. Ejemplo: usuario@dominio.com",
@@ -356,5 +355,22 @@
   "PageTitleRestore": "Restauracion del Sistema",
   "DescripcionRestore": "Sube el archivo de respaldo para restaurar el sistema a un estado anterior.",
   "ButtonRealizarRestore": "Realizar Restauracion",
-  "MensajeRestoreExito": "La restauración se completo correctamente. Por favor, vuelve a iniciar sesion."
+  "MensajeRestoreExito": "La restauración se completo correctamente. Por favor, vuelve a iniciar sesion.",
+
+  "PageTitleDesbloquearUsuarios": "Desbloquear Usuarios",
+  "TituloDesbloquearUsuarios": "Lista de Usuarios Bloqueados",
+  "ButtonDesbloquear": "Desbloquear",
+  "ConfirmacionDesbloqueo": "Estas seguro?",
+  "TextoConfirmacionDesbloqueo": "Deseas desbloquear este usuario?",
+  "BotonConfirmarDesbloqueo": "Si, desbloquear",
+  "BotonCancelarDesbloqueo": "Cancelar",
+  "MensajeUsuarioDesbloqueadoExito": "El usuario ha sido desbloqueado exitosamente.",
+  "MensajeErrorDesbloqueo": "Ocurrio un error al intentar desbloquear al usuario.",
+  "MensajeSeleccionUsuarioError": "Por favor, selecciona un usuario para desbloquear.",
+  "ID": "ID",
+  "Nombre": "Nombre",
+  "Apellido": "Apellido",
+  "Email": "Email",
+  "Estado": "Estado",
+  "MensajeNoUsuariosBloqueados": "No hay usuarios bloqueados."
 }

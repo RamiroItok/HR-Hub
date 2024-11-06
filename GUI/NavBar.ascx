@@ -35,6 +35,7 @@
                         <li><a id="permisosUsuarioLink" runat="server" visible="false" href="~/PermisosUsuario"><asp:Literal ID="litPermisosUsuario" runat="server">Permisos Usuarios</asp:Literal></a></li>
                         <li><a id="backUpLink" runat="server" visible="false" href="~/Backup"><asp:Literal ID="litBackup" runat="server">Backup</asp:Literal></a></li>
                         <li><a id="restoreLink" runat="server" visible="false" href="~/Restore"><asp:Literal ID="litRestore" runat="server">Restore</asp:Literal></a></li>
+                        <li><a id="desbloquearUsuariosLink" runat="server" visible="false" href="~/DesbloquearUsuario"><asp:Literal ID="litDesbloquearUsuarios" runat="server">Usuarios Bloqueados</asp:Literal></a></li>
                         <li><a id="falloIntegridadSeguridadLink" runat="server" visible="false" href="~/FalloIntegridad"><asp:Literal ID="litFalloIntegridad" runat="server">Fallo de integridad</asp:Literal></a></li>
                     </ul>
                 </li>

@@ -60,18 +60,11 @@ namespace GUI
                         var usuario = _usuarioService.ObtenerUsuarioPorEmail(ValidarEmailControl.Email);
                         string password = PasswordValidator.Password;
 
-                        lblMensaje.Text = _usuarioService.ValidarUsuario(usuario, ValidarEmailControl.Email, password);
+                        _usuarioService.ValidarUsuario(usuario, ValidarEmailControl.Email, password);
 
-                        if (!string.IsNullOrEmpty(lblMensaje.Text))
-                        {
-                            lblMensaje.Visible = true;
-                        }
-                        else
-                        {
-                            Session["Usuario"] = usuario;
-                            Response.Redirect("MenuPrincipal.aspx", false);
-                            Context.ApplicationInstance.CompleteRequest();
-                        }
+                        Session["Usuario"] = usuario;
+                        Response.Redirect("MenuPrincipal.aspx", false);
+                        Context.ApplicationInstance.CompleteRequest();
                     }
                     else
                     {
