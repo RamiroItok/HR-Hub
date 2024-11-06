@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Aplication.Interfaces;
+using Aplication.Services;
 using Models;
 using Models.Composite;
 using Unity;
@@ -35,6 +35,11 @@ namespace GUI
             if (!IsPostBack)
             {
                 CargarCompras();
+            }
+
+            if (Request.QueryString["DownloadPdf"] == "true" && int.TryParse(Request.QueryString["idCompra"], out int idCompra))
+            {
+                DescargarPdf(idCompra);
             }
         }
 
@@ -76,6 +81,23 @@ namespace GUI
             gvDetallesCompra.DataBind();
 
             ScriptManager.RegisterStartupScript(this, GetType(), "ShowModalScript", "showResumenCompraModal();", true);
+        }
+
+        private void DescargarPdf(int idCompra)
+        {
+            var compra = _compraService.ObtenerCompra(idCompra);
+            var usuario = _usuarioService.ObtenerUsuarioPorId(compra.IdUsuario);
+            var detallesCompra = _compraService.ObtenerDetalleCompra(idCompra);
+
+            GenerarPDFService generarPDFService = new GenerarPDFService();
+            byte[] pdfBytes = generarPDFService.GenerarPdf(compra, usuario, detallesCompra);
+
+            Response.Clear();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", $"attachment; filename=ResumenCompra_{idCompra}.pdf");
+            Response.BinaryWrite(pdfBytes);
+            Response.Flush();
+            Response.End();
         }
     }
 }

@@ -71,6 +71,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <asp:Button ID="btnDescargarPdf" runat="server" Text="Descargar" CssClass="btn btn-primary" OnClientClick="descargarPdf(); return false;" />
                             </div>
                         </div>
                     </div>
@@ -105,6 +106,13 @@
                 aplicarFondo();
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        function descargarPdf() {
+            var idCompra = document.getElementById('<%= lblIdCompra.ClientID %>').innerText;
+            window.open('MisCompras.aspx?DownloadPdf=true&idCompra=' + idCompra, '_blank');
+        }
     </script>
 </body>
 </html>
