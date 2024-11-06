@@ -172,24 +172,24 @@ namespace Aplication
             try
             {
                 if(usuario == null)
-                    return "El email no se ha dado de alta en el sistema.";
+                    throw new Exception("El email no se ha dado de alta en el sistema.");
 
                 if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(contraseña))
-                    return "Hay campos sin completar.";
+                    throw new Exception("Hay campos sin completar.");
 
                 var contraseñaReal = EncriptacionService.Encriptar_MD5(contraseña);
-                
-                if(usuario.Estado == 3)
-                    return "El usuario está bloqueado. Contacte un administrador para su desbloqueo.";
+
+                if (usuario.Estado == 3)
+                    throw new Exception("El usuario está bloqueado. Contacte un administrador para su desbloqueo.");
 
                 if (contraseñaReal != usuario.Contraseña)
                 {
                     EstadoBloqueoUsuario(usuario);
-                    return "La contraseña es incorrecta.";
+                    throw new Exception("La contraseña es incorrecta.");
                 }
                 else
                 {
-                    DesbloquearUsuario(usuario.Email);
+                    DesbloquearUsuario(usuario.Email, usuario, true);
                     _iPermisoService.GetComponenteUsuario(usuario);
                     _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Inicio de sesion", Criticidad.BAJA);
                 }
@@ -270,6 +270,7 @@ namespace Aplication
             try
             {
                 _usuarioDAO.EstadoBloqueoUsuario(usuario.Email);
+                _iDigitoVerificadorService.CalcularDVTabla("Usuario");
                 _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Intento de login fallido", Criticidad.ALTA);
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
@@ -282,11 +283,18 @@ namespace Aplication
             }
         }
 
-        public void DesbloquearUsuario(string email)
+        public bool DesbloquearUsuario(string email, Usuario userSession, bool esLogin)
         {
             try
             {
                 _usuarioDAO.DesbloquearUsuario(email);
+                _iDigitoVerificadorService.CalcularDVTabla("Usuario");
+                if (!esLogin)
+                {
+                    _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se desbloqueo el usuario {EncriptacionService.Decrypt_AES(email)}", Criticidad.ALTA);
+                }
+                
+                return true;
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
@@ -383,6 +391,7 @@ namespace Aplication
         {
             var contraseñaEncriptada = EncriptacionService.Encriptar_MD5(contraseña);
             var resultado = _usuarioDAO.ActualizarContraseña(usuario.Email, contraseñaEncriptada);
+            _iDigitoVerificadorService.CalcularDVTabla("Usuario");
 
             var descripcion = tipoOperacion == TipoOperacionContraseña.Recuperacion ? "Recuperacion de contraseña" : "Cambio de contraseña";
 
@@ -519,6 +528,40 @@ namespace Aplication
                     return "Compra de productos";
                 default:
                     throw new ArgumentException("Tipo de asunto no válido");
+            }
+        }
+
+        public List<Usuario> ObtenerUsuariosBloqueados()
+        {
+            try
+            {
+                var resultado = _usuarioDAO.ObtenerUsuariosBloqueados();
+
+                List<Usuario> listaUsuarios = new List<Usuario>();
+
+                foreach (DataRow row in resultado.Tables[0].Rows)
+                {
+                    Usuario usuario = new Usuario
+                    {
+                        Id = Convert.ToInt32(row["Id"]),
+                        Nombre = EncriptacionService.Decrypt_AES(row["Nombre"].ToString()),
+                        Apellido = EncriptacionService.Decrypt_AES(row["Apellido"].ToString()),
+                        Email = EncriptacionService.Decrypt_AES(row["Email"].ToString()),
+                        Estado = Convert.ToInt32(row["Estado"])
+                    };
+
+                    listaUsuarios.Add(usuario);
+                }
+
+                return listaUsuarios;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }

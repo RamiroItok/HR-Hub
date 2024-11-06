@@ -11,7 +11,7 @@ namespace GUI
 {
 
 
-    public partial class GestionFamilia
+    public partial class DesbloquearUsuario
     {
 
         /// <summary>
@@ -24,84 +24,57 @@ namespace GUI
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control NavBar.
+        /// Control NavBarControl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::GUI.Controls.NavBar NavBar;
+        protected global::GUI.Controls.NavBar NavBarControl;
 
         /// <summary>
-        /// Control litTituloPagina.
+        /// Control lblTituloDesbloqueo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTituloPagina;
+        protected global::System.Web.UI.WebControls.Label lblTituloDesbloqueo;
 
         /// <summary>
-        /// Control lblNombreFamilia.
+        /// Control gvUsuariosBloqueados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreFamilia;
+        protected global::System.Web.UI.WebControls.GridView gvUsuariosBloqueados;
 
         /// <summary>
-        /// Control txtFamilia.
+        /// Control btnDesbloquear.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFamilia;
+        protected global::System.Web.UI.WebControls.Button btnDesbloquear;
 
         /// <summary>
-        /// Control btnAceptar.
+        /// Control lblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAceptar;
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
-        /// Control btnCancelar.
+        /// Control ddlLanguage.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
-
-        /// <summary>
-        /// Control lblMessage.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
-
-        /// <summary>
-        /// Control lblListadoFamilias.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblListadoFamilias;
-
-        /// <summary>
-        /// Control gridFamilia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridFamilia;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLanguage;
     }
 }

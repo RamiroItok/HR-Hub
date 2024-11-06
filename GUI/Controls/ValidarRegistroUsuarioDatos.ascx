@@ -1,46 +1,45 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ValidarRegistroUsuarioDatos.ascx.cs" Inherits="GUI.Controls.ValidarRegistroUsuarioDatos" %>
 
-
 <div class="form-group">
-    <asp:Label ID="lblDireccion" runat="server" Text="Dirección:" AssociatedControlID="txtDireccion" />
-    <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" Placeholder="Ingrese su direccion"/>
-    <span id="errorDireccion" class="error-message" style="color:red; display:none;">Ingrese solo caracteres en el campo Dirección.</span>
+    <asp:Label ID="lblDireccion" runat="server" AssociatedControlID="txtDireccion" />
+    <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" />
+    <span id="errorDireccion" class="error-message" style="color:red; display:none;"></span>
 </div>
 
 <div class="form-group">
-    <asp:Label ID="lblNumeroDireccion" runat="server" Text="Número de Dirección:" AssociatedControlID="txtNumeroDireccion" />
-    <asp:TextBox ID="txtNumeroDireccion" runat="server" CssClass="form-control" Placeholder="Ingrese su numero de direccion"/>
-    <span id="errorNumeroDireccion" class="error-message" style="color:red; display:none;">Ingrese solo números en el campo Número de Dirección.</span>
+    <asp:Label ID="lblNumeroDireccion" runat="server" AssociatedControlID="txtNumeroDireccion" />
+    <asp:TextBox ID="txtNumeroDireccion" runat="server" CssClass="form-control" />
+    <span id="errorNumeroDireccion" class="error-message" style="color:red; display:none;"></span>
 </div>
 
 <div class="form-group">
-    <asp:Label ID="lblDepartamento" runat="server" Text="Departamento:" AssociatedControlID="txtDepartamento" />
-    <asp:TextBox ID="txtDepartamento" runat="server" CssClass="form-control" Placeholder="Ingrese su departamento"/>
-    <span id="errorDepartamento" class="error-message" style="color:red; display:none;">Ingrese solo caracteres en el campo Departamento.</span>
+    <asp:Label ID="lblDepartamento" runat="server" AssociatedControlID="txtDepartamento" />
+    <asp:TextBox ID="txtDepartamento" runat="server" CssClass="form-control" />
+    <span id="errorDepartamento" class="error-message" style="color:red; display:none;"></span>
 </div>
 
 <div class="form-group">
-    <asp:Label ID="lblCodigoPostal" runat="server" Text="Código Postal:" AssociatedControlID="txtCodigoPostal" />
-    <asp:TextBox ID="txtCodigoPostal" runat="server" CssClass="form-control" Placeholder="Ingrese su codigo postal"/>
-    <span id="errorCodigoPostal" class="error-message" style="color:red; display:none;">Ingrese solo caracteres o números en el campo Código Postal.</span>
+    <asp:Label ID="lblCodigoPostal" runat="server" AssociatedControlID="txtCodigoPostal" />
+    <asp:TextBox ID="txtCodigoPostal" runat="server" CssClass="form-control" />
+    <span id="errorCodigoPostal" class="error-message" style="color:red; display:none;"></span>
 </div>
 
 <div class="form-group">
-    <asp:Label ID="lblCiudad" runat="server" Text="Ciudad:" AssociatedControlID="txtCiudad" />
-    <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" Placeholder="Ingrese una ciudad"/>
-    <span id="errorCiudad" class="error-message" style="color:red; display:none;">Ingrese solo caracteres en el campo Ciudad.</span>
+    <asp:Label ID="lblCiudad" runat="server" AssociatedControlID="txtCiudad" />
+    <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" />
+    <span id="errorCiudad" class="error-message" style="color:red; display:none;"></span>
 </div>
 
 <div class="form-group">
-    <asp:Label ID="lblProvincia" runat="server" Text="Provincia:" AssociatedControlID="txtProvincia" />
-    <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control" Placeholder="Ingrese una provincia"/>
-    <span id="errorProvincia" class="error-message" style="color:red; display:none;">Ingrese solo caracteres en el campo Provincia.</span>
+    <asp:Label ID="lblProvincia" runat="server" AssociatedControlID="txtProvincia" />
+    <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control" />
+    <span id="errorProvincia" class="error-message" style="color:red; display:none;"></span>
 </div>
 
 <div class="form-group">
-    <asp:Label ID="lblPais" runat="server" Text="País:" AssociatedControlID="txtPais" />
-    <asp:TextBox ID="txtPais" runat="server" CssClass="form-control" Placeholder="Ingrese un pais"/>
-    <span id="errorPais" class="error-message" style="color:red; display:none;">Ingrese solo caracteres en el campo País.</span>
+    <asp:Label ID="lblPais" runat="server" AssociatedControlID="txtPais" />
+    <asp:TextBox ID="txtPais" runat="server" CssClass="form-control" />
+    <span id="errorPais" class="error-message" style="color:red; display:none;"></span>
 </div>
 
 <script>
@@ -56,27 +55,25 @@
         }
 
         document.getElementById("<%= txtDireccion.ClientID %>").onblur = function () {
-            validateInput(this, /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, "errorDireccion", "Ingrese solo caracteres en el campo Dirección.");
+            validateInput(this, /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, "errorDireccion", "<%= ErrorDireccion %>");
         };
-        document.getElementById("<%= txtCiudad.ClientID %>").onblur = function () {
-            validateInput(this, /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, "errorCiudad", "Ingrese solo caracteres en el campo Ciudad.");
-        };
-        document.getElementById("<%= txtProvincia.ClientID %>").onblur = function () {
-            validateInput(this, /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, "errorProvincia", "Ingrese solo caracteres en el campo Provincia.");
-        };
-        document.getElementById("<%= txtPais.ClientID %>").onblur = function () {
-            validateInput(this, /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, "errorPais", "Ingrese solo caracteres en el campo País.");
-        };
-
         document.getElementById("<%= txtNumeroDireccion.ClientID %>").onblur = function () {
-            validateInput(this, /^[0-9]+$/, "errorNumeroDireccion", "Ingrese solo números en el campo Número de Dirección.");
+            validateInput(this, /^[0-9]+$/, "errorNumeroDireccion", "<%= ErrorNumeroDireccion %>");
         };
-
         document.getElementById("<%= txtDepartamento.ClientID %>").onblur = function () {
-            validateInput(this, /^[A-Za-z0-9]+$/, "errorDepartamento", "Ingrese solo caracteres o números en el campo Código Postal.");
+            validateInput(this, /^[A-Za-z0-9]+$/, "errorDepartamento", "<%= ErrorDepartamento %>");
         };
         document.getElementById("<%= txtCodigoPostal.ClientID %>").onblur = function () {
-            validateInput(this, /^[A-Za-z0-9]+$/, "errorCodigoPostal", "Ingrese solo caracteres o números en el campo Código Postal.");
+            validateInput(this, /^[A-Za-z0-9]+$/, "errorCodigoPostal", "<%= ErrorCodigoPostal %>");
+        };
+        document.getElementById("<%= txtCiudad.ClientID %>").onblur = function () {
+            validateInput(this, /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, "errorCiudad", "<%= ErrorCiudad %>");
+        };
+        document.getElementById("<%= txtProvincia.ClientID %>").onblur = function () {
+            validateInput(this, /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, "errorProvincia", "<%= ErrorProvincia %>");
+        };
+        document.getElementById("<%= txtPais.ClientID %>").onblur = function () {
+            validateInput(this, /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/, "errorPais", "<%= ErrorPais %>");
         };
     });
 </script>

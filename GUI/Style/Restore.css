@@ -1,0 +1,135 @@
+﻿body {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #000;
+    font-family: Arial, sans-serif;
+}
+
+.containerRestore {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.text-danger {
+    color: #a94442;
+}
+
+    /* Título */
+.containerRestore h2 {
+    font-size: 2em;
+    color: #67a544;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+    /* Descripción */
+    .containerRestore .description {
+        font-size: 1em;
+        color: #000; /* Cambiado a negro */
+        margin-bottom: 20px;
+    }
+
+/* Etiqueta de archivo */
+.file-upload {
+    transition: border-color 0.3s ease;
+}
+
+/* Botones */
+.btn-action {
+    padding: 12px 20px;
+    font-size: 1em;
+    border-radius: 30px;
+    margin: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+    width: 100%;
+    max-width: 200px;
+}
+
+.file-upload label {
+    color: #000; /* Cambiado a negro */
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Colores de botones */
+.btn-primary {
+    background-color: #67a544;
+    border-color: #67a544;
+    color: #fff;
+}
+
+    .btn-primary:hover {
+        background-color: #5c8e3c;
+        transform: translateY(-2px);
+    }
+
+.btn-secondary {
+    background-color: #333;
+    border-color: #333;
+    color: #fff;
+}
+
+    .btn-secondary:hover {
+        background-color: #444;
+        transform: translateY(-2px);
+    }
+
+/* Mensaje de alerta */
+.alert-message {
+    font-size: 1em;
+    color: #4CAF50;
+    margin-top: 20px;
+    display: block;
+    font-weight: bold;
+}
+
+#ddlLanguage {
+    position: fixed;
+    bottom: 15px;
+    right: 15px; 
+    z-index: 1000;
+    padding: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    #ddlLanguage option {
+        color: #333;
+    }
+
+.containerRestore:hover {
+    transform: scale(1.03);
+}
+
+.file-upload:focus {
+    border-color: #67a544;
+}
+
+@media (max-width: 600px) {
+    .containerRestore {
+        padding: 30px;
+    }
+
+    .btn-action {
+        font-size: 0.9em;
+        padding: 10px 16px;
+    }
+
+}

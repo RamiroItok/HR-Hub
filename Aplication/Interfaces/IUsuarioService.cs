@@ -13,7 +13,7 @@ namespace Aplication.Interfaces
         string ValidarUsuario(Usuario usuario, string email, string contraseña);
         List<Usuario> ListarUsuarios();
         void EstadoBloqueoUsuario(Usuario usuario);
-        void DesbloquearUsuario(string email);
+        bool DesbloquearUsuario(string email, Usuario userSession, bool esLogin);
         Usuario ObtenerUsuarioPorId(int id);
         Usuario ObtenerUsuarioPorEmail(string email);
         bool ValidarFormatoContraseña(string contraseña);
@@ -25,5 +25,6 @@ namespace Aplication.Interfaces
         void ModificarPermisoUsuario(Usuario usuario, Usuario userSession);
         string ObtenerAsuntoCorreo(AsuntoMail asuntoMail);
         string ObtenerCuerpoCorreo(AsuntoMail asuntoMail);
+        List<Usuario> ObtenerUsuariosBloqueados();
     }
 }

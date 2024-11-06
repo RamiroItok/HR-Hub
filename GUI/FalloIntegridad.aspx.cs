@@ -93,7 +93,7 @@ namespace GUI
                     var resultado = _backUpService.RealizarRestore(rutaDestino, usuario);
                     _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Se realizó un restore.", Criticidad.ALTA);
 
-                    lblMensajeRestore.Text = _backUpService.RealizarRestore(rutaDestino, usuario);
+                    lblMensajeRestore.Text = _idiomaService.GetTranslation("RestoreExitoso");
                     lblMensajeRestore.Visible = true;
                     lblMensajeRestore.CssClass = "fallo-text-success";
                 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Aplication.Interfaces;
 using Aplication.Interfaces.Observer;
 using Aplication.Services.Observer;
+using Aplication.Services.XML;
 using Models;
 using Models.Composite;
 using Unity;
@@ -186,6 +188,67 @@ namespace GUI
             drpCriticidad.SelectedIndex = 0;
             lblMensaje.Text = String.Empty;
             lblMensaje.Visible = false;
+        }
+
+        protected void btnGenerarXML_Click(object sender, EventArgs e)
+        {
+            var registrosBitacora = listaEventos;
+
+            if (registrosBitacora == null || !registrosBitacora.Any())
+            {
+                string noDataScript = "Swal.fire('Sin datos', 'No hay registros para generar el XML.', 'error');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "noDataScript", noDataScript, true);
+                return;
+            }
+
+            GenerarXML generadorXml = new GenerarXML();
+            generadorXml.GenerarXMLBitacora(registrosBitacora);
+
+            string successScript = "Swal.fire('XML Generado', 'El archivo XML se ha generado correctamente.', 'success');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "successScript", successScript, true);
+        }
+
+        protected void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            if (Session["EventosFiltrados"] != null)
+            {
+                gvBitacora.DataSource = (List<Models.Bitacora>)Session["EventosFiltrados"];
+            }
+            else
+            {
+                gvBitacora.DataSource = listaEventos;
+            }
+
+            gvBitacora.AllowPaging = false;
+            gvBitacora.DataBind();
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename=Bitacora.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+
+            using (StringWriter sw = new StringWriter())
+            {
+                using (HtmlTextWriter hw = new HtmlTextWriter(sw))
+                {
+                    string style = @"<style> .textmode { } </style>";
+                    Response.Write(style);
+
+                    gvBitacora.RenderControl(hw);
+
+                    Response.Output.Write(sw.ToString());
+                    Response.Flush();
+                    Response.End();
+                }
+            }
+
+            gvBitacora.AllowPaging = true;
+            CargarEventosDefault();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
         }
 
         public void UpdateLanguage(string language)

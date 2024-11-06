@@ -213,6 +213,24 @@ namespace GUI.Controls
         protected global::System.Web.UI.WebControls.Literal litRestore;
 
         /// <summary>
+        /// Control desbloquearUsuariosLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor desbloquearUsuariosLink;
+
+        /// <summary>
+        /// Control litDesbloquearUsuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litDesbloquearUsuarios;
+
+        /// <summary>
         /// Control falloIntegridadSeguridadLink.
         /// </summary>
         /// <remarks>

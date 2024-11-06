@@ -14,6 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link href="~/Style/NavBar.css" rel="stylesheet" />
     <link href="~/Style/Bitacora.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/Content/imagenes/Fondo1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0; display: flex; justify-content: center; align-items: center;">
     <form id="form1" runat="server" style="width: 100%; max-width: 1200px; margin: 0 auto;">
@@ -48,7 +50,6 @@
                     <asp:DropDownList ID="drpCriticidad" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
             
-                <!-- Ajuste de los campos de fecha para que tengan la misma longitud -->
                 <div class="form-group">
                     <asp:Label ID="lblFechaDesde" runat="server" Text="Fecha Desde:" AssociatedControlID="txtFechaDesde" />
                     <asp:TextBox ID="txtFechaDesde" runat="server" CssClass="form-control datepicker" />
@@ -62,13 +63,13 @@
                 <div class="button-group">
                     <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
+                    <asp:Button ID="btnExportarExcel" runat="server" Text="Exportar a Excel" CssClass="btn btn-success" OnClick="btnExportarExcel_Click" />
+                    <asp:Button ID="btnGenerarXML" runat="server" Text="Generar XML" CssClass="btn btn-info" OnClick="btnGenerarXML_Click" />
                 </div>
             </div>
 
-            <!-- Mensaje de información o error -->
             <asp:Label ID="lblMensaje" runat="server" CssClass="message-label" Visible="false" />
 
-            <!-- Tabla de datos -->
             <asp:GridView ID="gvBitacora" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" 
                           AllowPaging="True" PageSize="15" OnPageIndexChanging="gvBitacora_PageIndexChanging" PagerStyle-CssClass="gridview-pagination"
                           PagerSettings-Mode="Numeric" PagerStyle-HorizontalAlign="Center">

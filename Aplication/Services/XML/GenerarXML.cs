@@ -49,5 +49,32 @@ namespace Aplication.Services.XML
                 writer.WriteEndDocument();
             }
         }
+
+        public void GenerarXMLBitacora(List<Bitacora> registros)
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data", "ReporteBitacora.xml");
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+
+            using (XmlWriter writer = XmlWriter.Create(path, new XmlWriterSettings { Indent = true, Encoding = Encoding.UTF8 }))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("Bitacora");
+
+                foreach (var registro in registros)
+                {
+                    writer.WriteStartElement("Registro");
+                    writer.WriteElementString("Id", registro.Id.ToString());
+                    writer.WriteElementString("Email", registro.Email);
+                    writer.WriteElementString("TipoUsuario", registro.TipoUsuario);
+                    writer.WriteElementString("Descripcion", registro.Descripcion);
+                    writer.WriteElementString("Fecha", registro.Fecha.ToString("yyyy-MM-dd HH:mm:ss"));
+                    writer.WriteElementString("Criticidad", registro.Criticidad);
+                    writer.WriteEndElement();
+                }
+
+                writer.WriteEndElement();
+                writer.WriteEndDocument();
+            }
+        }
     }
 }

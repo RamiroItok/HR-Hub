@@ -16,5 +16,6 @@ namespace Data.Interfaces
         DataSet ObtenerUsuarioPorId(int id);
         DataSet ObtenerUsuarioPorEmail(string email);
         bool ActualizarContraseña(string email, string contraseña);
+        DataSet ObtenerUsuariosBloqueados();
     }
 }

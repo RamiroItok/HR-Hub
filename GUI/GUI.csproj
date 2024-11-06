@@ -170,6 +170,7 @@
     <Content Include="Controls\ValidarContraseña.ascx" />
     <Content Include="Controls\ValidarEmail.ascx" />
     <Content Include="Controls\ValidarRegistroUsuarioDatos.ascx" />
+    <Content Include="DesbloquearUsuario.aspx" />
     <Content Include="ErrorDigitoVerificador.aspx" />
     <Content Include="FalloIntegridad.aspx" />
     <Content Include="GestionFamilia.aspx" />
@@ -205,9 +206,12 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="ReporteCompras.aspx" />
+    <Content Include="Style\Backup.css" />
+    <Content Include="Style\DesbloquearUsuario.css" />
     <Content Include="Style\GestionPermisosUsuario.css" />
     <Content Include="Style\MisCompras.css" />
     <Content Include="Style\Reporte.css" />
+    <Content Include="Style\Restore.css" />
     <Content Include="Templates\ResumenCompraTemplate.html" />
     <Content Include="WebService\EnviarMail.asmx" />
     <Content Include="WebService\ReporteCompras.asmx" />
@@ -356,6 +360,13 @@
     </Compile>
     <Compile Include="Controls\ValidarRegistroUsuarioDatos.ascx.designer.cs">
       <DependentUpon>ValidarRegistroUsuarioDatos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesbloquearUsuario.aspx.cs">
+      <DependentUpon>DesbloquearUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesbloquearUsuario.aspx.designer.cs">
+      <DependentUpon>DesbloquearUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorDigitoVerificador.aspx.cs">
       <DependentUpon>ErrorDigitoVerificador.aspx</DependentUpon>

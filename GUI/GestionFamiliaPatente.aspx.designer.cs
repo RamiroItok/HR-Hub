@@ -15,6 +15,33 @@ namespace GUI
     {
 
         /// <summary>
+        /// Control form1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
+        /// Control NavBar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::GUI.Controls.NavBar NavBar;
+
+        /// <summary>
+        /// Control litTituloPagina.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTituloPagina;
+
+        /// <summary>
         /// Control lblMessage.
         /// </summary>
         /// <remarks>
@@ -51,6 +78,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.Button btn_Listar;
 
         /// <summary>
+        /// Control lblPermisosNoAsignadosTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPermisosNoAsignadosTitle;
+
+        /// <summary>
         /// Control gvPermisosNoAsignados.
         /// </summary>
         /// <remarks>
@@ -76,6 +112,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensajeAsignacion;
+
+        /// <summary>
+        /// Control lblPermisosAsignadosTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPermisosAsignadosTitle;
 
         /// <summary>
         /// Control gvPermisosAsignados.

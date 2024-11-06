@@ -72,11 +72,13 @@ namespace GUI.Controls
                 misComprasLink.Visible = false;
                 reportesLink.Visible = false;
                 reporteComprasLink.Visible = false;
+                desbloquearUsuariosLink.Visible = false;
             }
 
             if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto == Models.Enums.Puesto.WebMaster)
             {
                 falloIntegridadLink.Visible = true;
+                bitacoraLink.Visible = true;
                 seguridadLink.Visible = false;
                 restoreLink.Visible = false;
                 registroLink.Visible = false;
@@ -89,6 +91,7 @@ namespace GUI.Controls
                 misComprasLink.Visible = false;
                 reportesLink.Visible = false;
                 reporteComprasLink.Visible = false;
+                desbloquearUsuariosLink.Visible = false;
                 return;
             }
             else if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto != Models.Enums.Puesto.WebMaster)
@@ -105,6 +108,7 @@ namespace GUI.Controls
                 misComprasLink.Visible = false;
                 reportesLink.Visible = false;
                 reporteComprasLink.Visible = false;
+                desbloquearUsuariosLink.Visible = false;
                 return;
             }
             
@@ -175,6 +179,9 @@ namespace GUI.Controls
                         case Models.Composite.Permiso.ReporteCompras:
                             reporteComprasLink.Visible = true;
                             break;
+                        case Models.Composite.Permiso.DesbloquearUsuario:
+                            desbloquearUsuariosLink.Visible = true;
+                            break;
                     }
                 }
             }
@@ -213,6 +220,7 @@ namespace GUI.Controls
                 litMiCuenta.Text = _idiomaService.GetTranslation("MiCuenta");
                 litMisCompras.Text = _idiomaService.GetTranslation("MisCompras");
                 litCambiarContraseña.Text = _idiomaService.GetTranslation("CambiarContrasena");
+                litDesbloquearUsuarios.Text = _idiomaService.GetTranslation("DesbloquearUsuarios");
             }
         }
 

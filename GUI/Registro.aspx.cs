@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using Models.Enums;
@@ -10,15 +12,18 @@ using Unity;
 
 namespace GUI
 {
-    public partial class Registro : Page
+    public partial class Registro : Page, IIdiomaService
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IPermisoService _permisoService;
+        private readonly IdiomaService _idiomaService;
 
         public Registro()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,6 +40,9 @@ namespace GUI
                 if (!IsPostBack)
                 {
                     CargarAreas();
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                    CargarTextos();
                 }
             }
             catch (Exception ex)
@@ -42,6 +50,39 @@ namespace GUI
                 lblMensaje.Visible = true;
                 lblMensaje.CssClass = "text-danger";
                 lblMensaje.Text = ex.Message;
+            }
+        }
+
+        private void CargarTextos()
+        {
+            if (!(litPageTitle == null))
+            {
+                litPageTitle.Text = _idiomaService.GetTranslation("PageTitleRegistro");
+                litTituloRegistro.Text = _idiomaService.GetTranslation("RegistroTitulo");
+
+                lblNombre.Text = _idiomaService.GetTranslation("LabelNombre");
+                txtNombre.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombre");
+
+                lblApellido.Text = _idiomaService.GetTranslation("LabelApellido");
+                txtApellido.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderApellido");
+
+                lblContraseña.Text = _idiomaService.GetTranslation("LabelContrasena");
+                btnGenerarPassword.Text = _idiomaService.GetTranslation("ButtonGenerarPassword");
+
+                lblGenero.Text = _idiomaService.GetTranslation("LabelGenero");
+                litLabelArea.Text = _idiomaService.GetTranslation("LabelArea");
+
+                drpGenero.Items.Clear();
+                drpGenero.Items.Add(new ListItem(_idiomaService.GetTranslation("OptionGeneroDefault"), "0"));
+                drpGenero.Items.Add(new ListItem(_idiomaService.GetTranslation("OptionGeneroMasculino"), "1"));
+                drpGenero.Items.Add(new ListItem(_idiomaService.GetTranslation("OptionGeneroFemenino"), "2"));
+                drpGenero.Items.Add(new ListItem(_idiomaService.GetTranslation("OptionGeneroNoEspecifica"), "3"));
+
+                btnRegistrar.Text = _idiomaService.GetTranslation("ButtonRegistrar");
+                btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancelar");
+
+                litLabelFechaNacimiento.Text = _idiomaService.GetTranslation("LabelFechaNacimiento");
+                txtFechaNac.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderFechaNacimiento");
             }
         }
 
@@ -83,17 +124,17 @@ namespace GUI
 
                         _usuarioService.EnviarMail(usuario.Email, AsuntoMail.GeneracionContraseña, body);
                         lblMensaje.Visible = true;
-                        lblMensaje.Text = "Se ha registrado el usuario correctamente";
+                        lblMensaje.Text = _idiomaService.GetTranslation("RegistroExitoso");
                         Limpiar();
                     }
                     else
                     {
-                        throw new Exception("La contraseña debe tener al menos una mayúscula, una minúscula, un carácter especial, un número, y debe ser de 8 caracteres en total.");
+                        throw new Exception(_idiomaService.GetTranslation("ErrorFormatoContraseña"));
                     }
                 }
                 else
                 {
-                    throw new Exception("Hay campos sin completar");
+                    throw new Exception(_idiomaService.GetTranslation("ErrorCamposIncompletos"));
                 }
             }
             catch (Exception ex)
@@ -135,7 +176,7 @@ namespace GUI
             DropDownArea.DataTextField = "Area";
             DropDownArea.DataValueField = "Id";
             DropDownArea.DataBind();
-            DropDownArea.Items.Insert(0, new ListItem("Seleccione una Area", ""));
+            DropDownArea.Items.Insert(0, new ListItem(_idiomaService.GetTranslation("PlaceholderArea"), ""));
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -148,6 +189,17 @@ namespace GUI
             string nuevaContraseña = _usuarioService.GenerarContraseña();
             hiddenContraseña.Value = nuevaContraseña;
             txtContraseña.Text = new string('*', nuevaContraseña.Length);
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
         }
     }
 }

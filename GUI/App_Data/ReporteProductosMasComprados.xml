@@ -12,14 +12,14 @@
     <Mes nombre="noviembre">
       <Producto>
         <Nombre>Banana</Nombre>
-        <VecesComprado>7</VecesComprado>
-      </Producto>
-      <Producto>
-        <Nombre>Doritos 200gr</Nombre>
-        <VecesComprado>2</VecesComprado>
+        <VecesComprado>11</VecesComprado>
       </Producto>
       <Producto>
         <Nombre>Remera negra</Nombre>
+        <VecesComprado>4</VecesComprado>
+      </Producto>
+      <Producto>
+        <Nombre>Doritos 200gr</Nombre>
         <VecesComprado>2</VecesComprado>
       </Producto>
     </Mes>
