@@ -374,5 +374,8 @@
   "Apellido": "Last name",
   "Email": "Email",
   "Estado": "Status",
-  "MensajeNoUsuariosBloqueados": "No blocked users."
+  "MensajeNoUsuariosBloqueados": "No blocked users.",
+
+  "PaymentFailedTitle": "Payment Failed",
+  "PaymentFailedMessage": "There was a problem processing your payment. Please try again."
 }

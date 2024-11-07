@@ -8,6 +8,7 @@ using Models.Composite;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -98,6 +99,16 @@ namespace GUI
         {
             try
             {
+                if(string.IsNullOrEmpty(txtCVC.Text) && string.IsNullOrEmpty(txtFechaVencimiento.Text) && string.IsNullOrEmpty(txtNombreTitular.Text) && string.IsNullOrEmpty(txtNumeroTarjeta.Text))
+                {
+                    throw new Exception();
+                }
+
+                if (EsTarjetaInvalida())
+                {
+                    throw new Exception();
+                }
+
                 var usuario = Session["Usuario"] as Usuario;
 
                 CompraFactory compraFactory = new CompraProductoFactory();
@@ -106,7 +117,7 @@ namespace GUI
 
                 var idCompra = _compraService.RealizarCompra(compra, usuario);
 
-                foreach(var item in carritoItems)
+                foreach (var item in carritoItems)
                 {
                     DetalleCompra detalleCompra = new DetalleCompra()
                     {
@@ -127,8 +138,41 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                MostrarNotificacionPagoFallido();
             }
+        }
+
+        private bool EsTarjetaInvalida()
+        {
+            string numeroTarjeta = txtNumeroTarjeta.Text.Trim();
+            string vencimiento = txtFechaVencimiento.Text.Trim();
+            string nombre = txtNombreTitular.Text.Trim();
+            string cvc = txtCVC.Text.Trim();
+
+            string rutaArchivo = Server.MapPath("~/Tools/TarjetasValidas.txt");
+
+            var lineas = File.ReadAllLines(rutaArchivo);
+            foreach (var linea in lineas)
+            {
+                var datos = linea.Split(',');
+                if (datos.Length == 4)
+                {
+                    string numeroTarjetaValida = datos[0].Trim();
+                    string vencimientoValido = datos[1].Trim();
+                    string nombreValido = datos[2].Trim();
+                    string cvcValido = datos[3].Trim();
+
+                    if (numeroTarjeta == numeroTarjetaValida &&
+                        vencimiento == vencimientoValido &&
+                        nombre == nombreValido &&
+                        cvc == cvcValido)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private void MostrarNotificacionPagoExitoso()
@@ -147,6 +191,24 @@ namespace GUI
                 }}).then((result) => {{ if (result.isConfirmed) {{ window.location.href = '/Carrito.aspx'; }} }});";
 
             ScriptManager.RegisterStartupScript(this, GetType(), "showPaymentSuccess", script, true);
+        }
+
+        private void MostrarNotificacionPagoFallido()
+        {
+            string title = _idiomaService.GetTranslation("PaymentFailedTitle");
+            string message = _idiomaService.GetTranslation("PaymentFailedMessage");
+            string confirmButton = _idiomaService.GetTranslation("ConfirmButtonText");
+
+            string script = $@"
+                Swal.fire({{
+                    icon: 'error',
+                    title: '{title}',
+                    text: '{message}',
+                    confirmButtonText: '{confirmButton}',
+                    customClass: {{ popup: 'animated shake' }}
+                }});";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "showPaymentFailed", script, true);
         }
 
         public void UpdateLanguage(string language)

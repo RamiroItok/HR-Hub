@@ -217,6 +217,7 @@
     <Content Include="Style\Reporte.css" />
     <Content Include="Style\Restore.css" />
     <Content Include="Templates\ResumenCompraTemplate.html" />
+    <Content Include="Tools\TarjetasValidas.txt" />
     <Content Include="WebService\CalcularCarrito.asmx" />
     <Content Include="WebService\EnviarMail.asmx" />
     <Content Include="WebService\ReporteCompras.asmx" />
