@@ -447,5 +447,21 @@
   "ModalEmail": "Email",
   "ModalFamilia": "Familia",
   "ModalPermisos": "Permisos",
-  "BotonVerMas": "Ver mas"
+  "BotonVerMas": "Ver mas",
+
+  "TituloMisCompras": "Mis Compras",
+  "HeaderID": "ID",
+  "HeaderFechaCompra": "Fecha de Compra",
+  "HeaderTotal": "Total",
+  "ButtonVerResumen": "Ver resumen de compra",
+  "ModalTituloResumenCompra": "Resumen de Compra",
+  "LabelIDCompra": "ID Compra:",
+  "LabelFechaCompra": "Fecha de Compra:",
+  "LabelTotalCompra": "Total de la Compra:",
+  "HeaderProducto": "Producto",
+  "HeaderCantidad": "Cantidad",
+  "HeaderPrecioUnitario": "Precio Unitario",
+  "HeaderSubtotal": "Subtotal",
+  "ButtonCerrar": "Cerrar",
+  "ButtonDescargarPdf": "Descargar"
 }

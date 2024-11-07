@@ -94,7 +94,6 @@ h2 {
         background-color: #388E3C;
     }
 
-/* Estilos del Modal */
 .modal-content {
     border-radius: 10px;
     background-color: #f9f9f9;
@@ -150,8 +149,8 @@ h2 {
     position: fixed;
     bottom: 15px;
     right: 15px;
-    background-color: #ffffff; /* Fondo blanco */
-    color: #333333; /* Texto negro */
+    background-color: #ffffff;
+    color: #333333;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -161,6 +160,6 @@ h2 {
 }
 
     #ddlLanguage option {
-        color: #333333; /* Asegura que el texto sea negro dentro de las opciones */
-        background-color: #ffffff; /* Fondo blanco para las opciones */
+        color: #333333;
+        background-color: #ffffff;
     }

@@ -447,5 +447,21 @@
   "ModalEmail": "Email",
   "ModalFamilia": "Family",
   "ModalPermisos": "Permissions",
-  "BotonVerMas": "View More"
+  "BotonVerMas": "View More",
+
+  "TituloMisCompras": "My Purchases",
+  "HeaderID": "ID",
+  "HeaderFechaCompra": "Purchase Date",
+  "HeaderTotal": "Total",
+  "ButtonVerResumen": "View Purchase Summary",
+  "ModalTituloResumenCompra": "Purchase Summary",
+  "LabelIDCompra": "Purchase ID:",
+  "LabelFechaCompra": "Purchase Date:",
+  "LabelTotalCompra": "Total Amount:",
+  "HeaderProducto": "Product",
+  "HeaderCantidad": "Quantity",
+  "HeaderPrecioUnitario": "Unit Price",
+  "HeaderSubtotal": "Subtotal",
+  "ButtonCerrar": "Close",
+  "ButtonDescargarPdf": "Download"
 }

@@ -22,17 +22,19 @@
         <uc:NavBar ID="NavBar" runat="server" />
 
         <div class="containerCompras mt-4">
-            <h2 class="text-center">Mis Compras</h2>
+            <h2 class="text-center">
+                <asp:Literal ID="lblTituloMisCompras" runat="server" Text="Mis Compras"></asp:Literal>
+            </h2>
             <asp:GridView ID="gvCompras" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered mt-3"
                 HeaderStyle-CssClass="table-header" RowStyle-CssClass="table-row"
                 AlternatingRowStyle-CssClass="table-alt-row" OnRowCommand="gvCompras_RowCommand">
                 <Columns>
-                    <asp:BoundField DataField="Id" HeaderText="ID" SortExpression="Id" />
-                    <asp:BoundField DataField="FechaPago" HeaderText="Fecha de Compra" SortExpression="FechaPago" DataFormatString="{0:dd/MM/yyyy}" />
-                    <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:C}" />
+                    <asp:BoundField DataField="Id" SortExpression="Id" />
+                    <asp:BoundField DataField="FechaPago" SortExpression="FechaPago" DataFormatString="{0:dd/MM/yyyy}" />
+                    <asp:BoundField DataField="Total" SortExpression="Total" DataFormatString="{0:C}" />
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:Button ID="btnVerResumen" runat="server" Text="Ver resumen de compra" CssClass="btn btn-primary btn-sm"
+                            <asp:Button ID="btnVerResumen" runat="server" Text='<%# btnResumenText %>' CssClass="btn btn-primary btn-sm"
                                 CommandName="VerResumen" CommandArgument='<%# Eval("Id") %>' />
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
@@ -47,30 +49,34 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="resumenCompraModalLabel">Resumen de Compra</h5>
+                                <h5 class="modal-title" id="resumenCompraModalLabel">
+                                    <asp:Literal ID="lblModalTituloResumenCompra" runat="server"></asp:Literal>
+                                </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p><strong>ID Compra:</strong>
+                                <p><strong><asp:Literal ID="lblLabelIDCompra" runat="server"></asp:Literal></strong>
                                     <asp:Label ID="lblIdCompra" runat="server" /></p>
-                                <p><strong>Fecha de Compra:</strong>
+                                <p><strong><asp:Literal ID="lblLabelFechaCompra" runat="server"></asp:Literal></strong>
                                     <asp:Label ID="lblFechaCompra" runat="server" /></p>
-                                <p><strong>Total de la Compra:</strong>
+                                <p><strong><asp:Literal ID="lblLabelTotalCompra" runat="server"></asp:Literal></strong>
                                     <asp:Label ID="lblTotalCompra" runat="server" /></p>
 
                                 <asp:GridView ID="gvDetallesCompra" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered mt-3">
                                     <Columns>
-                                        <asp:BoundField DataField="NombreProducto" HeaderText="Producto" />
-                                        <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
-                                        <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" DataFormatString="{0:C}" />
-                                        <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:C}" />
+                                        <asp:BoundField DataField="NombreProducto" />
+                                        <asp:BoundField DataField="Cantidad" />
+                                        <asp:BoundField DataField="PrecioUnitario" DataFormatString="{0:C}" />
+                                        <asp:BoundField DataField="Subtotal" DataFormatString="{0:C}" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <asp:Literal ID="lblButtonCerrar" runat="server"></asp:Literal>
+                                </button>
                                 <asp:Button ID="btnDescargarPdf" runat="server" Text="Descargar" CssClass="btn btn-primary" OnClientClick="descargarPdf(); return false;" />
                             </div>
                         </div>
@@ -81,6 +87,12 @@
                 <asp:AsyncPostBackTrigger ControlID="gvCompras" EventName="RowCommand" />
             </Triggers>
         </asp:UpdatePanel>
+
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true"
+            OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
+            <asp:ListItem Text="Español" Value="es"></asp:ListItem>
+            <asp:ListItem Text="English" Value="en"></asp:ListItem>
+        </asp:DropDownList>
     </form>
 
     <script src="Scripts/jquery-3.4.1.min.js"></script>
@@ -106,9 +118,7 @@
                 aplicarFondo();
             });
         });
-    </script>
 
-    <script type="text/javascript">
         function descargarPdf() {
             var idCompra = document.getElementById('<%= lblIdCompra.ClientID %>').innerText;
             window.open('MisCompras.aspx?DownloadPdf=true&idCompra=' + idCompra, '_blank');
