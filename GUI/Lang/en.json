@@ -432,5 +432,20 @@
   "MensajeExitoCarga": "File uploaded successfully",
   "MensajeSeleccioneArchivo": "Please select a file to upload",
   "PageTitleCargaDocumento": "HR Hub - Upload Document",
-  "PlaceholderNombreArchivo": "Enter file name"
+  "PlaceholderNombreArchivo": "Enter file name",
+
+  "TituloPaginaPermisos": "HR Hub - User List - Permissions",
+  "TituloListado": "User List - Permissions",
+  "PlaceholderBuscarUsuario": "Search user...",
+  "BotonBuscar": "Search",
+  "MensajeBusquedaVacia": "Please enter a user to search.",
+  "ModalTituloDetalles": "User Details",
+  "ModalCerrar": "Close",
+  "ModalID": "ID",
+  "ModalNombre": "First Name",
+  "ModalApellido": "Last Name",
+  "ModalEmail": "Email",
+  "ModalFamilia": "Family",
+  "ModalPermisos": "Permissions",
+  "BotonVerMas": "View More"
 }

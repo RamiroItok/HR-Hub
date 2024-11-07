@@ -432,6 +432,20 @@
   "MensajeExitoCarga": "Archivo cargado exitosamente",
   "MensajeSeleccioneArchivo": "Seleccione un archivo para cargar",
   "PageTitleCargaDocumento": "HR Hub - Cargar Documento",
-  "PlaceholderNombreArchivo": "Ingrese el nombre del archivo"
+  "PlaceholderNombreArchivo": "Ingrese el nombre del archivo",
 
+  "TituloPaginaPermisos": "HR Hub - Listado de Usuarios - Permisos",
+  "TituloListado": "Listado de Usuarios - Permisos",
+  "PlaceholderBuscarUsuario": "Buscar usuario...",
+  "BotonBuscar": "Buscar",
+  "MensajeBusquedaVacia": "Por favor, ingrese un usuario en la busqueda.",
+  "ModalTituloDetalles": "Detalles del Usuario",
+  "ModalCerrar": "Cerrar",
+  "ModalID": "ID",
+  "ModalNombre": "Nombre",
+  "ModalApellido": "Apellido",
+  "ModalEmail": "Email",
+  "ModalFamilia": "Familia",
+  "ModalPermisos": "Permisos",
+  "BotonVerMas": "Ver mas"
 }

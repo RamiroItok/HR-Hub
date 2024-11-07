@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using Models.Enums;
@@ -13,16 +15,19 @@ using Unity;
 
 namespace GUI
 {
-    public partial class PermisosUsuario : Page
+    public partial class PermisosUsuario : Page, IIdiomaService
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IPermisoService _permisoService;
+        private readonly IdiomaService _idiomaService;
         private static List<Models.Usuario> listaUsuarios = new List<Models.Usuario>();
 
         public PermisosUsuario()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -38,7 +43,42 @@ namespace GUI
             {
                 listaUsuarios = _usuarioService.ListarUsuarios();
                 CargarUsuarioDefault();
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                ddlLanguage.SelectedValue = selectedLanguage;
+                _idiomaService.CurrentLanguage = selectedLanguage;
+                CargarTextos();
             }
+        }
+
+        private void CargarTextos()
+        {
+            litPageTitle.Text = _idiomaService.GetTranslation("TituloPaginaPermisos");
+            lblMensaje.Text = _idiomaService.GetTranslation("MensajeBusquedaVacia");
+            litTitle.Text = _idiomaService.GetTranslation("TituloListado");
+            btnBuscar.Text = _idiomaService.GetTranslation("BotonBuscar");
+            btnCancelar.Text = _idiomaService.GetTranslation("BotonCancelar");
+
+            txtBuscar.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderBuscarUsuario");
+
+            foreach (GridViewRow row in dataGridUsuarios.Rows)
+            {
+                Button btnVerMas = (Button)row.FindControl("btnVerMas");
+                if (btnVerMas != null)
+                {
+                    btnVerMas.Text = _idiomaService.GetTranslation("BotonVerMas");
+                }
+            }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "SetModalText", $@"
+                document.getElementById('verMasModalLabel').innerText = '{_idiomaService.GetTranslation("ModalTituloDetalles")}';
+                document.querySelector('#verMasModal .btn-secondary').innerText = '{_idiomaService.GetTranslation("ModalCerrar")}';
+                document.querySelector('#modalId').previousElementSibling.innerText = '{_idiomaService.GetTranslation("ModalID")}:'; 
+                document.querySelector('#modalNombre').previousElementSibling.innerText = '{_idiomaService.GetTranslation("ModalNombre")}:'; 
+                document.querySelector('#modalApellido').previousElementSibling.innerText = '{_idiomaService.GetTranslation("ModalApellido")}:'; 
+                document.querySelector('#modalEmail').previousElementSibling.innerText = '{_idiomaService.GetTranslation("ModalEmail")}:'; 
+                document.querySelector('#modalFamilia').previousElementSibling.innerText = '{_idiomaService.GetTranslation("ModalFamilia")}:'; 
+                document.querySelector('#modalPermisos').previousElementSibling.innerText = '{_idiomaService.GetTranslation("ModalPermisos")}:'; 
+            ", true);
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -47,7 +87,7 @@ namespace GUI
 
             if (string.IsNullOrEmpty(searchTerm))
             {
-                lblMensaje.Text = "Por favor, ingrese un usuario en la búsqueda.";
+                lblMensaje.Text = _idiomaService.GetTranslation("MensajeBusquedaVacia");
                 lblMensaje.Visible = true;
             }
             else
@@ -93,19 +133,37 @@ namespace GUI
 
                     var permisosList = document.getElementById('modalPermisos');
                     permisosList.innerHTML = '';";
-
+                
                 foreach (var permiso in permisos)
                 {
                     script += $@"
-                var permisoItem = document.createElement('li');
-                permisoItem.textContent = '{permiso.Nombre}';
-                permisosList.appendChild(permisoItem);";
+                    var permisoItem = document.createElement('li');
+                    permisoItem.textContent = '{permiso.Nombre}';
+                    permisosList.appendChild(permisoItem);";
                 }
 
                 script += "$('#verMasModal').modal('show');";
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "ShowModalScript", script, true);
             }
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            Response.Redirect(Request.RawUrl);
         }
 
         #region Metodos prviados
