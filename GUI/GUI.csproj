@@ -212,6 +212,7 @@
     <Content Include="ReporteCompras.aspx" />
     <Content Include="Style\Backup.css" />
     <Content Include="Style\DesbloquearUsuario.css" />
+    <Content Include="Style\GestionFamilia.css" />
     <Content Include="Style\GestionPermisosUsuario.css" />
     <Content Include="Style\MisCompras.css" />
     <Content Include="Style\Reporte.css" />
