@@ -57,6 +57,7 @@
     <Compile Include="Interfaces\ICarritoService.cs" />
     <Compile Include="Interfaces\ICompraService.cs" />
     <Compile Include="Interfaces\IDigitoVerificadorService.cs" />
+    <Compile Include="Interfaces\IDocumentoService.cs" />
     <Compile Include="Interfaces\IEmpresaService.cs" />
     <Compile Include="Interfaces\IPermisoService.cs" />
     <Compile Include="Interfaces\IProductoService.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Services\CompraFactory.cs" />
     <Compile Include="Services\CompraService.cs" />
     <Compile Include="Services\DigitoVerificadorService.cs" />
+    <Compile Include="Services\DocumentoService.cs" />
     <Compile Include="Services\EmpresaService.cs" />
     <Compile Include="Services\EncriptacionService.cs" />
     <Compile Include="Interfaces\IUsuarioService.cs" />

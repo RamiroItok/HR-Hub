@@ -422,5 +422,15 @@
   "CarritoVacioText": "All products have been removed from the cart.",
   "ProductoEliminado": "Product Deleted",
   "ProductoEliminadoText": "The product has been removed from the cart.",
-  "NoStock": "There is no stock"
+  "NoStock": "There is no stock",
+
+  "TituloCargaDocumento": "Upload Document",
+  "LabelNombreArchivo": "File Name",
+  "LabelArchivo": "File",
+  "ButtonCargarArchivo": "Upload File",
+  "PopupTitulo": "Confirmation",
+  "MensajeExitoCarga": "File uploaded successfully",
+  "MensajeSeleccioneArchivo": "Please select a file to upload",
+  "PageTitleCargaDocumento": "HR Hub - Upload Document",
+  "PlaceholderNombreArchivo": "Enter file name"
 }

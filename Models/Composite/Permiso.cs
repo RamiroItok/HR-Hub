@@ -23,6 +23,8 @@
         MiCuenta,
         Reportes,
         ReporteCompras,
-        DesbloquearUsuario
+        DesbloquearUsuario,
+        Documentos,
+        CargaDocumentos
     }
 }

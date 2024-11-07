@@ -39,6 +39,15 @@
                         <li><a id="falloIntegridadSeguridadLink" runat="server" visible="false" href="~/FalloIntegridad"><asp:Literal ID="litFalloIntegridad" runat="server">Fallo de integridad</asp:Literal></a></li>
                     </ul>
                 </li>
+
+                <li class="dropdown" id="documentosLink" runat="server" visible="false">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <asp:Literal ID="litDocumentos" runat="server">Documentos</asp:Literal><b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a id="cargaDocumentosLink" runat="server" visible="false" href="~/CargaDocumento"><asp:Literal ID="litCargaDocumentos" runat="server">Carga de documentos</asp:Literal></a></li>
+                    </ul>
+                </li>
                 
                 <li class="dropdown" id="configuracionEmpresaLink" runat="server" visible="false">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

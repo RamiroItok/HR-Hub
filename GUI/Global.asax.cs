@@ -40,6 +40,8 @@ namespace GUI
             Container.RegisterType<ICompraDAO, CompraDAO>();
             Container.RegisterType<IDigitoVerificadorDAO, DigitoVerificadorDAO>();
             Container.RegisterType<IDigitoVerificadorService, DigitoVerificadorService>();
+            Container.RegisterType<IDocumentoService, DocumentoService>();
+            Container.RegisterType<IDocumentoDAO, DocumentoDAO>();
             Container.RegisterType<IdiomaService>(new ContainerControlledLifetimeManager());  //SINGLETON
             Container.RegisterType<IEmpresaDAO, EmpresaDAO>();
             Container.RegisterType<IEmpresaService, EmpresaService>();

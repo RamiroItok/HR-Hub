@@ -285,7 +285,7 @@
   "NoPermisosAsignar": "No hay permisos disponibles para asignar.",
   "NoPermisosAsignados": "No hay permisos disponibles para asignar.",
   "NoPermisosParaAsignar": "No hay permisos para asignar.",
-  "OperacionExitosa": "Se realizo la operación correctamente.",
+  "OperacionExitosa": "Se realizo la operacion correctamente.",
   "SeleccionarPermisoParaAsignar": "Debe seleccionar al menos un permiso para asignar.",
   "ErrorAlAsignarPermisos": "Ocurrio un error al asignar permisos: ",
   "NoPermisosParaQuitar": "No hay permisos para quitar.",
@@ -355,7 +355,7 @@
   "PageTitleRestore": "Restauracion del Sistema",
   "DescripcionRestore": "Sube el archivo de respaldo para restaurar el sistema a un estado anterior.",
   "ButtonRealizarRestore": "Realizar Restauracion",
-  "MensajeRestoreExito": "La restauración se completo correctamente. Por favor, vuelve a iniciar sesion.",
+  "MensajeRestoreExito": "La restauracion se completo correctamente. Por favor, vuelve a iniciar sesion.",
 
   "PageTitleDesbloquearUsuarios": "Desbloquear Usuarios",
   "TituloDesbloquearUsuarios": "Lista de Usuarios Bloqueados",
@@ -422,5 +422,16 @@
   "CarritoVacioText": "Todos los productos han sido eliminados del carrito.",
   "ProductoEliminado": "Producto Eliminado",
   "ProductoEliminadoText": "El producto ha sido eliminado del carrito.",
-  "NoStock": "No hay stock"
+  "NoStock": "No hay stock",
+
+  "TituloCargaDocumento": "Cargar Documento",
+  "LabelNombreArchivo": "Nombre del archivo",
+  "LabelArchivo": "Archivo",
+  "ButtonCargarArchivo": "Cargar archivo",
+  "PopupTitulo": "Confirmacion",
+  "MensajeExitoCarga": "Archivo cargado exitosamente",
+  "MensajeSeleccioneArchivo": "Seleccione un archivo para cargar",
+  "PageTitleCargaDocumento": "HR Hub - Cargar Documento",
+  "PlaceholderNombreArchivo": "Ingrese el nombre del archivo"
+
 }

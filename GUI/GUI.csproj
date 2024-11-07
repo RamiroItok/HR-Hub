@@ -167,6 +167,7 @@
     <Content Include="AltaEmpresa.aspx" />
     <Content Include="Bitacora.aspx" />
     <Content Include="CambiarContraseña.aspx" />
+    <Content Include="CargaDocumento.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Compra.aspx" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
@@ -211,6 +212,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="ReporteCompras.aspx" />
     <Content Include="Style\Backup.css" />
+    <Content Include="Style\CargaDocumento.css" />
     <Content Include="Style\DesbloquearUsuario.css" />
     <Content Include="Style\GestionFamilia.css" />
     <Content Include="Style\GestionPermisosUsuario.css" />
@@ -325,6 +327,13 @@
     </Compile>
     <Compile Include="CambiarContraseña.aspx.designer.cs">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CargaDocumento.aspx.cs">
+      <DependentUpon>CargaDocumento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CargaDocumento.aspx.designer.cs">
+      <DependentUpon>CargaDocumento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Carrito.aspx.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>

@@ -73,6 +73,8 @@ namespace GUI.Controls
                 reportesLink.Visible = false;
                 reporteComprasLink.Visible = false;
                 desbloquearUsuariosLink.Visible = false;
+                documentosLink.Visible = false;
+                cargaDocumentosLink.Visible = false;
             }
 
             if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto == Models.Enums.Puesto.WebMaster)
@@ -92,6 +94,8 @@ namespace GUI.Controls
                 reportesLink.Visible = false;
                 reporteComprasLink.Visible = false;
                 desbloquearUsuariosLink.Visible = false;
+                documentosLink.Visible = false;
+                cargaDocumentosLink.Visible = false;
                 return;
             }
             else if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto != Models.Enums.Puesto.WebMaster)
@@ -109,6 +113,8 @@ namespace GUI.Controls
                 reportesLink.Visible = false;
                 reporteComprasLink.Visible = false;
                 desbloquearUsuariosLink.Visible = false;
+                documentosLink.Visible = false;
+                cargaDocumentosLink.Visible = false;
                 return;
             }
             
@@ -181,6 +187,12 @@ namespace GUI.Controls
                             break;
                         case Models.Composite.Permiso.DesbloquearUsuario:
                             desbloquearUsuariosLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.Documentos:
+                            documentosLink.Visible = true;
+                            break;
+                        case Models.Composite.Permiso.CargaDocumentos:
+                            cargaDocumentosLink.Visible = true;
                             break;
                     }
                 }

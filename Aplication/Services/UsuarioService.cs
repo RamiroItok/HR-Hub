@@ -581,5 +581,35 @@ namespace Aplication
                 throw new Exception(ex.Message);
             }
         }
+
+        public List<Usuario> ObtenerEmpleados()
+        {
+            try
+            {
+                var resultado = _usuarioDAO.ObtenerEmpleados();
+
+                List<Usuario> listaUsuarios = new List<Usuario>();
+
+                foreach (DataRow row in resultado.Tables[0].Rows)
+                {
+                    Usuario usuario = new Usuario
+                    {
+                        Id = Convert.ToInt32(row["Id"])
+                    };
+
+                    listaUsuarios.Add(usuario);
+                }
+
+                return listaUsuarios;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
