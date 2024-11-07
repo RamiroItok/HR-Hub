@@ -83,25 +83,15 @@ namespace GUI
             var userSession = Session["Usuario"] as Usuario;
             carritoItems = _carritoService.ObtenerCarrito(userSession.Id);
             CargarCarritoEnPantalla();
-            CalcularTotalCarrito();
+
+            WebService.CalcularCarrito servicio = new WebService.CalcularCarrito();
+            lblTotalCompra.Text = servicio.CalcularTotal(carritoItems).ToString("C");
         }
 
         private void CargarCarritoEnPantalla()
         {
             gvCarrito.DataSource = carritoItems;
             gvCarrito.DataBind();
-        }
-
-        private void CalcularTotalCarrito()
-        {
-            decimal totalCarrito = 0;
-
-            foreach (var item in carritoItems)
-            {
-                totalCarrito += item.Subtotal;
-            }
-
-            lblTotalCompra.Text = totalCarrito.ToString("C");
         }
 
         protected void btnPagar_Click(object sender, EventArgs e)

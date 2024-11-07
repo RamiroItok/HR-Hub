@@ -111,6 +111,15 @@ namespace GUI
                     txtCantidad.Attributes["data-stock"] = producto.Cantidad.ToString();
                 }
                 CalcularTotalCarrito();
+
+                WebService.CalcularCarrito servicio = new WebService.CalcularCarrito();
+                decimal total = 0;
+                foreach (GridViewRow row in gvCarrito.Rows)
+                {
+                     total = total + servicio.CalcularTotalCarrito((Label)row.FindControl("lblSubtotal"));
+                }
+
+                lblTotalCarrito.Text = total.ToString("C");
             }
         }
 

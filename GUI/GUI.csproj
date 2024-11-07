@@ -103,6 +103,7 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -216,6 +217,7 @@
     <Content Include="Style\Reporte.css" />
     <Content Include="Style\Restore.css" />
     <Content Include="Templates\ResumenCompraTemplate.html" />
+    <Content Include="WebService\CalcularCarrito.asmx" />
     <Content Include="WebService\EnviarMail.asmx" />
     <Content Include="WebService\ReporteCompras.asmx" />
     <Content Include="Lang\es.json" />
@@ -536,6 +538,10 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebService\CalcularCarrito.asmx.cs">
+      <DependentUpon>CalcularCarrito.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebService\EnviarMail.asmx.cs">
       <DependentUpon>EnviarMail.asmx</DependentUpon>
