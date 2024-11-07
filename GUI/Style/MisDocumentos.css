@@ -1,0 +1,166 @@
+﻿body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('Content/imagenes/Fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    color: #333;
+}
+
+.containerMisDocumentos {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .containerMisDocumentos:hover {
+        transform: scale(1.02);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.35);
+    }
+
+h2 {
+    color: #2e7d32;
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.form-check-label {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+    .table th {
+        background-color: #4CAF50;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .table td {
+        background-color: #e8f5e9;
+        padding: 10px;
+        color: #333;
+    }
+
+    .table tbody tr:hover {
+        background-color: #dcedc8;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+.btn-info {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+    .btn-info:hover {
+        background-color: #388E3C;
+        transform: translateY(-2px);
+    }
+
+.language-selector {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .language-selector:hover {
+        background-color: #388E3C;
+    }
+
+/* Estilos del Modal */
+.modal-content {
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    background-color: #4CAF50;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.close {
+    color: #fff;
+    opacity: 0.8;
+}
+
+    .close:hover {
+        opacity: 1;
+        color: #2d2d2d;
+    }
+
+.modal-body {
+    font-size: 1rem;
+    color: #333;
+}
+
+.modal-footer {
+    background-color: #f1f1f1;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+    .modal-footer .btn-secondary {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+    }
+
+        .modal-footer .btn-secondary:hover {
+            background-color: #388E3C;
+        }
+
+#ddlLanguage {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background-color: #ffffff; /* Fondo blanco */
+    color: #333333; /* Texto negro */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    #ddlLanguage option {
+        color: #333333; /* Asegura que el texto sea negro dentro de las opciones */
+        background-color: #ffffff; /* Fondo blanco para las opciones */
+    }

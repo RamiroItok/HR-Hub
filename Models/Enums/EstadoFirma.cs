@@ -1,6 +1,6 @@
 ﻿namespace Models.Enums
 {
-    public enum EstadoFima
+    public enum EstadoFirma
     {
         NoFirmado = 0,
         Firmado = 1

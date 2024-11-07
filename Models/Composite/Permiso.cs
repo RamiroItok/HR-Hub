@@ -25,6 +25,7 @@
         ReporteCompras,
         DesbloquearUsuario,
         Documentos,
-        CargaDocumentos
+        CargaDocumentos,
+        MisDocumentos
     }
 }

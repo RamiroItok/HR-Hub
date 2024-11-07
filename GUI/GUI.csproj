@@ -187,6 +187,7 @@
     <Content Include="MenuPrincipal.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MisCompras.aspx" />
+    <Content Include="MisDocumentos.aspx" />
     <Content Include="NavBar.ascx" />
     <Content Include="PermisosUsuario.aspx" />
     <Content Include="Productos.aspx" />
@@ -217,6 +218,7 @@
     <Content Include="Style\GestionFamilia.css" />
     <Content Include="Style\GestionPermisosUsuario.css" />
     <Content Include="Style\MisCompras.css" />
+    <Content Include="Style\MisDocumentos.css" />
     <Content Include="Style\Reporte.css" />
     <Content Include="Style\Restore.css" />
     <Content Include="Templates\ResumenCompraTemplate.html" />
@@ -460,6 +462,13 @@
     </Compile>
     <Compile Include="MisCompras.aspx.designer.cs">
       <DependentUpon>MisCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MisDocumentos.aspx.cs">
+      <DependentUpon>MisDocumentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MisDocumentos.aspx.designer.cs">
+      <DependentUpon>MisDocumentos.aspx</DependentUpon>
     </Compile>
     <Compile Include="NavBar.ascx.cs">
       <DependentUpon>NavBar.ascx</DependentUpon>

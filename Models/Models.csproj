@@ -57,7 +57,7 @@
     <Compile Include="Enums\Area.cs" />
     <Compile Include="Enums\AsuntoMail.cs" />
     <Compile Include="Enums\Criticidad.cs" />
-    <Compile Include="Enums\EstadoFima.cs" />
+    <Compile Include="Enums\EstadoFirma.cs" />
     <Compile Include="Enums\Idioma.cs" />
     <Compile Include="Enums\Puesto.cs" />
     <Compile Include="Enums\Genero.cs" />
@@ -69,6 +69,7 @@
     <Compile Include="TipoProducto.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioDocumento.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
