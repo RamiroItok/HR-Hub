@@ -41,6 +41,7 @@ namespace GUI
             {
                 CargarCarrito();
                 string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                ddlLanguage.SelectedValue = selectedLanguage;
                 _idiomaService.CurrentLanguage = selectedLanguage;
                 CargarTextos();
             }
@@ -249,6 +250,13 @@ namespace GUI
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorLimpiarCarrito", $"alert('Error al limpiar el carrito: {ex.Message}');", true);
             }
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

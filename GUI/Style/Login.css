@@ -132,15 +132,16 @@ h2 {
 }
 
 #ddlLanguage {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 5px 10px;
-    font-size: 1rem;
-    color: #333;
-    background-color: #f8f9fa;
+    position: fixed;
+    bottom: 15px; /* Separación desde la parte inferior */
+    right: 15px; /* Separación desde el borde derecho */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    padding: 5px;
+    font-size: 14px;
+    background-color: #fff; /* Fondo blanco para mejor visibilidad */
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
     #ddlLanguage option {

@@ -18,7 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link href="~/Style/NavBar.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center;">
     <form id="form1" runat="server">
         <uc:NavBar runat="server" ID="NavBarControl" />
         <div class="bitacora-page">
@@ -84,6 +84,11 @@
 
             </div>
         </div>
+
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged">
+            <asp:ListItem Value="es">Español</asp:ListItem>
+            <asp:ListItem Value="en">English</asp:ListItem>
+        </asp:DropDownList>
     </form>
 
 <script>

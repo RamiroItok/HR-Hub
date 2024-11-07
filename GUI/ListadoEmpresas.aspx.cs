@@ -39,6 +39,7 @@ namespace GUI
             if (!IsPostBack)
             {
                 string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                ddlLanguage.SelectedValue = selectedLanguage;
                 _idiomaService.CurrentLanguage = selectedLanguage;
                 CargarEmpresas();
                 CargarTextos();
@@ -165,6 +166,13 @@ namespace GUI
         {
             _idiomaService.Unsubscribe(this);
             base.OnUnload(e);
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

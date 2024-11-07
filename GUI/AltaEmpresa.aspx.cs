@@ -44,15 +44,18 @@ namespace GUI
 
         private void CargarTextos()
         {
-            Page.Title = _idiomaService.GetTranslation("PageTitleAltaEmpresa");
-            tituloRegistro.InnerText = _idiomaService.GetTranslation("TituloRegistroEmpresas");
-            lblNombreEmpresa.InnerText = _idiomaService.GetTranslation("LabelNombreEmpresa");
-            txtNombreEmpresa.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombreEmpresa");
-            lblLogoEmpresa.InnerText = _idiomaService.GetTranslation("LabelLogoEmpresa");
-            lblURLEmpresa.InnerText = _idiomaService.GetTranslation("LabelURLEmpresa");
-            txtURLEmpresa.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderURLEmpresa");
-            btnSubmit.Text = _idiomaService.GetTranslation("ButtonRegistrar");
-            btnCancel.Text = _idiomaService.GetTranslation("ButtonCancelar");
+            if (!(tituloRegistro == null))
+            {
+                tituloRegistro.InnerText = _idiomaService.GetTranslation("TituloRegistroEmpresas");
+                Page.Title = _idiomaService.GetTranslation("PageTitleAltaEmpresa");
+                lblNombreEmpresa.InnerText = _idiomaService.GetTranslation("LabelNombreEmpresa");
+                txtNombreEmpresa.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombreEmpresa");
+                lblLogoEmpresa.InnerText = _idiomaService.GetTranslation("LabelLogoEmpresa");
+                lblURLEmpresa.InnerText = _idiomaService.GetTranslation("LabelURLEmpresa");
+                txtURLEmpresa.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderURLEmpresa");
+                btnSubmit.Text = _idiomaService.GetTranslation("ButtonRegistrar");
+                btnCancel.Text = _idiomaService.GetTranslation("ButtonCancelar");
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

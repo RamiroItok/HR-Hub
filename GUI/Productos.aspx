@@ -58,7 +58,6 @@
                                             <div class="card-body">
                                                 <h5 class="card-title"><%# Eval("Nombre") %></h5>
                                                 
-                                                <!-- Usamos Label o Literal para asignar valores dinámicos desde el código-behind -->
                                                 <p class="card-text">
                                                     <asp:Label ID="lblDescripcion" runat="server" Text="Descripción"></asp:Label>: 
                                                     <asp:Label ID="lblDescripcionValue" runat="server" Text='<%# Eval("Descripcion") %>'></asp:Label>
@@ -95,6 +94,11 @@
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
+
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged">
+            <asp:ListItem Value="es">Español</asp:ListItem>
+            <asp:ListItem Value="en">English</asp:ListItem>
+        </asp:DropDownList>
 
         <div class="footer">
             <p><asp:Literal ID="litTextoPiePagina" runat="server"></asp:Literal></p>

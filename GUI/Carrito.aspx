@@ -89,6 +89,12 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
+
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true"
+            OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
+            <asp:ListItem Text="Español" Value="es"></asp:ListItem>
+            <asp:ListItem Text="English" Value="en"></asp:ListItem>
+        </asp:DropDownList>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
