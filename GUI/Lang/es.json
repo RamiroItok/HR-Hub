@@ -375,5 +375,31 @@
   "MensajeNoUsuariosBloqueados": "No hay usuarios bloqueados.",
 
   "PaymentFailedTitle": "Pago Fallido",
-  "PaymentFailedMessage": "Hubo un problema al procesar su pago. Por favor, intente nuevamente."
+  "PaymentFailedMessage": "Hubo un problema al procesar su pago. Por favor, intente nuevamente.",
+
+  "PageTitleListadoUsuarios": "HR Hub - Listado de Usuarios",
+  "TituloListadoUsuarios": "Listado de Usuarios",
+  "Buscar": "Buscar",
+  "Cancelar": "Cancelar",
+  "MensajeNoResultados": "No se encontraron resultados.",
+  "BuscarUsuarioPlaceholder": "Buscar usuario...",
+  "ModificarDatosUsuario": "Modificar Datos de Usuario",
+  "Guardar": "Guardar",
+  "FechaIngreso": "Fecha de Ingreso",
+  "Puesto": "Puesto",
+  "Area": "Area",
+  "FechaNacimiento": "Fecha de Nacimiento",
+  "Genero": "Genero",
+  "Direccion": "Direccion",
+  "NumeroDireccion": "Numero de Direccion",
+  "Departamento": "Departamento",
+  "CodigoPostal": "Codigo Postal",
+  "Ciudad": "Ciudad",
+  "Provincia": "Provincia",
+  "Pais": "Pais",
+  "CancelarModificacion": "Cancelar",
+  "IngreseUsuarioBusqueda": "Por favor, ingrese un usuario en la busqueda.",
+  "DatosModificadosExitosamente": "Se modificaron correctamente los datos",
+  "SeleccionePuesto": "Seleccione un Puesto",
+  "SeleccioneArea": "Seleccione un Area"
 }

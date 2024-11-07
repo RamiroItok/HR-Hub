@@ -32,7 +32,6 @@
   "TextoPiePagina": "&copy; 2024 HR Hub. All rights reserved.",
   "TituloPaginaLogin": "Login",
   "TituloFormularioLogin": "Log In",
-  "BotonIniciarSesion": "Log In",
   "EnlaceRecuperarContrasena": "Forgot your password?",
   "ErrorEmailNoValido": "Invalid email",
   "ErrorContrasenaNoValida": "Invalid password",
@@ -46,7 +45,6 @@
   "MisDocumentos": "My documents",
   "AccedeDocumentos": "Access your important documents",
   "VerDocumentos": "View my documents",
-  "TextoPiePagina": "&copy; 2024 HR Hub. All rights reserved.",
 
   "HRHub": "HR Hub",
   "Registro": "Register",
@@ -377,5 +375,31 @@
   "MensajeNoUsuariosBloqueados": "No blocked users.",
 
   "PaymentFailedTitle": "Payment Failed",
-  "PaymentFailedMessage": "There was a problem processing your payment. Please try again."
+  "PaymentFailedMessage": "There was a problem processing your payment. Please try again.",
+
+  "PageTitleListadoUsuarios": "HR Hub - User Listing",
+  "TituloListadoUsuarios": "User Listing",
+  "Buscar": "Search",
+  "Cancelar": "Cancel",
+  "MensajeNoResultados": "No results found.",
+  "BuscarUsuarioPlaceholder": "Search user...",
+  "ModificarDatosUsuario": "Edit User Data",
+  "Guardar": "Save",
+  "FechaIngreso": "Date of Entry",
+  "Puesto": "Position",
+  "Area": "Area",
+  "FechaNacimiento": "Date of Birth",
+  "Genero": "Gender",
+  "Direccion": "Address",
+  "NumeroDireccion": "Address Number",
+  "Departamento": "Department",
+  "CodigoPostal": "Postal Code",
+  "Ciudad": "City",
+  "Provincia": "State/Province",
+  "Pais": "Country",
+  "CancelarModificacion": "Cancel",
+  "IngreseUsuarioBusqueda": "Please enter a user in the search.",
+  "DatosModificadosExitosamente": "Data was modified successfully",
+  "SeleccionePuesto": "Select a Position",
+  "SeleccioneArea": "Select an Area"
 }

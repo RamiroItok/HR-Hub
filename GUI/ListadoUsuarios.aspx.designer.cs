@@ -15,6 +15,15 @@ namespace GUI
     {
 
         /// <summary>
+        /// Control litPageTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litPageTitle;
+
+        /// <summary>
         /// Control form1.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::GUI.Controls.NavBar NavBarControl;
+
+        /// <summary>
+        /// Control litTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTitle;
 
         /// <summary>
         /// Control txtBuscar.
@@ -78,6 +96,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.GridView dataGridUsuarios;
 
         /// <summary>
+        /// Control litFormTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litFormTitle;
+
+        /// <summary>
         /// Control lblMensajeModificacion.
         /// </summary>
         /// <remarks>
@@ -85,6 +112,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensajeModificacion;
+
+        /// <summary>
+        /// Control litNombreLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNombreLabel;
 
         /// <summary>
         /// Control txtNombre.
@@ -105,6 +141,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.HiddenField hiddenNombre;
 
         /// <summary>
+        /// Control litApellidoLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litApellidoLabel;
+
+        /// <summary>
         /// Control txtApellido.
         /// </summary>
         /// <remarks>
@@ -121,6 +166,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hiddenApellido;
+
+        /// <summary>
+        /// Control litEmailLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litEmailLabel;
 
         /// <summary>
         /// Control txtEmail.
@@ -141,6 +195,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.HiddenField hiddenEmail;
 
         /// <summary>
+        /// Control litFechaIngresoLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litFechaIngresoLabel;
+
+        /// <summary>
         /// Control txtFechaIngreso.
         /// </summary>
         /// <remarks>
@@ -157,6 +220,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hiddenFechaIngreso;
+
+        /// <summary>
+        /// Control litPuestoLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label litPuestoLabel;
 
         /// <summary>
         /// Control DropDownPuesto.
@@ -177,6 +249,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.HiddenField hiddenDropDownPuesto;
 
         /// <summary>
+        /// Control litAreaLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label litAreaLabel;
+
+        /// <summary>
         /// Control DropDownArea.
         /// </summary>
         /// <remarks>
@@ -184,6 +265,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownArea;
+
+        /// <summary>
+        /// Control litFechaNacimientoLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litFechaNacimientoLabel;
 
         /// <summary>
         /// Control txtFechaNacimiento.
@@ -204,13 +294,31 @@ namespace GUI
         protected global::System.Web.UI.WebControls.HiddenField hiddenFechaNacimiento;
 
         /// <summary>
-        /// Control txtGenero.
+        /// Control lblGenero.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGenero;
+        protected global::System.Web.UI.WebControls.Label lblGenero;
+
+        /// <summary>
+        /// Control drpGenero.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpGenero;
+
+        /// <summary>
+        /// Control litDireccionLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litDireccionLabel;
 
         /// <summary>
         /// Control txtDireccion.
@@ -222,6 +330,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.TextBox txtDireccion;
 
         /// <summary>
+        /// Control litNumeroDireccionLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNumeroDireccionLabel;
+
+        /// <summary>
         /// Control txtNumeroDireccion.
         /// </summary>
         /// <remarks>
@@ -229,6 +346,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNumeroDireccion;
+
+        /// <summary>
+        /// Control litDepartamentoLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litDepartamentoLabel;
 
         /// <summary>
         /// Control txtDepartamento.
@@ -240,6 +366,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.TextBox txtDepartamento;
 
         /// <summary>
+        /// Control litCodigoPostalLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litCodigoPostalLabel;
+
+        /// <summary>
         /// Control txtCodigoPostal.
         /// </summary>
         /// <remarks>
@@ -247,6 +382,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCodigoPostal;
+
+        /// <summary>
+        /// Control litCiudadLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litCiudadLabel;
 
         /// <summary>
         /// Control txtCiudad.
@@ -258,6 +402,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.TextBox txtCiudad;
 
         /// <summary>
+        /// Control litProvinciaLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litProvinciaLabel;
+
+        /// <summary>
         /// Control txtProvincia.
         /// </summary>
         /// <remarks>
@@ -265,6 +418,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProvincia;
+
+        /// <summary>
+        /// Control litPaisLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litPaisLabel;
 
         /// <summary>
         /// Control txtPais.
@@ -292,5 +454,14 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelarModificacion;
+
+        /// <summary>
+        /// Control ddlLanguage.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLanguage;
     }
 }
