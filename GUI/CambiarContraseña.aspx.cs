@@ -67,20 +67,22 @@ namespace GUI
             }
             
         }
+        private void CargarTextos()
+        {
+            if (!(litTitulo == null))
+            {
+                Title = _idiomaService.GetTranslation("PageTitleChangePassword");
+                litTitulo.Text = _idiomaService.GetTranslation("TituloCambiarContrasena");
+                lblPasswordActual.Text = _idiomaService.GetTranslation("LabelPasswordActual");
+                lblPasswordNueva.Text = _idiomaService.GetTranslation("LabelPasswordNueva");
+                lblPasswordConfirmar.Text = _idiomaService.GetTranslation("LabelPasswordConfirmar");
+                btnCambiar.Text = _idiomaService.GetTranslation("ButtonCambiarContrasena");
+            }
+        }
 
         public void UpdateLanguage(string language)
         {
             CargarTextos();
-        }
-
-        private void CargarTextos()
-        {
-            Title = _idiomaService.GetTranslation("PageTitleChangePassword");
-            litTitulo.Text = _idiomaService.GetTranslation("TituloCambiarContrasena");
-            lblPasswordActual.Text = _idiomaService.GetTranslation("LabelPasswordActual");
-            lblPasswordNueva.Text = _idiomaService.GetTranslation("LabelPasswordNueva");
-            lblPasswordConfirmar.Text = _idiomaService.GetTranslation("LabelPasswordConfirmar");
-            btnCambiar.Text = _idiomaService.GetTranslation("ButtonCambiarContrasena");
         }
 
         protected override void OnUnload(EventArgs e)
