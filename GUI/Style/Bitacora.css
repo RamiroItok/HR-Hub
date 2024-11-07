@@ -107,3 +107,20 @@ input.form-control, select.form-control, .datepicker {
         width: 100%;
     }
 }
+
+#ddlLanguage {
+    position: fixed;
+    bottom: 15px; /* Separación desde la parte inferior */
+    right: 15px; /* Separación desde el borde derecho */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    padding: 5px;
+    font-size: 14px;
+    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    #ddlLanguage option {
+        color: #333;
+    }

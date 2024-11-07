@@ -1,5 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ValidarCantidad.ascx.cs" Inherits="GUI.Controls.ValidarCantidad" %>
 
+<asp:Literal ID="litCantidadExcedidaTitulo" runat="server" Visible="false" />
+<asp:Literal ID="litCantidadExcedidaTexto" runat="server" Visible="false" />
+<asp:Literal ID="litCantidadActualizadaTitulo" runat="server" Visible="false" />
+<asp:Literal ID="litCantidadActualizadaTexto" runat="server" Visible="false" />
+<asp:Literal ID="litConfirmButtonText" runat="server" Visible="false" />
+
 <script>
     function validarCantidadMaxima(textBox) {
         const maxStock = parseInt(textBox.getAttribute("data-stock"));
@@ -8,9 +14,9 @@
         if (cantidadIngresada > maxStock) {
             Swal.fire({
                 icon: 'warning',
-                title: 'Cantidad excedida',
-                text: `La cantidad ingresada es mayor al stock disponible (${maxStock}).`,
-                confirmButtonText: 'OK',
+                title: '<%= litCantidadExcedidaTitulo.Text %>',
+                text: `<%= litCantidadExcedidaTexto.Text %> (${maxStock}).`,
+                confirmButtonText: '<%= litConfirmButtonText.Text %>',
                 confirmButtonColor: '#d33'
             });
 
@@ -18,10 +24,10 @@
         } else {
             Swal.fire({
                 icon: 'success',
-                title: '<span style="font-size: 1.5em;">Cantidad actualizada</span>',
-                html: '<span style="font-size: 1.2em;">La cantidad del producto ha sido modificada.</span>',
+                title: '<%= litCantidadActualizadaTitulo.Text %>',
+                html: '<%= litCantidadActualizadaTexto.Text %>',
                 showConfirmButton: true,
-                confirmButtonText: '<span style="font-size: 1.1em;">OK</span>'
+                confirmButtonText: '<%= litConfirmButtonText.Text %>'
             });
         }
     }

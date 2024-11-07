@@ -451,7 +451,7 @@ namespace Aplication
                 Apellido = tabla.Tables[0].Rows[0]["Apellido"].ToString(),
                 Email = tabla.Tables[0].Rows[0]["Email"].ToString(),
                 Contraseña = tabla.Tables[0].Rows[0]["Contraseña"].ToString(),
-                Puesto = (Puesto)tabla.Tables[0].Rows[0]["IdPuesto"],
+                Puesto = tabla.Tables[0].Rows[0]["IdPuesto"] == DBNull.Value ? (Puesto?)null : (Puesto)Enum.Parse(typeof(Puesto), tabla.Tables[0].Rows[0]["IdPuesto"].ToString()),
                 Area = (Area)tabla.Tables[0].Rows[0]["IdArea"],
                 FechaNacimiento = (DateTime)tabla.Tables[0].Rows[0]["FechaNacimiento"],
                 Genero = tabla.Tables[0].Rows[0]["Genero"].ToString(),

@@ -41,6 +41,7 @@ namespace GUI
             {
                 CargarCarrito();
                 string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                ddlLanguage.SelectedValue = selectedLanguage;
                 _idiomaService.CurrentLanguage = selectedLanguage;
                 CargarTextos();
             }
@@ -152,6 +153,11 @@ namespace GUI
 
                 LinkButton btnEliminar = (LinkButton)e.Row.FindControl("btnEliminar");
                 btnEliminar.Text = _idiomaService.GetTranslation("ButtonDelete");
+
+                TextBox txtCantidad = (TextBox)e.Row.FindControl("txtCantidad");
+                int idProducto = Convert.ToInt32(gvCarrito.DataKeys[e.Row.RowIndex].Value);
+                var producto = _productoService.ObtenerProductoPorId(idProducto);
+                txtCantidad.Attributes["data-stock"] = producto.Cantidad.ToString();
             }
         }
 
@@ -249,6 +255,13 @@ namespace GUI
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "errorLimpiarCarrito", $"alert('Error al limpiar el carrito: {ex.Message}');", true);
             }
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

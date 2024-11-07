@@ -40,6 +40,7 @@ namespace GUI
             {
                 CargarUsuarios();
                 string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                ddlLanguage.SelectedValue = selectedLanguage;
                 _idiomaService.CurrentLanguage = selectedLanguage;
                 CargarTextos();
             }
@@ -70,12 +71,6 @@ namespace GUI
             drpUsuarios.DataValueField = "Id";
             drpUsuarios.DataBind();
             drpUsuarios.Items.Insert(0, new ListItem(_idiomaService.GetTranslation("DropdownSeleccionarUsuario"), "0"));
-        }
-
-        protected override void OnUnload(EventArgs e)
-        {
-            _idiomaService.Unsubscribe(this);
-            base.OnUnload(e);
         }
 
         protected void drpUsuarios_SelectedIndexChanged(object sender, EventArgs e)
@@ -174,6 +169,19 @@ namespace GUI
         public void UpdateLanguage(string language)
         {
             CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

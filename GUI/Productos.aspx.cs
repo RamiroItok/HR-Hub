@@ -68,6 +68,7 @@ namespace GUI
                 CargarTipoProducto();
                 CargarEmpresas();
                 string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                ddlLanguage.SelectedValue = selectedLanguage;
                 _idiomaService.CurrentLanguage = selectedLanguage;
                 CargarTextos();
             }
@@ -181,6 +182,19 @@ namespace GUI
         {
             _idiomaService.Unsubscribe(this);
             base.OnUnload(e);
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            _idiomaService.CurrentLanguage = selectedLanguage;
+
+            CargarTextos();
+            CargarEmpresas();
+            CargarTipoProducto();
+            UpdatePanel1.Update();
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
 using Aplication.Services.Observer;
 using System;
 using System.Web.UI;
@@ -6,7 +7,7 @@ using Unity;
 
 namespace GUI
 {
-    public partial class Login : Page
+    public partial class Login : Page, IIdiomaService
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IdiomaService _idiomaService;
@@ -15,6 +16,7 @@ namespace GUI
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
             _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -40,13 +42,6 @@ namespace GUI
             litTituloFormulario.Text = _idiomaService.GetTranslation("TituloFormularioLogin");
             btnLogin.Text = _idiomaService.GetTranslation("BotonIniciarSesion");
             litRecuperarContraseña.Text = _idiomaService.GetTranslation("EnlaceRecuperarContrasenia");
-        }
-
-        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedLanguage = ddlLanguage.SelectedValue;
-            Session["SelectedLanguage"] = selectedLanguage;
-            Response.Redirect(Request.RawUrl);
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -83,6 +78,24 @@ namespace GUI
                 lblMensaje.Text = ex.Message;
                 lblMensaje.Visible = true;
             }
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

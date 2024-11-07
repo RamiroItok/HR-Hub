@@ -76,9 +76,8 @@
                 </div>
             </div>
         </div>
-
-        <script src="Scripts/jquery-3.4.1.min.js"></script>
-        <script src="Scripts/bootstrap.min.js"></script>
     </form>
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
 </body>
 </html>

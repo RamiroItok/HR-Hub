@@ -25,23 +25,36 @@ namespace GUI
         {
             if (!IsPostBack)
             {
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                ddlLanguage.SelectedValue = selectedLanguage;
+                _idiomaService.CurrentLanguage = selectedLanguage;
                 CargarTextos();
             }
         }
 
         private void CargarTextos()
         {
-            Page.Title = _idiomaService.GetTranslation("PageTitleAccessDenied");
-            errorCode.InnerText = _idiomaService.GetTranslation("ErrorCode403");
-            errorTitle.InnerText = _idiomaService.GetTranslation("ErrorTitleAccessDenied");
-            errorMessage.InnerText = _idiomaService.GetTranslation("ErrorMessageAccessDenied");
-            btnHome.InnerText = _idiomaService.GetTranslation("ButtonHome");
+            if (!(errorCode == null))
+            {
+                errorCode.InnerText = _idiomaService.GetTranslation("ErrorCode403");
+                Page.Title = _idiomaService.GetTranslation("PageTitleAccessDenied");
+                errorTitle.InnerText = _idiomaService.GetTranslation("ErrorTitleAccessDenied");
+                errorMessage.InnerText = _idiomaService.GetTranslation("ErrorMessageAccessDenied");
+                btnHome.InnerText = _idiomaService.GetTranslation("ButtonHome");
+            }
         }
 
         protected override void OnUnload(EventArgs e)
         {
             _idiomaService.Unsubscribe(this);
             base.OnUnload(e);
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

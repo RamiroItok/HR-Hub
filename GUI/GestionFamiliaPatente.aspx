@@ -78,6 +78,12 @@
         <div class="form-group">
             <asp:Label ID="lblMensajeEliminar" runat="server" CssClass="text-success"></asp:Label>
         </div>
+
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true"
+            OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
+            <asp:ListItem Text="Español" Value="es"></asp:ListItem>
+            <asp:ListItem Text="English" Value="en"></asp:ListItem>
+        </asp:DropDownList>
     </form>
     <script src="Scripts/jquery-3.4.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>

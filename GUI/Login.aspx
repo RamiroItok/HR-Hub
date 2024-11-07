@@ -14,11 +14,6 @@
 </head>
 <body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
     <form id="form1" runat="server">
-        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged">
-            <asp:ListItem Value="es">Español</asp:ListItem>
-            <asp:ListItem Value="en">English</asp:ListItem>
-        </asp:DropDownList>
-
         <div class="login-container">
             <h2>
                 <asp:Literal ID="litTituloFormulario" runat="server"></asp:Literal></h2>
@@ -42,6 +37,11 @@
                 <asp:Label runat="server" ID="lblMensaje" CssClass="message-label" Visible="false"></asp:Label>
             </asp:Panel>
         </div>
+
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged">
+            <asp:ListItem Value="es">Español</asp:ListItem>
+            <asp:ListItem Value="en">English</asp:ListItem>
+        </asp:DropDownList>
     </form>
 </body>
 </html>

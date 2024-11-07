@@ -17,13 +17,6 @@
 <body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center;">
     <form id="form1" runat="server" style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
         <uc:NavBar runat="server" ID="NavBarControl" />
-
-        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true"
-            OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
-            <asp:ListItem Text="Español" Value="es"></asp:ListItem>
-            <asp:ListItem Text="English" Value="en"></asp:ListItem>
-        </asp:DropDownList>
-
         <div class="containerEmpresas">
             <div class="content-box">
                 <h2 class="text-center mb-4" runat="server" id="tituloRegistro">Alta de Producto</h2>
@@ -73,6 +66,12 @@
                 </div>
             </div>
         </div>
+
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true"
+            OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
+            <asp:ListItem Text="Español" Value="es"></asp:ListItem>
+            <asp:ListItem Text="English" Value="en"></asp:ListItem>
+        </asp:DropDownList>
     </form>
 
     <script>

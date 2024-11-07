@@ -39,9 +39,8 @@
             <asp:ListItem Text="Español" Value="es"></asp:ListItem>
             <asp:ListItem Text="English" Value="en"></asp:ListItem>
         </asp:DropDownList>
-
-        <script src="Scripts/jquery-3.4.1.min.js"></script>
-        <script src="Scripts/bootstrap.min.js"></script>
     </form>
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
 </body>
 </html>
