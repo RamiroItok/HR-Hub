@@ -139,6 +139,7 @@ namespace GUI
                 var lblTipoProducto = (Label)e.Item.FindControl("lblTipoProducto");
                 var lblCantidad = (Label)e.Item.FindControl("lblCantidad");
                 var lblPrecio = (Label)e.Item.FindControl("lblPrecio");
+                var lblNoStock = (Label)e.Item.FindControl("lblNoStock");
 
                 var btnAgregarCarrito = (Button)e.Item.FindControl("btnAgregarCarrito");
 
@@ -148,6 +149,7 @@ namespace GUI
                 lblCantidad.Text = _idiomaService.GetTranslation("CardQuantity");
                 lblPrecio.Text = _idiomaService.GetTranslation("CardPrice");
                 btnAgregarCarrito.Text = _idiomaService.GetTranslation("ButtonAddToCart");
+                lblNoStock.Text = _idiomaService.GetTranslation("NoStock");
             }
         }
 

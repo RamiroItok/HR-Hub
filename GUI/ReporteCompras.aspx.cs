@@ -1,4 +1,6 @@
-﻿using Aplication.Services.XML;
+﻿using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
+using Aplication.Services.XML;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -7,17 +9,38 @@ using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using Unity;
 
 namespace GUI
 {
-    public partial class ReporteCompras : System.Web.UI.Page
+    public partial class ReporteCompras : Page, IIdiomaService
     {
+        private readonly IdiomaService _idiomaService;
+
+        public ReporteCompras()
+        {
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 CargarAnios();
+                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                ddlLanguage.SelectedValue = selectedLanguage;
+                _idiomaService.CurrentLanguage = selectedLanguage;
+                CargarTextos();
             }
+        }
+
+        private void CargarTextos()
+        {
+            litTitle.Text = _idiomaService.GetTranslation("ProductosMasCompradosTitle");
+            litDescription.Text = _idiomaService.GetTranslation("ProductosMasCompradosDescription");
+            btnGenerarXML.Text = _idiomaService.GetTranslation("GenerarXMLButton");
+            btnGenerarReporte.Text = _idiomaService.GetTranslation("GenerarReporteButton");
         }
 
         private void CargarAnios()
@@ -34,16 +57,16 @@ namespace GUI
 
             if (productosMasComprados == null || productosMasComprados.Count == 0)
             {
-                string noDataScript = "Swal.fire('Sin datos', 'No hay datos de productos para el reporte.', 'error');";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "noDataScript", noDataScript, true);
+                string script = $"mostrarNotificacionSinDatos('{_idiomaService.GetTranslation("SinDatosTitle")}', '{_idiomaService.GetTranslation("SinDatosText")}');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "noDataNotification", script, true);
                 return;
             }
 
             GenerarXML generadorXml = new GenerarXML();
             generadorXml.GenerarXMLProductosPorMesYAnio(productosMasComprados);
 
-            string successScript = "Swal.fire('Reporte Generado', 'El reporte XML ha sido generado exitosamente.', 'success');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "successScript", successScript, true);
+            string successScript = $"mostrarNotificacionXMLGenerado('{_idiomaService.GetTranslation("ReporteGeneradoTitle")}', '{_idiomaService.GetTranslation("ReporteGeneradoText")}');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "xmlGeneratedNotification", successScript, true);
         }
 
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
@@ -56,8 +79,8 @@ namespace GUI
 
             if (productos.Count == 0)
             {
-                string noDataScript = "Swal.fire('Sin datos', 'No hay datos para el año seleccionado.', 'error');";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "noDataScript", noDataScript, true);
+                string script1 = $"mostrarNotificacionSinDatos('{_idiomaService.GetTranslation("SinDatosTitle")}', '{_idiomaService.GetTranslation("SinDatosText")}');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "noDataNotification", script1, true);
                 return;
             }
 
@@ -68,7 +91,7 @@ namespace GUI
             JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
             string jsonData = jsSerializer.Serialize(productosPorMes);
 
-            string script = $"renderCharts({jsonData});";
+            string script = $"renderCharts({jsonData}, '{_idiomaService.GetTranslation("ProductosVendidosEn")}');";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "renderChartsScript", script, true);
         }
 
@@ -78,25 +101,22 @@ namespace GUI
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(xmlData);
 
-            // Iterar sobre cada nodo <Anio> en el XML
             foreach (XmlNode anioNode in xmlDoc.SelectNodes("//Anio"))
             {
                 int anio = int.Parse(anioNode.Attributes["valor"].Value);
 
-                // Dentro de cada <Anio>, iterar sobre cada nodo <Mes>
                 foreach (XmlNode mesNode in anioNode.SelectNodes("Mes"))
                 {
                     string mes = mesNode.Attributes["nombre"].Value;
 
-                    // Dentro de cada <Mes>, iterar sobre cada nodo <Producto>
                     foreach (XmlNode productoNode in mesNode.SelectNodes("Producto"))
                     {
                         ProductoReporte producto = new ProductoReporte
                         {
                             Nombre = productoNode["Nombre"].InnerText,
                             VecesComprado = int.Parse(productoNode["VecesComprado"].InnerText),
-                            Mes = mes,  // Guardamos el nombre del mes como string
-                            Anio = anio // Guardamos el valor del año como int
+                            Mes = mes,
+                            Anio = anio
                         };
                         productos.Add(producto);
                     }
@@ -104,6 +124,24 @@ namespace GUI
             }
 
             return productos;
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedLanguage = ddlLanguage.SelectedValue;
+            Session["SelectedLanguage"] = selectedLanguage;
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

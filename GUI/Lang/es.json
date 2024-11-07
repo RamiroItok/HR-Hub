@@ -406,6 +406,21 @@
   "CantidadExcedidaTitulo": "Cantidad excedida",
   "CantidadExcedidaTexto": "La cantidad ingresada es mayor al stock disponible",
   "CantidadActualizadaTitulo": "Cantidad actualizada",
-  "CantidadActualizadaTexto": "La cantidad del producto ha sido modificada."
+  "CantidadActualizadaTexto": "La cantidad del producto ha sido modificada.",
 
+  "ReporteGeneradoTitle": "Reporte Generado",
+  "ReporteGeneradoText": "El reporte XML ha sido generado exitosamente.",
+  "SinDatosTitle": "Sin datos",
+  "SinDatosText": "No hay datos de productos para el reporte.",
+  "SinDatosAnioText": "No hay datos para el año seleccionado.",
+  "ProductosMasCompradosTitle": "Reporte de Productos Mas Comprados",
+  "ProductosMasCompradosDescription": "Este grafico muestra los productos mas comprados, agrupados por mes y cantidad comprada.",
+  "GenerarXMLButton": "Generar XML",
+  "GenerarReporteButton": "Generar Reporte",
+  "ProductosVendidosEn": "Productos vendidos en",
+  "CarritoVacio": "Carrito Vacio",
+  "CarritoVacioText": "Todos los productos han sido eliminados del carrito.",
+  "ProductoEliminado": "Producto Eliminado",
+  "ProductoEliminadoText": "El producto ha sido eliminado del carrito.",
+  "NoStock": "No hay stock"
 }

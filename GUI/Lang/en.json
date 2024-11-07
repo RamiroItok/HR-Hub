@@ -406,5 +406,21 @@
   "CantidadExcedidaTitulo": "Quantity Exceeded",
   "CantidadExcedidaTexto": "The entered quantity exceeds available stock",
   "CantidadActualizadaTitulo": "Quantity Updated",
-  "CantidadActualizadaTexto": "The product quantity has been updated."
+  "CantidadActualizadaTexto": "The product quantity has been updated.",
+
+  "ReporteGeneradoTitle": "Report Generated",
+  "ReporteGeneradoText": "The XML report has been successfully generated.",
+  "SinDatosTitle": "No Data",
+  "SinDatosText": "There are no product data for the report.",
+  "SinDatosAnioText": "There is no data for the selected year.",
+  "ProductosMasCompradosTitle": "Most Purchased Products Report",
+  "ProductosMasCompradosDescription": "This chart shows the most purchased products, grouped by month and quantity purchased.",
+  "GenerarXMLButton": "Generate XML",
+  "GenerarReporteButton": "Generate Report",
+  "ProductosVendidosEn": "Products Sold in",
+  "CarritoVacio": "Empty Cart",
+  "CarritoVacioText": "All products have been removed from the cart.",
+  "ProductoEliminado": "Product Deleted",
+  "ProductoEliminadoText": "The product has been removed from the cart.",
+  "NoStock": "There is no stock"
 }
