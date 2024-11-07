@@ -188,6 +188,12 @@ namespace GUI
         {
             string selectedLanguage = ddlLanguage.SelectedValue;
             Session["SelectedLanguage"] = selectedLanguage;
+            _idiomaService.CurrentLanguage = selectedLanguage;
+
+            CargarTextos();
+            CargarEmpresas();
+            CargarTipoProducto();
+            UpdatePanel1.Update();
             Response.Redirect(Request.RawUrl);
         }
     }

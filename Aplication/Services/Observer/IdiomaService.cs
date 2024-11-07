@@ -43,7 +43,9 @@ namespace Aplication.Services.Observer
 
         private void NotifyObservers()
         {
-            foreach (var observer in _observers)
+            var observersSnapshot = new List<IIdiomaService>(_observers);
+
+            foreach (var observer in observersSnapshot)
             {
                 observer.UpdateLanguage(_currentLanguage);
             }

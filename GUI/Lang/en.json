@@ -401,5 +401,10 @@
   "IngreseUsuarioBusqueda": "Please enter a user in the search.",
   "DatosModificadosExitosamente": "Data was modified successfully",
   "SeleccionePuesto": "Select a Position",
-  "SeleccioneArea": "Select an Area"
+  "SeleccioneArea": "Select an Area",
+
+  "CantidadExcedidaTitulo": "Quantity Exceeded",
+  "CantidadExcedidaTexto": "The entered quantity exceeds available stock",
+  "CantidadActualizadaTitulo": "Quantity Updated",
+  "CantidadActualizadaTexto": "The product quantity has been updated."
 }

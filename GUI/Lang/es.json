@@ -401,5 +401,11 @@
   "IngreseUsuarioBusqueda": "Por favor, ingrese un usuario en la busqueda.",
   "DatosModificadosExitosamente": "Se modificaron correctamente los datos",
   "SeleccionePuesto": "Seleccione un Puesto",
-  "SeleccioneArea": "Seleccione un Area"
+  "SeleccioneArea": "Seleccione un Area",
+
+  "CantidadExcedidaTitulo": "Cantidad excedida",
+  "CantidadExcedidaTexto": "La cantidad ingresada es mayor al stock disponible",
+  "CantidadActualizadaTitulo": "Cantidad actualizada",
+  "CantidadActualizadaTexto": "La cantidad del producto ha sido modificada."
+
 }

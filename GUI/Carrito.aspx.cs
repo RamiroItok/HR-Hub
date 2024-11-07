@@ -153,6 +153,11 @@ namespace GUI
 
                 LinkButton btnEliminar = (LinkButton)e.Row.FindControl("btnEliminar");
                 btnEliminar.Text = _idiomaService.GetTranslation("ButtonDelete");
+
+                TextBox txtCantidad = (TextBox)e.Row.FindControl("txtCantidad");
+                int idProducto = Convert.ToInt32(gvCarrito.DataKeys[e.Row.RowIndex].Value);
+                var producto = _productoService.ObtenerProductoPorId(idProducto);
+                txtCantidad.Attributes["data-stock"] = producto.Cantidad.ToString();
             }
         }
 
