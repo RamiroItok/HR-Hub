@@ -555,5 +555,12 @@
   "ErrorObtenerUsuarioPorId": "Error al obtener usuario por id",
   "ErrorActualizarContrasena": "Error al actualizar contrasena",
   "ErrorObtenerDocumentos": "Error al obtener documentos",
-  "ErrorCreacionBD": "Error al crear la base de datos"
+  "ErrorCreacionBD": "Error al crear la base de datos",
+
+  "TituloRecuperarContrasena": "Recuperar Contrasena",
+  "BotonRecuperarContrasena": "Recuperar Contrasena",
+  "MensajeUsuarioNoExiste": "El usuario no existe",
+  "MensajeContrasenaEnviada": "Se ha enviado una nueva contrasena a su correo electronico.",
+  "MensajeErrorActualizarContrasena": "Hubo un error al actualizar la contrasena. Intente nuevamente",
+  "BotonVolver": "Volver"
 }

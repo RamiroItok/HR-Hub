@@ -555,5 +555,13 @@
   "ErrorObtenerUsuarioPorId": "Error retrieving user by ID",
   "ErrorActualizarContrasena": "Error updating password",
   "ErrorObtenerDocumentos": "Error retrieving documents",
-  "ErrorCreacionBD": "Error creating database"
+  "ErrorCreacionBD": "Error creating database",
+
+  "TituloRecuperarContrasena": "Recover Password",
+  "BotonRecuperarContrasena": "Recover Password",
+  "MensajeUsuarioNoExiste": "User does not exist",
+  "MensajeContrasenaEnviada": "A new password has been sent to your email",
+  "MensajeErrorActualizarContrasena": "There was an error updating the password. Please try again",
+  "BotonVolver": "Back"
+
 }
