@@ -26,6 +26,7 @@
         DesbloquearUsuario,
         Documentos,
         CargaDocumentos,
-        MisDocumentos
+        MisDocumentos,
+        DocumentoReporte
     }
 }

@@ -12,5 +12,6 @@ namespace Data.Interfaces
         DataSet ObtenerDocumentos();
         void FirmarDocumento(int idDocumento, int idUsuario);
         void QuitarDocumentosAUsuario(int idUsuario);
+        DataSet ObtenerPorcentajeFirmasPorDocumento();
     }
 }

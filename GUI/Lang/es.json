@@ -488,5 +488,7 @@
 
   "RegistroExitoTitulo": "Registro Exitoso",
   "RegistroExitoTexto": "Su registro se ha completado correctamente.",
-  "RegistroExitoBoton": "Continuar"
+  "RegistroExitoBoton": "Continuar",
+
+  "DocumentoReporte": "Reporte de documentos"
 }

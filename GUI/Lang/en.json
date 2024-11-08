@@ -488,5 +488,6 @@
 
   "RegistroExitoTitulo": "Successful Registration",
   "RegistroExitoTexto": "Your registration has been successfully completed.",
-  "RegistroExitoBoton": "Continue"
+  "RegistroExitoBoton": "Continue",
+  "DocumentoReporte": "Documents Reports"
 }

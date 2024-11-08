@@ -1,5 +1,6 @@
 ﻿using Models;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Aplication.Interfaces
 {
@@ -13,5 +14,6 @@ namespace Aplication.Interfaces
         byte[] ObtenerContenidoPorId(int idDocumento);
         void FirmarDocumento(int idDocumento, Usuario userSession);
         void QuitarDocumentosAUsuario(int idUsuario);
+        DataSet ObtenerPorcentajeFirmasPorDocumento();
     }
 }

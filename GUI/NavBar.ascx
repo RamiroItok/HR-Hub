@@ -75,6 +75,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a id="reporteComprasLink" runat="server" href="~/ReporteCompras"><asp:Literal ID="litReporteCompras" runat="server">Reporte de compras</asp:Literal></a></li>
+                        <li><a id="reporteDocumentosLink" runat="server" href="~/DocumentoReporte"><asp:Literal ID="litDocumentoReporte" runat="server">Reporte de documentos</asp:Literal></a></li>
                     </ul>
                 </li>
 

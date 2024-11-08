@@ -213,5 +213,21 @@ namespace Aplication.Services
                 throw new Exception(ex.Message);
             }
         }
+
+        public DataSet ObtenerPorcentajeFirmasPorDocumento()
+        {
+            try
+            {
+                return _documentoDAO.ObtenerPorcentajeFirmasPorDocumento();
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -52,6 +52,7 @@
     <Compile Include="DetalleCompra.cs" />
     <Compile Include="DigitoVerificador.cs" />
     <Compile Include="Documento.cs" />
+    <Compile Include="DocumentoReporte.cs" />
     <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="Enums\Area.cs" />

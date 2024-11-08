@@ -12,10 +12,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link href="/Style/NavBar.css" rel="stylesheet" />
     <link href="/Style/Reporte.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 <body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo2.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
     <form id="form1" runat="server">
@@ -47,8 +47,12 @@
             <asp:ListItem Text="Español" Value="es"></asp:ListItem>
             <asp:ListItem Text="English" Value="en"></asp:ListItem>
         </asp:DropDownList>
+        <script src="Scripts/jquery-3.4.1.min.js"></script>
+        <script src="Scripts/bootstrap.min.js"></script>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script>
         function mostrarNotificacionXMLGenerado(title, text) {
             Swal.fire({
@@ -118,11 +122,19 @@
                 });
             });
         }
+    </script>    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo2.jpg')";
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundAttachment = "fixed";
+            document.body.style.minHeight = "100vh";
+            document.body.style.display = "flex";
+            document.body.style.justifyContent = "center";
+            document.body.style.alignItems = "center";
+            document.body.style.margin = "0";
+        });
     </script>
-        
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-    <script src="Scripts/jquery-3.4.1.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
 </body>
 </html>

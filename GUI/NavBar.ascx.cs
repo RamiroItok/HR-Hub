@@ -76,6 +76,7 @@ namespace GUI.Controls
                 documentosLink.Visible = false;
                 cargaDocumentosLink.Visible = false;
                 misDocumentosLink.Visible = false;
+                reporteDocumentosLink.Visible = false;
             }
 
             if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto == Models.Enums.Puesto.WebMaster)
@@ -98,6 +99,7 @@ namespace GUI.Controls
                 documentosLink.Visible = false;
                 cargaDocumentosLink.Visible = false;
                 misDocumentosLink.Visible = false;
+                reporteDocumentosLink.Visible = false;
                 return;
             }
             else if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto != Models.Enums.Puesto.WebMaster)
@@ -118,6 +120,7 @@ namespace GUI.Controls
                 documentosLink.Visible = false;
                 cargaDocumentosLink.Visible = false;
                 misDocumentosLink.Visible = false;
+                reporteDocumentosLink.Visible = false;
                 return;
             }
             
@@ -200,6 +203,9 @@ namespace GUI.Controls
                         case Models.Composite.Permiso.MisDocumentos:
                             misDocumentosLink.Visible = true;
                             break;
+                        case Models.Composite.Permiso.DocumentoReporte:
+                            reporteDocumentosLink.Visible = true;
+                            break;
                     }
                 }
             }
@@ -242,6 +248,7 @@ namespace GUI.Controls
                 litMisDocumentos.Text = _idiomaService.GetTranslation("MisDocumentos");
                 litDocumentos.Text = _idiomaService.GetTranslation("Documentos");
                 litCargaDocumentos.Text = _idiomaService.GetTranslation("CargaDocumentos");
+                litDocumentoReporte.Text = _idiomaService.GetTranslation("DocumentoReporte");
             }
         }
 

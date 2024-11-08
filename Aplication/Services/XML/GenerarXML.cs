@@ -76,5 +76,35 @@ namespace Aplication.Services.XML
                 writer.WriteEndDocument();
             }
         }
+
+        public void GenerarXMLFirmasDocumentos(List<DocumentoReporte> documentos)
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data", "ReporteFirmasDocumentos.xml");
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+
+            using (XmlWriter writer = XmlWriter.Create(path, new XmlWriterSettings { Indent = true, Encoding = Encoding.UTF8 }))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("DocumentosFirmasReporte");
+
+                foreach (var documento in documentos)
+                {
+                    writer.WriteStartElement("Documento");
+
+                    writer.WriteElementString("IdDocumento", documento.IdDocumento.ToString());
+                    writer.WriteElementString("NombreDocumento", documento.NombreDocumento);
+                    writer.WriteElementString("TotalAsignados", documento.TotalAsignados.ToString());
+                    writer.WriteElementString("TotalFirmados", documento.TotalFirmados.ToString());
+                    writer.WriteElementString("TotalNoFirmados", documento.TotalNoFirmados.ToString());
+                    writer.WriteElementString("PorcentajeFirmado", documento.PorcentajeFirmado.ToString("F2"));
+                    writer.WriteElementString("PorcentajeNoFirmado", documento.PorcentajeNoFirmado.ToString("F2"));
+
+                    writer.WriteEndElement();
+                }
+
+                writer.WriteEndElement();
+                writer.WriteEndDocument();
+            }
+        }
     }
 }

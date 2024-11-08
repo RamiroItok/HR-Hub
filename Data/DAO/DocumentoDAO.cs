@@ -5,9 +5,6 @@ using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.DAO
 {
@@ -109,6 +106,18 @@ namespace Data.DAO
             catch
             {
                 throw new Exception("Error al obtener el contenido del documento.");
+            }
+        }
+
+        public DataSet ObtenerPorcentajeFirmasPorDocumento()
+        {
+            try
+            {
+                return _acceso.ExecuteStoredProcedureReader("ObtenerPorcentajeFirmasPorDocumento", null);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
