@@ -25,11 +25,11 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div class="containerReporte mt-5">
-                    <h2 class="text-center">Reporte de Firmas de Documentos</h2>
-                    <p class="text-center">Porcentaje de documentos firmados y no firmados por los empleados</p>
+                    <h2 class="text-center"><asp:Literal ID="litReporteTitulo" runat="server" Text="Reporte de Firmas de Documentos"></asp:Literal></h2>
+                    <p class="text-center"><asp:Literal ID="litReporteDescripcion" runat="server" Text="Porcentaje de documentos firmados y no firmados por los empleados"></asp:Literal></p>
 
-                    <asp:Button ID="btnGenerarReporte" runat="server" Text="Generar Reporte" CssClass="btn btn-primary mb-4" OnClick="btnGenerarReporte_Click" />
-                    <asp:Button ID="btnGenerarXML" runat="server" Text="Generar XML" CssClass="btn btn-secondary mb-4 ml-2" OnClick="btnGenerarXML_Click" />
+                    <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-primary mb-4" OnClick="btnGenerarReporte_Click" />
+                    <asp:Button ID="btnGenerarXML" runat="server" CssClass="btn btn-secondary mb-4 ml-2" OnClick="btnGenerarXML_Click" />
 
 
                     <div id="chartContainer"></div>
@@ -39,6 +39,12 @@
                 <asp:AsyncPostBackTrigger ControlID="btnGenerarReporte" EventName="Click" />
             </Triggers>
         </asp:UpdatePanel>
+
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true"
+            OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
+            <asp:ListItem Text="Español" Value="es"></asp:ListItem>
+            <asp:ListItem Text="English" Value="en"></asp:ListItem>
+        </asp:DropDownList>
 
         <script src="Scripts/jquery-3.4.1.min.js"></script>
         <script src="Scripts/bootstrap.min.js"></script>

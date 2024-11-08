@@ -489,5 +489,11 @@
   "RegistroExitoTitulo": "Successful Registration",
   "RegistroExitoTexto": "Your registration has been successfully completed.",
   "RegistroExitoBoton": "Continue",
-  "DocumentoReporte": "Documents Reports"
+  "DocumentoReporte": "Documents Reports",
+
+  "TituloReporteDocumentos": "Document Signatures Report",
+  "DescripcionReporteDocumentos": "Percentage of signed and unsigned documents by employees",
+  "SinDatosReporteDocumentos": "There is no data available to generate the report",
+  "XMLGenerado": "Generated XML",
+  "NoDatosXML": "There is no data available to generate the XML"
 }

@@ -490,5 +490,10 @@
   "RegistroExitoTexto": "Su registro se ha completado correctamente.",
   "RegistroExitoBoton": "Continuar",
 
-  "DocumentoReporte": "Reporte de documentos"
+  "DocumentoReporte": "Reporte de documentos",
+  "TituloReporteDocumentos": "Reporte de Firmas de Documentos",
+  "DescripcionReporteDocumentos": "Porcentaje de documentos firmados y no firmados por los empleados",
+  "SinDatosReporteDocumentos": "No hay datos disponibles para generar el reporte",
+  "XMLGenerado": "XML Generado",
+  "NoDatosXML": "No hay datos disponibles para generar el XML"
 }
