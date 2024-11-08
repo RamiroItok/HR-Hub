@@ -1,4 +1,6 @@
 ﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
+using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using System;
@@ -9,15 +11,18 @@ using Unity;
 
 namespace GUI
 {
-    public partial class MisDocumentos : Page
+    public partial class MisDocumentos : Page, IIdiomaService
     {
         private readonly IDocumentoService _documentoService;
         private readonly IPermisoService _permisoService;
+        private readonly IdiomaService _idiomaService;
 
         public MisDocumentos()
         {
             _documentoService = Global.Container.Resolve<IDocumentoService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _idiomaService = Global.Container.Resolve<IdiomaService>();
+            _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -29,13 +34,60 @@ namespace GUI
                 return;
             }
 
-            if (!IsPostBack)
+            try
             {
-                if (Session["DocumentosLeidos"] == null)
+                if (!IsPostBack)
                 {
-                    Session["DocumentosLeidos"] = new HashSet<int>();
+                    if (Session["DocumentosLeidos"] == null)
+                    {
+                        Session["DocumentosLeidos"] = new HashSet<int>();
+                    }
+                    CargarDocumentos(false);
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
                 }
-                CargarDocumentos(false);
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+            }
+            finally
+            {
+                CargarTextos();
+            }
+        }
+
+        private void CargarTextos()
+        {
+            if (!(lblTituloMisDocumentos == null))
+            {
+                lblTituloMisDocumentos.Text = _idiomaService.GetTranslation("MisDocumentos");
+                lblNoDocumentos.Text = _idiomaService.GetTranslation("NoHayDocumentos");
+                chkFirmado.Text = _idiomaService.GetTranslation("Firmado");
+                dataGridDocumentos.Columns[0].HeaderText = _idiomaService.GetTranslation("HeaderID");
+                dataGridDocumentos.Columns[1].HeaderText = _idiomaService.GetTranslation("HeaderNombre");
+                dataGridDocumentos.Columns[2].HeaderText = _idiomaService.GetTranslation("HeaderFechaEntrega");
+                dataGridDocumentos.Columns[3].HeaderText = _idiomaService.GetTranslation("HeaderFechaFirma");
+                dataGridDocumentos.Columns[4].HeaderText = _idiomaService.GetTranslation("HeaderFirmado");
+                dataGridDocumentos.DataBind();
+
+                foreach (GridViewRow row in dataGridDocumentos.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        Button btnLeer = (Button)row.FindControl("btnLeer");
+                        Button btnFirmar = (Button)row.FindControl("btnFirmar");
+
+                        if (btnLeer != null)
+                            btnLeer.Text = _idiomaService.GetTranslation("ButtonLeerDocumento");
+
+                        if (btnFirmar != null)
+                            btnFirmar.Text = _idiomaService.GetTranslation("ButtonFirmarDocumento");
+                    }
+                }
             }
         }
 
@@ -52,6 +104,7 @@ namespace GUI
         protected void chkFirmado_CheckedChanged(object sender, EventArgs e)
         {
             CargarDocumentos(chkFirmado.Checked);
+            CargarTextos();
         }
 
         protected void dataGridDocumentos_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -102,10 +155,23 @@ namespace GUI
             }
         }
 
+        public void UpdateLanguage(string language)
+        {
+            CargarTextos();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            _idiomaService.Unsubscribe(this);
+            base.OnUnload(e);
+        }
+
         protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedLanguage = ddlLanguage.SelectedValue;
             Session["SelectedLanguage"] = selectedLanguage;
+            _idiomaService.CurrentLanguage = selectedLanguage;
+            CargarTextos();
             Response.Redirect(Request.RawUrl);
         }
     }

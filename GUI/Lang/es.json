@@ -562,5 +562,14 @@
   "MensajeUsuarioNoExiste": "El usuario no existe",
   "MensajeContrasenaEnviada": "Se ha enviado una nueva contrasena a su correo electronico.",
   "MensajeErrorActualizarContrasena": "Hubo un error al actualizar la contrasena. Intente nuevamente",
-  "BotonVolver": "Volver"
+  "BotonVolver": "Volver",
+
+  "NoHayDocumentos": "No hay documentos",
+  "Firmado": "Firmado",
+  "HeaderNombre": "Nombre",
+  "HeaderFechaEntrega": "Fecha de entrega",
+  "HeaderFechaFirma": "Fecha de firma",
+  "HeaderFirmado": "Firmado",
+  "ButtonLeerDocumento": "Leer documento",
+  "ButtonFirmarDocumento": "Firmar documento"
 }

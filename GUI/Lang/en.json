@@ -562,6 +562,14 @@
   "MensajeUsuarioNoExiste": "User does not exist",
   "MensajeContrasenaEnviada": "A new password has been sent to your email",
   "MensajeErrorActualizarContrasena": "There was an error updating the password. Please try again",
-  "BotonVolver": "Back"
+  "BotonVolver": "Back",
 
+  "NoHayDocumentos": "No documents available",
+  "Firmado": "Signed",
+  "HeaderNombre": "Name",
+  "HeaderFechaEntrega": "Delivery Date",
+  "HeaderFechaFirma": "Signature Date",
+  "HeaderFirmado": "Signed",
+  "ButtonLeerDocumento": "Read document",
+  "ButtonFirmarDocumento": "Sign document"
 }
