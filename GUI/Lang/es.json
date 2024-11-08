@@ -463,5 +463,12 @@
   "HeaderPrecioUnitario": "Precio Unitario",
   "HeaderSubtotal": "Subtotal",
   "ButtonCerrar": "Cerrar",
-  "ButtonDescargarPdf": "Descargar"
+  "ButtonDescargarPdf": "Descargar",
+
+  "PageTitleListadoProductos": "HR Hub - Listado de Productos",
+  "TituloListadoProductos": "Listado de Productos",
+  "TituloModalModificarProducto": "Modificar Producto",
+  "LabelTipoProducto": "Tipo de Producto",
+  "MensajeProductoEliminado": "El producto ha sido eliminado correctamente.",
+  "MensajeProductoModificado": "El producto ha sido modificado correctamente."
 }
