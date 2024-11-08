@@ -10,14 +10,17 @@
 
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Style/NavBar.css" rel="stylesheet" />
+    <link href="~/Style/GestionFamiliaPatente.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
     <form id="form1" runat="server" style="width: 100%; max-width: 1000px; margin: 0 auto;">
-        <uc:NavBar ID="NavBar" runat="server" />
+        <uc:NavBar ID="NavBar" runat="server" CssClass="navbar-fixed-top" />
 
-        <h1 class="title">
-            <asp:Literal ID="litTituloPagina" runat="server" Text="Gestión Familia Patente"></asp:Literal>
-        </h1>
+        <div class="container-title">
+            <h1 class="title">
+                <asp:Literal ID="litTituloPagina" runat="server" Text="Gestión Familia Patente"></asp:Literal>
+            </h1>
+        </div>
 
         <div class="form-group">
             <asp:Label ID="lblMessage" runat="server" CssClass="text-danger"></asp:Label>

@@ -67,6 +67,7 @@ namespace GUI
             {
                 var btnModificar = (LinkButton)e.Item.FindControl("btnModificar");
                 var litModificar = (Literal)e.Item.FindControl("litModificar");
+                var btnEliminar = (Button)e.Item.FindControl("btnEliminar"); 
 
                 if (btnModificar != null && litModificar != null)
                 {
@@ -78,6 +79,11 @@ namespace GUI
                     var url = dataItem["URLEmpresa"].ToString();
 
                     btnModificar.OnClientClick = $"openModal('{id}', '{nombre}', '{url}'); return false;";
+                }
+
+                if (btnEliminar != null)
+                {
+                    btnEliminar.Text = _idiomaService.GetTranslation("BotonEliminar");
                 }
             }
         }

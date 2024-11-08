@@ -1,77 +1,90 @@
-﻿/* Estilos generales */
+﻿.navbar-fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #333; /* Asegúrate de que el color de fondo cubre completamente */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste de padding en el body para que no quede detrás del navbar */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7f7f7;
-    color: #333;
+    padding-top: 60px; /* Ajusta este valor según la altura de tu navbar */
+}
+
+form {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+    form:hover {
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    form#form1 {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+/* Título centrado */
+.title {
+    color: #2e7d32;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-align: center; /* Asegura el centrado del texto */
+}
+
+/* Ajuste adicional para alinear el texto del título */
+.container-title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
-
-/* Estilos del contenedor principal */
-.container {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 20px 15px; /* Reducido para mejor ajuste */
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Asegura que nada salga del contenedor */
-}
-
-/* Título principal */
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #444;
-}
-
-/* Estilos para grupos de formularios */
-.form-group {
-    margin-bottom: 20px;
-}
-
-/* Estilos para las etiquetas */
+/* Labels and Buttons */
 .form-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #555;
+    font-weight: bold;
+    color: #4CAF50;
 }
 
-/* Estilos para los controles de formulario */
-.form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
+.text-danger {
+    color: #d9534f;
 }
 
-    .form-control:focus {
-        border-color: #76B041;
-        box-shadow: 0 0 8px rgba(118, 176, 65, 0.2);
-        outline: none;
-    }
+.text-success {
+    color: #5cb85c;
+}
 
-/* Botones */
+/* Button Styles */
 .btn {
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 10px 20px;
-    margin-right: 10px;
+    color: #ffffff;
     border: none;
-    border-radius: 4px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary {
     background-color: #007bff;
-    color: white;
 }
 
     .btn-primary:hover {
@@ -80,7 +93,6 @@ h2 {
 
 .btn-success {
     background-color: #28a745;
-    color: white;
 }
 
     .btn-success:hover {
@@ -89,61 +101,90 @@ h2 {
 
 .btn-danger {
     background-color: #dc3545;
-    color: white;
 }
 
     .btn-danger:hover {
         background-color: #c82333;
     }
 
-.btn-secondary {
-    background-color: #6c757d;
-    color: white;
-}
-
-    .btn-secondary:hover {
-        background-color: #5a6268;
-    }
-
-/* Estilos para el GridView */
+/* Table Styles */
 .table {
     width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
     margin-bottom: 20px;
-    border-collapse: collapse;
-    table-layout: auto; /* Cambia a 'auto' para que las columnas se ajusten mejor al contenido */
 }
-
-    .table th, .table td {
-        padding: 8px 12px; /* Aumenta el padding para dar más espacio */
-        border: 1px solid #ddd;
-        text-align: left;
-        max-width: 100px; /* Aumenta el max-width para que las celdas no se compriman tanto */
-        overflow: hidden;
-        white-space: normal; /* Permite que el texto se ajuste dentro de las celdas */
-    }
 
     .table th {
-        background-color: #f4f4f4;
+        background-color: #4CAF50;
+        color: #ffffff;
         font-weight: bold;
-        color: #555;
+        padding: 10px;
+        text-align: left;
     }
 
-    .table tr:nth-child(even) {
-        background-color: #f9f9f9;
+    .table td {
+        background-color: #e8f5e9;
+        padding: 10px;
+        color: #333;
+        border-radius: 4px;
     }
 
-    .table tr:hover {
-        background-color: #f1f1f1;
+    .table tbody tr:hover {
+        background-color: #dcedc8;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
     }
 
-    .table .chkSeleccionar {
-        text-align: center;
-    }
-
-.text-danger {
-    color: #dc3545;
+/* DropDownList Styles */
+.language-selector {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background-color: #ffffff;
+    color: #333;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     font-weight: bold;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
 }
+
+    .language-selector:hover {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+/* Custom Checkbox Row Highlight */
+.grid-view-row-selected {
+    background-color: #c3e6cb;
+    transition: background-color 0.3s ease;
+}
+
+/* Modal Title and Header */
+.modal-header {
+    background-color: #4CAF50;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .form-group {
+        padding: 10px;
+    }
+}
+
 
 #ddlLanguage {
     position: fixed;
