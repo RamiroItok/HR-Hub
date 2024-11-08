@@ -1,6 +1,7 @@
 ﻿using Data.Conexion;
 using Data.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
@@ -15,11 +16,11 @@ namespace Data.DAO
             _acceso = Acceso.GetInstance;
         }
 
-        public string Verificar_DV()
+        public List<string> Verificar_DV()
         {
             try
             {
-                string mensaje = "";
+                List<string> listaMensajes = new List<string>();
                 string consulta = "SELECT NombreTabla as Tabla, DV as Valor_DV from DigitoVerificador";
                 DataTable dt = _acceso.GenerarConsulta(consulta);
                 foreach (DataRow fila in dt.Rows)
@@ -31,14 +32,10 @@ namespace Data.DAO
                     DataTable dt2 = _acceso.GenerarConsulta(consulta2);
                     int DVH = int.Parse(dt2.Rows[0]["DVH"].ToString());
 
-                    if (DV == DVH)
+                    if (DV != DVH)
                     {
-                        mensaje = "true";
-                    }
-                    else
-                    {
-                        mensaje = tabla;
-                        return mensaje;
+                        listaMensajes.Add(tabla);
+                        continue;
                     }
                     string consulta3 = "SELECT * FROM " + tabla;
                     DataTable dt3 = _acceso.GenerarConsulta(consulta3);
@@ -62,18 +59,14 @@ namespace Data.DAO
                             }
                         }
                     }
-                    if (dvh_fila == DV)
+                    if (dvh_fila != DV)
                     {
-                        mensaje = "true";
-                    }
-                    else
-                    {
-                        mensaje = tabla;
-                        return mensaje;
+                        listaMensajes.Add(tabla);
+                        continue;
                     }
 
                 }
-                return mensaje;
+                return listaMensajes;
             }
             catch
             {

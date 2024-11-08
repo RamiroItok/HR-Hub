@@ -2,6 +2,7 @@
 using Aplication.Interfaces.Observer;
 using Aplication.Services.Observer;
 using System;
+using System.Collections.Generic;
 using System.Web.UI;
 using Unity;
 
@@ -50,11 +51,11 @@ namespace GUI
         {
             try
             {
-                string mensaje = _digitoVerificadorService.VerificarDV();
-                if (mensaje != "true")
+                List<string> listaMensajes = _digitoVerificadorService.VerificarDV();
+                if (listaMensajes.Count > 0)
                 {
                     Models.FalloIntegridad falloIntegridad = new Models.FalloIntegridad();
-                    falloIntegridad.Tabla = mensaje;
+                    falloIntegridad.Tablas = listaMensajes;
                     falloIntegridad.Fallo = true;
 
                     var usuario = _usuarioService.ValidarUsuarioWebMaster(ValidarEmailControl.Email, PasswordValidator.Password);
@@ -63,7 +64,7 @@ namespace GUI
                         Session["Usuario"] = usuario;
 
                     Session["ErrorVerificacionDV"] = falloIntegridad;
-                    Response.Redirect($"ErrorDigitoVerificador.aspx?mensaje={mensaje}");
+                    Response.Redirect($"ErrorDigitoVerificador.aspx");
                     return;
                 }
 
