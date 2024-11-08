@@ -163,7 +163,7 @@
   "TituloErrorVerificador": "Verification Digit Error!",
   "ErrorIngresarSistema": "There was an error entering the system",
   "ErrorDesconocido": "An unknown error has occurred.",
-  "MensajeContactoAdmin": "Please contact an administrator or WebMaster to resolve this issue.",
+  "MensajeContactoAdmin": "Please contact a WebMaster to resolve this issue.",
   "BotonAceptar": "Accept",
 
   "PageTitleFalloIntegridad": "Integrity Failure",
@@ -484,5 +484,9 @@
   "Documentos": "Documents",
   "CargaDocumentos": "Upload documents",
 
-  "EnlaceRecuperarContrasenia": "Have you forgotten your password?"
+  "EnlaceRecuperarContrasenia": "Have you forgotten your password?",
+
+  "RegistroExitoTitulo": "Successful Registration",
+  "RegistroExitoTexto": "Your registration has been successfully completed.",
+  "RegistroExitoBoton": "Continue"
 }
