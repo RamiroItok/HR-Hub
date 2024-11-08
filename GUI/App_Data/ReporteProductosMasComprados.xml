@@ -11,10 +11,6 @@
   <Anio valor="2024">
     <Mes nombre="noviembre">
       <Producto>
-        <Nombre>Banana</Nombre>
-        <VecesComprado>64</VecesComprado>
-      </Producto>
-      <Producto>
         <Nombre>Remera negra</Nombre>
         <VecesComprado>21</VecesComprado>
       </Producto>

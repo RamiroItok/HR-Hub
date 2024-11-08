@@ -495,5 +495,7 @@
   "DescripcionReporteDocumentos": "Porcentaje de documentos firmados y no firmados por los empleados",
   "SinDatosReporteDocumentos": "No hay datos disponibles para generar el reporte",
   "XMLGenerado": "XML Generado",
-  "NoDatosXML": "No hay datos disponibles para generar el XML"
+  "NoDatosXML": "No hay datos disponibles para generar el XML",
+
+  "ErrorBD": "Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos"
 }

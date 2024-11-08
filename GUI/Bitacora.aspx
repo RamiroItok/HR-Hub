@@ -83,12 +83,6 @@
                 </Columns>
             </asp:GridView>
         </div>
-
-        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true"
-            OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
-            <asp:ListItem Text="Español" Value="es"></asp:ListItem>
-            <asp:ListItem Text="English" Value="en"></asp:ListItem>
-        </asp:DropDownList>
     </form>
 
     <script>

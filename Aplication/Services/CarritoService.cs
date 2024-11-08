@@ -30,7 +30,7 @@ namespace Aplication.Services
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -48,7 +48,7 @@ namespace Aplication.Services
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -68,7 +68,7 @@ namespace Aplication.Services
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -109,7 +109,7 @@ namespace Aplication.Services
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {

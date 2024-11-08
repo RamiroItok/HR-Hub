@@ -45,34 +45,40 @@ namespace GUI
                     _idiomaService.CurrentLanguage = selectedLanguage;
                     CargarEmpresas();
                     CargarTipoProducto();
-                    CargarTextos();
                 }
             }
             catch (Exception ex)
             {
                 lblMensaje.Visible = true;
                 lblMensaje.CssClass = "text-danger";
-                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {ex.Message}";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
+            }
+            finally
+            {
+                CargarTextos();
             }
         }
 
         private void CargarTextos()
         {
-            Page.Title = _idiomaService.GetTranslation("PageTitleAltaProducto");
-            tituloRegistro.InnerText = _idiomaService.GetTranslation("TituloAltaProducto");
-            lblNombreProducto.InnerText = _idiomaService.GetTranslation("LabelNombreProducto");
-            txtNombreProducto.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombreProducto");
-            lblEmpresa.Text = _idiomaService.GetTranslation("LabelEmpresa");
-            lblImagenProducto.InnerText = _idiomaService.GetTranslation("LabelImagenProducto");
-            lblDescripcion.InnerText = _idiomaService.GetTranslation("LabelDescripcion");
-            txtDescripcion.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderDescripcion");
-            lblTipo.Text = _idiomaService.GetTranslation("LabelTipo");
-            lblCantidad.InnerText = _idiomaService.GetTranslation("LabelCantidad");
-            txtCantidad.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCantidad");
-            lblPrecioUnitario.InnerText = _idiomaService.GetTranslation("LabelPrecioUnitario");
-            txtPrecioUnitario.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderPrecioUnitario");
-            btnSubmit.Text = _idiomaService.GetTranslation("ButtonRegistrar");
-            btnCancel.Text = _idiomaService.GetTranslation("ButtonCancelar");
+            if (!(tituloRegistro == null))
+            {
+                tituloRegistro.InnerText = _idiomaService.GetTranslation("TituloAltaProducto");
+                Page.Title = _idiomaService.GetTranslation("PageTitleAltaProducto");
+                lblNombreProducto.InnerText = _idiomaService.GetTranslation("LabelNombreProducto");
+                txtNombreProducto.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombreProducto");
+                lblEmpresa.Text = _idiomaService.GetTranslation("LabelEmpresa");
+                lblImagenProducto.InnerText = _idiomaService.GetTranslation("LabelImagenProducto");
+                lblDescripcion.InnerText = _idiomaService.GetTranslation("LabelDescripcion");
+                txtDescripcion.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderDescripcion");
+                lblTipo.Text = _idiomaService.GetTranslation("LabelTipo");
+                lblCantidad.InnerText = _idiomaService.GetTranslation("LabelCantidad");
+                txtCantidad.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderCantidad");
+                lblPrecioUnitario.InnerText = _idiomaService.GetTranslation("LabelPrecioUnitario");
+                txtPrecioUnitario.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderPrecioUnitario");
+                btnSubmit.Text = _idiomaService.GetTranslation("ButtonRegistrar");
+                btnCancel.Text = _idiomaService.GetTranslation("ButtonCancelar");
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -113,16 +119,12 @@ namespace GUI
                     Limpiar();
                 }
                 else
-                {
-                    lblMensaje.CssClass = "text-danger"; 
-                    lblMensaje.Text = _idiomaService.GetTranslation("MensajeCamposIncompletos");
-                    lblMensaje.Visible = true; 
-                }
+                    throw new Exception("MensajeCamposIncompletos");
             }
             catch (Exception ex)
             {
                 lblMensaje.CssClass = "text-danger";
-                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {ex.Message}";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
                 lblMensaje.Visible = true;
             }
         }

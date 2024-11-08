@@ -28,6 +28,10 @@
                             <asp:Label ID="lblProductosTitle" runat="server" Text="Productos"></asp:Label>
                         </h1>
 
+                        <div class="text-center mt-4">
+                            <asp:Label ID="lblMensaje" runat="server" CssClass="text-success" Visible="false"></asp:Label>
+                        </div>
+
                         <div class="row filtros-busqueda d-flex justify-content-center">
                             <div class="col-md-3">
                                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Filtrar por Nombre"></asp:TextBox>

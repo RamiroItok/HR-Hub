@@ -37,12 +37,24 @@ namespace GUI
                 return;
             }
 
-            if (!IsPostBack)
+            try
             {
-                CargarUsuariosBloqueados();
-                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
-                ddlLanguage.SelectedValue = selectedLanguage;
-                _idiomaService.CurrentLanguage = selectedLanguage;
+                if (!IsPostBack)
+                {
+                    CargarUsuariosBloqueados();
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
+            }
+            finally
+            {
                 CargarTextos();
             }
         }

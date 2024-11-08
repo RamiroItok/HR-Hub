@@ -27,6 +27,10 @@
             <h2><asp:Literal ID="litTitle" runat="server"></asp:Literal></h2>
             <p><asp:Literal ID="litDescription" runat="server"></asp:Literal></p>
 
+            <div class="text-center mt-4">
+                    <asp:Label ID="lblMensaje" runat="server" CssClass="text-success" Visible="false"></asp:Label>
+                </div>
+
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <div class="button-container">

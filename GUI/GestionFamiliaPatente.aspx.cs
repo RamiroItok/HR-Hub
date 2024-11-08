@@ -35,13 +35,25 @@ namespace GUI
                 return;
             }
 
-            if (!IsPostBack)
+            try
             {
-                CargarFamilias();
-                CargarDataGrids();
-                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
-                ddlLanguage.SelectedValue = selectedLanguage;
-                _idiomaService.CurrentLanguage = selectedLanguage;
+                if (!IsPostBack)
+                {
+                    CargarFamilias();
+                    CargarDataGrids();
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Visible = true;
+                lblMessage.CssClass = "text-danger";
+                lblMessage.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
+            }
+            finally
+            {
                 CargarTextos();
             }
         }
@@ -178,7 +190,7 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                lblMessage.Text = _idiomaService.GetTranslation("ErrorAlAsignarPermisos") + ex.Message;
+                lblMessage.Text = _idiomaService.GetTranslation("ErrorAlAsignarPermisos") + _idiomaService.GetTranslation(ex.Message);
                 lblMessage.ForeColor = System.Drawing.Color.Red;
             }
         }
@@ -231,7 +243,7 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                lblMessage.Text = ex.Message;
+                lblMessage.Text = _idiomaService.GetTranslation(ex.Message);
             }
         }
 

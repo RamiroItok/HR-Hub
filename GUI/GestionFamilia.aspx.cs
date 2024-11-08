@@ -35,12 +35,24 @@ namespace GUI
                 return;
             }
 
-            if (!IsPostBack)
+            try
             {
-                CargarFamilia();
-                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
-                ddlLanguage.SelectedValue = selectedLanguage;
-                _idiomaService.CurrentLanguage = selectedLanguage;
+                if (!IsPostBack)
+                {
+                    CargarFamilia();
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Visible = true;
+                lblMessage.CssClass = "text-danger";
+                lblMessage.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
+            }
+            finally
+            {
                 CargarTextos();
             }
         }
@@ -55,7 +67,7 @@ namespace GUI
                     if (existeFamilia == true)
                     {
                         Limpiar();
-                        throw new Exception(_idiomaService.GetTranslation("FamiliaYaExiste"));
+                        throw new Exception("FamiliaYaExiste");
                     }
 
                     Familia familia = new Familia()
@@ -75,13 +87,13 @@ namespace GUI
                 }
                 else
                 {
-                    throw new Exception(_idiomaService.GetTranslation("MensajeCamposIncompletos"));
+                    throw new Exception("MensajeCamposIncompletos");
                 }
             }
             catch (Exception ex)
             {
                 lblMessage.CssClass = "text-danger";
-                lblMessage.Text = ex.Message;
+                lblMessage.Text = _idiomaService.GetTranslation(ex.Message);
             }
             finally
             {

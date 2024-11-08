@@ -495,5 +495,7 @@
   "DescripcionReporteDocumentos": "Percentage of signed and unsigned documents by employees",
   "SinDatosReporteDocumentos": "There is no data available to generate the report",
   "XMLGenerado": "Generated XML",
-  "NoDatosXML": "There is no data available to generate the XML"
+  "NoDatosXML": "There is no data available to generate the XML",
+
+  "ErrorBD": "The connection to the database has been lost. Please try again in a few minutes"
 }

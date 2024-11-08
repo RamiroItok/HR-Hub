@@ -30,6 +30,10 @@ namespace Aplication.Services
                     return resultado;
                 }
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -50,6 +54,10 @@ namespace Aplication.Services
                     return resultado;
                 }
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -65,6 +73,10 @@ namespace Aplication.Services
 
                 bool resultado = _backUpDAO.CrearBaseDeDatos(server, nombreBase);
                 return resultado;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {

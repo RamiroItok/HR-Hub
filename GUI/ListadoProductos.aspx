@@ -20,7 +20,6 @@
 
         <uc:NavBar runat="server" ID="NavBarControl" />
 
-        <!-- Language Selector -->
         <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true"
             OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
             <asp:ListItem Text="Español" Value="es"></asp:ListItem>

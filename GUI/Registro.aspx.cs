@@ -43,14 +43,17 @@ namespace GUI
                     string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
                     ddlLanguage.SelectedValue = selectedLanguage;
                     _idiomaService.CurrentLanguage = selectedLanguage;
-                    CargarTextos();
                 }
             }
             catch (Exception ex)
             {
                 lblMensaje.Visible = true;
                 lblMensaje.CssClass = "text-danger";
-                lblMensaje.Text = ex.Message;
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
+            finally
+            {
+                CargarTextos();
             }
         }
 
@@ -149,19 +152,19 @@ namespace GUI
                     }
                     else
                     {
-                        throw new Exception(_idiomaService.GetTranslation("ErrorFormatoContraseña"));
+                        throw new Exception("ErrorFormatoContraseña");
                     }
                 }
                 else
                 {
-                    throw new Exception(_idiomaService.GetTranslation("ErrorCamposIncompletos"));
+                    throw new Exception("ErrorCamposIncompletos");
                 }
             }
             catch (Exception ex)
             {
                 lblMensaje.Visible = true;
                 lblMensaje.CssClass = "text-danger";
-                lblMensaje.Text = ex.Message;
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
             }
         }
 

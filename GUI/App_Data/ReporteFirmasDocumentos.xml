@@ -4,10 +4,10 @@
     <IdDocumento>5</IdDocumento>
     <NombreDocumento>Prueba</NombreDocumento>
     <TotalAsignados>6</TotalAsignados>
-    <TotalFirmados>2</TotalFirmados>
-    <TotalNoFirmados>4</TotalNoFirmados>
-    <PorcentajeFirmado>33,33</PorcentajeFirmado>
-    <PorcentajeNoFirmado>66,67</PorcentajeNoFirmado>
+    <TotalFirmados>3</TotalFirmados>
+    <TotalNoFirmados>3</TotalNoFirmados>
+    <PorcentajeFirmado>50,00</PorcentajeFirmado>
+    <PorcentajeNoFirmado>50,00</PorcentajeNoFirmado>
   </Documento>
   <Documento>
     <IdDocumento>6</IdDocumento>
@@ -17,5 +17,14 @@
     <TotalNoFirmados>5</TotalNoFirmados>
     <PorcentajeFirmado>16,67</PorcentajeFirmado>
     <PorcentajeNoFirmado>83,33</PorcentajeNoFirmado>
+  </Documento>
+  <Documento>
+    <IdDocumento>7</IdDocumento>
+    <NombreDocumento>Prueba</NombreDocumento>
+    <TotalAsignados>6</TotalAsignados>
+    <TotalFirmados>0</TotalFirmados>
+    <TotalNoFirmados>6</TotalNoFirmados>
+    <PorcentajeFirmado>0,00</PorcentajeFirmado>
+    <PorcentajeNoFirmado>100,00</PorcentajeNoFirmado>
   </Documento>
 </DocumentosFirmasReporte>

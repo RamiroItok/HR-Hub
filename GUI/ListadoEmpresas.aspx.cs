@@ -36,12 +36,24 @@ namespace GUI
                 return;
             }
 
-            if (!IsPostBack)
+            try
             {
-                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
-                ddlLanguage.SelectedValue = selectedLanguage;
-                _idiomaService.CurrentLanguage = selectedLanguage;
-                CargarEmpresas();
+                if (!IsPostBack)
+                {
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                    CargarEmpresas();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
+            }
+            finally
+            {
                 CargarTextos();
             }
         }
@@ -97,61 +109,79 @@ namespace GUI
 
         protected void btnEliminar_Command(object sender, CommandEventArgs e)
         {
-            if (e.CommandName == "Eliminar")
+            try
             {
-                int idEmpresa = Convert.ToInt32(e.CommandArgument);
+                if (e.CommandName == "Eliminar")
+                {
+                    int idEmpresa = Convert.ToInt32(e.CommandArgument);
 
-                Empresa empresa = _empresaService.ObtenerEmpresaPorId(idEmpresa);
-                var userSession = Session["Usuario"] as Usuario;
+                    Empresa empresa = _empresaService.ObtenerEmpresaPorId(idEmpresa);
+                    var userSession = Session["Usuario"] as Usuario;
 
-                _empresaService.Eliminar(empresa, userSession);
-                CargarEmpresas();
+                    _empresaService.Eliminar(empresa, userSession);
+                    CargarEmpresas();
 
-                lblMensaje.Text = _idiomaService.GetTranslation("MensajeEmpresaEliminada");
-                lblMensaje.CssClass = string.Empty;
-                lblMensaje.CssClass = "alert alert-success";
+                    lblMensaje.Text = _idiomaService.GetTranslation("MensajeEmpresaEliminada");
+                    lblMensaje.CssClass = string.Empty;
+                    lblMensaje.CssClass = "alert alert-success";
+                    lblMensaje.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
                 lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
             }
         }
 
         protected void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtNombreEmpresa.Text) || string.IsNullOrEmpty(txtURLEmpresa.Text))
+            try
             {
-                lblMensaje.Text = _idiomaService.GetTranslation("MensajeErrorCamposFaltantes");
-                lblMensaje.CssClass = string.Empty;
-                lblMensaje.CssClass = "alert alert-danger";
-                lblMensaje.Visible = true;
-                return;
-            }
-
-            byte[] logo = null;
-
-            if (fileLogoEmpresa.HasFile)
-            {
-                using (BinaryReader br = new BinaryReader(fileLogoEmpresa.PostedFile.InputStream))
+                if (string.IsNullOrEmpty(txtNombreEmpresa.Text) || string.IsNullOrEmpty(txtURLEmpresa.Text))
                 {
-                    logo = br.ReadBytes(fileLogoEmpresa.PostedFile.ContentLength);
+                    lblMensaje.Text = _idiomaService.GetTranslation("MensajeErrorCamposFaltantes");
+                    lblMensaje.CssClass = string.Empty;
+                    lblMensaje.CssClass = "alert alert-danger";
+                    lblMensaje.Visible = true;
+                    return;
                 }
+
+                byte[] logo = null;
+
+                if (fileLogoEmpresa.HasFile)
+                {
+                    using (BinaryReader br = new BinaryReader(fileLogoEmpresa.PostedFile.InputStream))
+                    {
+                        logo = br.ReadBytes(fileLogoEmpresa.PostedFile.ContentLength);
+                    }
+                }
+
+                Empresa empresa = new Empresa()
+                {
+                    Id = Convert.ToInt32(hfEmpresaId.Value),
+                    Nombre = string.IsNullOrEmpty(txtNombreEmpresa.Text) ? string.Empty : txtNombreEmpresa.Text,
+                    Logo = logo,
+                    URL = string.IsNullOrEmpty(txtURLEmpresa.Text) ? string.Empty : txtURLEmpresa.Text
+                };
+
+                var userSession = Session["Usuario"] as Usuario;
+                _empresaService.Modificar(empresa, userSession);
+
+                lblMensaje.Text = _idiomaService.GetTranslation("MensajeEmpresaModificada");
+                lblMensaje.CssClass = string.Empty;
+                lblMensaje.CssClass = "alert alert-success";
+                lblMensaje.Visible = true;
+
+                CargarEmpresas();
             }
-
-            Empresa empresa = new Empresa()
+            catch (Exception ex)
             {
-                Id = Convert.ToInt32(hfEmpresaId.Value),
-                Nombre = string.IsNullOrEmpty(txtNombreEmpresa.Text) ? string.Empty : txtNombreEmpresa.Text,
-                Logo = logo,
-                URL = string.IsNullOrEmpty(txtURLEmpresa.Text) ? string.Empty : txtURLEmpresa.Text
-            };
-
-            var userSession = Session["Usuario"] as Usuario;
-            _empresaService.Modificar(empresa, userSession);
-
-            lblMensaje.Text = _idiomaService.GetTranslation("MensajeEmpresaModificada");
-            lblMensaje.CssClass = string.Empty;
-            lblMensaje.CssClass = "alert alert-success";
-            lblMensaje.Visible = true;
-
-            CargarEmpresas();
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
+            }
         }
 
         protected string EnsureUrl(string url)

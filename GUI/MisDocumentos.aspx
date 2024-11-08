@@ -23,6 +23,10 @@
         <div class="containerMisDocumentos mt-5">
             <h2 class="text-center">Mis Documentos</h2>
 
+            <div class="text-center mt-4">
+                    <asp:Label ID="lblMensaje" runat="server" CssClass="text-success" Visible="false"></asp:Label>
+                </div>
+
             <div class="form-check mb-4 text-center">
                 <asp:CheckBox ID="chkFirmado" runat="server" Text="Firmado" AutoPostBack="true" OnCheckedChanged="chkFirmado_CheckedChanged" CssClass="form-check-input" />
                 <label class="form-check-label" for="chkFirmado"></label>

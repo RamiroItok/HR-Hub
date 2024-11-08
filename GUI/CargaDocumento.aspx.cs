@@ -101,7 +101,7 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarPopup", $"mostrarPopup('{ex.Message}');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarPopup", $"mostrarPopup('{_idiomaService.GetTranslation(ex.Message)}');", true);
             }
             
         }

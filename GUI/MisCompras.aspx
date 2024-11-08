@@ -25,6 +25,11 @@
             <h2 class="text-center">
                 <asp:Literal ID="lblTituloMisCompras" runat="server" Text="Mis Compras"></asp:Literal>
             </h2>
+
+            <div class="text-center mt-4">
+                    <asp:Label ID="lblMensaje" runat="server" CssClass="text-success" Visible="false"></asp:Label>
+                </div>
+
             <asp:GridView ID="gvCompras" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered mt-3"
                 HeaderStyle-CssClass="table-header" RowStyle-CssClass="table-row"
                 AlternatingRowStyle-CssClass="table-alt-row" OnRowCommand="gvCompras_RowCommand">

@@ -23,6 +23,9 @@
 
         <div class="containerCarrito mt-4">
             <h2><asp:Label ID="lblCarritoTitulo" runat="server" Text="Carrito de Compras"></asp:Label></h2>
+            <div class="text-center mt-4">
+                    <asp:Label ID="lblMensaje" runat="server" CssClass="text-success" Visible="false"></asp:Label>
+                </div>
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">

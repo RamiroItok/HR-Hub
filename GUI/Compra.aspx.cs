@@ -43,12 +43,24 @@ namespace GUI
                 Response.Redirect("AccesoDenegado.aspx");
                 return;
             }
-            if (!IsPostBack)
+            try
             {
-                CargarCarrito();
-                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
-                ddlLanguage.SelectedValue = selectedLanguage;
-                _idiomaService.CurrentLanguage = selectedLanguage;
+                if (!IsPostBack)
+                {
+                    CargarCarrito();
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
+            }
+            finally
+            {
                 CargarTextos();
             }
         }
