@@ -482,5 +482,7 @@
   "Country": "Country",
   "Phone": "Phone",
   "Documentos": "Documents",
-  "CargaDocumentos": "Upload documents"
+  "CargaDocumentos": "Upload documents",
+
+  "EnlaceRecuperarContrasenia": "Have you forgotten your password?"
 }

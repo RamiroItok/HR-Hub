@@ -10,11 +10,13 @@ namespace GUI
     public partial class Login : Page, IIdiomaService
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly IDigitoVerificadorService _digitoVerificadorService;
         private readonly IdiomaService _idiomaService;
 
         public Login()
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
+            _digitoVerificadorService = Global.Container.Resolve<IDigitoVerificadorService>();
             _idiomaService = Global.Container.Resolve<IdiomaService>();
             _idiomaService.Subscribe(this);
         }
@@ -48,6 +50,23 @@ namespace GUI
         {
             try
             {
+                string mensaje = _digitoVerificadorService.VerificarDV();
+                if (mensaje != "true")
+                {
+                    Models.FalloIntegridad falloIntegridad = new Models.FalloIntegridad();
+                    falloIntegridad.Tabla = mensaje;
+                    falloIntegridad.Fallo = true;
+
+                    var usuario = _usuarioService.ValidarUsuarioWebMaster(ValidarEmailControl.Email, PasswordValidator.Password);
+
+                    if (usuario != null)
+                        Session["Usuario"] = usuario;
+
+                    Session["ErrorVerificacionDV"] = falloIntegridad;
+                    Response.Redirect($"ErrorDigitoVerificador.aspx?mensaje={mensaje}");
+                    return;
+                }
+
                 if (ValidarEmailControl.EsEmailValido())
                 {
                     if (PasswordValidator.IsValid)

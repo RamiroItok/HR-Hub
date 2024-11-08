@@ -5,9 +5,6 @@ using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aplication.Services
 {
@@ -37,6 +34,79 @@ namespace Aplication.Services
                 }
 
                 _iDigitoVerificadorService.CalcularDVTabla("UsuarioDocumento");
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void AsignarDocumentosAUsuario(int idUsuario)
+        {
+            try
+            {
+                List<Documento> listaDocumentos = ObtenerDocumentos();
+                foreach(Documento documento in listaDocumentos)
+                {
+                    _documentoDAO.AsignarDocumento(documento.Id, idUsuario);
+                }
+
+                _iDigitoVerificadorService.CalcularDVTabla("UsuarioDocumento");
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void QuitarDocumentosAUsuario(int idUsuario)
+        {
+            try
+            {
+                _documentoDAO.QuitarDocumentosAUsuario(idUsuario);
+                _iDigitoVerificadorService.CalcularDVTabla("UsuarioDocumento");
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<Documento> ObtenerDocumentos()
+        {
+            try
+            {
+                var resultado = _documentoDAO.ObtenerDocumentos();
+
+                List<Documento> listaDocumentos = new List<Documento>();
+
+                foreach (DataRow row in resultado.Tables[0].Rows)
+                {
+                    Documento documento = new Documento
+                    {
+                        Id = Convert.ToInt32(row["Id"]),
+                        Nombre = (row["Nombre"].ToString()),
+                        TipoArchivo = row["TipoArchivo"].ToString(),
+                        Contenido = (byte[])row["Contenido"],
+                        FechaCarga = (DateTime)row["FechaDeCarga"]
+                    };
+
+                    listaDocumentos.Add(documento);
+                }
+
+                return listaDocumentos;
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {

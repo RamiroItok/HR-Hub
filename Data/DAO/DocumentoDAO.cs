@@ -100,6 +100,18 @@ namespace Data.DAO
             }
         }
 
+        public DataSet ObtenerDocumentos()
+        {
+            try
+            {
+                return _acceso.ExecuteStoredProcedureReader("sp_s_documentos", null);
+            }
+            catch
+            {
+                throw new Exception("Error al obtener el contenido del documento.");
+            }
+        }
+
         public DataSet ObtenerDocumentosPorUsuario(bool firmado, int idUsuario)
         {
             try
@@ -115,6 +127,23 @@ namespace Data.DAO
             catch
             {
                 throw new Exception("Error al obtener documentos del usuario.");
+            }
+        }
+
+        public void QuitarDocumentosAUsuario(int idUsuario)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@IdUsuario", idUsuario }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_d_UsuarioDocumento", parameters);
+            }
+            catch
+            {
+                throw new Exception("Error al quitar documentos a usuario.");
             }
         }
     }

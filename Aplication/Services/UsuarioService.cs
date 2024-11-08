@@ -216,6 +216,22 @@ namespace Aplication
             return true;
         }
 
+        public Usuario ValidarUsuarioWebMaster(string email, string contraseña)
+        {
+            var emailEncriptado = EncriptacionService.Encriptar_AES(email);
+            var contraseñaEncriptada = EncriptacionService.Encriptar_MD5(contraseña);
+
+            Usuario usuarioReal = ObtenerUsuarioPorEmail(email);
+
+            if (usuarioReal != null && usuarioReal.Email == emailEncriptado && usuarioReal.Contraseña == contraseñaEncriptada && usuarioReal.Puesto == Puesto.WebMaster)
+            {
+                _iPermisoService.GetComponenteUsuario(usuarioReal);
+                return usuarioReal;
+            }
+
+            return null;
+        }
+
         public List<Usuario> ListarUsuarios()
         {
             try

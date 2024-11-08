@@ -482,5 +482,7 @@
   "City": "Ciudad",
   "Province": "Provincia",
   "Country": "Pais",
-  "Phone": "Telefono"
+  "Phone": "Telefono",
+
+  "EnlaceRecuperarContrasenia": "He olvidado mi contrasena"
 }

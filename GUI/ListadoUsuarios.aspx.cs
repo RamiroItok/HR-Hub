@@ -17,6 +17,7 @@ namespace GUI
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IPermisoService _permisoService;
+        private readonly IDocumentoService _documentoService;
         private readonly IdiomaService _idiomaService;
         private static List<Models.Usuario> listaUsuarios = new List<Models.Usuario>();
 
@@ -24,6 +25,7 @@ namespace GUI
         {
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
+            _documentoService = Global.Container.Resolve<IDocumentoService>();
             _idiomaService = Global.Container.Resolve<IdiomaService>();
             _idiomaService.Subscribe(this);
         }
@@ -129,7 +131,10 @@ namespace GUI
             try
             {
                 lblMensajeModificacion.Text = Validar();
-                int puestoAnterior = int.Parse(hiddenDropDownPuesto.Value);
+                int? puestoAnterior = null;
+                if (!string.IsNullOrEmpty(hiddenDropDownPuesto.Value))
+                    puestoAnterior = int.Parse(hiddenDropDownPuesto.Value);
+                
                 lblMensajeModificacion.Text = _idiomaService.GetTranslation("DatosModificadosExitosamente");
                 lblMensajeModificacion.Visible = true;
                 lblMensajeModificacion.CssClass = "validation-message-success";
@@ -137,8 +142,12 @@ namespace GUI
                 var usuario = CompletarUsuario();
                 var userSession = Session["Usuario"] as Usuario;
                 _usuarioService.ModificarUsuario(usuario, userSession);
-
                 _permisoService.ActualizarFamiliaUsuario(usuario, puestoAnterior);
+
+                if (usuario.Puesto == Puesto.Lider)
+                    _documentoService.AsignarDocumentosAUsuario(usuario.Id);
+                if (puestoAnterior == (int)Puesto.Lider)
+                    _documentoService.QuitarDocumentosAUsuario(usuario.Id);
 
                 CargarUsuarioDefault();
                 LimpiarCampos();
