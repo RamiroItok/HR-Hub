@@ -45,6 +45,8 @@
   "MisDocumentos": "Mis documentos",
   "AccedeDocumentos": "Accede a tus documentos importantes",
   "VerDocumentos": "Ver mis documentos",
+  "Documentos": "Documentos",
+  "CargaDocumentos": "Carga de documentos",
 
   "HRHub": "HR Hub",
   "Registro": "Registro",
@@ -473,5 +475,12 @@
   "MensajeProductoModificado": "El producto ha sido modificado correctamente.",
 
   "ExportarExcel": "Exportar a excel",
-  "GenerarXML": "Generar XML"
+  "GenerarXML": "Generar XML",
+
+  "ContactTitle": "Contacto",
+  "Address": "Direccion",
+  "City": "Ciudad",
+  "Province": "Provincia",
+  "Country": "Pais",
+  "Phone": "Telefono"
 }

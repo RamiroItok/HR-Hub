@@ -214,6 +214,7 @@
     <Content Include="ReporteCompras.aspx" />
     <Content Include="Style\Backup.css" />
     <Content Include="Style\CargaDocumento.css" />
+    <Content Include="Style\Contact.css" />
     <Content Include="Style\DesbloquearUsuario.css" />
     <Content Include="Style\GestionFamilia.css" />
     <Content Include="Style\GestionPermisosUsuario.css" />

@@ -240,6 +240,8 @@ namespace GUI.Controls
                 litCambiarContraseña.Text = _idiomaService.GetTranslation("CambiarContrasena");
                 litDesbloquearUsuarios.Text = _idiomaService.GetTranslation("DesbloquearUsuarios");
                 litMisDocumentos.Text = _idiomaService.GetTranslation("MisDocumentos");
+                litDocumentos.Text = _idiomaService.GetTranslation("Documentos");
+                litCargaDocumentos.Text = _idiomaService.GetTranslation("CargaDocumentos");
             }
         }
 

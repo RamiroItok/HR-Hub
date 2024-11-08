@@ -473,5 +473,14 @@
   "MensajeProductoModificado": "The product has been successfully modified.",
 
   "ExportarExcel": "Export to excel",
-  "GenerarXML": "Generate XML"
+  "GenerarXML": "Generate XML",
+
+  "ContactTitle": "Contact",
+  "Address": "Address",
+  "City": "City",
+  "Province": "State",
+  "Country": "Country",
+  "Phone": "Phone",
+  "Documentos": "Documents",
+  "CargaDocumentos": "Upload documents"
 }
