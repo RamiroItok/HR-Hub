@@ -497,5 +497,11 @@
   "XMLGenerado": "Generated XML",
   "NoDatosXML": "There is no data available to generate the XML",
 
-  "ErrorBD": "The connection to the database has been lost. Please try again in a few minutes"
+  "ErrorBD": "The connection to the database has been lost. Please try again in a few minutes",
+  "MailDadoAlta": "The email has not been registered in the system",
+  "UsuarioBloqueado": "The user has been blocked. Contact an administrator",
+  "ContrasenaIncorrecta": "The password is incorrect",
+  "ContrasenaActualIncorrecta": "The current password is incorrect",
+  "PasswordNoCoincideVieja": "New password and confirmation do not match",
+  "FormatoPasswordIncorrecto": "The password is not in the correct format"
 }

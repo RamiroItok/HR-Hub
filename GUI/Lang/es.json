@@ -497,5 +497,11 @@
   "XMLGenerado": "XML Generado",
   "NoDatosXML": "No hay datos disponibles para generar el XML",
 
-  "ErrorBD": "Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos"
+  "ErrorBD": "Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos",
+  "MailDadoAlta": "El email no se ha dado de alta en el sistema",
+  "UsuarioBloqueado": "Se ha bloqueado el usuario. Contacte un administrador.",
+  "ContrasenaIncorrecta": "La contrasena es incorrecta",
+  "ContrasenaActualIncorrecta": "La contrasena actual es incorrecta",
+  "PasswordNoCoincideVieja": "La nueva contrasena y la confirmacion no coinciden",
+  "FormatoPasswordIncorrecto": "La contrasena no posee el formato correcto"
 }

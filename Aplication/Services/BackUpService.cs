@@ -21,9 +21,7 @@ namespace Aplication.Services
             try
             {
                 if (string.IsNullOrEmpty(ruta) || string.IsNullOrEmpty(nombre))
-                {
-                    return "Hay campos sin completar";
-                }
+                    throw new Exception("MensajeCamposIncompletos");
                 else
                 {
                     var resultado = _backUpDAO.RealizarBackup(ruta, nombre);
@@ -45,9 +43,7 @@ namespace Aplication.Services
             try
             {
                 if (string.IsNullOrEmpty(archivo))
-                {
-                    return "Debe seleccionar un archivo";
-                }
+                    throw new Exception("MensajeArchivoNoSeleccionado");
                 else
                 {
                     var resultado = _backUpDAO.RealizarRestore(archivo);
