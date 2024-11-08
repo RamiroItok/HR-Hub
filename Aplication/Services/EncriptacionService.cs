@@ -6,8 +6,8 @@ namespace Aplication
 {
     public class EncriptacionService
     {
-        public static string IV = "qo1lc3sjd8zpt9cx"; //16 chars = 128 bytes
-        public static string key = "ow7dxys8glfor9tnc2ansdfo1etkfjcv";  // 32 chars = 256 bytes
+        public static string IV = "qo1lc3sjd8zpt9cx";
+        public static string key = "ow7dxys8glfor9tnc2ansdfo1etkfjcv";
 
         public static string Encriptar_AES(string decrypted)
         {

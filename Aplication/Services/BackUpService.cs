@@ -21,14 +21,16 @@ namespace Aplication.Services
             try
             {
                 if (string.IsNullOrEmpty(ruta) || string.IsNullOrEmpty(nombre))
-                {
-                    return "Hay campos sin completar";
-                }
+                    throw new Exception("MensajeCamposIncompletos");
                 else
                 {
                     var resultado = _backUpDAO.RealizarBackup(ruta, nombre);
                     return resultado;
                 }
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -41,14 +43,16 @@ namespace Aplication.Services
             try
             {
                 if (string.IsNullOrEmpty(archivo))
-                {
-                    return "Debe seleccionar un archivo";
-                }
+                    throw new Exception("MensajeArchivoNoSeleccionado");
                 else
                 {
                     var resultado = _backUpDAO.RealizarRestore(archivo);
                     return resultado;
                 }
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -65,6 +69,10 @@ namespace Aplication.Services
 
                 bool resultado = _backUpDAO.CrearBaseDeDatos(server, nombreBase);
                 return resultado;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {

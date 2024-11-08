@@ -22,6 +22,10 @@
         <div class="container-permissions">
             <h2 class="title"><asp:Literal ID="litTitle" runat="server"></asp:Literal></h2>
             
+            <div class="text-center mt-4">
+                    <asp:Label ID="lblMensaje" runat="server" CssClass="text-success" Visible="false"></asp:Label>
+                </div>
+
             <div class="form-group">
                 <label for="drpUsuarios" class="label"><asp:Literal ID="litSelectUserLabel" runat="server"></asp:Literal></label>
                 <asp:DropDownList ID="drpUsuarios" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="drpUsuarios_SelectedIndexChanged">

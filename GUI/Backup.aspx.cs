@@ -70,9 +70,8 @@ namespace GUI
             try
             {
                 if(string.IsNullOrEmpty(ruta) || string.IsNullOrEmpty(nombre))
-                {
-                    throw new Exception(_idiomaService.GetTranslation("MensajeCamposIncompletos"));
-                }
+                    throw new Exception("MensajeCamposIncompletos");
+
                 var resultado = _iBackupService.RealizarBackup(ruta, nombre, usuario);
                 _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Se realizó una copia de seguridad", Criticidad.ALTA);
 
@@ -81,7 +80,7 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {ex.Message}";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
                 lblMensaje.CssClass = "text-danger";
             }
             finally

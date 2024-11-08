@@ -95,7 +95,7 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                lblMensaje.Text = ex.Message;
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
                 lblMensaje.Visible = true;
             }
         }

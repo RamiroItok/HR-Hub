@@ -37,36 +37,37 @@ namespace GUI
 
         protected void btnCambiar_Click(object sender, EventArgs e)
         {
-            var contraseñaActual = txtPasswordActual.Text;
-            var contraseñaNueva = txtPasswordNueva.Text;
-            var confirmarContraseña = txtPasswordConfirmar.Text;
-            var usuario = Session["Usuario"] as Usuario;
-
-            var esContraseñaValida = _iUsuarioService.ValidarContraseñas(usuario, contraseñaActual, contraseñaNueva, confirmarContraseña);
-
-            if (esContraseñaValida != null)
+            try
             {
-                lblMensaje.Text = _idiomaService.GetTranslation("ErrorContrasenaInvalida");
-                lblMensaje.CssClass = "message-label error";
-                lblMensaje.Visible = true;
-            }
-            else
-            {
-                if (_iUsuarioService.ActualizarContraseña(usuario, contraseñaNueva, Models.Enums.TipoOperacionContraseña.Cambio))
-                {
-                    lblMensaje.Visible = true;
-                    lblMensaje.CssClass = "message-label success";
-                    lblMensaje.Text = _idiomaService.GetTranslation("SuccessContrasenaCambiada");
-                }
+                var contraseñaActual = txtPasswordActual.Text;
+                var contraseñaNueva = txtPasswordNueva.Text;
+                var confirmarContraseña = txtPasswordConfirmar.Text;
+                var usuario = Session["Usuario"] as Usuario;
+
+                var esContraseñaValida = _iUsuarioService.ValidarContraseñas(usuario, contraseñaActual, contraseñaNueva, confirmarContraseña);
+
+                if (esContraseñaValida != null)
+                    throw new Exception("ErrorContrasenaInvalida");
                 else
                 {
-                    lblMensaje.Visible = true;
-                    lblMensaje.CssClass = "message-label error";
-                    lblMensaje.Text = _idiomaService.GetTranslation("ErrorCambioContrasena");
+                    if (_iUsuarioService.ActualizarContraseña(usuario, contraseñaNueva, Models.Enums.TipoOperacionContraseña.Cambio))
+                    {
+                        lblMensaje.Visible = true;
+                        lblMensaje.CssClass = "message-label success";
+                        lblMensaje.Text = _idiomaService.GetTranslation("SuccessContrasenaCambiada");
+                    }
+                    else
+                        throw new Exception("ErrorCambioContrasena");
                 }
             }
-            
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "message-label error";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
         }
+
         private void CargarTextos()
         {
             if (!(litTitulo == null))

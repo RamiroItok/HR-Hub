@@ -45,41 +45,59 @@ namespace GUI
 
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            WebService.DocumentosService servicio = new WebService.DocumentosService();
-            var datos = servicio.ObtenerPorcentajeFirmasPorDocumento();
-
-            if (datos != null && datos.Count > 0)
+            try
             {
-                JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
-                string jsonData = jsSerializer.Serialize(datos);
+                WebService.DocumentosService servicio = new WebService.DocumentosService();
+                var datos = servicio.ObtenerPorcentajeFirmasPorDocumento();
 
-                string script = $"renderTortaGrafico({jsonData});";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "renderGrafico", script, true);
+                if (datos != null && datos.Count > 0)
+                {
+                    JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+                    string jsonData = jsSerializer.Serialize(datos);
+
+                    string script = $"renderTortaGrafico({jsonData});";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "renderGrafico", script, true);
+                }
+                else
+                {
+                    string noDataScript = $"Swal.fire('{_idiomaService.GetTranslation("TextoSinDatos")}', '{_idiomaService.GetTranslation("SinDatosReporteDocumentos")}', 'warning');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "sinDatosReporte", noDataScript, true);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                string noDataScript = $"Swal.fire('{_idiomaService.GetTranslation("TextoSinDatos")}', '{_idiomaService.GetTranslation("SinDatosReporteDocumentos")}', 'warning');";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "sinDatosReporte", noDataScript, true);
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
             }
         }
 
         protected void btnGenerarXML_Click(object sender, EventArgs e)
         {
-            WebService.DocumentosService servicio = new WebService.DocumentosService();
-            var datos = servicio.ObtenerPorcentajeFirmasPorDocumento();
-
-            if (datos != null && datos.Count > 0)
+            try
             {
-                GenerarXML generadorXml = new GenerarXML();
-                generadorXml.GenerarXMLFirmasDocumentos(datos);
+                WebService.DocumentosService servicio = new WebService.DocumentosService();
+                var datos = servicio.ObtenerPorcentajeFirmasPorDocumento();
 
-                string successScript = $"Swal.fire('{_idiomaService.GetTranslation("XMLGenerado")}', '{_idiomaService.GetTranslation("MensajeReporteExitoso")}', 'success');";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "xmlGenerado", successScript, true);
+                if (datos != null && datos.Count > 0)
+                {
+                    GenerarXML generadorXml = new GenerarXML();
+                    generadorXml.GenerarXMLFirmasDocumentos(datos);
+
+                    string successScript = $"Swal.fire('{_idiomaService.GetTranslation("XMLGenerado")}', '{_idiomaService.GetTranslation("MensajeReporteExitoso")}', 'success');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "xmlGenerado", successScript, true);
+                }
+                else
+                {
+                    string noDataScript = $"Swal.fire('{_idiomaService.GetTranslation("TextoSinDatos")}', '{_idiomaService.GetTranslation("NoDatosXML")}.', 'warning');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "sinDatosXML", noDataScript, true);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                string noDataScript = $"Swal.fire('{_idiomaService.GetTranslation("TextoSinDatos")}', '{_idiomaService.GetTranslation("NoDatosXML")}.', 'warning');";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "sinDatosXML", noDataScript, true);
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
             }
         }
 

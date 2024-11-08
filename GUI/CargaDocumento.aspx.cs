@@ -97,13 +97,12 @@ namespace GUI
                 _documentoService.AsignarDocumento(id);
 
                 Limpiar();
-                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarPopup", $"mostrarPopup('{_idiomaService.GetTranslation("MensajeExitoCarga")}');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarPopup", $"mostrarPopup('{_idiomaService.GetTranslation("MensajeExitoCarga").Replace("'", "\\'")}', 'success');", true);
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarPopup", $"mostrarPopup('{ex.Message}');", true);
-            }
-            
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarPopup", $"mostrarPopup('{_idiomaService.GetTranslation(ex.Message).Replace("'", "\\'")}', 'error');", true);
+            }       
         }
 
         protected void BtnCancelar_Click(object sender, EventArgs e)
@@ -133,7 +132,7 @@ namespace GUI
             string selectedLanguage = ddlLanguage.SelectedValue;
             Session["SelectedLanguage"] = selectedLanguage;
             _idiomaService.CurrentLanguage = selectedLanguage;
-            Response.Redirect(Request.RawUrl);
+            CargarTextos();
         }
     }
 }

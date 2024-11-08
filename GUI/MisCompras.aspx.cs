@@ -37,18 +37,31 @@ namespace GUI
                 return;
             }
 
-            if (!IsPostBack)
+            try
             {
-                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
-                ddlLanguage.SelectedValue = selectedLanguage;
-                _idiomaService.CurrentLanguage = selectedLanguage;
+                if (!IsPostBack)
+                {
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                    CargarCompras();
+                }
+
+                if (Request.QueryString["DownloadPdf"] == "true" && int.TryParse(Request.QueryString["idCompra"], out int idCompra))
+                {
+                    DescargarPdf(idCompra);
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
+            finally
+            {
                 CargarTextos();
                 CargarCompras();
-            }
-
-            if (Request.QueryString["DownloadPdf"] == "true" && int.TryParse(Request.QueryString["idCompra"], out int idCompra))
-            {
-                DescargarPdf(idCompra);
             }
         }
 
@@ -103,35 +116,53 @@ namespace GUI
 
         private void MostrarResumenCompra(int idCompra)
         {
-            var compra = _compraService.ObtenerCompra(idCompra);
-            var usuario = _usuarioService.ObtenerUsuarioPorId(compra.IdUsuario);
-            var detallesCompra = _compraService.ObtenerDetalleCompra(idCompra);
+            try
+            {
+                var compra = _compraService.ObtenerCompra(idCompra);
+                var usuario = _usuarioService.ObtenerUsuarioPorId(compra.IdUsuario);
+                var detallesCompra = _compraService.ObtenerDetalleCompra(idCompra);
 
-            lblIdCompra.Text = compra.Id.ToString();
-            lblFechaCompra.Text = compra.FechaPago.ToString("dd/MM/yyyy");
-            lblTotalCompra.Text = compra.Total.ToString("C");
+                lblIdCompra.Text = compra.Id.ToString();
+                lblFechaCompra.Text = compra.FechaPago.ToString("dd/MM/yyyy");
+                lblTotalCompra.Text = compra.Total.ToString("C");
 
-            gvDetallesCompra.DataSource = detallesCompra;
-            gvDetallesCompra.DataBind();
+                gvDetallesCompra.DataSource = detallesCompra;
+                gvDetallesCompra.DataBind();
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "ShowModalScript", "showResumenCompraModal();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowModalScript", "showResumenCompraModal();", true);
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
         }
 
         private void DescargarPdf(int idCompra)
         {
-            var compra = _compraService.ObtenerCompra(idCompra);
-            var usuario = _usuarioService.ObtenerUsuarioPorId(compra.IdUsuario);
-            var detallesCompra = _compraService.ObtenerDetalleCompra(idCompra);
+            try
+            {
+                var compra = _compraService.ObtenerCompra(idCompra);
+                var usuario = _usuarioService.ObtenerUsuarioPorId(compra.IdUsuario);
+                var detallesCompra = _compraService.ObtenerDetalleCompra(idCompra);
 
-            GenerarPDFService generarPDFService = new GenerarPDFService();
-            byte[] pdfBytes = generarPDFService.GenerarPdf(compra, usuario, detallesCompra);
+                GenerarPDFService generarPDFService = new GenerarPDFService();
+                byte[] pdfBytes = generarPDFService.GenerarPdf(compra, usuario, detallesCompra);
 
-            Response.Clear();
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", $"attachment; filename=ResumenCompra_{idCompra}.pdf");
-            Response.BinaryWrite(pdfBytes);
-            Response.Flush();
-            Response.End();
+                Response.Clear();
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("Content-Disposition", $"attachment; filename=ResumenCompra_{idCompra}.pdf");
+                Response.BinaryWrite(pdfBytes);
+                Response.Flush();
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
         }
 
         protected override void OnUnload(EventArgs e)

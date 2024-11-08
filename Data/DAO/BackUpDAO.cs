@@ -36,7 +36,7 @@ namespace Data.DAO
             }
             catch
             {
-                throw new Exception("Error al realizar la copia.");
+                throw new Exception("ErrorCopiaSeguridad");
             }
         }
 
@@ -51,7 +51,7 @@ namespace Data.DAO
             }
             catch
             {
-                throw new Exception("Error al realizar el restore.");
+                throw new Exception("ErrorRestore");
             }
         }
 
@@ -70,9 +70,9 @@ namespace Data.DAO
                 }
                 return existeBD;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorCreacionBD");
             }
         }
 

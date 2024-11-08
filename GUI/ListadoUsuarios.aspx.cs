@@ -39,19 +39,32 @@ namespace GUI
                 return;
             }
 
-            if (!IsPostBack)
+            try
             {
-                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
-                ddlLanguage.SelectedValue = selectedLanguage;
-                _idiomaService.CurrentLanguage = selectedLanguage;
-                listaUsuarios = _usuarioService.ListarUsuarios();
-                CargarUsuarioDefault();
-                CargarAreas();
-                CargarPuestos();
+                if (!IsPostBack)
+                {
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                    listaUsuarios = _usuarioService.ListarUsuarios();
+                    CargarUsuarioDefault();
+                    CargarAreas();
+                    CargarPuestos();
+                    CargarTextos();   
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
+            }
+            finally
+            {
                 CargarTextos();
                 CargarHeadersGridView();
+                CargarCampos();
             }
-            CargarCampos();
         }
 
         private void CargarTextos()
@@ -156,7 +169,7 @@ namespace GUI
             {
                 lblMensajeModificacion.Visible = true;
                 lblMensajeModificacion.CssClass = "validation-message-failed";
-                lblMensajeModificacion.Text = ex.Message;
+                lblMensajeModificacion.Text = _idiomaService.GetTranslation(ex.Message);
             }
         }
 

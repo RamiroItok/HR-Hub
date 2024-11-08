@@ -48,15 +48,17 @@ namespace GUI
                     CargarProductos();
                     CargarEmpresas();
                     CargarTiposProducto();
-                    CargarTextos();
                 }
             }
             catch (Exception ex)
             {
-                lblMensaje.Text = ex.Message;
-                lblMensaje.CssClass = string.Empty;
-                lblMensaje.CssClass = "alert alert-danger";
                 lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
+            }
+            finally
+            {
+                CargarTextos();
             }
         }
 
@@ -124,7 +126,7 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                lblMensaje.Text = ex.Message;
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
                 lblMensaje.CssClass = "alert alert-danger";
                 lblMensaje.Visible = true;
             }
@@ -199,7 +201,7 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                lblMensaje.Text = ex.Message;
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
                 lblMensaje.CssClass = "alert alert-danger";
                 lblMensaje.Visible = true;
             }

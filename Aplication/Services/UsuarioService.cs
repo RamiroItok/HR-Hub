@@ -63,7 +63,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -98,7 +98,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -123,7 +123,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -141,7 +141,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -159,7 +159,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -172,20 +172,20 @@ namespace Aplication
             try
             {
                 if(usuario == null)
-                    throw new Exception("El email no se ha dado de alta en el sistema.");
+                    throw new Exception("MailDadoAlta");
 
                 if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(contraseña))
-                    throw new Exception("Hay campos sin completar.");
+                    throw new Exception("MensajeCamposIncompletos");
 
                 var contraseñaReal = EncriptacionService.Encriptar_MD5(contraseña);
 
                 if (usuario.Estado == 3)
-                    throw new Exception("El usuario está bloqueado. Contacte un administrador para su desbloqueo.");
+                    throw new Exception("UsuarioBloqueado");
 
                 if (contraseñaReal != usuario.Contraseña)
                 {
                     EstadoBloqueoUsuario(usuario);
-                    throw new Exception("La contraseña es incorrecta.");
+                    throw new Exception("ContrasenaIncorrecta");
                 }
                 else
                 {
@@ -198,7 +198,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -273,7 +273,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -291,7 +291,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -314,7 +314,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -336,7 +336,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -357,7 +357,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -405,16 +405,27 @@ namespace Aplication
 
         public bool ActualizarContraseña(Usuario usuario, string contraseña, TipoOperacionContraseña tipoOperacion)
         {
-            var contraseñaEncriptada = EncriptacionService.Encriptar_MD5(contraseña);
-            var resultado = _usuarioDAO.ActualizarContraseña(usuario.Email, contraseñaEncriptada);
-            _iDigitoVerificadorService.CalcularDVTabla("Usuario");
+            try
+            {
+                var contraseñaEncriptada = EncriptacionService.Encriptar_MD5(contraseña);
+                var resultado = _usuarioDAO.ActualizarContraseña(usuario.Email, contraseñaEncriptada);
+                _iDigitoVerificadorService.CalcularDVTabla("Usuario");
 
-            var descripcion = tipoOperacion == TipoOperacionContraseña.Recuperacion ? "Recuperacion de contraseña" : "Cambio de contraseña";
+                var descripcion = tipoOperacion == TipoOperacionContraseña.Recuperacion ? "Recuperacion de contraseña" : "Cambio de contraseña";
 
-            if (resultado)
-                _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, descripcion, Criticidad.ALTA);
+                if (resultado)
+                    _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, descripcion, Criticidad.ALTA);
 
-            return resultado;
+                return resultado;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public void EnviarMail(string email, AsuntoMail asuntoMail, string body, byte[] attachment = null)
@@ -518,15 +529,13 @@ namespace Aplication
             var contraseñaEncriptada = EncriptacionService.Encriptar_MD5(contraseñaActual);
 
             if(usuario.Contraseña != contraseñaEncriptada)
-            {
-                return "La contraseña actual es incorrecta";
-            }
+                throw new Exception("ContrasenaActualIncorrecta");
 
             if (contraseñaNueva != confirmarContraseña)
-                return "La nueva contraseña y la confirmación no coinciden";
+                throw new Exception("PasswordNoCoincideVieja");
 
             if (contraseñaNueva.Length < 8 || !ValidarFormatoContraseña(contraseñaNueva))
-                return "La contraseña no posee el formato correcto.";
+                throw new Exception("FormatoPasswordIncorrecto");
 
             return null;
         }
@@ -590,7 +599,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -620,7 +629,7 @@ namespace Aplication
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Se ha perdido la conexión con la base de datos. Vuelva a intentar en unos minutos");
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {

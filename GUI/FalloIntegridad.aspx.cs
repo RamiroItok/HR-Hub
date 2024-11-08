@@ -79,9 +79,11 @@ namespace GUI
                     lblMensajeRecalcular.CssClass = "fallo-text-success";
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                lblMensajeRecalcular.Text = _idiomaService.GetTranslation("MensajeErrorRecalculo");
+                lblMensajeRecalcular.Visible = true;
+                lblMensajeRecalcular.CssClass = "text-danger";
+                lblMensajeRecalcular.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
             }
         }
 
@@ -105,13 +107,13 @@ namespace GUI
                 }
                 else
                 {
-                    throw new Exception(_idiomaService.GetTranslation("MensajeArchivoNoSeleccionado"));
+                    throw new Exception("MensajeArchivoNoSeleccionado");
                 }
                 
             }
             catch (Exception ex)
             {
-                lblMensajeRestore.Text = _idiomaService.GetTranslation("MensajeErrorRestore") + ex.Message;
+                lblMensajeRestore.Text = $"{_idiomaService.GetTranslation("MensajeErrorRestore")}: {_idiomaService.GetTranslation(ex.Message)}";
                 lblMensajeRestore.Visible = true;
                 lblMensajeRestore.CssClass = "fallo-text-failed";
             }

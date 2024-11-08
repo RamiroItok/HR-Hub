@@ -52,47 +52,65 @@ namespace GUI
 
         protected void btnGenerarXML_Click(object sender, EventArgs e)
         {
-            WebService.ReporteCompras servicio = new WebService.ReporteCompras();
-            List<ProductoReporte> productosMasComprados = servicio.ObtenerProductosMasCompradosPorMesPorAnio();
-
-            if (productosMasComprados == null || productosMasComprados.Count == 0)
+            try
             {
-                string script = $"mostrarNotificacionSinDatos('{_idiomaService.GetTranslation("SinDatosTitle")}', '{_idiomaService.GetTranslation("SinDatosText")}');";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "noDataNotification", script, true);
-                return;
+                WebService.ReporteCompras servicio = new WebService.ReporteCompras();
+                List<ProductoReporte> productosMasComprados = servicio.ObtenerProductosMasCompradosPorMesPorAnio();
+
+                if (productosMasComprados == null || productosMasComprados.Count == 0)
+                {
+                    string script = $"mostrarNotificacionSinDatos('{_idiomaService.GetTranslation("SinDatosTitle")}', '{_idiomaService.GetTranslation("SinDatosText")}');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "noDataNotification", script, true);
+                    return;
+                }
+
+                GenerarXML generadorXml = new GenerarXML();
+                generadorXml.GenerarXMLProductosPorMesYAnio(productosMasComprados);
+
+                string successScript = $"mostrarNotificacionXMLGenerado('{_idiomaService.GetTranslation("ReporteGeneradoTitle")}', '{_idiomaService.GetTranslation("ReporteGeneradoText")}');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "xmlGeneratedNotification", successScript, true);
             }
-
-            GenerarXML generadorXml = new GenerarXML();
-            generadorXml.GenerarXMLProductosPorMesYAnio(productosMasComprados);
-
-            string successScript = $"mostrarNotificacionXMLGenerado('{_idiomaService.GetTranslation("ReporteGeneradoTitle")}', '{_idiomaService.GetTranslation("ReporteGeneradoText")}');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "xmlGeneratedNotification", successScript, true);
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
         }
 
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            string anioSeleccionado = ddlAnio.SelectedValue;
-            WebService.ReporteCompras servicio = new WebService.ReporteCompras();
-            List<ProductoReporte> productos = ParseXmlData(servicio.ObtenerXMLReporte())
-                .Where(p => p.Anio.ToString() == anioSeleccionado)
-                .ToList();
-
-            if (productos.Count == 0)
+            try
             {
-                string script1 = $"mostrarNotificacionSinDatos('{_idiomaService.GetTranslation("SinDatosTitle")}', '{_idiomaService.GetTranslation("SinDatosText")}');";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "noDataNotification", script1, true);
-                return;
+                string anioSeleccionado = ddlAnio.SelectedValue;
+                WebService.ReporteCompras servicio = new WebService.ReporteCompras();
+                List<ProductoReporte> productos = ParseXmlData(servicio.ObtenerXMLReporte())
+                    .Where(p => p.Anio.ToString() == anioSeleccionado)
+                    .ToList();
+
+                if (productos.Count == 0)
+                {
+                    string script1 = $"mostrarNotificacionSinDatos('{_idiomaService.GetTranslation("SinDatosTitle")}', '{_idiomaService.GetTranslation("SinDatosText")}');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "noDataNotification", script1, true);
+                    return;
+                }
+
+                var productosPorMes = productos
+                    .GroupBy(p => p.Mes)
+                    .ToDictionary(g => g.Key, g => g.ToList());
+
+                JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+                string jsonData = jsSerializer.Serialize(productosPorMes);
+
+                string script = $"renderCharts({jsonData}, '{_idiomaService.GetTranslation("ProductosVendidosEn")}');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "renderChartsScript", script, true);
             }
-
-            var productosPorMes = productos
-                .GroupBy(p => p.Mes)
-                .ToDictionary(g => g.Key, g => g.ToList());
-
-            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
-            string jsonData = jsSerializer.Serialize(productosPorMes);
-
-            string script = $"renderCharts({jsonData}, '{_idiomaService.GetTranslation("ProductosVendidosEn")}');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "renderChartsScript", script, true);
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
         }
 
         private List<ProductoReporte> ParseXmlData(string xmlData)

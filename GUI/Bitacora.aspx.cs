@@ -51,14 +51,17 @@ namespace GUI
                     CargarUsuarios();
                     CargarTipoUsuario();
                     CargarCriticidad();
-                    CargarTextos();
                 }
             }
             catch (Exception ex)
             {
                 lblMensaje.CssClass = "text-danger";
                 lblMensaje.Visible = true;
-                lblMensaje.Text = ex.Message;
+                lblMensaje.Text = _idiomaService.GetTranslation(_idiomaService.GetTranslation(ex.Message));
+            }
+            finally
+            {
+                CargarTextos();
             }
         }
 

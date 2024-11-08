@@ -31,9 +31,9 @@ namespace Data.DAO
 
                 _acceso.ExecuteStoredProcedureReader("sp_i_detalleCompra", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorGuardarDetalleCompra");
             }
         }
 
@@ -48,9 +48,9 @@ namespace Data.DAO
 
                 return _acceso.ExecuteStoredProcedureReader("sp_s_compraId", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerCompraPorId");
             }
         }
 
@@ -65,9 +65,9 @@ namespace Data.DAO
 
                 return _acceso.ExecuteStoredProcedureReader("sp_s_detalleCompraIdCompra", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerDetalleCompraPorId");
             }
         }
 
@@ -82,9 +82,9 @@ namespace Data.DAO
 
                 return _acceso.ExecuteStoredProcedureReader("sp_s_compras_porUsuario", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerComprasPorUsuario");
             }
         }
 
@@ -103,9 +103,9 @@ namespace Data.DAO
 
                 return Convert.ToInt32(resultado.Tables[0].Rows[0]["Id"]);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorRealizarCompra");
             }
         }
     }

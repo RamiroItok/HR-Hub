@@ -21,6 +21,10 @@ namespace Aplication.Services
             {
                 return _digitoVerificadorDAO.Verificar_DV();
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -33,6 +37,10 @@ namespace Aplication.Services
             {
                 _digitoVerificadorDAO.Recalcular_DV();
                 return true;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
             }
             catch (Exception ex)
             {
@@ -47,6 +55,10 @@ namespace Aplication.Services
                 _digitoVerificadorDAO.CalcularDVTabla(tabla);
                 return true;
             }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -60,9 +72,13 @@ namespace Aplication.Services
                 DataTable dt = _digitoVerificadorDAO.ObtenerTabla(tabla);
                 return dt;
             }
-            catch
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
-                throw new Exception("Error al listar usuarios");
+                throw new Exception("ErrorBD");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }

@@ -94,8 +94,8 @@ namespace GUI
             }
             catch (Exception ex)
             {
+                lblMensaje.Text = _idiomaService.GetTranslation("MensajeErrorGeneral") + ": " + _idiomaService.GetTranslation(ex.Message);
                 lblMensaje.CssClass = "text-danger";
-                lblMensaje.Text = _idiomaService.GetTranslation("MensajeErrorGeneral") + ": " + ex.Message;
                 lblMensaje.Visible = true;
             }
         }

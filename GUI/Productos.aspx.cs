@@ -42,34 +42,46 @@ namespace GUI
                 return;
             }
 
-            if (!IsPostBack)
+            try
             {
-                listaProductos = _productoService.ObtenerProductos().AsEnumerable().Select(row => new Producto
+                if (!IsPostBack)
                 {
-                    Id = row.Field<int>("Id"),
-                    Nombre = row.Field<string>("Nombre"),
-                    Descripcion = row.Field<string>("Descripcion"),
-                    Empresa = new Empresa()
+                    listaProductos = _productoService.ObtenerProductos().AsEnumerable().Select(row => new Producto
                     {
-                        Id = row.Field<int>("IdEmpresa"),
-                        Nombre = row.Field<string>("NombreEmpresa"),
-                    },
-                    TipoProducto = new TipoProducto()
-                    {
-                        Id = row.Field<int>("IdTipoProducto"),
-                        Nombre = row.Field<string>("NombreTipoProducto"),
-                    },
-                    Cantidad = row.Field<int>("Cantidad"),
-                    PrecioUnitario = row.Field<decimal>("PrecioUnitario"),
-                    Imagen = (byte[])row["Imagen"]
-                }).ToList();
+                        Id = row.Field<int>("Id"),
+                        Nombre = row.Field<string>("Nombre"),
+                        Descripcion = row.Field<string>("Descripcion"),
+                        Empresa = new Empresa()
+                        {
+                            Id = row.Field<int>("IdEmpresa"),
+                            Nombre = row.Field<string>("NombreEmpresa"),
+                        },
+                        TipoProducto = new TipoProducto()
+                        {
+                            Id = row.Field<int>("IdTipoProducto"),
+                            Nombre = row.Field<string>("NombreTipoProducto"),
+                        },
+                        Cantidad = row.Field<int>("Cantidad"),
+                        PrecioUnitario = row.Field<decimal>("PrecioUnitario"),
+                        Imagen = (byte[])row["Imagen"]
+                    }).ToList();
 
-                CargarProductos(listaProductos);
-                CargarTipoProducto();
-                CargarEmpresas();
-                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
-                ddlLanguage.SelectedValue = selectedLanguage;
-                _idiomaService.CurrentLanguage = selectedLanguage;
+                    CargarProductos(listaProductos);
+                    CargarTipoProducto();
+                    CargarEmpresas();
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
+            finally
+            {
                 CargarTextos();
             }
         }
@@ -155,10 +167,19 @@ namespace GUI
 
         protected void AgregarAlCarrito_Command(object sender, CommandEventArgs e)
         {
-            int idProducto = Convert.ToInt32(e.CommandArgument);
-            var userSession = Session["Usuario"] as Usuario;
-            _carritoService.InsertarCarrito(idProducto, userSession, null);
-            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showCartModal", "showCartModal();", true);
+            try
+            {
+                int idProducto = Convert.ToInt32(e.CommandArgument);
+                var userSession = Session["Usuario"] as Usuario;
+                _carritoService.InsertarCarrito(idProducto, userSession, null);
+                ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "showCartModal", "showCartModal();", true);
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

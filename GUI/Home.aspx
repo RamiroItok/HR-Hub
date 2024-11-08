@@ -14,7 +14,6 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <!-- DropDownList de idioma en la esquina superior derecha -->
         <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged">
             <asp:ListItem Value="es">Español</asp:ListItem>
             <asp:ListItem Value="en">English</asp:ListItem>
@@ -26,7 +25,6 @@
                    background-position: center; 
                    background-attachment: fixed;">
 
-            <!-- Hero Section -->
             <section class="hero-section">
                 <img src="Content/imagenes/Logo_HrHub.jpg" alt="HR Hub Logo" class="hero-logo" />
                 <h1><asp:Literal ID="litWelcomeTitle" runat="server"></asp:Literal></h1>
@@ -41,7 +39,6 @@
 
             <hr class="section-divider" />
 
-            <!-- Pillars Section -->
             <section class="pillars-section">
                 <h2 class="section-title"><asp:Literal ID="litPillarsTitle" runat="server"></asp:Literal></h2>
                 <div class="pillars-container">
@@ -65,7 +62,6 @@
 
             <hr class="section-divider" />
 
-            <!-- Services Section -->
             <section id="services" class="services-section">
                 <h2 class="section-title"><asp:Literal ID="litServicesTitle" runat="server"></asp:Literal></h2>
                 <div class="services-grid">
@@ -98,7 +94,6 @@
             </section>
         </div>
 
-        <!-- Footer -->
         <footer class="footer">
             <p><asp:Literal ID="litFooterText" runat="server"></asp:Literal></p>
         </footer>
@@ -107,7 +102,6 @@
     <script src="Scripts/jquery-3.4.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script>
-        // Funcion para scroll suave a la seccion de servicios
         function scrollToServices() {
             const servicesSection = document.getElementById("services");
             servicesSection.scrollIntoView({ behavior: "smooth" });

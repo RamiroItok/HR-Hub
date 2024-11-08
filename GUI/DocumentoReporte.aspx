@@ -27,6 +27,9 @@
                 <div class="containerReporte mt-5">
                     <h2 class="text-center"><asp:Literal ID="litReporteTitulo" runat="server" Text="Reporte de Firmas de Documentos"></asp:Literal></h2>
                     <p class="text-center"><asp:Literal ID="litReporteDescripcion" runat="server" Text="Porcentaje de documentos firmados y no firmados por los empleados"></asp:Literal></p>
+                    <div class="text-center mt-4">
+                        <asp:Label ID="lblMensaje" runat="server" CssClass="text-success" Visible="false"></asp:Label>
+                    </div>
 
                     <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-primary mb-4" OnClick="btnGenerarReporte_Click" />
                     <asp:Button ID="btnGenerarXML" runat="server" CssClass="btn btn-secondary mb-4 ml-2" OnClick="btnGenerarXML_Click" />

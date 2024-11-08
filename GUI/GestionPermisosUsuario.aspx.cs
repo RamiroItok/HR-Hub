@@ -36,12 +36,24 @@ namespace GUI
                 return;
             }
 
-            if (!IsPostBack)
+            try
             {
-                CargarUsuarios();
-                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
-                ddlLanguage.SelectedValue = selectedLanguage;
-                _idiomaService.CurrentLanguage = selectedLanguage;
+                if (!IsPostBack)
+                {
+                    CargarUsuarios();
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
+            }
+            finally
+            {
                 CargarTextos();
             }
         }
@@ -162,7 +174,9 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al quitar permisos: " + ex.Message);
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
             }
         }
 

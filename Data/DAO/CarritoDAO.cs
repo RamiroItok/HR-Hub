@@ -30,9 +30,9 @@ namespace Data.DAO
 
                 _acceso.ExecuteStoredProcedureReader("sp_d_productoCarrito", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorEliminarProductoCarrito");
             }
         }
 
@@ -49,9 +49,9 @@ namespace Data.DAO
 
                 _acceso.ExecuteStoredProcedureReader("sp_i_carrito", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorInsertarProductoCarrito");
             }
         }
 
@@ -66,9 +66,9 @@ namespace Data.DAO
 
                 _acceso.ExecuteStoredProcedureReader("sp_d_carrito", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorLimpiarCarrito");
             }
         }
 
@@ -83,9 +83,9 @@ namespace Data.DAO
 
                 return _acceso.ExecuteStoredProcedureReader("sp_s_carrito", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerCarrito");
             }
         }
     }

@@ -39,13 +39,25 @@ namespace GUI
                 return;
             }
 
-            if (!IsPostBack)
+            try
             {
-                listaUsuarios = _usuarioService.ListarUsuarios();
-                CargarUsuarioDefault();
-                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
-                ddlLanguage.SelectedValue = selectedLanguage;
-                _idiomaService.CurrentLanguage = selectedLanguage;
+                if (!IsPostBack)
+                {
+                    listaUsuarios = _usuarioService.ListarUsuarios();
+                    CargarUsuarioDefault();
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
+            finally
+            {
                 CargarTextos();
             }
         }
@@ -115,16 +127,18 @@ namespace GUI
 
         protected void dataGridUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "VerMas")
+            try
             {
-                int userId = Convert.ToInt32(e.CommandArgument);
-                hiddenSelectedId.Value = userId.ToString();
+                if (e.CommandName == "VerMas")
+                {
+                    int userId = Convert.ToInt32(e.CommandArgument);
+                    hiddenSelectedId.Value = userId.ToString();
 
-                var usuario = _usuarioService.ObtenerUsuarioPorId(userId);
-                var familia = _permisoService.ObtenerFamiliaUsuario(usuario.Id);
-                var permisos = _permisoService.ObtenerPermisosAsignadosPorUsuario(usuario.Id);
+                    var usuario = _usuarioService.ObtenerUsuarioPorId(userId);
+                    var familia = _permisoService.ObtenerFamiliaUsuario(usuario.Id);
+                    var permisos = _permisoService.ObtenerPermisosAsignadosPorUsuario(usuario.Id);
 
-                string script = $@"
+                    string script = $@"
                     document.getElementById('modalId').innerText = '{usuario.Id}';
                     document.getElementById('modalNombre').innerText = '{usuario.Nombre}';
                     document.getElementById('modalApellido').innerText = '{usuario.Apellido}';
@@ -133,18 +147,25 @@ namespace GUI
 
                     var permisosList = document.getElementById('modalPermisos');
                     permisosList.innerHTML = '';";
-                
-                foreach (var permiso in permisos)
-                {
-                    script += $@"
+
+                    foreach (var permiso in permisos)
+                    {
+                        script += $@"
                     var permisoItem = document.createElement('li');
                     permisoItem.textContent = '{permiso.Nombre}';
                     permisosList.appendChild(permisoItem);";
+                    }
+
+                    script += "$('#verMasModal').modal('show');";
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowModalScript", script, true);
                 }
-
-                script += "$('#verMasModal').modal('show');";
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "ShowModalScript", script, true);
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
             }
         }
 

@@ -46,9 +46,9 @@ namespace Data.DAO
 
                 return Convert.ToInt32(resultado.Tables[0].Rows[0]["Id"]);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorRegistrarUsuario");
             }
         }
 
@@ -75,9 +75,9 @@ namespace Data.DAO
 
                 return Convert.ToInt32(resultado.Tables[0].Rows[0]["Id"]);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorModificarUsuario");
             }
         }
 
@@ -125,9 +125,9 @@ namespace Data.DAO
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorModificarPuestoUsuario");
             }
         }
 
@@ -139,9 +139,9 @@ namespace Data.DAO
 
                 return resultado;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerPuestos");
             }
         }
 
@@ -153,9 +153,9 @@ namespace Data.DAO
 
                 return resultado;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerAreas");
             }
         }
 
@@ -197,9 +197,9 @@ namespace Data.DAO
 
                 return usuario;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorValidarUsuarioContrasena");
             }
         }
 
@@ -209,9 +209,9 @@ namespace Data.DAO
             {
                 return _acceso.ExecuteStoredProcedureReader("sp_s_usuarios", null);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorListarUsuarios");
             }
         }
 
@@ -221,9 +221,9 @@ namespace Data.DAO
             {
                 return _acceso.ExecuteStoredProcedureReader("sp_s_usuariosBloqueados", null);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerUsuariosBloqueados");
             }
         }
 
@@ -233,9 +233,9 @@ namespace Data.DAO
             {
                 return _acceso.ExecuteStoredProcedureReader("sp_s_usuariosEmpleados", null);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerEmpleados");
             }
         }
 
@@ -250,9 +250,9 @@ namespace Data.DAO
 
                 _acceso.ExecuteStoredProcedureReader("sp_u_EstadoUsuarioBloqueo", parametros);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorBloquearUsuario");
             }
         }
 
@@ -267,9 +267,9 @@ namespace Data.DAO
 
                 _acceso.ExecuteStoredProcedureReader("sp_u_DesbloquearUsuario", parametros);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorDesbloquearUsuario");
             }
         }
 
@@ -291,9 +291,9 @@ namespace Data.DAO
 
                 return resultado;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerUsuarioPorMail");
             }
         }
 
@@ -315,9 +315,9 @@ namespace Data.DAO
 
                 return resultado;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerUsuarioPorId");
             }
         }
 
@@ -340,9 +340,9 @@ namespace Data.DAO
 
                 return true;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorActualizarContrasena");
             }
         }
     }

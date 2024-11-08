@@ -29,6 +29,9 @@
                         <h3 class="card-title">
                             <asp:Label ID="lblCompraResumenTitle" runat="server" Text="Resumen de la Compra"></asp:Label>
                         </h3>
+                        <div class="text-center mt-4">
+                            <asp:Label ID="lblMensaje" runat="server" CssClass="text-success" Visible="false"></asp:Label>
+                        </div>
                         <asp:GridView ID="gvCarrito" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">
                             <Columns>
                                 <asp:BoundField DataField="Producto.Nombre" HeaderText="Producto" />

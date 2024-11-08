@@ -36,13 +36,25 @@ namespace GUI
                 return;
             }
 
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-AR");
-            if (!IsPostBack)
+            try
             {
-                CargarCarrito();
-                string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
-                ddlLanguage.SelectedValue = selectedLanguage;
-                _idiomaService.CurrentLanguage = selectedLanguage;
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-AR");
+                if (!IsPostBack)
+                {
+                    CargarCarrito();
+                    string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
+                    ddlLanguage.SelectedValue = selectedLanguage;
+                    _idiomaService.CurrentLanguage = selectedLanguage;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Visible = true;
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
+            finally
+            {
                 CargarTextos();
             }
         }

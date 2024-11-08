@@ -76,13 +76,13 @@ namespace GUI
                 }
                 else
                 {
-                    throw new Exception(_idiomaService.GetTranslation("MensajeCamposIncompletos"));
+                    throw new Exception("MensajeCamposIncompletos");
                 }
             }
             catch (Exception ex)
             {
                 lblMensaje.CssClass = "text-danger";
-                lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {ex.Message}";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
             }
             finally
             {

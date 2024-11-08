@@ -27,9 +27,9 @@ namespace Data.DAO
 
                 _acceso.ExecuteStoredProcedureReader("sp_d_producto", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorEliminarProducto");
             }
         }
 
@@ -53,9 +53,9 @@ namespace Data.DAO
 
                 return Convert.ToInt32(resultado.Tables[0].Rows[0]["Id"]);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorModificarProducto");
             }
         }
 
@@ -66,9 +66,9 @@ namespace Data.DAO
                 var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_producto", null);
                 return resultado;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerProductos");
             }
         }
 
@@ -84,9 +84,9 @@ namespace Data.DAO
                 var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_producto_porId", parameters);
                 return resultado;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerProductoPorId");
             }
         }
 
@@ -98,9 +98,9 @@ namespace Data.DAO
 
                 return resultado;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerTipoProductos");
             }
         }
 
@@ -110,9 +110,9 @@ namespace Data.DAO
             {
                 return _acceso.ExecuteStoredProcedureReader("sp_ObtenerProductosMasCompradosPorMesYAnio", null);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerProductosMasComprados");
             }
         }
 
@@ -136,9 +136,9 @@ namespace Data.DAO
 
                 return Convert.ToInt32(resultado.Tables[0].Rows[0]["Id"]);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorRegistrarProducto");
             }
         }
     }
