@@ -165,7 +165,7 @@
   "TituloErrorVerificador": "Error en los Digitos Verificadores!",
   "ErrorIngresarSistema": "Hubo un error al ingresar al sistema",
   "ErrorDesconocido": "Se ha producido un error desconocido.",
-  "MensajeContactoAdmin": "Por favor, comunicate con un administrador o usuario WebMaster para resolver este problema.",
+  "MensajeContactoAdmin": "Por favor, comunicate con un usuario WebMaster para resolver este problema.",
   "BotonAceptar": "Aceptar",
 
   "PageTitleFalloIntegridad": "Fallo de Integridad",
@@ -482,5 +482,18 @@
   "City": "Ciudad",
   "Province": "Provincia",
   "Country": "Pais",
-  "Phone": "Telefono"
+  "Phone": "Telefono",
+
+  "EnlaceRecuperarContrasenia": "He olvidado mi contrasena",
+
+  "RegistroExitoTitulo": "Registro Exitoso",
+  "RegistroExitoTexto": "Su registro se ha completado correctamente.",
+  "RegistroExitoBoton": "Continuar",
+
+  "DocumentoReporte": "Reporte de documentos",
+  "TituloReporteDocumentos": "Reporte de Firmas de Documentos",
+  "DescripcionReporteDocumentos": "Porcentaje de documentos firmados y no firmados por los empleados",
+  "SinDatosReporteDocumentos": "No hay datos disponibles para generar el reporte",
+  "XMLGenerado": "XML Generado",
+  "NoDatosXML": "No hay datos disponibles para generar el XML"
 }

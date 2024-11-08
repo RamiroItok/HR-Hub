@@ -176,6 +176,7 @@
     <Content Include="Controls\ValidarEmail.ascx" />
     <Content Include="Controls\ValidarRegistroUsuarioDatos.ascx" />
     <Content Include="DesbloquearUsuario.aspx" />
+    <Content Include="DocumentoReporte.aspx" />
     <Content Include="ErrorDigitoVerificador.aspx" />
     <Content Include="FalloIntegridad.aspx" />
     <Content Include="GestionFamilia.aspx" />
@@ -216,6 +217,7 @@
     <Content Include="Style\CargaDocumento.css" />
     <Content Include="Style\Contact.css" />
     <Content Include="Style\DesbloquearUsuario.css" />
+    <Content Include="Style\DocumentoReporte.css" />
     <Content Include="Style\GestionFamilia.css" />
     <Content Include="Style\GestionPermisosUsuario.css" />
     <Content Include="Style\MisCompras.css" />
@@ -225,6 +227,7 @@
     <Content Include="Templates\ResumenCompraTemplate.html" />
     <Content Include="Tools\TarjetasValidas.txt" />
     <Content Include="WebService\CalcularCarrito.asmx" />
+    <Content Include="WebService\DocumentosService.asmx" />
     <Content Include="WebService\EnviarMail.asmx" />
     <Content Include="WebService\ReporteCompras.asmx" />
     <Content Include="Lang\es.json" />
@@ -386,6 +389,13 @@
     </Compile>
     <Compile Include="DesbloquearUsuario.aspx.designer.cs">
       <DependentUpon>DesbloquearUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentoReporte.aspx.cs">
+      <DependentUpon>DocumentoReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DocumentoReporte.aspx.designer.cs">
+      <DependentUpon>DocumentoReporte.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorDigitoVerificador.aspx.cs">
       <DependentUpon>ErrorDigitoVerificador.aspx</DependentUpon>
@@ -562,6 +572,10 @@
     </Compile>
     <Compile Include="WebService\CalcularCarrito.asmx.cs">
       <DependentUpon>CalcularCarrito.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebService\DocumentosService.asmx.cs">
+      <DependentUpon>DocumentosService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebService\EnviarMail.asmx.cs">

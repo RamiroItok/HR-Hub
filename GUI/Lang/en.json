@@ -163,7 +163,7 @@
   "TituloErrorVerificador": "Verification Digit Error!",
   "ErrorIngresarSistema": "There was an error entering the system",
   "ErrorDesconocido": "An unknown error has occurred.",
-  "MensajeContactoAdmin": "Please contact an administrator or WebMaster to resolve this issue.",
+  "MensajeContactoAdmin": "Please contact a WebMaster to resolve this issue.",
   "BotonAceptar": "Accept",
 
   "PageTitleFalloIntegridad": "Integrity Failure",
@@ -482,5 +482,18 @@
   "Country": "Country",
   "Phone": "Phone",
   "Documentos": "Documents",
-  "CargaDocumentos": "Upload documents"
+  "CargaDocumentos": "Upload documents",
+
+  "EnlaceRecuperarContrasenia": "Have you forgotten your password?",
+
+  "RegistroExitoTitulo": "Successful Registration",
+  "RegistroExitoTexto": "Your registration has been successfully completed.",
+  "RegistroExitoBoton": "Continue",
+  "DocumentoReporte": "Documents Reports",
+
+  "TituloReporteDocumentos": "Document Signatures Report",
+  "DescripcionReporteDocumentos": "Percentage of signed and unsigned documents by employees",
+  "SinDatosReporteDocumentos": "There is no data available to generate the report",
+  "XMLGenerado": "Generated XML",
+  "NoDatosXML": "There is no data available to generate the XML"
 }

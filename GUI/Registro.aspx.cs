@@ -54,6 +54,10 @@ namespace GUI
             }
         }
 
+        public string MensajeRegistroExitoTitulo { get; set; }
+        public string MensajeRegistroExitoTexto { get; set; }
+        public string MensajeRegistroExitoBoton { get; set; }
+
         private void CargarTextos()
         {
             if (!(litPageTitle == null))
@@ -84,15 +88,21 @@ namespace GUI
 
                 litLabelFechaNacimiento.Text = _idiomaService.GetTranslation("LabelFechaNacimiento");
                 txtFechaNac.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderFechaNacimiento");
+
+                MensajeRegistroExitoTitulo = _idiomaService.GetTranslation("RegistroExitoTitulo");
+                MensajeRegistroExitoTexto = _idiomaService.GetTranslation("RegistroExitoTexto");
+                MensajeRegistroExitoBoton = _idiomaService.GetTranslation("RegistroExitoBoton");
             }
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
+            CargarTextos();
             try
             {
                 if (CamposLlenos())
                 {
+                    bool registroExitoso = true;
                     Usuario usuario = new Usuario()
                     {
                         Nombre = txtNombre.Text,
@@ -124,8 +134,17 @@ namespace GUI
                         body = body.Replace("{{CONTRASEÑA}}", usuario.Contraseña);
 
                         _usuarioService.EnviarMail(usuario.Email, AsuntoMail.GeneracionContraseña, body);
-                        lblMensaje.Visible = true;
-                        lblMensaje.Text = _idiomaService.GetTranslation("RegistroExitoso");
+                        string script = $@"
+                            <script>
+                                Swal.fire({{
+                                    title: '{MensajeRegistroExitoTitulo}',
+                                    text: '{MensajeRegistroExitoTexto}',
+                                    icon: 'success',
+                                    confirmButtonText: '{MensajeRegistroExitoBoton}'
+                                }});
+                            </script>";
+
+                        ClientScript.RegisterStartupScript(this.GetType(), "registroExitoso", script);
                         Limpiar();
                     }
                     else
@@ -167,7 +186,7 @@ namespace GUI
             DropDownArea.SelectedIndex = 0;
             drpGenero.SelectedIndex = 0;
             hiddenContraseña.Value = String.Empty;
-
+            
             ValidarRegistroUsuarioDatosControl.Limpiar();
         }
 
@@ -207,6 +226,7 @@ namespace GUI
         {
             string selectedLanguage = ddlLanguage.SelectedValue;
             Session["SelectedLanguage"] = selectedLanguage;
+            CargarTextos();
             Response.Redirect(Request.RawUrl);
         }
     }

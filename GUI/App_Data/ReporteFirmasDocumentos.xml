@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DocumentosFirmasReporte>
+  <Documento>
+    <IdDocumento>5</IdDocumento>
+    <NombreDocumento>Prueba</NombreDocumento>
+    <TotalAsignados>6</TotalAsignados>
+    <TotalFirmados>2</TotalFirmados>
+    <TotalNoFirmados>4</TotalNoFirmados>
+    <PorcentajeFirmado>33,33</PorcentajeFirmado>
+    <PorcentajeNoFirmado>66,67</PorcentajeNoFirmado>
+  </Documento>
+  <Documento>
+    <IdDocumento>6</IdDocumento>
+    <NombreDocumento>Politica de licencia de un empleado</NombreDocumento>
+    <TotalAsignados>6</TotalAsignados>
+    <TotalFirmados>1</TotalFirmados>
+    <TotalNoFirmados>5</TotalNoFirmados>
+    <PorcentajeFirmado>16,67</PorcentajeFirmado>
+    <PorcentajeNoFirmado>83,33</PorcentajeNoFirmado>
+  </Documento>
+</DocumentosFirmasReporte>

@@ -1,0 +1,147 @@
+﻿/* --- Configuración básica de colores y fuentes --- */
+:root {
+    --main-green: #4e7e32; /* Verde oscuro */
+    --accent-green: #67a544; /* Verde más claro */
+    --black: #333333;
+    --white: #ffffff;
+    --background-color: #f5f5f5;
+    --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    color: var(--black);
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Estilo del contenedor principal --- */
+.containerReporte {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .containerReporte:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+/* --- Título principal --- */
+h2 {
+    color: var(--main-green);
+    font-weight: 700;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/* --- Descripción del reporte --- */
+p {
+    color: var(--black);
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+/* --- Botones de acción --- */
+.btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--white);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
+}
+
+.btn-primary {
+    background-color: var(--accent-green);
+}
+
+    .btn-primary:hover {
+        background-color: var(--main-green);
+        transform: translateY(-2px);
+    }
+
+.btn-secondary {
+    background-color: var(--main-green);
+}
+
+    .btn-secondary:hover {
+        background-color: var(--accent-green);
+        transform: translateY(-2px);
+    }
+
+/* --- Gráfico y contenedores de gráficos --- */
+#chartContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    margin-top: 30px;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 350px;
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+    .chart-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .chart-container h3 {
+        color: var(--main-green);
+        margin-bottom: 10px;
+        font-size: 1.1em;
+        font-weight: 600;
+    }
+
+    /* --- Estilo del gráfico --- */
+    .chart-container canvas {
+        width: 100% !important;
+        height: 200px !important;
+    }
+
+    /* --- Transiciones suaves en los botones y gráficos --- */
+    .button-container .btn:hover,
+    .chart-container:hover {
+        transform: scale(1.02);
+        box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+/* --- Dropdown selector de idioma --- */
+.language-selector {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 1000;
+    padding: 5px;
+    font-size: 14px;
+    background-color: var(--white);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .language-selector:hover {
+        background-color: var(--background-color);
+    }
+
+    .language-selector option {
+        color: var(--black);
+    }

@@ -424,7 +424,7 @@ namespace Aplication.Services
             }
         }
 
-        public void ActualizarFamiliaUsuario(Usuario usuario, int puestoAnterior)
+        public void ActualizarFamiliaUsuario(Usuario usuario, int? puestoAnterior)
         {
             try
             {

@@ -33,7 +33,7 @@ namespace Aplication.Interfaces
         void AsignarPermisoAUsuario(int idUsuario, int idPatente, Usuario userSession);
         void QuitarPermisoAUsuario(int idUsuario, int idPatente, Usuario userSession);
         DataTable ObtenerFamiliaUsuario(int idUsuario);
-        void ActualizarFamiliaUsuario(Usuario usuario, int puestoAnterior);
+        void ActualizarFamiliaUsuario(Usuario usuario, int? puestoAnterior);
         bool TienePermiso(Usuario usuario, Permiso permiso);
     }
 }

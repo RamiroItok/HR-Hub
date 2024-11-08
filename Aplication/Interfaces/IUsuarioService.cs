@@ -11,6 +11,7 @@ namespace Aplication.Interfaces
         DataTable ObtenerPuestos();
         DataTable ObtenerAreas();
         string ValidarUsuario(Usuario usuario, string email, string contraseña);
+        Usuario ValidarUsuarioWebMaster(string email, string contraseña);
         List<Usuario> ListarUsuarios();
         void EstadoBloqueoUsuario(Usuario usuario);
         bool DesbloquearUsuario(string email, Usuario userSession, bool esLogin);
