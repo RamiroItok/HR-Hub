@@ -1,6 +1,7 @@
 ﻿using Aplication.Interfaces;
 using Data.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Aplication.Services
@@ -14,7 +15,7 @@ namespace Aplication.Services
             _digitoVerificadorDAO = new Data.DAO.DigitoVerificadorDAO();
         }
 
-        public string VerificarDV()
+        public List<string> VerificarDV()
         {
             try
             {

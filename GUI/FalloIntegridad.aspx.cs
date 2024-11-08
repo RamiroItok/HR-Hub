@@ -6,6 +6,8 @@ using Models.Composite;
 using Models.Enums;
 using System;
 using System.IO;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using Unity;
 
 namespace GUI
@@ -49,13 +51,16 @@ namespace GUI
 
         private void CargarTextos()
         {
-            litPageTitle.Text = _idiomaService.GetTranslation("PageTitleFalloIntegridad");
-            litRecalcularTitulo.Text = _idiomaService.GetTranslation("TituloRecalcularDV");
-            litRestoreTitulo.Text = _idiomaService.GetTranslation("TituloRestore");
-            litSeleccionarArchivo.Text = _idiomaService.GetTranslation("LabelSeleccionarArchivo");
-            btnRecalcular.Text = _idiomaService.GetTranslation("BotonRecalcularDV");
-            btnRestore.Text = _idiomaService.GetTranslation("BotonRealizarRestore");
-            btnCancelar.Text = _idiomaService.GetTranslation("BotonCancelar");
+            if (!(litPageTitle == null))
+            {
+                litPageTitle.Text = _idiomaService.GetTranslation("PageTitleFalloIntegridad");
+                litRecalcularTitulo.Text = _idiomaService.GetTranslation("TituloRecalcularDV");
+                litRestoreTitulo.Text = _idiomaService.GetTranslation("TituloRestore");
+                litSeleccionarArchivo.Text = _idiomaService.GetTranslation("LabelSeleccionarArchivo");
+                btnRecalcular.Text = _idiomaService.GetTranslation("BotonRecalcularDV");
+                btnRestore.Text = _idiomaService.GetTranslation("BotonRealizarRestore");
+                btnCancelar.Text = _idiomaService.GetTranslation("BotonCancelar");
+            }
         }
 
         protected void btnRecalcular_Click(object sender, EventArgs e)
@@ -114,20 +119,34 @@ namespace GUI
 
         private void MostrarEstadoFallido(Models.FalloIntegridad falloIntegridad)
         {
-            if (falloIntegridad != null)
-            {
-                lblTablaFallo.Text = _idiomaService.GetTranslation("LabelTablaFallo") + falloIntegridad.Tabla;
-                lblTablaFallo.CssClass = "fallo-text-failed";
+            phTablasFallidas.Controls.Clear();
 
+            if (falloIntegridad != null && falloIntegridad.Tablas != null && falloIntegridad.Tablas.Count > 0)
+            {
                 lblEstadoIntegridad.Text = _idiomaService.GetTranslation("EstadoNoSaludable");
                 lblEstadoIntegridad.CssClass = "fallo-text-failed";
+
+                foreach (var tabla in falloIntegridad.Tablas)
+                {
+                    Label lblTablaFalloDinamico = new Label();
+                    lblTablaFalloDinamico.Text = _idiomaService.GetTranslation("LabelTablaFallo") + tabla;
+                    lblTablaFalloDinamico.CssClass = "fallo-text-failed";
+
+                    phTablasFallidas.Controls.Add(lblTablaFalloDinamico);
+
+                    phTablasFallidas.Controls.Add(new LiteralControl("<br />"));
+                }
             }
             else
             {
                 lblEstadoIntegridad.Text = _idiomaService.GetTranslation("EstadoSaludable");
                 lblEstadoIntegridad.CssClass = "fallo-text-success";
-                lblTablaFallo.Text = _idiomaService.GetTranslation("LabelTablaFalloSaludable");
-                lblTablaFallo.CssClass = "fallo-text-success";
+
+                Label lblTablaFalloSaludable = new Label();
+                lblTablaFalloSaludable.Text = _idiomaService.GetTranslation("LabelTablaFalloSaludable");
+                lblTablaFalloSaludable.CssClass = "fallo-text-success";
+
+                phTablasFallidas.Controls.Add(lblTablaFalloSaludable);
             }
         }
 

@@ -31,8 +31,8 @@ namespace GUI.Controls
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             var usuario = Session["Usuario"] as Usuario;
-
-            _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Cierra sesion", Models.Enums.Criticidad.BAJA);
+            if(Session["ErrorVerificacionDV"] == null)
+                _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Cierra sesion", Models.Enums.Criticidad.BAJA);
 
             Session.Abandon();
             Response.Redirect("Home.aspx");
@@ -42,7 +42,7 @@ namespace GUI.Controls
         {
             var usuario = Session["Usuario"] as Usuario;
 
-            if ((usuario != null && Session["ErrorVerificacionDV"] == null) || (Session["ErrorVerificacionDV"] != null && usuario.Puesto == Models.Enums.Puesto.WebMaster))
+            if ((usuario != null && Session["ErrorVerificacionDV"] == null) || (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto == Models.Enums.Puesto.WebMaster))
             {
                 Response.Redirect("MenuPrincipal.aspx");
             }

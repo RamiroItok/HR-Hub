@@ -4,6 +4,7 @@ using Aplication.Interfaces.Observer;
 using Aplication.Services.Observer;
 using Models;
 using System;
+using System.Collections.Generic;
 using System.Web.UI;
 using Unity;
 
@@ -75,15 +76,15 @@ namespace GUI
             if (Session["ErrorVerificacionDV"] == null)
             {
                 _backUpService.CrearBaseDeDatos();
-                string mensaje = _digitoVerificadorService.VerificarDV();
-                if (mensaje != "true")
+                List<string> listaMensajes = _digitoVerificadorService.VerificarDV();
+                if (listaMensajes.Count > 0)
                 {
                     Models.FalloIntegridad falloIntegridad = new Models.FalloIntegridad();
-                    falloIntegridad.Tabla = mensaje;
+                    falloIntegridad.Tablas = listaMensajes;
                     falloIntegridad.Fallo = true;
 
                     Session["ErrorVerificacionDV"] = falloIntegridad;
-                    Response.Redirect($"ErrorDigitoVerificador.aspx?mensaje={mensaje}");
+                    Response.Redirect($"ErrorDigitoVerificador.aspx");
                 }
             }
         }

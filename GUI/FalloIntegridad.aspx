@@ -30,7 +30,7 @@
                 <br />
 
                 <div class="fallo-status-container text-center mt-4">
-                    <asp:Label ID="lblTablaFallo" runat="server" CssClass="fallo-status-label"></asp:Label>
+                    <asp:PlaceHolder ID="phTablasFallidas" runat="server"></asp:PlaceHolder>
                 </div>
                 <br />
 
