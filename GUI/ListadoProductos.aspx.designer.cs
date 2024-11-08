@@ -15,6 +15,15 @@ namespace GUI
     {
 
         /// <summary>
+        /// Control litPageTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litPageTitle;
+
+        /// <summary>
         /// Control form1.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,24 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::GUI.Controls.NavBar NavBarControl;
+
+        /// <summary>
+        /// Control ddlLanguage.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLanguage;
+
+        /// <summary>
+        /// Control litTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTitle;
 
         /// <summary>
         /// Control lblMensaje.
@@ -51,6 +78,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.Repeater rptProductos;
 
         /// <summary>
+        /// Control litModalTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litModalTitle;
+
+        /// <summary>
         /// Control IdProducto.
         /// </summary>
         /// <remarks>
@@ -58,6 +94,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField IdProducto;
+
+        /// <summary>
+        /// Control litNombreLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNombreLabel;
 
         /// <summary>
         /// Control txtNombreProducto.
@@ -69,6 +114,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.TextBox txtNombreProducto;
 
         /// <summary>
+        /// Control litEmpresaLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litEmpresaLabel;
+
+        /// <summary>
         /// Control DropDownEmpresa.
         /// </summary>
         /// <remarks>
@@ -76,6 +130,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownEmpresa;
+
+        /// <summary>
+        /// Control litImagenLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litImagenLabel;
 
         /// <summary>
         /// Control fileImagenProducto.
@@ -87,6 +150,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.FileUpload fileImagenProducto;
 
         /// <summary>
+        /// Control litDescripcionLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litDescripcionLabel;
+
+        /// <summary>
         /// Control txtDescripcion.
         /// </summary>
         /// <remarks>
@@ -94,6 +166,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
+
+        /// <summary>
+        /// Control litTipoProductoLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTipoProductoLabel;
 
         /// <summary>
         /// Control DropDownTipoProducto.
@@ -105,6 +186,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.DropDownList DropDownTipoProducto;
 
         /// <summary>
+        /// Control litCantidadLabelModal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litCantidadLabelModal;
+
+        /// <summary>
         /// Control txtCantidad.
         /// </summary>
         /// <remarks>
@@ -112,6 +202,15 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCantidad;
+
+        /// <summary>
+        /// Control litPrecioUnitarioLabelModal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litPrecioUnitarioLabelModal;
 
         /// <summary>
         /// Control txtPrecioUnitario.
@@ -130,5 +229,14 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardarCambios;
+
+        /// <summary>
+        /// Control litCloseButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litCloseButton;
     }
 }

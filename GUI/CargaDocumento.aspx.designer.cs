@@ -11,7 +11,7 @@ namespace GUI
 {
 
 
-    public partial class PermisosUsuario
+    public partial class CargaDocumento
     {
 
         /// <summary>
@@ -42,31 +42,58 @@ namespace GUI
         protected global::GUI.Controls.NavBar NavBarControl;
 
         /// <summary>
-        /// Control litTitle.
+        /// Control lblTitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTitle;
+        protected global::System.Web.UI.WebControls.Label lblTitulo;
 
         /// <summary>
-        /// Control txtBuscar.
+        /// Control lblNombreArchivo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
+        protected global::System.Web.UI.WebControls.Label lblNombreArchivo;
 
         /// <summary>
-        /// Control btnBuscar.
+        /// Control txtNombreArchivo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreArchivo;
+
+        /// <summary>
+        /// Control lblArchivo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblArchivo;
+
+        /// <summary>
+        /// Control fileUpload.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileUpload;
+
+        /// <summary>
+        /// Control btnCargar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCargar;
 
         /// <summary>
         /// Control btnCancelar.
@@ -78,31 +105,22 @@ namespace GUI
         protected global::System.Web.UI.WebControls.Button btnCancelar;
 
         /// <summary>
-        /// Control lblMensaje.
+        /// Control lblPopupTitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        protected global::System.Web.UI.WebControls.Label lblPopupTitulo;
 
         /// <summary>
-        /// Control dataGridUsuarios.
+        /// Control lblPopupMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dataGridUsuarios;
-
-        /// <summary>
-        /// Control hiddenSelectedId.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenSelectedId;
+        protected global::System.Web.UI.WebControls.Label lblPopupMensaje;
 
         /// <summary>
         /// Control ddlLanguage.

@@ -227,6 +227,18 @@ namespace Data.DAO
             }
         }
 
+        public DataSet ObtenerEmpleados()
+        {
+            try
+            {
+                return _acceso.ExecuteStoredProcedureReader("sp_s_usuariosEmpleados", null);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public void EstadoBloqueoUsuario(string email)
         {
             try

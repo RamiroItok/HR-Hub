@@ -167,6 +167,7 @@
     <Content Include="AltaEmpresa.aspx" />
     <Content Include="Bitacora.aspx" />
     <Content Include="CambiarContraseña.aspx" />
+    <Content Include="CargaDocumento.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Compra.aspx" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
@@ -186,6 +187,7 @@
     <Content Include="MenuPrincipal.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MisCompras.aspx" />
+    <Content Include="MisDocumentos.aspx" />
     <Content Include="NavBar.ascx" />
     <Content Include="PermisosUsuario.aspx" />
     <Content Include="Productos.aspx" />
@@ -211,10 +213,13 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="ReporteCompras.aspx" />
     <Content Include="Style\Backup.css" />
+    <Content Include="Style\CargaDocumento.css" />
+    <Content Include="Style\Contact.css" />
     <Content Include="Style\DesbloquearUsuario.css" />
     <Content Include="Style\GestionFamilia.css" />
     <Content Include="Style\GestionPermisosUsuario.css" />
     <Content Include="Style\MisCompras.css" />
+    <Content Include="Style\MisDocumentos.css" />
     <Content Include="Style\Reporte.css" />
     <Content Include="Style\Restore.css" />
     <Content Include="Templates\ResumenCompraTemplate.html" />
@@ -325,6 +330,13 @@
     </Compile>
     <Compile Include="CambiarContraseña.aspx.designer.cs">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CargaDocumento.aspx.cs">
+      <DependentUpon>CargaDocumento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CargaDocumento.aspx.designer.cs">
+      <DependentUpon>CargaDocumento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Carrito.aspx.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
@@ -451,6 +463,13 @@
     </Compile>
     <Compile Include="MisCompras.aspx.designer.cs">
       <DependentUpon>MisCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MisDocumentos.aspx.cs">
+      <DependentUpon>MisDocumentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MisDocumentos.aspx.designer.cs">
+      <DependentUpon>MisDocumentos.aspx</DependentUpon>
     </Compile>
     <Compile Include="NavBar.ascx.cs">
       <DependentUpon>NavBar.ascx</DependentUpon>

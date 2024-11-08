@@ -1,0 +1,72 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+h2 {
+    color: #333;
+    font-weight: bold;
+    font-size: 2rem; /* Aumentado el tamaño del título */
+}
+
+.contact-info p {
+    font-size: 1.3rem; /* Aumentado el tamaño de los párrafos */
+    color: #333;
+    margin: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.icon-style {
+    color: #6AA84F;
+    margin-right: 8px;
+    transition: color 0.3s ease;
+}
+
+.contact-info p:hover .icon-style {
+    color: #4E7E39;
+}
+
+.contact-link {
+    color: #6AA84F;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    .contact-link:hover {
+        color: #4E7E39;
+    }
+
+#ddlLanguage {
+    position: fixed;
+    bottom: 15px; /* Separación desde la parte inferior */
+    right: 15px; /* Separación desde el borde derecho */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    padding: 5px;
+    font-size: 14px;
+    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    #ddlLanguage option {
+        color: #333;
+    }

@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HR Hub - Listado de Usuarios - Permisos</title>
+    <title><asp:Literal ID="litPageTitle" runat="server" Text="HR Hub - Listado de Usuarios - Permisos"></asp:Literal></title>
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
@@ -19,7 +19,7 @@
         <uc:NavBar runat="server" ID="NavBarControl" />
         <div class="containerListado">
             <div class="table-container animate__animated animate__fadeIn">
-                <h2>Listado de Usuarios - Permisos</h2>
+                <h2><asp:Literal ID="litTitle" runat="server" Text="Listado de Usuarios - Permisos"></asp:Literal></h2>
         
                 <div class="search-container">
                     <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Buscar usuario..." />
@@ -76,8 +76,16 @@
                 </div>
             </div>
         </div>
-    </form>
+    
+        <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="true"
+            OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" CssClass="language-selector">
+            <asp:ListItem Text="Español" Value="es"></asp:ListItem>
+            <asp:ListItem Text="English" Value="en"></asp:ListItem>
+        </asp:DropDownList>
+
     <script src="Scripts/jquery-3.4.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+
+    </form>
 </body>
 </html>

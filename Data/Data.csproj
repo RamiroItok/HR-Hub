@@ -50,6 +50,7 @@
     <Compile Include="DAO\CarritoDAO.cs" />
     <Compile Include="DAO\CompraDAO.cs" />
     <Compile Include="DAO\DigitoVerificadorDAO.cs" />
+    <Compile Include="DAO\DocumentoDAO.cs" />
     <Compile Include="DAO\EmpresaDAO.cs" />
     <Compile Include="DAO\ProductoDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Interfaces\ICarritoDAO.cs" />
     <Compile Include="Interfaces\ICompraDAO.cs" />
     <Compile Include="Interfaces\IDigitoVerificadorDAO.cs" />
+    <Compile Include="Interfaces\IDocumentoDAO.cs" />
     <Compile Include="Interfaces\IEmpresaDAO.cs" />
     <Compile Include="Interfaces\IProductoDAO.cs" />
     <Compile Include="Interfaces\IUsuarioDAO.cs" />

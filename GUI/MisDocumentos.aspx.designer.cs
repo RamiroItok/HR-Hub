@@ -11,17 +11,8 @@ namespace GUI
 {
 
 
-    public partial class PermisosUsuario
+    public partial class MisDocumentos
     {
-
-        /// <summary>
-        /// Control litPageTitle.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litPageTitle;
 
         /// <summary>
         /// Control form1.
@@ -42,67 +33,40 @@ namespace GUI
         protected global::GUI.Controls.NavBar NavBarControl;
 
         /// <summary>
-        /// Control litTitle.
+        /// Control chkFirmado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTitle;
+        protected global::System.Web.UI.WebControls.CheckBox chkFirmado;
 
         /// <summary>
-        /// Control txtBuscar.
+        /// Control dataGridDocumentos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
+        protected global::System.Web.UI.WebControls.GridView dataGridDocumentos;
 
         /// <summary>
-        /// Control btnBuscar.
+        /// Control lblNoDocumentos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.WebControls.Label lblNoDocumentos;
 
         /// <summary>
-        /// Control btnCancelar.
+        /// Control litDocumentoContenido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
-
-        /// <summary>
-        /// Control lblMensaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
-
-        /// <summary>
-        /// Control dataGridUsuarios.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dataGridUsuarios;
-
-        /// <summary>
-        /// Control hiddenSelectedId.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenSelectedId;
+        protected global::System.Web.UI.WebControls.Literal litDocumentoContenido;
 
         /// <summary>
         /// Control ddlLanguage.
