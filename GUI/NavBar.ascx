@@ -89,7 +89,7 @@
                 <li class="dropdown" id="miCuentaLink" runat="server" visible="false">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><asp:Literal ID="litMiCuenta" runat="server">Mi cuenta</asp:Literal><b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a runat="server" id="misComprasLink" href="~/MisCompras"><asp:Literal ID="litMisCompras" runat="server">Mis compras</asp:Literal></a></li>
+                        <li><a runat="server" id="misComprasLink" visible="false" href="~/MisCompras"><asp:Literal ID="litMisCompras" runat="server">Mis compras</asp:Literal></a></li>
                         <li><a runat="server" id="misDocumentosLink" visible="false" href="~/MisDocumentos"><asp:Literal ID="litMisDocumentos" runat="server">Mis documentos</asp:Literal></a></li>
                         <li><a runat="server" href="~/CambiarContraseña"><asp:Literal ID="litCambiarContraseña" runat="server">Cambiar contraseña</asp:Literal></a></li>
                     </ul>

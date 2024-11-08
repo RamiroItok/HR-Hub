@@ -64,17 +64,22 @@ namespace GUI
 
         private void CargarTextos()
         {
-            Page.Title = _idiomaService.GetTranslation("PageTitleBitacora");
-            litTituloBitacora.Text = _idiomaService.GetTranslation("TituloBitacora");
-            lblSearch.Text = _idiomaService.GetTranslation("LabelTextoBusqueda");
-            txtSearch.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderTextoBusqueda");
-            lblUsuario.Text = _idiomaService.GetTranslation("LabelUsuario");
-            lblTipoUsuario.Text = _idiomaService.GetTranslation("LabelTipoUsuario");
-            lblCriticidad.Text = _idiomaService.GetTranslation("LabelCriticidad");
-            lblFechaDesde.Text = _idiomaService.GetTranslation("LabelFechaDesde");
-            lblFechaHasta.Text = _idiomaService.GetTranslation("LabelFechaHasta");
-            btnBuscar.Text = _idiomaService.GetTranslation("ButtonBuscar");
-            btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancelar");
+            if (!(litTituloBitacora == null))
+            {
+                litTituloBitacora.Text = _idiomaService.GetTranslation("TituloBitacora");
+                Page.Title = _idiomaService.GetTranslation("PageTitleBitacora");
+                lblSearch.Text = _idiomaService.GetTranslation("LabelTextoBusqueda");
+                txtSearch.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderTextoBusqueda");
+                lblUsuario.Text = _idiomaService.GetTranslation("LabelUsuario");
+                lblTipoUsuario.Text = _idiomaService.GetTranslation("LabelTipoUsuario");
+                lblCriticidad.Text = _idiomaService.GetTranslation("LabelCriticidad");
+                lblFechaDesde.Text = _idiomaService.GetTranslation("LabelFechaDesde");
+                lblFechaHasta.Text = _idiomaService.GetTranslation("LabelFechaHasta");
+                btnBuscar.Text = _idiomaService.GetTranslation("ButtonBuscar");
+                btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancelar");
+                btnExportarExcel.Text = _idiomaService.GetTranslation("ExportarExcel");
+                btnGenerarXML.Text = _idiomaService.GetTranslation("GenerarXML");
+            }
         }
 
         protected void gvBitacora_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -470,5 +470,8 @@
   "TituloModalModificarProducto": "Modificar Producto",
   "LabelTipoProducto": "Tipo de Producto",
   "MensajeProductoEliminado": "El producto ha sido eliminado correctamente.",
-  "MensajeProductoModificado": "El producto ha sido modificado correctamente."
+  "MensajeProductoModificado": "El producto ha sido modificado correctamente.",
+
+  "ExportarExcel": "Exportar a excel",
+  "GenerarXML": "Generar XML"
 }
