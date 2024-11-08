@@ -34,7 +34,7 @@ namespace Data.DAO
             }
             catch
             {
-                throw new Exception("Error al asignar documento.");
+                throw new Exception("ErrorAsignarDocumento");
             }
         }
 
@@ -56,7 +56,7 @@ namespace Data.DAO
             }
             catch
             {
-                throw new Exception("Error al cargar documento.");
+                throw new Exception("ErrorCargarDocumento");
             }
         }
 
@@ -76,7 +76,7 @@ namespace Data.DAO
             }
             catch
             {
-                throw new Exception("Error al firmar documento.");
+                throw new Exception("ErrorFirmarDocumento");
             }
         }
 
@@ -93,7 +93,7 @@ namespace Data.DAO
             }
             catch
             {
-                throw new Exception("Error al obtener el contenido del documento.");
+                throw new Exception("ErrorObtenerContenidoDocumento");
             }
         }
 
@@ -105,7 +105,7 @@ namespace Data.DAO
             }
             catch
             {
-                throw new Exception("Error al obtener el contenido del documento.");
+                throw new Exception("ErrorObtenerDocumentos");
             }
         }
 
@@ -115,9 +115,9 @@ namespace Data.DAO
             {
                 return _acceso.ExecuteStoredProcedureReader("ObtenerPorcentajeFirmasPorDocumento", null);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerPorcentajeFirmasDocumento");
             }
         }
 
@@ -135,7 +135,7 @@ namespace Data.DAO
             }
             catch
             {
-                throw new Exception("Error al obtener documentos del usuario.");
+                throw new Exception("ErrorObtenerDocumentosUsuario");
             }
         }
 
@@ -152,7 +152,7 @@ namespace Data.DAO
             }
             catch
             {
-                throw new Exception("Error al quitar documentos a usuario.");
+                throw new Exception("ErrorQuitarDocumentosUsuario");
             }
         }
     }

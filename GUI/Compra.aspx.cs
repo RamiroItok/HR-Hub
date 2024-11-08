@@ -149,7 +149,7 @@ namespace GUI
 
                 MostrarNotificacionPagoExitoso();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MostrarNotificacionPagoFallido();
             }

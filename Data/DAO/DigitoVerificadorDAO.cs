@@ -70,7 +70,7 @@ namespace Data.DAO
             }
             catch
             {
-                throw new Exception("Error en la base de datos. ");
+                throw new Exception("ErrorVerificarDigitosVerificadores");
             }
         }
 
@@ -197,7 +197,7 @@ namespace Data.DAO
             }
             catch
             {
-                throw new Exception("Error en la base de datos. ");
+                throw new Exception("ErrorRecalcularDigitosVerificadores");
             }
         }
 
@@ -277,7 +277,7 @@ namespace Data.DAO
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en la base de datos: " + ex.Message);
+                throw new Exception("ErrorCalcularDigitoVerificadorTabla" + ex.Message);
             }
         }
 
@@ -291,7 +291,7 @@ namespace Data.DAO
             }
             catch (Exception)
             {
-                throw new Exception("Error en la base de datos.");
+                throw new Exception("ErrorObtenerTabla");
             }
         }
     }

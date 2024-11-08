@@ -105,7 +105,6 @@ namespace GUI
             {
                 if (CamposLlenos())
                 {
-                    bool registroExitoso = true;
                     Usuario usuario = new Usuario()
                     {
                         Nombre = txtNombre.Text,

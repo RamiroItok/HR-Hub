@@ -32,9 +32,9 @@ namespace Data.DAO
 
                 return Convert.ToInt32(resultado.Tables[0].Rows[0]["Id"]);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorRegistrarEmpresa");
             }
         }
 
@@ -54,9 +54,9 @@ namespace Data.DAO
 
                 return Convert.ToInt32(resultado.Tables[0].Rows[0]["Id"]);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorModificarEmpresa");
             }
         }
 
@@ -71,9 +71,9 @@ namespace Data.DAO
 
                 _acceso.ExecuteStoredProcedureReader("sp_d_empresa", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorEliminarEmpresa");
             }
         }
 
@@ -84,9 +84,9 @@ namespace Data.DAO
                 var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_empresa", null);
                 return resultado;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerEmpresas");
             }
         }
 
@@ -101,9 +101,9 @@ namespace Data.DAO
 
                 return _acceso.ExecuteStoredProcedureReader("sp_s_empresa_porId", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerEmpresaPorId");
             }
         }
     }
