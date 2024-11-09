@@ -49,7 +49,7 @@ namespace GUI
             catch (Exception ex)
             {
                 lblMensaje.Visible = true;
-                lblMensaje.CssClass = "text-danger";
+                lblMensaje.CssClass = "alert alert-danger";
                 lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
             }
             finally
@@ -131,7 +131,7 @@ namespace GUI
             catch (Exception ex)
             {
                 lblMensaje.Visible = true;
-                lblMensaje.CssClass = "text-danger";
+                lblMensaje.CssClass = "alert alert-danger";
                 lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
             }
         }
@@ -180,7 +180,7 @@ namespace GUI
             catch (Exception ex)
             {
                 lblMensaje.Visible = true;
-                lblMensaje.CssClass = "text-danger";
+                lblMensaje.CssClass = "alert alert-danger";
                 lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
             }
         }
