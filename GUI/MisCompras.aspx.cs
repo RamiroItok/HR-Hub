@@ -60,8 +60,11 @@ namespace GUI
             }
             finally
             {
-                CargarTextos();
-                CargarCompras();
+                if (!IsPostBack)
+                {
+                    CargarTextos();
+                    CargarCompras();
+                }
             }
         }
 

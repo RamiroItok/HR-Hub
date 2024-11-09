@@ -53,7 +53,8 @@ namespace GUI
             }
             finally
             {
-                CargarTextos();
+                if (!IsPostBack)
+                    CargarTextos();
             }
         }
 

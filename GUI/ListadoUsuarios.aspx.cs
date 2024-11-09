@@ -61,9 +61,12 @@ namespace GUI
             }
             finally
             {
-                CargarTextos();
-                CargarHeadersGridView();
-                CargarCampos();
+                if (!IsPostBack)
+                {
+                    CargarTextos();
+                    CargarHeadersGridView();
+                    CargarCampos();
+                }
             }
         }
 
