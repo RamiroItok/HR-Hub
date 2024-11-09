@@ -145,3 +145,8 @@ p {
     .language-selector option {
         color: var(--black);
     }
+
+
+.text-danger {
+    color: #a94442;
+}

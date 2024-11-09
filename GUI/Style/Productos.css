@@ -240,3 +240,7 @@ body {
     #ddlLanguage option {
         color: #333 !important;
     }
+
+.text-danger {
+    color: #a94442;
+}

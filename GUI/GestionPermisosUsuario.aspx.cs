@@ -88,18 +88,27 @@ namespace GUI
 
         protected void drpUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int idUsuario = int.Parse(drpUsuarios.SelectedValue);
-            if (idUsuario == 0)
+            try
             {
-                lblNoPermisosNoAsignados.Visible = true;
-                lblNoPermisosAsignados.Visible = true;
-                gvPermisosNoAsignados.Visible = false;
-                gvPermisosAsignados.Visible = false;
+                int idUsuario = int.Parse(drpUsuarios.SelectedValue);
+                if (idUsuario == 0)
+                {
+                    lblNoPermisosNoAsignados.Visible = true;
+                    lblNoPermisosAsignados.Visible = true;
+                    gvPermisosNoAsignados.Visible = false;
+                    gvPermisosAsignados.Visible = false;
+                }
+                else
+                {
+                    CargarPermisosNoAsignados(idUsuario);
+                    CargarPermisosAsignados(idUsuario);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                CargarPermisosNoAsignados(idUsuario);
-                CargarPermisosAsignados(idUsuario);
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
             }
         }
 
@@ -147,7 +156,9 @@ namespace GUI
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al asignar permisos: " + ex.Message);
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
             }
         }
 
@@ -176,7 +187,7 @@ namespace GUI
             catch (Exception ex)
             {
                 lblMensaje.Visible = true;
-                lblMensaje.CssClass = "danger";
+                lblMensaje.CssClass = "text-danger";
                 lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
             }
         }

@@ -163,3 +163,7 @@ h2 {
         color: #333333;
         background-color: #ffffff;
     }
+
+.text-danger {
+    color: #a94442;
+}

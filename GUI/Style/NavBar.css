@@ -106,3 +106,8 @@
     visibility: visible;
     transition: max-height 0.2s ease, opacity 0.2s ease; /* Transición más rápida */
 }
+
+
+.text-danger {
+    color: #a94442;
+}

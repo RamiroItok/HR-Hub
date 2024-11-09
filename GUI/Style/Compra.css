@@ -147,3 +147,6 @@ h3.card-title.payment-title {
     #ddlLanguage option {
         color: #333;
     }
+.text-danger {
+    color: #a94442;
+}

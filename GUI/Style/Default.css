@@ -143,3 +143,7 @@ h1, h2, h3 {
     color: #4CAF50;
     margin-top: 10px;
 }
+
+.text-danger {
+    color: #a94442;
+}

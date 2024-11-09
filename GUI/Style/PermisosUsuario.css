@@ -366,3 +366,8 @@ footer {
 input[type="text"], select {
     width: 100%; /* Este ancho se aplica a otros elementos, pero no afectará a #ddlLanguage */
 }
+
+
+.text-danger {
+    color: #a94442;
+}

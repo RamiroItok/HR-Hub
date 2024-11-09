@@ -124,3 +124,7 @@ input.form-control, select.form-control, .datepicker {
     #ddlLanguage option {
         color: #333;
     }
+
+.text-danger {
+    color: #a94442;
+}
