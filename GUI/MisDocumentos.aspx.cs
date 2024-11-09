@@ -28,35 +28,58 @@ namespace GUI
         protected void Page_Load(object sender, EventArgs e)
         {
             var usuario = Session["Usuario"] as Usuario;
-            if(!_permisoService.TienePermiso(usuario, Permiso.MisDocumentos))
+
+            // Validación de permisos
+            if (!_permisoService.TienePermiso(usuario, Permiso.MisDocumentos))
             {
                 Response.Redirect("AccesoDenegado.aspx");
                 return;
             }
 
-            try
+            // Solo cargar documentos y textos al cargar la página inicialmente
+            if (!IsPostBack)
             {
-                if (!IsPostBack)
+                try
                 {
                     if (Session["DocumentosLeidos"] == null)
                     {
                         Session["DocumentosLeidos"] = new HashSet<int>();
                     }
+
+                    // Cargar documentos inicialmente sin filtrar por firmados
                     CargarDocumentos(false);
+
+                    // Establecer el idioma seleccionado en la sesión
                     string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
                     ddlLanguage.SelectedValue = selectedLanguage;
                     _idiomaService.CurrentLanguage = selectedLanguage;
+
+                    // Cargar textos en el idioma actual
+                    CargarTextos();
+                }
+                catch (Exception ex)
+                {
+                    lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+                    lblMensaje.Visible = true;
+                    lblMensaje.CssClass = "text-danger";
+                    CargarTextos();
                 }
             }
-            catch (Exception ex)
+            RegistrarEventosValidacion();
+        }
+
+        private void RegistrarEventosValidacion()
+        {
+            foreach (GridViewRow row in dataGridDocumentos.Rows)
             {
-                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
-                lblMensaje.Visible = true;
-                lblMensaje.CssClass = "text-danger";
-            }
-            finally
-            {
-                CargarTextos();
+                Button btnLeer = row.FindControl("btnLeer") as Button;
+                Button btnFirmar = row.FindControl("btnFirmar") as Button;
+
+                if (btnLeer != null)
+                    ClientScript.RegisterForEventValidation(btnLeer.UniqueID, btnLeer.CommandArgument);
+
+                if (btnFirmar != null)
+                    ClientScript.RegisterForEventValidation(btnFirmar.UniqueID, btnFirmar.CommandArgument);
             }
         }
 
