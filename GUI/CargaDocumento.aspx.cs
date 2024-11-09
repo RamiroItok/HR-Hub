@@ -37,6 +37,18 @@ namespace GUI
                 return;
             }
 
+            if (Session["PopupMessage"] != null && Session["PopupType"] != null)
+            {
+                string mensaje = Session["PopupMessage"].ToString();
+                string tipo = Session["PopupType"].ToString();
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarPopup",
+                    $"mostrarPopup('{mensaje}', '{tipo}');", true);
+
+                Session.Remove("PopupMessage");
+                Session.Remove("PopupType");
+            }
+
             if (!IsPostBack)
             {
                 string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
@@ -56,7 +68,6 @@ namespace GUI
                 lblArchivo.Text = _idiomaService.GetTranslation("LabelArchivo");
                 btnCargar.Text = _idiomaService.GetTranslation("ButtonCargarArchivo");
                 btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancelar");
-                lblPopupTitulo.Text = _idiomaService.GetTranslation("PopupTitulo");
                 txtNombreArchivo.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombreArchivo");
             }
         }
@@ -72,6 +83,9 @@ namespace GUI
 
                 string nombreArchivo = txtNombreArchivo.Text;
                 string tipoArchivo = fileUpload.PostedFile.ContentType;
+
+                ValidarExtension(tipoArchivo);
+
                 byte[] contenidoArchivo;
 
                 using (var stream = fileUpload.PostedFile.InputStream)
@@ -97,12 +111,32 @@ namespace GUI
                 _documentoService.AsignarDocumento(id);
 
                 Limpiar();
-                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarPopup", $"mostrarPopup('{_idiomaService.GetTranslation("MensajeExitoCarga").Replace("'", "\\'")}', 'success');", true);
+                Session["PopupMessage"] = _idiomaService.GetTranslation("MensajeExitoCarga").Replace("'", "\\'");
+                Session["PopupType"] = "success";
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarPopup", $"mostrarPopup('{_idiomaService.GetTranslation(ex.Message).Replace("'", "\\'")}', 'error');", true);
-            }       
+                Session["PopupMessage"] = _idiomaService.GetTranslation(ex.Message).Replace("'", "\\'");
+                Session["PopupType"] = "error";
+            } 
+        }
+
+        private void ValidarExtension(string tipoArchivo)
+        {
+            var tiposPermitidos = new List<string>
+            {
+                "application/pdf",
+                "application/msword",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                "application/vnd.ms-excel",
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "text/plain"
+            };
+
+            if (!tiposPermitidos.Contains(tipoArchivo))
+            {
+                throw new Exception(_idiomaService.GetTranslation("MensajeTipoArchivoInvalido"));
+            }
         }
 
         protected void BtnCancelar_Click(object sender, EventArgs e)
