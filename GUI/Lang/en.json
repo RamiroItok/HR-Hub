@@ -571,7 +571,12 @@
   "HeaderFechaFirma": "Signature Date",
   "HeaderFirmado": "Signed",
   "ButtonLeerDocumento": "Read document",
-  "ButtonFirmarDocumento": "Sign document",
+  "ButtonFirmarDocumento": "Sign",
 
-  "MensajeTipoArchivoInvalido": "The selected file type is not valid"
+  "MensajeTipoArchivoInvalido": "The selected file type is not valid",
+
+  "TituloMisDocumentosConfirmacion": "Signature Success",
+  "TituloMisDocumentosLeerAntes": "Read Before Signing",
+  "DocumentoFirmadoExitosamente": "The document has been successfully signed.",
+  "DocumentoDebeLeerAntes": "You must read the document before signing it."
 }

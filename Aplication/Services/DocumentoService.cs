@@ -141,7 +141,6 @@ namespace Aplication.Services
         {
             try
             {
-
                 _documentoDAO.FirmarDocumento(idDocumento, userSession.Id);
                 _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, "Firma un documento", Criticidad.BAJA);
                 _iDigitoVerificadorService.CalcularDVTabla("UsuarioDocumento");
