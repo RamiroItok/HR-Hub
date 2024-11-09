@@ -63,7 +63,6 @@ namespace GUI
                 if (!IsPostBack)
                 {
                     CargarTextos();
-                    CargarCompras();
                 }
             }
         }
@@ -90,6 +89,8 @@ namespace GUI
                 gvDetallesCompra.Columns[1].HeaderText = _idiomaService.GetTranslation("HeaderCantidad");
                 gvDetallesCompra.Columns[2].HeaderText = _idiomaService.GetTranslation("HeaderPrecioUnitario");
                 gvDetallesCompra.Columns[3].HeaderText = _idiomaService.GetTranslation("HeaderSubtotal");
+                gvCompras.DataBind();
+                gvDetallesCompra.DataBind();
             }
         }
 
