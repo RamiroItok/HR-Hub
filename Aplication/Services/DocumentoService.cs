@@ -123,7 +123,7 @@ namespace Aplication.Services
             try
             {
                 var id = _documentoDAO.CargarDocumento(documento);
-                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Cargo el archivo {documento.Nombre}", Criticidad.BAJA);
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Carga el archivo {documento.Nombre}", Criticidad.BAJA);
                 _iDigitoVerificadorService.CalcularDVTabla("Documentos");
                 return id;
             }
@@ -143,7 +143,7 @@ namespace Aplication.Services
             {
 
                 _documentoDAO.FirmarDocumento(idDocumento, userSession.Id);
-                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, "Firmo un documento", Criticidad.BAJA);
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, "Firma un documento", Criticidad.BAJA);
                 _iDigitoVerificadorService.CalcularDVTabla("UsuarioDocumento");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))

@@ -571,5 +571,7 @@
   "HeaderFechaFirma": "Fecha de firma",
   "HeaderFirmado": "Firmado",
   "ButtonLeerDocumento": "Leer documento",
-  "ButtonFirmarDocumento": "Firmar documento"
+  "ButtonFirmarDocumento": "Firmar documento",
+
+  "MensajeTipoArchivoInvalido": "El tipo de archivo seleccionado no es valido."
 }
