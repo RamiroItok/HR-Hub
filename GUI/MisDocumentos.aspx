@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MisDocumentos.aspx.cs" Inherits="GUI.MisDocumentos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MisDocumentos.aspx.cs" Inherits="GUI.MisDocumentos" EnableEventValidation="false" %>
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
 <!DOCTYPE html>
