@@ -44,9 +44,26 @@ namespace Aplication.Services
             }
         }
 
-        public int BajaBitacora(string fechaIni, string fechaFin)
+        public void BajaBitacora(List<Bitacora> listaBitacora, Usuario userSession)
         {
-            throw new NotImplementedException();
+            try
+            {
+                foreach (var evento in listaBitacora)
+                {
+                    _bitacoraDAO.BajaBitacora(evento.Id);    
+                }
+
+                AltaBitacora(userSession.Email, userSession.Puesto, "Baja de bitacora", Criticidad.ALTA);
+                _digitoVerificadorService.CalcularDVTabla("Bitacora");
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public List<Bitacora> ListarEventos()
