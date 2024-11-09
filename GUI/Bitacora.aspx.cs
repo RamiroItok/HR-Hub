@@ -266,49 +266,57 @@ namespace GUI
 
         protected void btnBajaBitacora_Click(object sender, EventArgs e)
         {
-            List<Models.Bitacora> eventosParaBaja;
-
-            if (Session["EventosFiltrados"] != null)
+            try
             {
-                eventosParaBaja = (List<Models.Bitacora>)Session["EventosFiltrados"];
-            }
-            else
-            {
-                eventosParaBaja = listaEventos;
-            }
+                List<Models.Bitacora> eventosParaBaja;
 
-            var userSession = Session["Usuario"] as Usuario;
-            _iBitacoraService.BajaBitacora(eventosParaBaja, userSession);
-
-            gvBitacora.DataSource = eventosParaBaja;
-            gvBitacora.AllowPaging = false;
-            gvBitacora.DataBind();
-
-            string nombreArchivo = $"Bitacora - {DateTime.Now:yyyyMMddHHmmss}.xls";
-
-            Response.Clear();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", $"attachment;filename={nombreArchivo}");
-            Response.Charset = "";
-            Response.ContentType = "application/vnd.ms-excel";
-
-            using (StringWriter sw = new StringWriter())
-            {
-                using (HtmlTextWriter hw = new HtmlTextWriter(sw))
+                if (Session["EventosFiltrados"] != null)
                 {
-                    string style = @"<style> .textmode { } </style>";
-                    Response.Write(style);
-
-                    gvBitacora.RenderControl(hw);
-
-                    Response.Output.Write(sw.ToString());
-                    Response.Flush();
-                    Response.End();
+                    eventosParaBaja = (List<Models.Bitacora>)Session["EventosFiltrados"];
                 }
-            }
+                else
+                {
+                    eventosParaBaja = listaEventos;
+                }
 
-            gvBitacora.AllowPaging = true;
-            CargarEventosInicio();
+                var userSession = Session["Usuario"] as Usuario;
+                _iBitacoraService.BajaBitacora(eventosParaBaja, userSession);
+
+                gvBitacora.DataSource = eventosParaBaja;
+                gvBitacora.AllowPaging = false;
+                gvBitacora.DataBind();
+
+                string nombreArchivo = $"Bitacora - {DateTime.Now:yyyyMMddHHmmss}.xls";
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", $"attachment;filename={nombreArchivo}");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+
+                using (StringWriter sw = new StringWriter())
+                {
+                    using (HtmlTextWriter hw = new HtmlTextWriter(sw))
+                    {
+                        string style = @"<style> .textmode { } </style>";
+                        Response.Write(style);
+
+                        gvBitacora.RenderControl(hw);
+
+                        Response.Output.Write(sw.ToString());
+                        Response.Flush();
+                        Response.End();
+                    }
+                }
+
+                gvBitacora.AllowPaging = true;
+                CargarEventosInicio();
+            }
+            catch (Exception ex)
+            {
+                string successScript = $"Swal.fire('{_idiomaService.GetTranslation("MensajeErrorGeneral")}', '{_idiomaService.GetTranslation(ex.Message)}', 'error');";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "successScript", successScript, true);
+            }
         }
 
         public override void VerifyRenderingInServerForm(Control control)
