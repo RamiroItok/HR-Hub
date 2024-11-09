@@ -46,8 +46,7 @@ namespace GUI
                     string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
                     ddlLanguage.SelectedValue = selectedLanguage;
                     _idiomaService.CurrentLanguage = selectedLanguage;
-                    listaEventos = _iBitacoraService.ListarEventos();
-                    CargarEventosDefault();
+                    CargarEventosInicio();
                     CargarUsuarios();
                     CargarTipoUsuario();
                     CargarCriticidad();
@@ -64,6 +63,12 @@ namespace GUI
                 if (!IsPostBack)
                     CargarTextos();
             }
+        }
+
+        private void CargarEventosInicio()
+        {
+            listaEventos = _iBitacoraService.ListarEventos();
+            CargarEventosDefault();
         }
 
         private void CargarTextos()
@@ -205,7 +210,7 @@ namespace GUI
 
             if (registrosBitacora == null || !registrosBitacora.Any())
             {
-                string noDataScript = "Swal.fire('Sin datos', 'No hay registros para generar el XML.', 'error');";
+                string noDataScript = $"Swal.fire('{_idiomaService.GetTranslation("TextoSinDatos")}', '{_idiomaService.GetTranslation("NoDatosXML")}', 'error');";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "noDataScript", noDataScript, true);
                 return;
             }
@@ -213,7 +218,7 @@ namespace GUI
             GenerarXML generadorXml = new GenerarXML();
             generadorXml.GenerarXMLBitacora(registrosBitacora);
 
-            string successScript = "Swal.fire('XML Generado', 'El archivo XML se ha generado correctamente.', 'success');";
+            string successScript = $"Swal.fire('{_idiomaService.GetTranslation("XMLGenerado")}', '{_idiomaService.GetTranslation("MensajeReporteExitoso")}', 'success');";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "successScript", successScript, true);
         }
 
@@ -231,9 +236,12 @@ namespace GUI
             gvBitacora.AllowPaging = false;
             gvBitacora.DataBind();
 
+            string nombreArchivo = $"Bitacora - {DateTime.Now}.xls";
+
             Response.Clear();
             Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment;filename=Bitacora.xls");
+
+            Response.AddHeader("content-disposition", $"attachment;filename={nombreArchivo}");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-excel";
 
@@ -254,6 +262,53 @@ namespace GUI
 
             gvBitacora.AllowPaging = true;
             CargarEventosDefault();
+        }
+
+        protected void btnBajaBitacora_Click(object sender, EventArgs e)
+        {
+            List<Models.Bitacora> eventosParaBaja;
+
+            if (Session["EventosFiltrados"] != null)
+            {
+                eventosParaBaja = (List<Models.Bitacora>)Session["EventosFiltrados"];
+            }
+            else
+            {
+                eventosParaBaja = listaEventos;
+            }
+
+            var userSession = Session["Usuario"] as Usuario;
+            _iBitacoraService.BajaBitacora(eventosParaBaja, userSession);
+
+            gvBitacora.DataSource = eventosParaBaja;
+            gvBitacora.AllowPaging = false;
+            gvBitacora.DataBind();
+
+            string nombreArchivo = $"Bitacora - {DateTime.Now:yyyyMMddHHmmss}.xls";
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", $"attachment;filename={nombreArchivo}");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+
+            using (StringWriter sw = new StringWriter())
+            {
+                using (HtmlTextWriter hw = new HtmlTextWriter(sw))
+                {
+                    string style = @"<style> .textmode { } </style>";
+                    Response.Write(style);
+
+                    gvBitacora.RenderControl(hw);
+
+                    Response.Output.Write(sw.ToString());
+                    Response.Flush();
+                    Response.End();
+                }
+            }
+
+            gvBitacora.AllowPaging = true;
+            CargarEventosInicio();
         }
 
         public override void VerifyRenderingInServerForm(Control control)

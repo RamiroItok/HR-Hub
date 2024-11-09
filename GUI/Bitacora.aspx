@@ -65,6 +65,7 @@
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
                     <asp:Button ID="btnExportarExcel" runat="server" Text="Exportar a Excel" CssClass="btn btn-success" OnClick="btnExportarExcel_Click" />
                     <asp:Button ID="btnGenerarXML" runat="server" Text="Generar XML" CssClass="btn btn-info" OnClick="btnGenerarXML_Click" />
+                    <asp:Button ID="btnBajaBitacora" runat="server" Text="Baja bitacora" CssClass="btn btn-primary" OnClick="btnBajaBitacora_Click" />
                 </div>
             </div>
 

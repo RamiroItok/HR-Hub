@@ -7,7 +7,7 @@ namespace Aplication.Interfaces
     public interface IBitacoraService
     {
         int AltaBitacora(string email, Puesto? tipoUsuario, string descripcion, Criticidad criticidad);
-        int BajaBitacora(string fechaIni, string fechaFin);
+        void BajaBitacora(List<Bitacora> listaBitacora, Usuario userSession);
         List<Bitacora> ListarEventos();
     }
 }

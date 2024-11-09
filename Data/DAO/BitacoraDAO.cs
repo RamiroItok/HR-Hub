@@ -40,9 +40,21 @@ namespace Data.DAO
             }
         }
 
-        public bool BajaBitacora(string fechaIni, string fechaFin)
+        public void BajaBitacora(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@Id", id }
+                };
+
+                _acceso.ExecuteStoredProcedureReader("sp_d_bitacora", parameters);
+            }
+            catch (Exception)
+            {
+                throw new Exception("ErrorRegistroBitacora");
+            }
         }
 
         public DataSet ListarEventos()
