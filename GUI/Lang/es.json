@@ -571,7 +571,12 @@
   "HeaderFechaFirma": "Fecha de firma",
   "HeaderFirmado": "Firmado",
   "ButtonLeerDocumento": "Leer documento",
-  "ButtonFirmarDocumento": "Firmar documento",
+  "ButtonFirmarDocumento": "Firmar",
 
-  "MensajeTipoArchivoInvalido": "El tipo de archivo seleccionado no es valido."
+  "MensajeTipoArchivoInvalido": "El tipo de archivo seleccionado no es valido.",
+
+  "TituloMisDocumentosConfirmacion": "FirmaExitosa",
+  "TituloMisDocumentosLeerAntes": "LeerAntesDeFirmar",
+  "DocumentoFirmadoExitosamente": "El documento ha sido firmado exitosamente",
+  "DocumentoDebeLeerAntes": "Debe leer el documento antes de firmarlo"
 }

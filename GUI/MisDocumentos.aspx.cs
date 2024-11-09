@@ -29,14 +29,12 @@ namespace GUI
         {
             var usuario = Session["Usuario"] as Usuario;
 
-            // Validación de permisos
             if (!_permisoService.TienePermiso(usuario, Permiso.MisDocumentos))
             {
                 Response.Redirect("AccesoDenegado.aspx");
                 return;
             }
 
-            // Solo cargar documentos y textos al cargar la página inicialmente
             if (!IsPostBack)
             {
                 try
@@ -46,15 +44,12 @@ namespace GUI
                         Session["DocumentosLeidos"] = new HashSet<int>();
                     }
 
-                    // Cargar documentos inicialmente sin filtrar por firmados
                     CargarDocumentos(false);
 
-                    // Establecer el idioma seleccionado en la sesión
                     string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
                     ddlLanguage.SelectedValue = selectedLanguage;
                     _idiomaService.CurrentLanguage = selectedLanguage;
 
-                    // Cargar textos en el idioma actual
                     CargarTextos();
                 }
                 catch (Exception ex)
@@ -116,48 +111,75 @@ namespace GUI
 
         private void CargarDocumentos(bool firmado)
         {
-            var userSession = Session["Usuario"] as Usuario;
-            List<UsuarioDocumento> documentos = _documentoService.ObtenerDocumentosPorUsuario(firmado, userSession);
-            dataGridDocumentos.DataSource = documentos;
-            dataGridDocumentos.DataBind();
+            try
+            {
+                var userSession = Session["Usuario"] as Usuario;
+                List<UsuarioDocumento> documentos = _documentoService.ObtenerDocumentosPorUsuario(firmado, userSession);
+                dataGridDocumentos.DataSource = documentos;
+                dataGridDocumentos.DataBind();
 
-            lblNoDocumentos.Visible = documentos.Count == 0;
+                lblNoDocumentos.Visible = documentos.Count == 0;
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
         }
 
         protected void chkFirmado_CheckedChanged(object sender, EventArgs e)
         {
-            CargarDocumentos(chkFirmado.Checked);
-            CargarTextos();
+            try
+            {
+                CargarDocumentos(chkFirmado.Checked);
+                CargarTextos();
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.CssClass = "text-danger";
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
+            }
         }
 
         protected void dataGridDocumentos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int documentoId = Convert.ToInt32(e.CommandArgument);
-
-            if (e.CommandName == "Leer")
+            try
             {
-                MostrarDocumento(documentoId);
+                int documentoId = Convert.ToInt32(e.CommandArgument);
 
-                var documentosLeidos = Session["DocumentosLeidos"] as HashSet<int>;
-                if (!documentosLeidos.Contains(documentoId))
+                if (e.CommandName == "Leer")
                 {
-                    documentosLeidos.Add(documentoId);
+                    MostrarDocumento(documentoId);
+
+                    var documentosLeidos = Session["DocumentosLeidos"] as HashSet<int>;
+                    if (!documentosLeidos.Contains(documentoId))
+                    {
+                        documentosLeidos.Add(documentoId);
+                    }
+                }
+                else if (e.CommandName == "Firmar")
+                {
+                    var documentosLeidos = Session["DocumentosLeidos"] as HashSet<int>;
+                    if (documentosLeidos.Contains(documentoId))
+                    {
+                        FirmarDocumento(documentoId);
+                        CargarDocumentos(chkFirmado.Checked);
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), $"{_idiomaService.GetTranslation("TituloMisDocumentosConfirmacion")}", $"Swal.fire('Confirmación', '{_idiomaService.GetTranslation("DocumentoFirmadoExitosamente")}', 'success');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), $"{_idiomaService.GetTranslation("TituloMisDocumentosLeerAntes")}", $"Swal.fire('Advertencia', '{_idiomaService.GetTranslation("DocumentoDebeLeerAntes")}', 'warning');", true);
+                    }
                 }
             }
-            else if (e.CommandName == "Firmar")
+            catch (Exception ex)
             {
-                var documentosLeidos = Session["DocumentosLeidos"] as HashSet<int>;
-                if (documentosLeidos.Contains(documentoId))
-                {
-                    FirmarDocumento(documentoId);
-                    CargarDocumentos(chkFirmado.Checked);
-
-                    ScriptManager.RegisterStartupScript(this, GetType(), "FirmaExitosa", "Swal.fire('Confirmación', 'El documento ha sido firmado exitosamente.', 'success');", true);
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "LeerAntesDeFirmar", "Swal.fire('Advertencia', 'Debe leer el documento antes de firmarlo.', 'warning');", true);
-                }
+                string titulo = _idiomaService.GetTranslation("MensajeErrorGeneral");
+                string mensaje = _idiomaService.GetTranslation(ex.Message);
+                ScriptManager.RegisterStartupScript(this, GetType(), $"{titulo}", $"Swal.fire('Advertencia', '{mensaje}', 'warning');", true);
             }
         }
 
