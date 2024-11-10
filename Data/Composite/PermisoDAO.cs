@@ -298,56 +298,6 @@ namespace Data.Composite
             }
         }
 
-        public Componente ObtenerFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar)
-        {
-            try
-            {
-                Dictionary<string, object> parameters = new Dictionary<string, object>
-                {
-                    { "@idFamilia", familiaId }
-                };
-
-                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_permiso_familiaPatente", parameters);
-                DataTable dt = resultado.Tables[0];
-
-                if (dt.Rows.Count > 0)
-                {
-                    foreach (DataRow rows in dt.Rows)
-                    {
-                        int Id = int.Parse(rows["PermisoId"].ToString());
-                        string nombre = rows["Nombre"].ToString();
-                        string permiso = string.Empty;
-                        if (rows["Permiso"] != DBNull.Value) permiso = rows["Permiso"].ToString();
-
-                        Componente componente;
-                        if (string.IsNullOrEmpty(permiso)) componente = new Familia();
-                        else componente = new Patente();
-
-                        componente.Id = Id;
-                        componente.Nombre = nombre;
-                        if (!string.IsNullOrEmpty(permiso)) componente.Permiso = (Models.Composite.Permiso)Enum.Parse(typeof(Models.Composite.Permiso), permiso);
-
-                        if (componenteAgregar != null)
-                        {
-                            if (componente.GetType() == typeof(Patente)) componenteAgregar.AgregarHijo(componente);
-                            else if (componente.GetType() == typeof(Familia)) LlenarComponenteFamilia(componente, componenteOriginal, componenteAgregar);
-                        }
-                        else
-                        {
-                            if (componente.GetType() == typeof(Patente)) componenteOriginal.AgregarHijo(componente);
-                            else if (componente.GetType() == typeof(Familia)) LlenarComponenteFamilia(componente, componenteOriginal, componenteOriginal);
-                        }
-                    }
-                }
-
-                return componenteOriginal;
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error en la base de datos.");
-            }
-        }
-
         private Componente GetComponente(int id, IList<Componente> lista)
         {
             try
@@ -427,16 +377,6 @@ namespace Data.Composite
             };
 
             return _acceso.ExecuteStoredProcedureReader("sp_s_familiaUsuario", parameters);
-        }
-
-        private void LlenarComponenteFamilia(Componente componente, Componente componenteOriginal, Componente componenteRaiz)
-        {
-            Componente familia = new Familia();
-            familia = componente;
-
-            componenteRaiz.AgregarHijo(familia);
-
-            ObtenerFamiliaArbol(componente.Id, componenteOriginal, familia);
         }
 
         public List<Componente> ObtenerPermisosNoAsignados(int familiaId)
