@@ -22,7 +22,7 @@ namespace GUI
         private readonly ICompraService _compraService;
         private readonly IPermisoService _permisoService;
         private readonly IdiomaService _idiomaService;
-        private readonly EnviarMail _enviarMailService;
+        private readonly MailService _enviarMailService;
         protected static List<Models.Carrito> carritoItems;
 
         public Compra()
@@ -32,7 +32,7 @@ namespace GUI
             _permisoService = Global.Container.Resolve<IPermisoService>();
             _idiomaService = Global.Container.Resolve<IdiomaService>();
             _idiomaService.Subscribe(this);
-            _enviarMailService = new EnviarMail();
+            _enviarMailService = new MailService();
         }
 
         protected void Page_Load(object sender, EventArgs e)
