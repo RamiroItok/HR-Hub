@@ -44,34 +44,6 @@ namespace Data.Composite
             }
         }
 
-        public void GuardarFamiliaCreada(Familia familia)
-        {
-            try
-            {
-                Dictionary<string, object> parameters = new Dictionary<string, object>
-                {
-                    { "@parId", familia.Id }
-                };
-
-                _acceso.ExecuteStoredProcedureReader("sp_d_familiaPatente", parameters);
-
-                foreach (Componente item in familia.Hijos)
-                {
-                    Dictionary<string, object> parameteros = new Dictionary<string, object>
-                    {
-                        { "@parPadreId", familia.Id },
-                        { "@parHijoId", item.Id }
-                    };
-
-                    _acceso.ExecuteStoredProcedureReader("sp_i_familiaPatente", parameteros);
-                }
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error en la base de datos.");
-            }
-        }
-
         public void AsignarPermisoAFamilia(int padreId, int hijoId)
         {
             try
@@ -258,25 +230,6 @@ namespace Data.Composite
             }
         }
 
-        public void PrimerRegistroGuardarPermiso(int idUsuario, int idPatente)
-        {
-            try
-            {
-                Dictionary<string, object> parameteros = new Dictionary<string, object>
-                {
-                    { "@parUsuarioId", idUsuario },
-                    { "@parPatenteId", idPatente },
-                    { "@parDVH", 0 }
-                };
-
-                _acceso.ExecuteStoredProcedureReader("sp_i_usuarioPermiso", parameteros);
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error en la base de datos.");
-            }
-        }
-
         public IList<Familia> ObtenerFamilias()
         {
             try
@@ -289,25 +242,6 @@ namespace Data.Composite
                     familias = _fill.FillListFamilia(ds);
 
                 return familias;
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error en la base de datos.");
-            }
-        }
-
-        public IList<Patente> ObtenerPatentes()
-        {
-            try
-            {
-                var ds = _acceso.ExecuteStoredProcedureReader("sp_s_permiso_notNull", null);
-
-                IList<Models.Composite.Patente> patentes = new List<Models.Composite.Patente>();
-
-                if (ds.Tables[0].Rows.Count > 0)
-                    patentes = _fill.FillListPatente(ds);
-
-                return patentes;
             }
             catch (Exception)
             {
@@ -357,130 +291,6 @@ namespace Data.Composite
                     }
                 }
                 return componentes;
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error en la base de datos.");
-            }
-        }
-
-        public Componente ObtenerFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar)
-        {
-            try
-            {
-                Dictionary<string, object> parameters = new Dictionary<string, object>
-                {
-                    { "@idFamilia", familiaId }
-                };
-
-                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_permiso_familiaPatente", parameters);
-                DataTable dt = resultado.Tables[0];
-
-                if (dt.Rows.Count > 0)
-                {
-                    foreach (DataRow rows in dt.Rows)
-                    {
-                        int Id = int.Parse(rows["PermisoId"].ToString());
-                        string nombre = rows["Nombre"].ToString();
-                        string permiso = string.Empty;
-                        if (rows["Permiso"] != DBNull.Value) permiso = rows["Permiso"].ToString();
-
-                        Componente componente;
-                        if (string.IsNullOrEmpty(permiso)) componente = new Familia();
-                        else componente = new Patente();
-
-                        componente.Id = Id;
-                        componente.Nombre = nombre;
-                        if (!string.IsNullOrEmpty(permiso)) componente.Permiso = (Models.Composite.Permiso)Enum.Parse(typeof(Models.Composite.Permiso), permiso);
-
-                        if (componenteAgregar != null)
-                        {
-                            if (componente.GetType() == typeof(Patente)) componenteAgregar.AgregarHijo(componente);
-                            else if (componente.GetType() == typeof(Familia)) LlenarComponenteFamilia(componente, componenteOriginal, componenteAgregar);
-                        }
-                        else
-                        {
-                            if (componente.GetType() == typeof(Patente)) componenteOriginal.AgregarHijo(componente);
-                            else if (componente.GetType() == typeof(Familia)) LlenarComponenteFamilia(componente, componenteOriginal, componenteOriginal);
-                        }
-                    }
-                }
-
-                return componenteOriginal;
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error en la base de datos.");
-            }
-        }
-
-        public Componente GetUsuarioArbol(int usuarioId, Componente componenteOriginal, Componente componenteAgregar)
-        {
-            try
-            {
-                Dictionary<string, object> parameters = new Dictionary<string, object>
-                {
-                    { "@idUsuario", usuarioId }
-                };
-
-                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_permiso_usuarioPermiso", parameters);
-                DataTable dt = resultado.Tables[0];
-
-                if (dt.Rows.Count > 0)
-                {
-                    foreach (DataRow rows in dt.Rows)
-                    {
-                        int Id = int.Parse(rows["PermisoId"].ToString());
-                        string nombre = rows["Nombre"].ToString();
-                        string permiso = string.Empty;
-                        if (rows["Permiso"] != DBNull.Value) permiso = rows["Permiso"].ToString();
-
-                        Componente componente;
-                        if (string.IsNullOrEmpty(permiso)) componente = new Familia();
-                        else componente = new Patente();
-
-                        componente.Id = Id;
-                        componente.Nombre = nombre;
-                        if (!string.IsNullOrEmpty(permiso)) componente.Permiso = (Models.Composite.Permiso)Enum.Parse(typeof(Models.Composite.Permiso), permiso);
-
-                        if (componenteAgregar != null)
-                        {
-                            if (componente.GetType() == typeof(Patente)) componenteAgregar.AgregarHijo(componente);
-                            else if (componente.GetType() == typeof(Familia)) LlenarComponenteFamilia(componente, componenteOriginal, componenteAgregar);
-                        }
-                        else
-                        {
-                            if (componente.GetType() == typeof(Patente)) componenteOriginal.AgregarHijo(componente);
-                            else if (componente.GetType() == typeof(Familia)) LlenarComponenteFamilia(componente, componenteOriginal, componenteOriginal);
-                        }
-                    }
-                }
-
-                return componenteOriginal;
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error en la base de datos.");
-            }
-        }
-
-        public IList<Familia> GetFamiliasValidacion(int familiaId)
-        {
-            try
-            {
-                Dictionary<string, object> parameters = new Dictionary<string, object>
-                {
-                    { "@familiaId", familiaId }
-                };
-
-                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_familia_validacion", parameters);
-
-                IList<Familia> familias = new List<Familia>();
-
-                if (resultado.Tables[0].Rows.Count > 0)
-                    familias = _fill.FillListFamilia(resultado);
-
-                return familias;
             }
             catch (Exception)
             {
@@ -559,15 +369,6 @@ namespace Data.Composite
             catch (Exception) { throw new Exception("Hubo un error al obtener los permisos del usuario."); }
         }
 
-        public void GetComponenteFamilia(Familia familia)
-        {
-            familia.VaciarHijos();
-            foreach (Componente item in TraerFamiliaPatentes(familia.Id))
-            {
-                familia.AgregarHijo(item);
-            }
-        }
-
         public DataSet ObtenerFamiliaUsuario(int idUsuario)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
@@ -576,16 +377,6 @@ namespace Data.Composite
             };
 
             return _acceso.ExecuteStoredProcedureReader("sp_s_familiaUsuario", parameters);
-        }
-
-        private void LlenarComponenteFamilia(Componente componente, Componente componenteOriginal, Componente componenteRaiz)
-        {
-            Componente familia = new Familia();
-            familia = componente;
-
-            componenteRaiz.AgregarHijo(familia);
-
-            ObtenerFamiliaArbol(componente.Id, componenteOriginal, familia);
         }
 
         public List<Componente> ObtenerPermisosNoAsignados(int familiaId)

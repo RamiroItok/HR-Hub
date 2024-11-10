@@ -23,22 +23,6 @@ namespace Aplication.Services
         }
 
         #region Metodos
-        public void GuardarFamiliaCreada(Familia familia)
-        {
-            try
-            {
-                _permisoDAO.GuardarFamiliaCreada(familia);
-            }
-            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
-            {
-                throw new Exception("ErrorBD");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         public void AsignarPermisoAFamilia(int padreId, int hijoId)
         {
             try
@@ -162,96 +146,12 @@ namespace Aplication.Services
             }
         }
 
-        public void PrimerRegistroGuardarPermiso(int idUsuario, int idPatente)
-        {
-            try
-            {
-                _permisoDAO.PrimerRegistroGuardarPermiso(idUsuario, idPatente);
-            }
-            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
-            {
-                throw new Exception("ErrorBD");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public IList<Componente> TraerFamiliaPatentes(int familiaId)
-        {
-            try
-            {
-                IList<Componente> componentes = _permisoDAO.TraerFamiliaPatentes(familiaId);
-                return componentes;
-            }
-            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
-            {
-                throw new Exception("ErrorBD");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public Componente ObtenerFamiliaArbol(int familiaId, Componente componenteOriginal, Componente componenteAgregar)
-        {
-            try
-            {
-                Componente comp = _permisoDAO.ObtenerFamiliaArbol(familiaId, componenteOriginal, componenteAgregar);
-                return comp;
-            }
-            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
-            {
-                throw new Exception("ErrorBD");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public Componente GetUsuarioArbol(int usuarioId, Componente componenteOriginal, Componente componenteAgregar)
-        {
-            try
-            {
-                Componente comp = _permisoDAO.GetUsuarioArbol(usuarioId, componenteOriginal, componenteAgregar);
-                return comp;
-            }
-            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
-            {
-                throw new Exception("ErrorBD");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         public IList<Familia> ObtenerFamilias()
         {
             try
             {
                 IList<Familia> familias = _permisoDAO.ObtenerFamilias();
                 return familias;
-            }
-            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
-            {
-                throw new Exception("ErrorBD");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public IList<Patente> ObtenerPatentes()
-        {
-            try
-            {
-                IList<Patente> patentes = _permisoDAO.ObtenerPatentes();
-                return patentes;
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
@@ -331,32 +231,6 @@ namespace Aplication.Services
             }
         }
 
-        public Array TraerPermisos()
-        {
-            try
-            {
-                return Enum.GetValues(typeof(Models.Composite.Permiso));
-            }
-            catch (Exception ex) { throw new Exception(ex.Message); }
-        }
-
-        public IList<Familia> GetFamiliasValidacion(int familiaId)
-        {
-            try
-            {
-                IList<Familia> familias = _permisoDAO.GetFamiliasValidacion(familiaId);
-                return familias;
-            }
-            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
-            {
-                throw new Exception("ErrorBD");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         public bool ExisteComponente(Componente componente, int Id)
         {
             bool existeComponente = false;
@@ -381,22 +255,6 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.GetComponenteUsuario(usuario);
-            }
-            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
-            {
-                throw new Exception("ErrorBD");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public void GetComponenteFamilia(Familia familia)
-        {
-            try
-            {
-                _permisoDAO.GetComponenteFamilia(familia);
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
