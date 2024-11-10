@@ -24,7 +24,6 @@ namespace Models
         public string Ciudad { get; set; }
         public string Provincia { get; set; }
         public string Pais { get; set; }
-        public Idioma Idioma { get; set; }
         public int Estado { get; set; }
         public int DVH { get; set; }
 

@@ -38,7 +38,6 @@ namespace Data.DAO
                     { "@Ciudad", usuario.Ciudad },
                     { "@Provincia", usuario.Provincia },
                     { "@Pais", usuario.Pais },
-                    { "@IdIdioma", usuario.Idioma },
                     { "@Estado", usuario.Estado }
                 };
 
@@ -191,7 +190,6 @@ namespace Data.DAO
                     CodigoPostal = resultado.Tables[0].Rows[0]["CodigoPostal"].ToString(),
                     Provincia = resultado.Tables[0].Rows[0]["Provincia"].ToString(),
                     Pais = resultado.Tables[0].Rows[0]["Pais"].ToString(),
-                    Idioma = (Models.Enums.Idioma)resultado.Tables[0].Rows[0]["IdIdioma"],
                     Estado = (int)resultado.Tables[0].Rows[0]["Estado"]
                 };
 

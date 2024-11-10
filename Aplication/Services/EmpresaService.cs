@@ -24,8 +24,10 @@ namespace Aplication.Services
         {
             try
             {
+                empresa.Nombre = EncriptacionService.Encriptar_AES(empresa.Nombre);
+                
                 var id = _empresaDAO.Registrar(empresa);
-                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se registra la empresa {empresa.Nombre}", Criticidad.BAJA);
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se registra la empresa {EncriptacionService.Decrypt_AES(empresa.Nombre)}", Criticidad.BAJA);
                 _iDigitoVerificadorService.CalcularDVTabla("Empresa");
 
                 return id;
@@ -44,8 +46,10 @@ namespace Aplication.Services
         {
             try
             {
+                empresa.Nombre = EncriptacionService.Encriptar_AES(empresa.Nombre);
+
                 var id = _empresaDAO.Modificar(empresa);
-                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se modifican los datos de la empresa {empresa.Nombre}", Criticidad.MEDIA);
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se modifican los datos de la empresa {EncriptacionService.Decrypt_AES(empresa.Nombre)}", Criticidad.MEDIA);
                 _iDigitoVerificadorService.CalcularDVTabla("Empresa");
 
                 return id;
@@ -83,8 +87,17 @@ namespace Aplication.Services
             try
             {
                 var resultado = _empresaDAO.ObtenerEmpresas();
+                var empresasTable = resultado.Tables[0];
 
-                return resultado.Tables[0];
+                foreach (DataRow row in empresasTable.Rows)
+                {
+                    string nombreEncriptado = row["nombre"].ToString();
+                    string nombreDesencriptado = EncriptacionService.Decrypt_AES(nombreEncriptado);
+
+                    row["nombre"] = nombreDesencriptado;
+                }
+
+                return empresasTable;
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
@@ -105,7 +118,7 @@ namespace Aplication.Services
                 Empresa empresa = new Empresa()
                 {
                     Id = (int)resultado.Tables[0].Rows[0]["Id"],
-                    Nombre = resultado.Tables[0].Rows[0]["Nombre"].ToString()
+                    Nombre = EncriptacionService.Decrypt_AES(resultado.Tables[0].Rows[0]["Nombre"].ToString())
                 };               
 
                 return empresa;
