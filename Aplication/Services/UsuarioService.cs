@@ -4,11 +4,8 @@ using Models;
 using Models.Enums;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.IO;
-using System.Net.Mail;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -426,47 +423,6 @@ namespace Aplication
             }
         }
 
-        public void EnviarMail(string email, AsuntoMail asuntoMail, string body, byte[] attachment = null)
-        {
-            try
-            {
-                MailMessage mensaje = new MailMessage();
-                mensaje.From = new MailAddress("noreply@hrhub.com", "HR Hub");
-                mensaje.To.Add(email);
-
-                mensaje.Subject = ObtenerAsuntoCorreo(asuntoMail);
-                mensaje.Body = body;
-                mensaje.IsBodyHtml = true;
-
-                if (attachment != null)
-                {
-                    using (MemoryStream ms = new MemoryStream(attachment))
-                    {
-                        Attachment pdfAttachment = new Attachment(ms, "ResumenCompra.pdf", "application/pdf");
-                        mensaje.Attachments.Add(pdfAttachment);
-
-                        SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-                        smtp.Port = 587;
-                        smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["EmailUser"], ConfigurationManager.AppSettings["EmailPassword"]);
-                        smtp.EnableSsl = true;
-                        smtp.Send(mensaje);
-                    }
-                }
-                else
-                {
-                    SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-                    smtp.Port = 587;
-                    smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["EmailUser"], ConfigurationManager.AppSettings["EmailPassword"]);
-                    smtp.EnableSsl = true;
-                    smtp.Send(mensaje);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         private Usuario CompletarUsuario(DataSet tabla)
         {
             var usuario = new Usuario()
@@ -552,21 +508,6 @@ namespace Aplication
             }
 
             return File.ReadAllText(HttpContext.Current.Server.MapPath(templatePath));
-        }
-
-        public string ObtenerAsuntoCorreo(AsuntoMail asuntoMail)
-        {
-            switch (asuntoMail)
-            {
-                case AsuntoMail.RecuperacionContraseña:
-                    return "Recuperación de contraseña";
-                case AsuntoMail.GeneracionContraseña:
-                    return "Generación de contraseña";
-                case AsuntoMail.CompraProductos:
-                    return "Compra de productos";
-                default:
-                    throw new ArgumentException("Tipo de asunto no válido");
-            }
         }
 
         public List<Usuario> ObtenerUsuariosBloqueados()

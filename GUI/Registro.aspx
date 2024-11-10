@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="~/Style/NavBar.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
     <form id="form1" runat="server">
         <uc:NavBar runat="server" ID="NavBarControl" />
         <div class="bitacora-page">

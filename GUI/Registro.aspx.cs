@@ -1,6 +1,7 @@
 ﻿using Aplication.Interfaces;
 using Aplication.Interfaces.Observer;
 using Aplication.Services.Observer;
+using GUI.WebService;
 using Models;
 using Models.Composite;
 using Models.Enums;
@@ -17,6 +18,7 @@ namespace GUI
         private readonly IUsuarioService _usuarioService;
         private readonly IPermisoService _permisoService;
         private readonly IdiomaService _idiomaService;
+        private readonly MailService _mailService;
 
         public Registro()
         {
@@ -24,6 +26,7 @@ namespace GUI
             _permisoService = Global.Container.Resolve<IPermisoService>();
             _idiomaService = Global.Container.Resolve<IdiomaService>();
             _idiomaService.Subscribe(this);
+            _mailService = new MailService();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -101,7 +104,6 @@ namespace GUI
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            CargarTextos();
             try
             {
                 if (CamposLlenos())
@@ -126,6 +128,8 @@ namespace GUI
                         Pais = ValidarRegistroUsuarioDatosControl.Pais
                     };
 
+                    CargarTextos();
+
                     var esContraseñaValida = _usuarioService.ValidarFormatoContraseña(usuario.Contraseña);
                     if (esContraseñaValida)
                     {
@@ -136,7 +140,7 @@ namespace GUI
 
                         body = body.Replace("{{CONTRASEÑA}}", usuario.Contraseña);
 
-                        _usuarioService.EnviarMail(usuario.Email, AsuntoMail.GeneracionContraseña, body);
+                        _mailService.EnviarMail(usuario.Email, AsuntoMail.GeneracionContraseña, body);
                         string script = $@"
                             <script>
                                 Swal.fire({{
@@ -152,12 +156,12 @@ namespace GUI
                     }
                     else
                     {
-                        throw new Exception("ErrorFormatoContraseña");
+                        throw new Exception("MessageErrorFormatoContrasena");
                     }
                 }
                 else
                 {
-                    throw new Exception("ErrorCamposIncompletos");
+                    throw new Exception("MensajeCamposIncompletos");
                 }
             }
             catch (Exception ex)

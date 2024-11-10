@@ -228,7 +228,7 @@
     <Content Include="Tools\TarjetasValidas.txt" />
     <Content Include="WebService\CalcularCarrito.asmx" />
     <Content Include="WebService\DocumentosService.asmx" />
-    <Content Include="WebService\EnviarMail.asmx" />
+    <Content Include="WebService\MailService.asmx" />
     <Content Include="WebService\ReporteCompras.asmx" />
     <Content Include="Lang\es.json" />
     <Content Include="Lang\en.json" />
@@ -578,8 +578,8 @@
       <DependentUpon>DocumentosService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="WebService\EnviarMail.asmx.cs">
-      <DependentUpon>EnviarMail.asmx</DependentUpon>
+    <Compile Include="WebService\MailService.asmx.cs">
+      <DependentUpon>MailService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebService\ReporteCompras.asmx.cs">

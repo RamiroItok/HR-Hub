@@ -1,6 +1,7 @@
 ﻿using Aplication.Interfaces;
 using Aplication.Interfaces.Observer;
 using Aplication.Services.Observer;
+using GUI.WebService;
 using Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace GUI
     public partial class RecuperarContraseña : Page, IIdiomaService
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly MailService _enviarMailService;
         private readonly IdiomaService _idiomaService;
 
         public RecuperarContraseña()
@@ -22,6 +24,7 @@ namespace GUI
             _usuarioService = Global.Container.Resolve<IUsuarioService>();
             _idiomaService = Global.Container.Resolve<IdiomaService>();
             _idiomaService.Subscribe(this);
+            _enviarMailService = new MailService();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -63,7 +66,7 @@ namespace GUI
                         string body = _usuarioService.ObtenerCuerpoCorreo(AsuntoMail.RecuperacionContraseña);
                         body = body.Replace("{{CONTRASEÑA}}", nuevaContraseña);
 
-                        _usuarioService.EnviarMail(email, AsuntoMail.RecuperacionContraseña, body);
+                        _enviarMailService.EnviarMail(email, AsuntoMail.RecuperacionContraseña, body);
                         lblMensaje.Text = _idiomaService.GetTranslation("MensajeContraseñaEnviada");
                         lblMensaje.CssClass = "message-label success";
                     }
