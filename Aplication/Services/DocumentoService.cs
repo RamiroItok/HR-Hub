@@ -97,7 +97,7 @@ namespace Aplication.Services
                     Documento documento = new Documento
                     {
                         Id = Convert.ToInt32(row["Id"]),
-                        Nombre = (row["Nombre"].ToString()),
+                        Nombre = EncriptacionService.Decrypt_AES(row["Nombre"].ToString()),
                         TipoArchivo = row["TipoArchivo"].ToString(),
                         Contenido = (byte[])row["Contenido"],
                         FechaCarga = (DateTime)row["FechaDeCarga"]
@@ -122,8 +122,10 @@ namespace Aplication.Services
         {
             try
             {
+                documento.Nombre = EncriptacionService.Encriptar_AES(documento.Nombre);
+
                 var id = _documentoDAO.CargarDocumento(documento);
-                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Carga el archivo {documento.Nombre}", Criticidad.BAJA);
+                _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Carga el archivo {EncriptacionService.Decrypt_AES(documento.Nombre)}", Criticidad.BAJA);
                 _iDigitoVerificadorService.CalcularDVTabla("Documentos");
                 return id;
             }
@@ -187,7 +189,7 @@ namespace Aplication.Services
                         Documento = new Documento()
                         {
                             Id = Convert.ToInt32(row["IdDocumento"]),
-                            Nombre = row["Nombre"].ToString()
+                            Nombre =  EncriptacionService.Decrypt_AES(row["Nombre"].ToString())
                         },
                         Usuario = new Usuario()
                         {

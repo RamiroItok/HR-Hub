@@ -1,4 +1,5 @@
-﻿using Aplication.Interfaces;
+﻿using Aplication;
+using Aplication.Interfaces;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace GUI.WebService
                     Models.DocumentoReporte documento = new Models.DocumentoReporte
                     {
                         IdDocumento = Convert.ToInt32(row["IdDocumento"]),
-                        NombreDocumento = row["NombreDocumento"].ToString(),
+                        NombreDocumento = EncriptacionService.Decrypt_AES(row["NombreDocumento"].ToString()),
                         TotalAsignados = Convert.ToInt32(row["TotalAsignados"]),
                         TotalFirmados = Convert.ToInt32(row["TotalFirmados"]),
                         TotalNoFirmados = Convert.ToInt32(row["TotalNoFirmados"]),

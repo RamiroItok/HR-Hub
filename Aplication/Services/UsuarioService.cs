@@ -51,7 +51,6 @@ namespace Aplication
                     Ciudad = usuario.Ciudad,
                     Provincia = usuario.Provincia,
                     Pais = usuario.Pais,
-                    Idioma = usuario.Idioma,
                     Estado = 0
                 };
 
@@ -262,7 +261,6 @@ namespace Aplication
                         Ciudad = row["Ciudad"].ToString(),
                         Provincia = row["Provincia"].ToString(),
                         Pais = row["Pais"].ToString(),
-                        Idioma = (Idioma)Enum.Parse(typeof(Idioma), row["IdIdioma"].ToString()),
                         Estado = Convert.ToInt32(row["Estado"])
                     };
 
@@ -490,7 +488,6 @@ namespace Aplication
                 Ciudad = tabla.Tables[0].Rows[0]["Ciudad"].ToString(),
                 Provincia = tabla.Tables[0].Rows[0]["Provincia"].ToString(),
                 Pais = tabla.Tables[0].Rows[0]["Pais"].ToString(),
-                Idioma = (Idioma)tabla.Tables[0].Rows[0]["IdIdioma"],
                 Estado = (int)tabla.Tables[0].Rows[0]["Estado"]
             };
 
@@ -517,7 +514,6 @@ namespace Aplication
                 Ciudad = tabla.Tables[0].Rows[0]["Ciudad"].ToString(),
                 Provincia = tabla.Tables[0].Rows[0]["Provincia"].ToString(),
                 Pais = tabla.Tables[0].Rows[0]["Pais"].ToString(),
-                Idioma = (Idioma)tabla.Tables[0].Rows[0]["IdIdioma"],
                 Estado = (int)tabla.Tables[0].Rows[0]["Estado"]
             };
 
