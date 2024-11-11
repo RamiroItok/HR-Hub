@@ -92,19 +92,24 @@ namespace GUI
                 dataGridDocumentos.Columns[4].HeaderText = _idiomaService.GetTranslation("HeaderFirmado");
                 dataGridDocumentos.DataBind();
 
-                foreach (GridViewRow row in dataGridDocumentos.Rows)
+                TraducirBotones();
+            }
+        }
+
+        private void TraducirBotones()
+        {
+            foreach (GridViewRow row in dataGridDocumentos.Rows)
+            {
+                if (row.RowType == DataControlRowType.DataRow)
                 {
-                    if (row.RowType == DataControlRowType.DataRow)
-                    {
-                        Button btnLeer = (Button)row.FindControl("btnLeer");
-                        Button btnFirmar = (Button)row.FindControl("btnFirmar");
+                    Button btnLeer = (Button)row.FindControl("btnLeer");
+                    Button btnFirmar = (Button)row.FindControl("btnFirmar");
 
-                        if (btnLeer != null)
-                            btnLeer.Text = _idiomaService.GetTranslation("ButtonLeerDocumento");
+                    if (btnLeer != null)
+                        btnLeer.Text = _idiomaService.GetTranslation("ButtonLeerDocumento");
 
-                        if (btnFirmar != null)
-                            btnFirmar.Text = _idiomaService.GetTranslation("ButtonFirmarDocumento");
-                    }
+                    if (btnFirmar != null)
+                        btnFirmar.Text = _idiomaService.GetTranslation("ButtonFirmarDocumento");
                 }
             }
         }
@@ -117,6 +122,7 @@ namespace GUI
                 List<UsuarioDocumento> documentos = _documentoService.ObtenerDocumentosPorUsuario(firmado, userSession);
                 dataGridDocumentos.DataSource = documentos;
                 dataGridDocumentos.DataBind();
+                TraducirBotones();
 
                 lblNoDocumentos.Visible = documentos.Count == 0;
             }
