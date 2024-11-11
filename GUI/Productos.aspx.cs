@@ -1,4 +1,5 @@
-﻿using Aplication.Interfaces;
+﻿using Aplication;
+using Aplication.Interfaces;
 using Aplication.Interfaces.Observer;
 using Aplication.Services.Observer;
 using Models;
@@ -54,7 +55,7 @@ namespace GUI
                         Empresa = new Empresa()
                         {
                             Id = row.Field<int>("IdEmpresa"),
-                            Nombre = row.Field<string>("NombreEmpresa"),
+                            Nombre = EncriptacionService.Decrypt_AES(row.Field<string>("NombreEmpresa")),
                         },
                         TipoProducto = new TipoProducto()
                         {
