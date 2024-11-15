@@ -37,10 +37,13 @@ namespace GUI
 
         private void CargarTextos()
         {
-            litTitle.Text = _idiomaService.GetTranslation("ProductosMasCompradosTitle");
-            litDescription.Text = _idiomaService.GetTranslation("ProductosMasCompradosDescription");
-            btnGenerarXML.Text = _idiomaService.GetTranslation("GenerarXMLButton");
-            btnGenerarReporte.Text = _idiomaService.GetTranslation("GenerarReporteButton");
+            if (!(litTitle == null))
+            {
+                litTitle.Text = _idiomaService.GetTranslation("ProductosMasCompradosTitle");
+                litDescription.Text = _idiomaService.GetTranslation("ProductosMasCompradosDescription");
+                btnGenerarXML.Text = _idiomaService.GetTranslation("GenerarXMLButton");
+                btnGenerarReporte.Text = _idiomaService.GetTranslation("GenerarReporteButton");
+            }
         }
 
         private void CargarAnios()

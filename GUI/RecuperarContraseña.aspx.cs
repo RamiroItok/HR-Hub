@@ -40,10 +40,13 @@ namespace GUI
 
         private void CargarTextos()
         {
-            lblTitulo.Text = _idiomaService.GetTranslation("TituloRecuperarContrasena");
-            lblEmail.Text = _idiomaService.GetTranslation("LabelEmail");
-            btnRecuperar.Text = _idiomaService.GetTranslation("BotonRecuperarContrasena");
-            btnVolver.Text = _idiomaService.GetTranslation("BotonVolver");
+            if (!(lblTitulo == null))
+            {
+                lblTitulo.Text = _idiomaService.GetTranslation("TituloRecuperarContrasena");
+                lblEmail.Text = _idiomaService.GetTranslation("LabelEmail");
+                btnRecuperar.Text = _idiomaService.GetTranslation("BotonRecuperarContrasena");
+                btnVolver.Text = _idiomaService.GetTranslation("BotonVolver");
+            }
         }
 
         protected void btnRecuperar_Click(object sender, EventArgs e)

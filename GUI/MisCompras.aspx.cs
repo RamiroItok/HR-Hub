@@ -39,6 +39,7 @@ namespace GUI
 
             try
             {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-AR");
                 if (!IsPostBack)
                 {
                     string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
