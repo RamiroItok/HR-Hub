@@ -44,6 +44,7 @@ namespace GUI
             {
                 lblTitulo.Text = _idiomaService.GetTranslation("TituloRecuperarContrasena");
                 lblEmail.Text = _idiomaService.GetTranslation("LabelEmail");
+                txtEmail.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderEmail");
                 btnRecuperar.Text = _idiomaService.GetTranslation("BotonRecuperarContrasena");
                 btnVolver.Text = _idiomaService.GetTranslation("BotonVolver");
             }
