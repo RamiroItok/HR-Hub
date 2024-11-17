@@ -12,11 +12,19 @@
     <Mes nombre="noviembre">
       <Producto>
         <Nombre>Remera negra</Nombre>
-        <VecesComprado>21</VecesComprado>
+        <VecesComprado>23</VecesComprado>
       </Producto>
       <Producto>
         <Nombre>Doritos 200gr</Nombre>
         <VecesComprado>13</VecesComprado>
+      </Producto>
+      <Producto>
+        <Nombre>Papas fritas 200gr</Nombre>
+        <VecesComprado>3</VecesComprado>
+      </Producto>
+      <Producto>
+        <Nombre>Reloj SUOB 704</Nombre>
+        <VecesComprado>2</VecesComprado>
       </Producto>
     </Mes>
   </Anio>

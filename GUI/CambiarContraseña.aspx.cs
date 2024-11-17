@@ -78,6 +78,9 @@ namespace GUI
                 lblPasswordNueva.Text = _idiomaService.GetTranslation("LabelPasswordNueva");
                 lblPasswordConfirmar.Text = _idiomaService.GetTranslation("LabelPasswordConfirmar");
                 btnCambiar.Text = _idiomaService.GetTranslation("ButtonCambiarContrasena");
+                txtPasswordActual.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceHolderContrasenaActual");
+                txtPasswordNueva.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceHolderContrasenaNueva");
+                txtPasswordConfirmar.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceHolderContrasenaConfirmacion");
             }
         }
 

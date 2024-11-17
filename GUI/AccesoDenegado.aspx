@@ -83,6 +83,23 @@
             animation: slideIn 0.5s ease;
         }
 
+        #ddlLanguage {
+            position: fixed;
+            bottom: 15px; /* Separación desde la parte inferior */
+            right: 15px; /* Separación desde el borde derecho */
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+            padding: 5px;
+            font-size: 14px;
+            background-color: #fff; /* Fondo blanco para mejor visibilidad */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #ddlLanguage option {
+            color: #333;
+        }
+
         @keyframes slideIn {
             from {
                 transform: translateY(-30px);
@@ -95,7 +112,7 @@
         }
     </style>
 </head>
-<body>
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
     <form id="form1" runat="server">
         <div class="error-container">
             <div class="error-code" runat="server" id="errorCode"></div>

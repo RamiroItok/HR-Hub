@@ -266,7 +266,7 @@
   "ModalProductAddedMessage": "El producto ha sido agregado al carrito exitosamente!",
   "ModalCloseButton": "Cerrar",
 
-  "GestionFamiliaTituloPagina": "Gestion de Permisos de Usuario",
+  "GestionFamiliaTituloPagina": "Gestion de Familia",
   "NombreFamilia": "Nombre de familia",
   "ListadoFamilias": "Listado de familias",
   "ButtonAlta": "Alta",
@@ -280,7 +280,7 @@
   "LabelFamilia": "Familias",
   "ButtonListar": "Listar",
   "ButtonAsignarPermiso": "Asignar Permiso a Familia",
-  "ButtonEliminarPatente": "Eliminar Patente",
+  "ButtonEliminarPatente": "Quitar Patente a Familia",
   "PermisosNoAsignados": "Permisos no asignados",
   "PermisosAsignados": "Permisos asignados",
   "ColumnId": "Id",
@@ -578,5 +578,9 @@
   "TituloMisDocumentosConfirmacion": "FirmaExitosa",
   "TituloMisDocumentosLeerAntes": "LeerAntesDeFirmar",
   "DocumentoFirmadoExitosamente": "El documento ha sido firmado exitosamente",
-  "DocumentoDebeLeerAntes": "Debe leer el documento antes de firmarlo"
+  "DocumentoDebeLeerAntes": "Debe leer el documento antes de firmarlo",
+
+  "PlaceHolderContrasenaActual": "Ingrese su actual contrasena",
+  "PlaceHolderContrasenaNueva": "Ingrese su nueva contrasena",
+  "PlaceHolderContrasenaConfirmacion": "Ingrese confirmacion de su nueva contrasena"
 }
