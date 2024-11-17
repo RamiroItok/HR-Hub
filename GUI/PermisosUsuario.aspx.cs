@@ -65,11 +65,14 @@ namespace GUI
 
         private void CargarTextos()
         {
-            litPageTitle.Text = _idiomaService.GetTranslation("TituloPaginaPermisos");
-            lblMensaje.Text = _idiomaService.GetTranslation("MensajeBusquedaVacia");
-            litTitle.Text = _idiomaService.GetTranslation("TituloListado");
-            btnBuscar.Text = _idiomaService.GetTranslation("BotonBuscar");
-            btnCancelar.Text = _idiomaService.GetTranslation("BotonCancelar");
+            if (!(litPageTitle == null))
+            {
+                litPageTitle.Text = _idiomaService.GetTranslation("TituloPaginaPermisos");
+                lblMensaje.Text = _idiomaService.GetTranslation("MensajeBusquedaVacia");
+                litTitle.Text = _idiomaService.GetTranslation("TituloListado");
+                btnBuscar.Text = _idiomaService.GetTranslation("BotonBuscar");
+                btnCancelar.Text = _idiomaService.GetTranslation("BotonCancelar");
+            }
 
             txtBuscar.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderBuscarUsuario");
 

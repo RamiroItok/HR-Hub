@@ -41,10 +41,13 @@ namespace GUI
 
         private void CargarTextos()
         {
-            litTituloPagina.Text = _idiomaService.GetTranslation("TituloPaginaLogin");
-            litTituloFormulario.Text = _idiomaService.GetTranslation("TituloFormularioLogin");
-            btnLogin.Text = _idiomaService.GetTranslation("BotonIniciarSesion");
-            litRecuperarContraseña.Text = _idiomaService.GetTranslation("EnlaceRecuperarContrasenia");
+            if (!(litTituloPagina == null))
+            {
+                litTituloPagina.Text = _idiomaService.GetTranslation("TituloPaginaLogin");
+                litTituloFormulario.Text = _idiomaService.GetTranslation("TituloFormularioLogin");
+                btnLogin.Text = _idiomaService.GetTranslation("BotonIniciarSesion");
+                litRecuperarContraseña.Text = _idiomaService.GetTranslation("EnlaceRecuperarContrasenia");
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

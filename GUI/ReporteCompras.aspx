@@ -17,7 +17,7 @@
     <link href="/Style/NavBar.css" rel="stylesheet" />
     <link href="/Style/Reporte.css" rel="stylesheet" />
 </head>
-<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo2.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0;">
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
 
@@ -92,7 +92,8 @@
 
             Object.keys(data).forEach((mes, index) => {
                 const productos = data[mes];
-                const labels = productos.map(p => p.Nombre);
+
+                const labels = productos.map(p => `${p.Nombre} (${p.VecesComprado})`);
                 const values = productos.map(p => p.VecesComprado);
 
                 const chartContainer = document.createElement('div');
@@ -127,18 +128,5 @@
             });
         }
     </script>    
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Content/imagenes/Fondo2.jpg')";
-            document.body.style.backgroundSize = "cover";
-            document.body.style.backgroundPosition = "center";
-            document.body.style.backgroundAttachment = "fixed";
-            document.body.style.minHeight = "100vh";
-            document.body.style.display = "flex";
-            document.body.style.justifyContent = "center";
-            document.body.style.alignItems = "center";
-            document.body.style.margin = "0";
-        });
-    </script>
 </body>
 </html>

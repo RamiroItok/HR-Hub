@@ -63,7 +63,7 @@
 
         datos.forEach(function (item) {
             const chartContainer = document.createElement('div');
-            chartContainer.classList.add('chart-container', 'mb-4');
+            chartContainer.classList.add('chart-container');
 
             const canvas = document.createElement('canvas');
             chartContainer.appendChild(canvas);
@@ -75,8 +75,8 @@
                     labels: ['Firmado (%)', 'No Firmado (%)'],
                     datasets: [{
                         data: [item.PorcentajeFirmado, item.PorcentajeNoFirmado],
-                        backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)'],
-                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                        backgroundColor: ['#93c83d', '#2E7D32'],
+                        borderColor: ['#6ea22e', '#255D27'],
                         borderWidth: 1
                     }]
                 },

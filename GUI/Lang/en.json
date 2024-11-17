@@ -264,7 +264,7 @@
   "ModalProductAddedMessage": "The product has been successfully added to the cart!",
   "ModalCloseButton": "Close",
 
-  "GestionFamiliaTituloPagina": "User Permission Management",
+  "GestionFamiliaTituloPagina": "Family Management",
   "NombreFamilia": "Family name",
   "ListadoFamilias": "Family list",
   "ButtonAlta": "Add",
@@ -278,7 +278,7 @@
   "LabelFamilia": "Families",
   "ButtonListar": "List",
   "ButtonAsignarPermiso": "Assign Permission to Family",
-  "ButtonEliminarPatente": "Remove Patent",
+  "ButtonEliminarPatente": "Revoke license",
   "PermisosNoAsignados": "Unassigned Permissions",
   "PermisosAsignados": "Assigned Permissions",
   "ColumnId": "Id",
@@ -578,5 +578,9 @@
   "TituloMisDocumentosConfirmacion": "Signature Success",
   "TituloMisDocumentosLeerAntes": "Read Before Signing",
   "DocumentoFirmadoExitosamente": "The document has been successfully signed.",
-  "DocumentoDebeLeerAntes": "You must read the document before signing it."
+  "DocumentoDebeLeerAntes": "You must read the document before signing it.",
+
+  "PlaceHolderContrasenaActual": "Enter your current password",
+  "PlaceHolderContrasenaNueva": "Enter your new password",
+  "PlaceHolderContrasenaConfirmacion": "Re-enter your new password"
 }

@@ -107,7 +107,7 @@ namespace GUI
             if (!(litTituloPagina == null))
             {
                 litTituloPagina.Text = _idiomaService.GetTranslation("GestionFamiliaTituloPagina");
-
+                txtFamilia.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombreEmpresa");
                 lblNombreFamilia.Text = _idiomaService.GetTranslation("NombreFamilia");
                 lblListadoFamilias.Text = _idiomaService.GetTranslation("ListadoFamilias");
                 btnAceptar.Text = _idiomaService.GetTranslation("ButtonAlta");

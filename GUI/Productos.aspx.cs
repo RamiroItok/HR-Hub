@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Unity;
@@ -45,6 +44,7 @@ namespace GUI
 
             try
             {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-AR");
                 if (!IsPostBack)
                 {
                     listaProductos = _productoService.ObtenerProductos().AsEnumerable().Select(row => new Producto
