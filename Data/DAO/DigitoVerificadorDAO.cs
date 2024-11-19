@@ -115,72 +115,12 @@ namespace Data.DAO
                         }
                         if (DVH_total != dvh_fila)
                         {
-                            if (tabla == "Usuario")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "Bitacora")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "Permiso")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "FamiliaPatente")
+                            if (tabla == "FamiliaPatente")
                             {
                                 string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE PadreId = '{dt2.Rows[x]["PadreId"].ToString()}' and HijoId = '{dt2.Rows[x]["HijoId"].ToString()}'";
                                 _acceso.GenerarConsulta(consulta1);
                             }
-                            else if (tabla == "UsuarioPermiso")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "Empresa")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "TipoProducto")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "Producto")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "Carrito")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "Compra")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "DetalleCompra")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "Area")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "Documentos")
-                            {
-                                string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
-                                _acceso.GenerarConsulta(consulta1);
-                            }
-                            else if (tabla == "UsuarioDocumento")
+                            else if (tabla != "FamiliaPatente")
                             {
                                 string consulta1 = $@"UPDATE {tabla} set DVH = '{dvh_fila}' WHERE Id = '{dt2.Rows[x]["Id"].ToString()}'";
                                 _acceso.GenerarConsulta(consulta1);
