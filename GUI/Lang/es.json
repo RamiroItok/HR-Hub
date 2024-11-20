@@ -582,5 +582,6 @@
 
   "PlaceHolderContrasenaActual": "Ingrese su actual contrasena",
   "PlaceHolderContrasenaNueva": "Ingrese su nueva contrasena",
-  "PlaceHolderContrasenaConfirmacion": "Ingrese confirmacion de su nueva contrasena"
+  "PlaceHolderContrasenaConfirmacion": "Ingrese confirmacion de su nueva contrasena",
+  "BajaBitacora": "Eliminar eventos"
 }

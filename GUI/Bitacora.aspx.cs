@@ -88,6 +88,7 @@ namespace GUI
                 btnCancelar.Text = _idiomaService.GetTranslation("ButtonCancelar");
                 btnExportarExcel.Text = _idiomaService.GetTranslation("ExportarExcel");
                 btnGenerarXML.Text = _idiomaService.GetTranslation("GenerarXML");
+                btnBajaBitacora.Text = _idiomaService.GetTranslation("BajaBitacora");
             }
         }
 
