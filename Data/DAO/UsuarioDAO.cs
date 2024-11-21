@@ -295,6 +295,25 @@ namespace Data.DAO
             }
         }
 
+        public DataSet ObtenerUsuarioWebmaster()
+        {
+            try
+            {
+                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_usuarioWebMaster", null);
+
+                if (resultado.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                return resultado;
+            }
+            catch (Exception)
+            {
+                throw new Exception("ErrorObtenerUsuarioWebmaster");
+            }
+        }
+
         public DataSet ObtenerUsuarioPorId(int id)
         {
             try
