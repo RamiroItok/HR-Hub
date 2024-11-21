@@ -4,6 +4,7 @@ using Models;
 using Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Text;
@@ -225,6 +226,16 @@ namespace Aplication
                 return usuarioReal;
             }
 
+            var emailContingencia = ConfigurationManager.AppSettings["EmailContingencia"];
+            var contraseñaContingencia = ConfigurationManager.AppSettings["PasswordContingencia"];
+
+            if (emailEncriptado == emailContingencia && contraseñaEncriptada == contraseñaContingencia)
+            {
+                usuarioReal = ObtenerUsuarioWebmaster();
+                _iPermisoService.GetComponenteUsuario(usuarioReal);
+                return usuarioReal;
+            }
+
             return null;
         }
 
@@ -323,6 +334,27 @@ namespace Aplication
             {
                 email = EncriptacionService.Encriptar_AES(email);
                 var resultado = _usuarioDAO.ObtenerUsuarioPorEmail(email);
+
+                if (resultado != null)
+                    return CompletarUsuario(resultado);
+
+                return null;
+            }
+            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
+            {
+                throw new Exception("ErrorBD");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public Usuario ObtenerUsuarioWebmaster()
+        {
+            try
+            {
+                var resultado = _usuarioDAO.ObtenerUsuarioWebmaster();
 
                 if (resultado != null)
                     return CompletarUsuario(resultado);

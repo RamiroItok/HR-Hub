@@ -26,5 +26,6 @@ namespace Aplication.Interfaces
         string ObtenerCuerpoCorreo(AsuntoMail asuntoMail);
         List<Usuario> ObtenerUsuariosBloqueados();
         List<Usuario> ObtenerEmpleados();
+        Usuario ObtenerUsuarioWebmaster();
     }
 }
