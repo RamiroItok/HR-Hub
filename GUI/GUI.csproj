@@ -170,6 +170,10 @@
     <Content Include="CargaDocumento.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Compra.aspx" />
+    <Content Include="Content\Imagenes\404.png" />
+    <Content Include="Content\Imagenes\Fondo.jpg" />
+    <Content Include="Content\Imagenes\Fondo1.jpg" />
+    <Content Include="Content\Imagenes\Fondo2.jpg" />
     <Content Include="Content\Imagenes\Logo_HrHub.jpg" />
     <Content Include="Controls\ValidarCantidad.ascx" />
     <Content Include="Controls\ValidarContraseña.ascx" />
@@ -177,6 +181,7 @@
     <Content Include="Controls\ValidarRegistroUsuarioDatos.ascx" />
     <Content Include="DesbloquearUsuario.aspx" />
     <Content Include="DocumentoReporte.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="ErrorDigitoVerificador.aspx" />
     <Content Include="FalloIntegridad.aspx" />
     <Content Include="GestionFamilia.aspx" />
@@ -218,6 +223,7 @@
     <Content Include="Style\Contact.css" />
     <Content Include="Style\DesbloquearUsuario.css" />
     <Content Include="Style\DocumentoReporte.css" />
+    <Content Include="Style\Error.css" />
     <Content Include="Style\GestionFamilia.css" />
     <Content Include="Style\GestionPermisosUsuario.css" />
     <Content Include="Style\MisCompras.css" />
@@ -396,6 +402,13 @@
     </Compile>
     <Compile Include="DocumentoReporte.aspx.designer.cs">
       <DependentUpon>DocumentoReporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorDigitoVerificador.aspx.cs">
       <DependentUpon>ErrorDigitoVerificador.aspx</DependentUpon>
