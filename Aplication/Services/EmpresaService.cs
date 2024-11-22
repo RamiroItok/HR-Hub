@@ -3,7 +3,9 @@ using Data.Interfaces;
 using Models;
 using Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace Aplication.Services
 {
@@ -24,6 +26,11 @@ namespace Aplication.Services
         {
             try
             {
+                bool existeEmpresa = ObtenerListaDeEmpresas().Where(x => x.Nombre.ToUpper() == empresa.Nombre.ToUpper()).Any();
+
+                if (existeEmpresa)
+                    throw new Exception("EmpresaExistente");
+
                 empresa.Nombre = EncriptacionService.Encriptar_AES(empresa.Nombre);
                 
                 var id = _empresaDAO.Registrar(empresa);
@@ -131,6 +138,31 @@ namespace Aplication.Services
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        private List<Empresa> ObtenerListaDeEmpresas()
+        {
+            var dataTable = ObtenerEmpresas();
+
+            return ConvertirDataTableALista(dataTable);
+        }
+
+        private List<Empresa> ConvertirDataTableALista(DataTable dataTable)
+        {
+            var listaEmpresas = new List<Empresa>();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                listaEmpresas.Add(new Empresa
+                {
+                    Id = row.Table.Columns.Contains("id") ? Convert.ToInt32(row["id"]) : 0,
+                    Nombre = row.Table.Columns.Contains("nombre") ? row["nombre"].ToString() : string.Empty,
+                    Logo = row.Table.Columns.Contains("logo") && row["logo"] != DBNull.Value ? (byte[])row["logo"] : null,
+                    URL = row.Table.Columns.Contains("url") ? row["url"].ToString() : string.Empty
+                });
+            }
+
+            return listaEmpresas;
         }
     }
 }
