@@ -4,8 +4,10 @@ using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
 using Unity;
 
@@ -64,6 +66,9 @@ namespace GUI
             {
                 if (fileLogo.HasFile || !string.IsNullOrEmpty(txtNombreEmpresa.Text) || !string.IsNullOrEmpty(txtURLEmpresa.Text))
                 {
+                    if (!ValidarExtensionImagen(fileLogo.PostedFile))
+                        throw new Exception("ExtensionImagen");
+
                     byte[] imagenBytes;
                     using (BinaryReader br = new BinaryReader(fileLogo.PostedFile.InputStream))
                     {
@@ -98,6 +103,15 @@ namespace GUI
                 lblMensaje.CssClass = "text-danger";
                 lblMensaje.Visible = true;
             }
+        }
+
+        private bool ValidarExtensionImagen(HttpPostedFile file)
+        {
+            string extension = Path.GetExtension(file.FileName).ToLower();
+
+            var extensionesPermitidas = new List<string> { ".png", ".jpg", ".jpeg" };
+
+            return extensionesPermitidas.Contains(extension);
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
