@@ -583,5 +583,7 @@
   "PlaceHolderContrasenaActual": "Ingrese su actual contrasena",
   "PlaceHolderContrasenaNueva": "Ingrese su nueva contrasena",
   "PlaceHolderContrasenaConfirmacion": "Ingrese confirmacion de su nueva contrasena",
-  "BajaBitacora": "Eliminar eventos"
+  "BajaBitacora": "Eliminar eventos",
+  "EmpresaExistente": "La empresa ya existe",
+  "ExtensionImagen": "El archivo debe ser una imagen con extension .png, .jpg o .jpeg."
 }

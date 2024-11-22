@@ -4,8 +4,10 @@ using Aplication.Services.Observer;
 using Models;
 using Models.Composite;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 using Unity;
 
@@ -88,6 +90,9 @@ namespace GUI
             {
                 if (fileProducto.HasFile || !string.IsNullOrEmpty(txtNombreProducto.Text) || !string.IsNullOrEmpty(txtDescripcion.Text) || !string.IsNullOrEmpty(txtCantidad.Text) || !string.IsNullOrEmpty(txtPrecioUnitario.Text))
                 {
+                    if (!ValidarExtensionImagen(fileProducto.PostedFile))
+                        throw new Exception("ExtensionImagen");
+
                     byte[] imagenBytes;
                     using (BinaryReader br = new BinaryReader(fileProducto.PostedFile.InputStream))
                     {
@@ -128,6 +133,15 @@ namespace GUI
                 lblMensaje.Text = $"{_idiomaService.GetTranslation("MensajeErrorGeneral")}: {_idiomaService.GetTranslation(ex.Message)}";
                 lblMensaje.Visible = true;
             }
+        }
+
+        private bool ValidarExtensionImagen(HttpPostedFile file)
+        {
+            string extension = Path.GetExtension(file.FileName).ToLower();
+
+            var extensionesPermitidas = new List<string> { ".png", ".jpg", ".jpeg" };
+
+            return extensionesPermitidas.Contains(extension);
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

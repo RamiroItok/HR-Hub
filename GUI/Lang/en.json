@@ -584,5 +584,7 @@
   "PlaceHolderContrasenaNueva": "Enter your new password",
   "PlaceHolderContrasenaConfirmacion": "Re-enter your new password",
 
-  "BajaBitacora": "Delete events"
+  "BajaBitacora": "Delete events",
+  "EmpresaExistente": "The company already exists",
+  "ExtensionImagen": "The file must be an image with a .png, .jpg, or .jpeg extension."
 }
