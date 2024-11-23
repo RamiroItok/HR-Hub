@@ -50,10 +50,8 @@
     <Compile Include="Compra.cs" />
     <Compile Include="CompraProducto.cs" />
     <Compile Include="DetalleCompra.cs" />
-    <Compile Include="DigitoVerificador.cs" />
     <Compile Include="Documento.cs" />
     <Compile Include="DocumentoReporte.cs" />
-    <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="Enums\Area.cs" />
     <Compile Include="Enums\AsuntoMail.cs" />
@@ -63,7 +61,6 @@
     <Compile Include="Enums\Genero.cs" />
     <Compile Include="Enums\TipoOperacionContraseña.cs" />
     <Compile Include="FalloIntegridad.cs" />
-    <Compile Include="Observer\Traduccion.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="ProductoReporte.cs" />
     <Compile Include="TipoProducto.cs" />

@@ -9,6 +9,5 @@ namespace Models
         public string TipoArchivo { get; set; }
         public byte[] Contenido { get; set; }
         public DateTime FechaCarga { get; set; }
-        public int DVH { get; set; }
     }
 }

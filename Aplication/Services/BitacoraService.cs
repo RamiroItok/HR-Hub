@@ -100,8 +100,7 @@ namespace Aplication.Services
                 TipoUsuario = evento["TipoUsuario"].ToString(),
                 Descripcion = evento["Descripcion"].ToString(),
                 Fecha = DateTime.Parse(evento["Fecha"].ToString()),
-                Criticidad = evento["Criticidad"].ToString(),
-                DVH = int.Parse(evento["DVH"].ToString())
+                Criticidad = evento["Criticidad"].ToString()
             };
 
             return bitacora;

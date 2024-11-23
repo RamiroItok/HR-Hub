@@ -10,6 +10,5 @@ namespace Models
         public string Descripcion { get; set; }
         public DateTime Fecha { get; set; }
         public string Criticidad { get; set; }
-        public int DVH { get; set; }
     }
 }
