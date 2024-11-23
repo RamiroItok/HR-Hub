@@ -25,7 +25,6 @@ namespace Models
         public string Provincia { get; set; }
         public string Pais { get; set; }
         public int Estado { get; set; }
-        public int DVH { get; set; }
 
         List<Componente> _permisos = new List<Componente>();
         public List<Componente> Permisos

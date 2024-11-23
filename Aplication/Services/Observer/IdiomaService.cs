@@ -1,5 +1,4 @@
 ﻿using Aplication.Interfaces.Observer;
-using Models.Observer;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
