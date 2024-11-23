@@ -6,6 +6,7 @@ using Models.Composite;
 using Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -52,8 +53,7 @@ namespace GUI
             {
                 lblTituloBackup.Text = _idiomaService.GetTranslation("TituloBackup");
                 Page.Title = _idiomaService.GetTranslation("PageTitleBackup");
-                lblRutaBackup.Text = _idiomaService.GetTranslation("LabelRutaBackup");
-                txtRuta.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderRutaBackup");
+                lblBackup.Text = _idiomaService.GetTranslation("RutaBackup");
                 lblNombreBackup.Text = _idiomaService.GetTranslation("LabelNombreBackup");
                 txtNombre.Attributes["placeholder"] = _idiomaService.GetTranslation("PlaceholderNombreBackup");
                 btnBackup.Text = _idiomaService.GetTranslation("ButtonRealizarBackup");
@@ -64,14 +64,11 @@ namespace GUI
         protected void btnBackup_Click(object sender, EventArgs e)
         {
             Usuario usuario = Session["Usuario"] as Usuario;
-            var ruta = txtRuta.Text;
             var nombre = txtNombre.Text;
 
             try
             {
-                if(string.IsNullOrEmpty(ruta) || string.IsNullOrEmpty(nombre))
-                    throw new Exception("MensajeCamposIncompletos");
-
+                var ruta = ConfigurationManager.AppSettings["RutaBackup"];
                 var resultado = _iBackupService.RealizarBackup(ruta, nombre, usuario);
                 _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Se realizó una copia de seguridad", Criticidad.ALTA);
 
@@ -92,7 +89,6 @@ namespace GUI
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             txtNombre.Text = string.Empty;
-            txtRuta.Text = string.Empty;
             lblMensaje.Visible = false;
         }
 
