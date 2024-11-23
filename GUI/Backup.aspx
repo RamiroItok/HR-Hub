@@ -21,10 +21,12 @@
             <h2 class="text-center">
                 <asp:Label ID="lblTituloBackup" runat="server" Text="Realizar Backup"></asp:Label>
             </h2>
-
+            
             <div class="form-group">
-                <asp:Label ID="lblRutaBackup" runat="server" AssociatedControlID="txtRuta" Text="Ruta del Backup:"></asp:Label>
-                <asp:TextBox ID="txtRuta" runat="server" CssClass="form-control" placeholder="Ingrese la ruta completa"></asp:TextBox>
+                <div class="backup-description">
+                    <i class="fas fa-folder-open"></i>
+                    <asp:Label ID="lblBackup" runat="server" Text="La copia de seguridad se guardará en C:\\HrHub\\App_Data\\"></asp:Label>
+                </div>
             </div>
 
             <div class="form-group">

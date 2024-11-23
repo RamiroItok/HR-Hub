@@ -124,14 +124,14 @@
   "DefaultSelectEmpresa": "Seleccione una empresa",
   "DefaultSelectTipo": "Seleccione un tipo",
 
-  "PageTitleBackup": "Realizar Backup",
-  "TituloBackup": "Realizar Backup",
-  "LabelRutaBackup": "Ruta del Backup:",
+  "PageTitleBackup": "Realizar copia de seguridad",
+  "TituloBackup": "Realizar copia de seguridad",
+  "LabelRutaBackup": "Ruta de copia de seguridad:",
   "PlaceholderRutaBackup": "Ingrese la ruta completa",
-  "LabelNombreBackup": "Nombre del Backup:",
-  "PlaceholderNombreBackup": "Ingrese el nombre del backup",
-  "ButtonRealizarBackup": "Realizar Backup",
-  "MensajeExitoBackup": "Backup realizado con exito!",
+  "LabelNombreBackup": "Nombre del copia de seguridad:",
+  "PlaceholderNombreBackup": "Ingrese el nombre de la copia de seguridad",
+  "ButtonRealizarBackup": "Realizar copia de seguridad",
+  "MensajeExitoBackup": "Copia de seguridad realizada con exito!",
 
   "PageTitleBitacora": "Bitacora - HR Hub",
   "TituloBitacora": "Bitacora",
@@ -585,5 +585,6 @@
   "PlaceHolderContrasenaConfirmacion": "Ingrese confirmacion de su nueva contrasena",
   "BajaBitacora": "Eliminar eventos",
   "EmpresaExistente": "La empresa ya existe",
-  "ExtensionImagen": "El archivo debe ser una imagen con extension .png, .jpg o .jpeg."
+  "ExtensionImagen": "El archivo debe ser una imagen con extension .png, .jpg o .jpeg.",
+  "RutaBackup": "La copia de seguridad se guardara en C:\\HrHub\\App_Data\\"
 }
