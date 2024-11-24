@@ -206,6 +206,9 @@ namespace GUI.Controls
                         case Models.Composite.Permiso.DocumentoReporte:
                             reporteDocumentosLink.Visible = true;
                             break;
+                        case Models.Composite.Permiso.MisDatos:
+                            misDatosLink.Visible = true;
+                            break;
                     }
                 }
             }
@@ -249,6 +252,7 @@ namespace GUI.Controls
                 litDocumentos.Text = _idiomaService.GetTranslation("Documentos");
                 litCargaDocumentos.Text = _idiomaService.GetTranslation("CargaDocumentos");
                 litDocumentoReporte.Text = _idiomaService.GetTranslation("DocumentoReporte");
+                litMisDatos.Text = _idiomaService.GetTranslation("MisDatos");
             }
         }
 

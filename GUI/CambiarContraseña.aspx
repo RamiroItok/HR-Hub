@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="Cambiar Contraseña" Language="C#" AutoEventWireup="true" CodeBehind="CambiarContraseña.aspx.cs" Inherits="GUI.CambiarContraseña" %>
-
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
 <!DOCTYPE html>

@@ -56,7 +56,7 @@ namespace GUI
             {
                 lblMensaje.CssClass = "text-danger";
                 lblMensaje.Visible = true;
-                lblMensaje.Text = _idiomaService.GetTranslation(_idiomaService.GetTranslation(ex.Message));
+                lblMensaje.Text = _idiomaService.GetTranslation(ex.Message);
             }
             finally
             {
