@@ -586,5 +586,6 @@
   "BajaBitacora": "Eliminar eventos",
   "EmpresaExistente": "La empresa ya existe",
   "ExtensionImagen": "El archivo debe ser una imagen con extension .png, .jpg o .jpeg.",
-  "RutaBackup": "La copia de seguridad se guardara en C:\\HrHub\\App_Data\\"
+  "RutaBackup": "La copia de seguridad se guardara en C:\\HrHub\\App_Data\\",
+  "MisDatos": "Mis datos"
 }

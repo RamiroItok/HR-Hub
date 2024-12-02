@@ -27,6 +27,7 @@
         Documentos,
         CargaDocumentos,
         MisDocumentos,
-        DocumentoReporte
+        DocumentoReporte,
+        MisDatos
     }
 }

@@ -555,6 +555,24 @@ namespace GUI.Controls
         protected global::System.Web.UI.WebControls.Literal litMisDocumentos;
 
         /// <summary>
+        /// Control misDatosLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor misDatosLink;
+
+        /// <summary>
+        /// Control litMisDatos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litMisDatos;
+
+        /// <summary>
         /// Control litCambiarContraseña.
         /// </summary>
         /// <remarks>

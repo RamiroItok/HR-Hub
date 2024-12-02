@@ -192,6 +192,7 @@
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="MenuPrincipal.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MiCuenta.aspx" />
     <Content Include="MisCompras.aspx" />
     <Content Include="MisDocumentos.aspx" />
     <Content Include="NavBar.ascx" />
@@ -226,6 +227,7 @@
     <Content Include="Style\Error.css" />
     <Content Include="Style\GestionFamilia.css" />
     <Content Include="Style\GestionPermisosUsuario.css" />
+    <Content Include="Style\MiCuenta.css" />
     <Content Include="Style\MisCompras.css" />
     <Content Include="Style\MisDocumentos.css" />
     <Content Include="Style\Reporte.css" />
@@ -479,6 +481,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MiCuenta.aspx.cs">
+      <DependentUpon>MiCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MiCuenta.aspx.designer.cs">
+      <DependentUpon>MiCuenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="MisCompras.aspx.cs">
       <DependentUpon>MisCompras.aspx</DependentUpon>
