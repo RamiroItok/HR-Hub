@@ -215,23 +215,9 @@ namespace Data.DAO
 
                 return mensaje;
             }
-            catch (Exception ex)
-            {
-                throw new Exception("ErrorCalcularDigitoVerificadorTabla" + ex.Message);
-            }
-        }
-
-        public DataTable ObtenerTabla(string tabla)
-        {
-            try
-            {
-                string consulta = $"SELECT * FROM {tabla}";
-                DataTable dt = _acceso.GenerarConsulta(consulta);
-                return dt;
-            }
             catch (Exception)
             {
-                throw new Exception("ErrorObtenerTabla");
+                throw new Exception("ErrorCalcularDigitoVerificadorTabla");
             }
         }
     }

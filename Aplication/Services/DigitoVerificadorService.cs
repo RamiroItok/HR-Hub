@@ -25,9 +25,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorVerificarDigitosVerificadores");
             }
         }
 
@@ -42,9 +42,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorRecalcularDigitosVerificadores");
             }
         }
 
@@ -59,26 +59,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public DataTable ObtenerTabla(string tabla)
-        {
-            try
-            {
-                DataTable dt = _digitoVerificadorDAO.ObtenerTabla(tabla);
-                return dt;
-            }
-            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
-            {
-                throw new Exception("ErrorBD");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorCalcularDigitoVerificadorTabla");
             }
         }
     }

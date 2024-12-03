@@ -75,7 +75,6 @@ namespace GUI
         {
             if (Session["ErrorVerificacionDV"] == null)
             {
-                _backUpService.CrearBaseDeDatos();
                 List<string> listaMensajes = _digitoVerificadorService.VerificarDV();
                 if (listaMensajes.Count > 0)
                 {

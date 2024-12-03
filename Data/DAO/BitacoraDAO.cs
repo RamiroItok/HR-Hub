@@ -53,7 +53,7 @@ namespace Data.DAO
             }
             catch (Exception)
             {
-                throw new Exception("ErrorRegistroBitacora");
+                throw new Exception("ErrorBajaBitacora");
             }
         }
 
@@ -61,13 +61,14 @@ namespace Data.DAO
         {
             try
             {
+                throw new Exception();
                 DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_s_bitacora", null);
 
                 return resultado;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorListarBitacora");
             }
         }
     }

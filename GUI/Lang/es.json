@@ -587,5 +587,10 @@
   "EmpresaExistente": "La empresa ya existe",
   "ExtensionImagen": "El archivo debe ser una imagen con extension .png, .jpg o .jpeg.",
   "RutaBackup": "La copia de seguridad se guardara en C:\\HrHub\\App_Data\\",
-  "MisDatos": "Mis datos"
+  "MisDatos": "Mis datos",
+
+  "ErrorListarBitacora": "Error al listar eventos",
+  "ErrorBajaBitacora": "Error al eliminar bitacora",
+  "ErrorAltaFamiliaPatente": "Error al dar de alta la familia",
+  "ErrorAsignarPermisoFamilia": "Error al asignar el permiso a la familia."
 }
