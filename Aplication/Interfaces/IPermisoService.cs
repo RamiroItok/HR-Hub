@@ -8,7 +8,7 @@ namespace Aplication.Interfaces
 {
     public interface IPermisoService
     {
-        int AltaFamiliaPatente(Componente componente, bool familia);
+        int AltaFamiliaPatente(Componente componente, bool familia, Usuario usuario);
         IList<Familia> ObtenerFamilias();
         bool ExisteComponente(Componente componente, int Id);
         void GetComponenteUsuario(Usuario usuario);
@@ -18,12 +18,12 @@ namespace Aplication.Interfaces
         IList<Componente> ObtenerPermisosNoAsignadosPorUsuario(int idUsuario);
         IList<Componente> ObtenerPermisosAsignadosPorUsuario(int idUsuario);
         IList<Componente> ObtenerPermisosPorFamilia(int familiaId);
-        void AsignarPermisoAFamilia(int padreId, int hijoId);
-        void QuitarPermisoAFamilia(int padreId, int hijoId);
+        void AsignarPermisoAFamilia(int padreId, int hijoId, Usuario usuario);
+        void QuitarPermisoAFamilia(int padreId, int hijoId, Usuario userSession);
         void AsignarPermisoAUsuario(int idUsuario, int idPatente, Usuario userSession);
         void QuitarPermisoAUsuario(int idUsuario, int idPatente, Usuario userSession);
         DataTable ObtenerFamiliaUsuario(int idUsuario);
-        void ActualizarFamiliaUsuario(Usuario usuario, int? puestoAnterior);
+        void ActualizarFamiliaUsuario(Usuario usuario, int? puestoAnterior, Usuario userSession);
         bool TienePermiso(Usuario usuario, Permiso permiso);
     }
 }

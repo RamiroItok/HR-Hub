@@ -39,7 +39,7 @@ namespace Data.Composite
             }
             catch (Exception)
             {
-                throw new Exception("Error en la base de datos.");
+                throw new Exception("ErrorAltaFamiliaPatente");
             }
         }
 
@@ -55,9 +55,9 @@ namespace Data.Composite
 
                 _acceso.ExecuteStoredProcedureReader("sp_i_familiaPatente", parameters);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception("Error al asignar el permiso a la familia.", ex);
+                throw new Exception("ErrorAsignarPermisoFamilia");
             }
         }
 

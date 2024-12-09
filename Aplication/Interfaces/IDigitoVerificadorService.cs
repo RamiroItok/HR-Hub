@@ -8,6 +8,5 @@ namespace Aplication.Interfaces
         List<string> VerificarDV();
         bool RecalcularDV();
         bool CalcularDVTabla(string tabla);
-        DataTable ObtenerTabla(string tabla);
     }
 }

@@ -38,9 +38,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorRegistroBitacora");
             }
         }
 
@@ -60,9 +60,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorBajaBitacora");
             }
         }
 
@@ -85,9 +85,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorListarBitacora");
             }
         }
 

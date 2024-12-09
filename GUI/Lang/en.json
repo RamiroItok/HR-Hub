@@ -588,5 +588,10 @@
   "EmpresaExistente": "The company already exists",
   "ExtensionImagen": "The file must be an image with a .png, .jpg, or .jpeg extension.",
   "RutaBackup": "The backup will be saved in C:\\HrHub\\App_Data\\",
-  "MisDatos": "My data"
+  "MisDatos": "My data",
+
+  "ErrorListarBitacora": "Error listing events",
+  "ErrorBajaBitacora": "Error deleting log",
+  "ErrorAltaFamiliaPatente": "Error adding the family",
+  "ErrorAsignarPermisoFamilia": "Error assigning permission to the family"
 }

@@ -32,9 +32,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorEliminarProductoCarrito");
             }
         }
 
@@ -50,9 +50,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorInsertarProductoCarrito");
             }
         }
 
@@ -70,9 +70,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorLimpiarCarrito");
             }
         }
 
@@ -111,9 +111,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerCarrito");
             }
         }
     }

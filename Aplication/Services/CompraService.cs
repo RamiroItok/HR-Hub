@@ -37,9 +37,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorGuardarDetalleCompra");
             }
         }
 
@@ -57,9 +57,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerCompraPorId");
             }
         }
 
@@ -86,9 +86,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerDetalleCompraPorId");
             }
         }
 
@@ -113,9 +113,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerComprasPorUsuario");
             }
         }
 
@@ -169,9 +169,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorRealizarCompra");
             }
         }
 

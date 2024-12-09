@@ -158,7 +158,7 @@ namespace GUI
                 var usuario = CompletarUsuario();
                 var userSession = Session["Usuario"] as Usuario;
                 _usuarioService.ModificarUsuario(usuario, userSession);
-                _permisoService.ActualizarFamiliaUsuario(usuario, puestoAnterior);
+                _permisoService.ActualizarFamiliaUsuario(usuario, puestoAnterior, userSession);
 
                 if (usuario.Puesto == Puesto.Lider)
                     _documentoService.AsignarDocumentosAUsuario(usuario.Id);

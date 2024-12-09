@@ -62,9 +62,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorRegistrarUsuario");
             }
         }
 
@@ -97,9 +97,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorModificarUsuario");
             }
         }
 
@@ -122,9 +122,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorModificarPuestoUsuario");
             }
         }
 
@@ -140,9 +140,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerPuestos");
             }
         }
 
@@ -158,9 +158,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerAreas");
             }
         }
 
@@ -281,9 +281,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorListarUsuarios");
             }
         }
 
@@ -299,9 +299,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorBloquearUsuario");
             }
         }
 
@@ -322,9 +322,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorDesbloquearUsuario");
             }
         }
 
@@ -344,9 +344,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerUsuarioPorMail");
             }
         }
 
@@ -365,9 +365,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerUsuarioWebmaster");
             }
         }
 
@@ -386,9 +386,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerUsuarioPorId");
             }
         }
 
@@ -449,9 +449,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorActualizarContrasena");
             }
         }
 
@@ -570,9 +570,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerUsuariosBloqueados");
             }
         }
 
@@ -600,9 +600,9 @@ namespace Aplication
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorObtenerEmpleados");
             }
         }
     }

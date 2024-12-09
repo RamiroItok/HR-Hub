@@ -54,42 +54,5 @@ namespace Data.DAO
                 throw new Exception("ErrorRestore");
             }
         }
-
-        public bool CrearBaseDeDatos(string server, string nombreBase)
-        {
-            try
-            {
-                bool existeBD = true;
-                existeBD = _acceso.VerificarExistenciaBaseDeDatos(server, nombreBase);
-
-                if (existeBD == false)
-                {
-                    string script = CREAR_BASE_DE_DATOS;
-                    IEnumerable<string> query = FormatearQueryScript(script);
-                    _acceso.ExecuteNonQueryCreateDB(server, query);
-                }
-                return existeBD;
-            }
-            catch (Exception)
-            {
-                throw new Exception("ErrorCreacionBD");
-            }
-        }
-
-        private IEnumerable<string> FormatearQueryScript(string script)
-        {
-            script = Regex.Replace(script, @"(\r\n|\n\r|\n|\r)", "\n");
-
-            string[] condiciones = Regex.Split(
-                    script,
-                    @"^[\t ]*GO[\t ]*\d*[\t ]*(?:--.*)?$",
-                    RegexOptions.Multiline |
-                    RegexOptions.IgnorePatternWhitespace |
-                    RegexOptions.IgnoreCase);
-
-            return condiciones
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .Select(x => x.Trim(' ', '\n'));
-        }
     }
 }

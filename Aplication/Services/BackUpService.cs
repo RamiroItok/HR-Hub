@@ -32,9 +32,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorCopiaSeguridad");
             }
         }
 
@@ -56,27 +56,7 @@ namespace Aplication.Services
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public bool CrearBaseDeDatos()
-        {
-            try
-            {
-                string server = ConfigurationManager.AppSettings["server"];
-                string nombreBase = ConfigurationManager.AppSettings["base"];
-
-                bool resultado = _backUpDAO.CrearBaseDeDatos(server, nombreBase);
-                return resultado;
-            }
-            catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
-            {
-                throw new Exception("ErrorBD");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorRestore");
             }
         }
     }

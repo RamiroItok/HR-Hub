@@ -71,85 +71,6 @@ namespace Data.Conexion
         #endregion
 
         #region Métodos
-        public virtual void ExecuteNonQuery()
-        {
-            Conectar();
-
-            SqlTransaction TR = connection.BeginTransaction();
-            SqlCommand command = new SqlCommand(ExecuteCommandText, connection, TR);
-
-            command.CommandType = CommandType.Text;
-            command.Parameters.Clear();
-
-            foreach (SqlParameter p in ExecuteParameters.Parameters)
-            {
-                command.Parameters.AddWithValue(p.ParameterName, p.SqlValue);
-            }
-
-            try
-            {
-                command.ExecuteNonQuery();
-                TR.Commit();
-            }
-            catch (SqlException exc)
-            {
-                TR.Rollback();
-                throw new Exception("Ocurrió un error en BD: " + exc.Message);
-            }
-            catch (Exception exc2)
-            {
-                TR.Rollback();
-                throw new Exception("Ocurrió un Error: " + exc2.Message);
-            }
-            finally
-            {
-                Desconectar();
-            }
-        }
-
-        public virtual int ExecuteNonEscalar()
-        {
-            Conectar();
-            SqlTransaction transaction = connection.BeginTransaction();
-            SqlCommand command = new SqlCommand(ExecuteCommandText, connection, transaction);
-
-            command.CommandType = CommandType.Text;
-            command.Parameters.Clear();
-
-            foreach (SqlParameter p in ExecuteParameters.Parameters)
-            {
-                command.Parameters.AddWithValue(p.ParameterName, p.SqlValue);
-            }
-
-            SqlParameter sp_return = new SqlParameter();
-            sp_return.Direction = ParameterDirection.ReturnValue;
-            command.Parameters.Add(sp_return);
-
-            int outputId = 0;
-
-            try
-            {
-                outputId = (int)command.ExecuteScalar();
-                transaction.Commit();
-            }
-            catch (SqlException exc)
-            {
-                transaction.Rollback();
-                throw new Exception("Ocurrió un error en BD: " + exc.Message);
-            }
-            catch (Exception exc2)
-            {
-                transaction.Rollback();
-                throw new Exception("Ocurrió un error: " + exc2.Message);
-            }
-            finally
-            {
-                Desconectar();
-            }
-
-            return outputId;
-        }
-
         public virtual DataSet ExecuteNonReader()
         {
             if (this.SelectCommandText == "")
@@ -181,7 +102,6 @@ namespace Data.Conexion
             }
         }
 
-        // TO REVIEW
         public DataTable GenerarConsulta(string Consulta)
         {
             SqlDataReader dr;
@@ -205,77 +125,6 @@ namespace Data.Conexion
 
             Desconectar();
             return dt;
-        }
-
-        public virtual bool VerificarExistenciaBaseDeDatos(string server, string nombreBase)
-        {
-            string query;
-            bool existeBD = false;
-
-            try
-            {
-                connection = new SqlConnection($"server={server};Trusted_Connection=yes");
-                query = string.Format("SELECT database_id FROM sys.databases WHERE Name = '{0}'", nombreBase);
-
-                using (connection)
-                {
-                    using (SqlCommand sqlCmd = new SqlCommand(query, connection))
-                    {
-                        connection.Open();
-
-                        object resultObj = sqlCmd.ExecuteScalar();
-
-                        int databaseID = 0;
-
-                        if (resultObj != null)
-                        {
-                            int.TryParse(resultObj.ToString(), out databaseID);
-                        }
-
-                        connection.Close();
-
-                        existeBD = (databaseID > 0);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                existeBD = false;
-            }
-
-            return existeBD;
-        }
-
-        public virtual void ExecuteNonQueryCreateDB(string server, IEnumerable<string> script)
-        {
-            try
-            {
-                connection = new SqlConnection($"server={server};Trusted_Connection=yes");
-
-                using (connection)
-                {
-                    connection.Open();
-                    foreach (var query in script)
-                    {
-                        using (SqlCommand sqlCmd = new SqlCommand(query, connection))
-                        {
-                            sqlCmd.ExecuteNonQuery();
-                        }
-                    }
-                }
-            }
-            catch (SqlException exc)
-            {
-                throw new Exception("Ocurrió un error en BD: " + exc.Message);
-            }
-            catch (Exception exc2)
-            {
-                throw new Exception("Ocurrió un Error: " + exc2.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
         }
 
         public virtual DataSet ExecuteStoredProcedureReader(string storedProcedureName, Dictionary<string, object> parameters = null)

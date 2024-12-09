@@ -22,21 +22,21 @@ namespace Aplication.Services
         }
 
         #region Metodos
-        public void AsignarPermisoAFamilia(int padreId, int hijoId)
+        public void AsignarPermisoAFamilia(int padreId, int hijoId, Usuario usuario)
         {
             try
             {
                 _permisoDAO.AsignarPermisoAFamilia(padreId, hijoId);
-                //_bitacoraService.AltaBitacora();
+                _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Asigna patente a familia", Models.Enums.Criticidad.ALTA);
                 _digitoVerificadorService.CalcularDVTabla("FamiliaPatente");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorAsignarPermisoFamilia");
             }
         }
 
@@ -45,7 +45,7 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.AsignarPermisoAUsuario(idUsuario, idPatente);
-                //_bitacoraService.AltaBitacora();
+                _bitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, "Asigna patente a usuario", Models.Enums.Criticidad.ALTA);
                 _digitoVerificadorService.CalcularDVTabla("UsuarioPermiso");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
@@ -58,11 +58,12 @@ namespace Aplication.Services
             }
         }
 
-        public void QuitarPermisoAFamilia(int padreId, int hijoId)
+        public void QuitarPermisoAFamilia(int padreId, int hijoId, Usuario userSession)
         {
             try
             {
                 _permisoDAO.QuitarPermisoAFamilia(padreId, hijoId);
+                _bitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, "Quita patente a familia", Models.Enums.Criticidad.ALTA);
                 _digitoVerificadorService.CalcularDVTabla("FamiliaPatente");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
@@ -80,7 +81,7 @@ namespace Aplication.Services
             try
             {
                 _permisoDAO.QuitarPermisoAUsuario(idUsuario, idPatente);
-                //_bitacoraService.AltaBitacora();
+                _bitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, "Quita patente a usuario", Models.Enums.Criticidad.ALTA);
                 _digitoVerificadorService.CalcularDVTabla("UsuarioPermiso");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))
@@ -93,11 +94,12 @@ namespace Aplication.Services
             }
         }
 
-        public int AltaFamiliaPatente(Componente componente, bool familia)
+        public int AltaFamiliaPatente(Componente componente, bool familia, Usuario usuario)
         {
             try
             {
                 _permisoDAO.AltaFamiliaPatente(componente, familia);
+                _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Da de alta una familia", Models.Enums.Criticidad.ALTA);
                 _digitoVerificadorService.CalcularDVTabla("Permiso");
                 return 1;
             }
@@ -105,9 +107,9 @@ namespace Aplication.Services
             {
                 throw new Exception("ErrorBD");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorAltaFamiliaPatente");
             }
         }
 
@@ -282,12 +284,13 @@ namespace Aplication.Services
             }
         }
 
-        public void ActualizarFamiliaUsuario(Usuario usuario, int? puestoAnterior)
+        public void ActualizarFamiliaUsuario(Usuario usuario, int? puestoAnterior, Usuario userSession)
         {
             try
             {
                 _permisoDAO.ActualizarFamiliaUsuario(usuario, puestoAnterior);
                 _permisoDAO.InsertarFamiliaUsuario(usuario);
+                _bitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Actualiza familia a usuario", Models.Enums.Criticidad.ALTA);
                 _digitoVerificadorService.CalcularDVTabla("UsuarioPermiso");
             }
             catch (Exception ex) when (ex.Message.Contains("SQL") || ex.Message.Contains("BD"))

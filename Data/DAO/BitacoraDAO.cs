@@ -53,7 +53,7 @@ namespace Data.DAO
             }
             catch (Exception)
             {
-                throw new Exception("ErrorRegistroBitacora");
+                throw new Exception("ErrorBajaBitacora");
             }
         }
 
@@ -65,9 +65,9 @@ namespace Data.DAO
 
                 return resultado;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("ErrorListarBitacora");
             }
         }
     }

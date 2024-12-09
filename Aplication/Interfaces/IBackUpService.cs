@@ -6,6 +6,5 @@ namespace Aplication.Interfaces
     {
         string RealizarBackup(string ruta, string nombre, Usuario usuario);
         string RealizarRestore(string ruta, Usuario usuario);
-        bool CrearBaseDeDatos();
     }
 }

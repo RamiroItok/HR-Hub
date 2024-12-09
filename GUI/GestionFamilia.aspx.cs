@@ -13,14 +13,12 @@ namespace GUI
     public partial class GestionFamilia : System.Web.UI.Page, IIdiomaService
     {
         private readonly IPermisoService _iPermiso;
-        private readonly IBitacoraService _bitacoraService;
         private readonly IPermisoService _permisoService;
         private readonly IdiomaService _idiomaService;
 
         public GestionFamilia()
         {
             _iPermiso = Global.Container.Resolve<IPermisoService>();
-            _bitacoraService = Global.Container.Resolve<IBitacoraService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
             _idiomaService = Global.Container.Resolve<IdiomaService>();
             _idiomaService.Subscribe(this);
@@ -76,10 +74,9 @@ namespace GUI
                         Nombre = txtFamilia.Text,
                     };
 
-                    _iPermiso.AltaFamiliaPatente(familia, true);
-
                     var usuario = Session["Usuario"] as Usuario;
-                    _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Da de alta una patente", Models.Enums.Criticidad.ALTA);
+
+                    _iPermiso.AltaFamiliaPatente(familia, true, usuario);
 
                     lblMessage.CssClass = "text-success";
                     lblMessage.Text = _idiomaService.GetTranslation("FamiliaAltaExitosa");

@@ -158,49 +158,6 @@ namespace Data.DAO
             }
         }
 
-        public Usuario ValidarUsuarioContraseña(string email, string contraseña)
-        {
-            try
-            {
-                Dictionary<string, object> parametros = new Dictionary<string, object>
-                {
-                    { "@Email", email },
-                    { "@Contraseña", contraseña }
-                };
-
-                var resultado = _acceso.ExecuteStoredProcedureReader("sp_s_validarUsuarioContraseña", parametros);
-
-                if (resultado.Tables[0].Rows.Count == 0)
-                {
-                    return null;
-                }
-
-                var usuario = new Usuario()
-                {
-                    Id = (int)resultado.Tables[0].Rows[0]["Id"],
-                    Nombre = resultado.Tables[0].Rows[0]["Nombre"].ToString(),
-                    Apellido = resultado.Tables[0].Rows[0]["Apellido"].ToString(),
-                    Email = resultado.Tables[0].Rows[0]["Email"].ToString(),
-                    Puesto = (Models.Enums.Puesto)resultado.Tables[0].Rows[0]["IdPuesto"],
-                    Area = (Models.Enums.Area)resultado.Tables[0].Rows[0]["IdArea"],
-                    FechaIngreso = (DateTime)resultado.Tables[0].Rows[0]["FechaIngreso"],
-                    Direccion = resultado.Tables[0].Rows[0]["Direccion"].ToString(),
-                    NumeroDireccion = (int)resultado.Tables[0].Rows[0]["NumeroDireccion"],
-                    Departamento = resultado.Tables[0].Rows[0]["Departamento"].ToString(),
-                    CodigoPostal = resultado.Tables[0].Rows[0]["CodigoPostal"].ToString(),
-                    Provincia = resultado.Tables[0].Rows[0]["Provincia"].ToString(),
-                    Pais = resultado.Tables[0].Rows[0]["Pais"].ToString(),
-                    Estado = (int)resultado.Tables[0].Rows[0]["Estado"]
-                };
-
-                return usuario;
-            }
-            catch (Exception)
-            {
-                throw new Exception("ErrorValidarUsuarioContrasena");
-            }
-        }
-
         public DataSet ListarUsuarios()
         {
             try
