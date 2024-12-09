@@ -54,7 +54,7 @@
                         <div class="row justify-content-center" id="productContainer">
                             <asp:Repeater ID="ProductRepeater" runat="server" OnItemDataBound="ProductRepeater_ItemDataBound">
                                 <ItemTemplate>
-                                    <div class="col-md-3 d-flex align-items-stretch">
+                                    <div class="d-flex align-items-stretch">
                                         <div class="card producto-card shadow-sm mt-4">
                                             <div class="img-container">
                                                 <img src='<%# "data:image/png;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) %>' class="card-img-top img-fluid" alt='<%# Eval("Nombre") %>' />

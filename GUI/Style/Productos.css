@@ -1,9 +1,9 @@
 ﻿:root {
-    --primary-color: #6BAF47; /* Verde principal */
-    --secondary-color: #333; /* Gris oscuro/negro */
-    --background-color: rgba(255, 255, 255, 0.9); /* Fondo de los contenedores */
-    --text-color: #333; /* Color de texto */
-    --accent-color: #5d9e3f; /* Verde oscuro */
+    --primary-color: #6BAF47;
+    --secondary-color: #333;
+    --background-color: rgba(255, 255, 255, 0.9);
+    --text-color: #333;
+    --accent-color: #5d9e3f;
 }
 
 body {
@@ -25,7 +25,6 @@ body {
     min-height: 100vh;
 }
 
-/* Contenedor general de productos */
 .containerProductos {
     padding: 30px;
     background-color: var(--background-color);
@@ -34,11 +33,10 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     max-width: 1200px;
-    width: 100%; /* Asegura que ocupe el ancho adecuado */
+    width: 100%;
     margin-top: 20px;
 }
 
-/* Título de la página */
 .titulo-productos {
     text-align: center;
     font-size: 2.5em;
@@ -59,7 +57,6 @@ body {
         border-radius: 2px;
     }
 
-/* Filtros centrados */
 .filtros-busqueda {
     display: flex;
     flex-wrap: wrap;
@@ -68,7 +65,6 @@ body {
     margin-bottom: 20px;
 }
 
-    /* Estilo para los campos de texto y dropdown en los filtros */
     .filtros-busqueda .form-control {
         height: 38px;
         padding: 6px 12px;
@@ -78,14 +74,12 @@ body {
         box-sizing: border-box;
     }
 
-        /* Efecto al enfocar los inputs */
         .filtros-busqueda .form-control:focus {
             border-color: var(--primary-color);
             box-shadow: 0 0 8px rgba(107, 175, 71, 0.3);
             outline: none;
         }
 
-    /* Botones de filtro */
     .filtros-busqueda .btn-primary, .filtros-busqueda .btn-secondary {
         width: 48%;
     }
@@ -113,19 +107,26 @@ body {
         transform: scale(1.05);
     }
 
-/* Estilo de cada tarjeta de producto */
+#productContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
 .producto-card {
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 20px;
+    align-items: stretch;
+    width: 100%;
+    max-width: 300px;
+    min-height: 450px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
 }
 
     .producto-card:hover {
@@ -133,53 +134,54 @@ body {
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
 
-/* Contenedor de imagen en la tarjeta */
 .img-container {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 180px;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
 }
 
     .img-container img {
-        width: 100%;
-        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
         object-fit: contain;
         transition: transform 0.3s ease;
     }
 
 .producto-card:hover .img-container img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
-/* Estilo del título del producto */
 .producto-card .card-title {
-    font-size: 1.4em;
+    font-size: 1.2em;
     font-weight: bold;
-    color: var(--text-color);
-    margin-bottom: 8px;
+    color: #333;
+    margin: 10px 0;
+    text-align: center;
 }
 
-/* Descripción y otros textos */
 .producto-card .card-text {
+    font-size: 0.95em;
     color: #666;
-    font-size: 1em;
+    line-height: 1.4;
     margin: 6px 0;
+    text-align: left;
+    padding: 0 10px;
 }
 
-/* Botón de agregar al carrito */
 .btn-add-cart {
-    width: 100%;
+    width: 90%;
+    margin: 0 auto 10px;
     background-color: var(--primary-color);
     border: none;
     color: #fff;
     font-weight: bold;
-    padding: 12px;
+    padding: 10px;
     border-radius: 6px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
     font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
     .btn-add-cart:hover {
@@ -187,14 +189,13 @@ body {
         transform: scale(1.05);
     }
 
-/* Estilos de footer */
 .footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 15px;
     width: 100%;
-    margin-top: auto; /* Empuja el footer al final */
+    margin-top: auto;
 }
 
     .footer p {
@@ -202,13 +203,11 @@ body {
     }
 
 @media screen and (max-width: 768px) {
-    /* Ajuste de filtros para pantallas pequeñas */
     .filtros-busqueda {
         flex-direction: column;
         gap: 10px;
     }
 
-    /* Ajuste de botones para pantallas pequeñas */
     .btn-primary, .btn-secondary {
         width: 100%;
     }
@@ -218,7 +217,7 @@ body {
     display: block;
     width: 100%;
     text-align: center;
-    color: #d9534f; /* Rojo de alerta */
+    color: #d9534f;
     font-weight: bold;
     font-size: 1em;
     margin-top: 10px;
@@ -226,12 +225,12 @@ body {
 
 #ddlLanguage {
     position: fixed !important;
-    bottom: 15px !important; /* Separación desde la parte inferior */
-    right: 15px !important; /* Separación desde el borde derecho */
-    z-index: 1000 !important; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px !important;
+    right: 15px !important;
+    z-index: 1000 !important;
     padding: 5px !important;
     font-size: 14px !important;
-    background-color: #fff !important; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff !important;
     border: 1px solid #ccc !important;
     border-radius: 4px !important;
     cursor: pointer !important;
