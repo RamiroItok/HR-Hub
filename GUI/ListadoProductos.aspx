@@ -26,7 +26,7 @@
             <asp:ListItem Text="English" Value="en"></asp:ListItem>
         </asp:DropDownList>
 
-        <div class="container mt-5">
+        <div class="container main-container">
             <h2 class="text-center mb-4">
                 <asp:Literal ID="litTitle" runat="server" Text="Listado de Productos"></asp:Literal>
             </h2>

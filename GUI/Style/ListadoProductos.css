@@ -1,11 +1,9 @@
-﻿/* General */
-body {
+﻿body {
     background-color: #f0f2f5;
     margin-top: 80px;
     font-family: Arial, sans-serif;
 }
 
-/* Título */
 h2 {
     color: #4CAF50;
     font-weight: bold;
@@ -24,7 +22,6 @@ h2::after {
     border-radius: 5px;
 }
 
-/* Estilo para la fila de tarjetas */
 .row {
     margin: 0 -15px;
     display: flex;
@@ -32,7 +29,6 @@ h2::after {
     justify-content: center;
 }
 
-/* Tarjetas de productos */
 .card {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -76,7 +72,6 @@ h2::after {
     text-decoration: underline;
 }
 
-/* Espacio en el pie de la tarjeta */
 .card-footer {
     padding: 15px;
     text-align: center;
@@ -90,7 +85,6 @@ h2::after {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Estilo del botón Modificar (verde) */
 .btn-success {
     background-color: #4CAF50;
     border-color: #4CAF50;
@@ -102,7 +96,6 @@ h2::after {
     transform: translateY(-2px);
 }
 
-/* Estilo del botón Eliminar (gris) */
 .btn-danger {
     background-color: #6c757d;
     border-color: #6c757d;
@@ -182,7 +175,6 @@ h2::after {
     border-radius: 20px;
 }
 
-/* Mensaje de éxito o error */
 #lblMensaje {
     margin-top: 20px;
     text-align: center;
@@ -195,7 +187,6 @@ h2::after {
     transition: opacity 0.3s ease;
 }
 
-/* Colores de fondo para mensajes */
 .alert-danger {
     background-color: #f8d7da;
     border-color: #f5c6cb;
@@ -210,12 +201,12 @@ h2::after {
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px;
+    right: 15px;
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
@@ -227,4 +218,8 @@ h2::after {
 
 .text-danger {
     color: #a94442;
+}
+
+.main-container {
+    margin-top: 60px;
 }
