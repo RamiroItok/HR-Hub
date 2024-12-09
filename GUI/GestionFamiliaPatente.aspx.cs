@@ -153,6 +153,7 @@ namespace GUI
                 }
                 else
                 {
+                    var usuario = Session["Usuario"] as Usuario;
                     foreach (GridViewRow row in gvPermisosNoAsignados.Rows)
                     {
                         CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar");
@@ -163,10 +164,9 @@ namespace GUI
                             if (gvPermisosNoAsignados.DataKeys != null && row.RowIndex < gvPermisosNoAsignados.DataKeys.Count)
                             {
                                 int permisoId = int.Parse(gvPermisosNoAsignados.DataKeys[row.RowIndex].Value.ToString());
-                                _iPermiso.AsignarPermisoAFamilia(familiaId, permisoId);
+                                _iPermiso.AsignarPermisoAFamilia(familiaId, permisoId, usuario);
                                 _iPermiso.GuardarUsuarioPermiso(familiaId, permisoId);
 
-                                var usuario = Session["Usuario"] as Models.Usuario;
                                 _iPermiso.GetComponenteUsuario(usuario);
                             }
                         }
@@ -175,9 +175,6 @@ namespace GUI
                     Listar(familiaId);
                     if (isSelected)
                     {
-                        var usuario = Session["Usuario"] as Usuario;
-                        _iBitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Asigna patente a familia", Models.Enums.Criticidad.ALTA);
-
                         lblMensajeAsignacion.Text = _idiomaService.GetTranslation("OperacionExitosa");
                         lblMensajeAsignacion.ForeColor = System.Drawing.Color.Green;
                     }
@@ -211,6 +208,7 @@ namespace GUI
                 }
                 else
                 {
+                    var usuario = Session["Usuario"] as Usuario;
                     foreach (GridViewRow row in gvPermisosAsignados.Rows)
                     {
                         CheckBox chk = (CheckBox)row.FindControl("chkSeleccionar2");
@@ -220,10 +218,9 @@ namespace GUI
                             if (gvPermisosAsignados.DataKeys != null && row.RowIndex < gvPermisosAsignados.DataKeys.Count)
                             {
                                 int permisoId = int.Parse(gvPermisosAsignados.DataKeys[row.RowIndex].Value.ToString());
-                                _iPermiso.QuitarPermisoAFamilia(familiaId, permisoId);
+                                _iPermiso.QuitarPermisoAFamilia(familiaId, permisoId, usuario);
                                 _iPermiso.EliminarPermisoUsuario(familiaId, permisoId);
 
-                                var usuario = Session["Usuario"] as Models.Usuario;
                                 _iPermiso.GetComponenteUsuario(usuario);
                             }
                         }

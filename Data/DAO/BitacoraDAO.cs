@@ -61,7 +61,6 @@ namespace Data.DAO
         {
             try
             {
-                throw new Exception();
                 DataSet resultado = _acceso.ExecuteStoredProcedureReader("sp_s_bitacora", null);
 
                 return resultado;
