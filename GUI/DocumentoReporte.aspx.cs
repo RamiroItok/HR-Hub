@@ -2,6 +2,8 @@
 using Aplication.Interfaces.Observer;
 using Aplication.Services.Observer;
 using Aplication.Services.XML;
+using Models;
+using Models.Composite;
 using System;
 using System.Web.Script.Serialization;
 using System.Web.UI;
@@ -12,17 +14,26 @@ namespace GUI
     public partial class DocumentoReporte : Page, IIdiomaService
     {
         private readonly IDocumentoService _documentoService;
+        private readonly IPermisoService _permisoService;
         private readonly IdiomaService _idiomaService;
 
         public DocumentoReporte()
         {
             _documentoService = Global.Container.Resolve<IDocumentoService>();
+            _permisoService = Global.Container.Resolve<IPermisoService>();
             _idiomaService = Global.Container.Resolve<IdiomaService>();
             _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if (!_permisoService.TienePermiso(usuario, Permiso.DocumentoReporte))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";

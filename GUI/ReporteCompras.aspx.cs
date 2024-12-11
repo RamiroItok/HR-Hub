@@ -1,7 +1,9 @@
-﻿using Aplication.Interfaces.Observer;
+﻿using Aplication.Interfaces;
+using Aplication.Interfaces.Observer;
 using Aplication.Services.Observer;
 using Aplication.Services.XML;
 using Models;
+using Models.Composite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +17,25 @@ namespace GUI
 {
     public partial class ReporteCompras : Page, IIdiomaService
     {
+        private readonly IPermisoService _permisoService;
         private readonly IdiomaService _idiomaService;
 
         public ReporteCompras()
         {
+            _permisoService = Global.Container.Resolve<IPermisoService>();
             _idiomaService = Global.Container.Resolve<IdiomaService>();
             _idiomaService.Subscribe(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var usuario = Session["Usuario"] as Usuario;
+            if (!_permisoService.TienePermiso(usuario, Permiso.ReporteCompras))
+            {
+                Response.Redirect("AccesoDenegado.aspx");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 CargarAnios();
