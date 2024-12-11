@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Configuration;
 using Aplication.Interfaces;
 using Data.DAO;
 using Models;
-using Models.Enums;
 
 namespace Aplication.Services
 {
@@ -47,6 +45,7 @@ namespace Aplication.Services
                 else
                 {
                     var resultado = _backUpDAO.RealizarRestore(archivo);
+                    TablaCorrupta.TablasRegistradasEnBitacora.Clear();
                     return resultado;
                 }
             }

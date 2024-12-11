@@ -1,5 +1,7 @@
 ﻿using Data.Conexion;
 using Data.Interfaces;
+using Models;
+using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,10 +12,12 @@ namespace Data.DAO
     public class DigitoVerificadorDAO : IDigitoVerificadorDAO
     {
         private readonly Acceso _acceso;
+        private readonly IBitacoraDAO _bitacoraDAO;
 
         public DigitoVerificadorDAO()
         {
             _acceso = Acceso.GetInstance;
+            _bitacoraDAO = new BitacoraDAO();
         }
 
         public List<string> Verificar_DV()
@@ -35,6 +39,7 @@ namespace Data.DAO
                     if (DV != DVH)
                     {
                         listaMensajes.Add(tabla);
+                        RegistrarEnBitacoraSiNoExiste(tabla);
                         continue;
                     }
                     string consulta3 = "SELECT * FROM " + tabla;
@@ -62,6 +67,7 @@ namespace Data.DAO
                     if (dvh_fila != DV)
                     {
                         listaMensajes.Add(tabla);
+                        RegistrarEnBitacoraSiNoExiste(tabla);
                         continue;
                     }
 
@@ -78,6 +84,7 @@ namespace Data.DAO
         {
             try
             {
+                TablaCorrupta.TablasRegistradasEnBitacora.Clear();
                 bool mensaje = true;
                 string consulta = "SELECT NombreTabla as Tabla, DV as Valor_DV from DigitoVerificador";
                 DataTable dt = _acceso.GenerarConsulta(consulta);
@@ -219,6 +226,31 @@ namespace Data.DAO
             {
                 throw new Exception("ErrorCalcularDigitoVerificadorTabla");
             }
+        }
+
+        private void RegistrarEnBitacoraSiNoExiste(string tabla)
+        {
+            if (!TablaCorrupta.TablasRegistradasEnBitacora.Contains(tabla))
+            {
+                var bitacora = CrearBitacora(tabla);
+                _bitacoraDAO.RegistrarBitacora(bitacora);
+                TablaCorrupta.TablasRegistradasEnBitacora.Add(tabla);
+
+                if(tabla != "Bitacora")
+                    CalcularDVTabla("Bitacora");
+            }
+        }
+
+        private Bitacora CrearBitacora(string tabla)
+        {
+            return new Bitacora()
+            {
+                Email = "gAWVEPDybxsYLBQsi0Mvz/BpqNmDIbk3al8RaZMYch4=",
+                TipoUsuario = Puesto.WebMaster.ToString(),
+                Descripcion = $"La tabla {tabla} esta corrupta",
+                Fecha = DateTime.Now,
+                Criticidad = Criticidad.ALTA.ToString()
+            };
         }
     }
 }
