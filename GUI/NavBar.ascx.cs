@@ -77,6 +77,7 @@ namespace GUI.Controls
                 cargaDocumentosLink.Visible = false;
                 misDocumentosLink.Visible = false;
                 reporteDocumentosLink.Visible = false;
+                return;
             }
 
             if (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto == Models.Enums.Puesto.WebMaster)
@@ -126,7 +127,7 @@ namespace GUI.Controls
             
             if (usuario != null)
             {
-                loginLink.Visible = false;
+                OcultarMenu();
                 foreach (var permiso in usuario.Permisos)
                 {
                     switch (permiso.Permiso)
@@ -254,6 +255,37 @@ namespace GUI.Controls
                 litDocumentoReporte.Text = _idiomaService.GetTranslation("DocumentoReporte");
                 litMisDatos.Text = _idiomaService.GetTranslation("MisDatos");
             }
+        }
+
+        private void OcultarMenu()
+        {
+            loginLink.Visible = false;
+            registroLink.Visible = false;
+            listarUsuariosLink.Visible = false;
+            registroUsuarioLink.Visible = false;
+            bitacoraLink.Visible = false;
+            seguridadLink.Visible = false;
+            backUpLink.Visible = false;
+            restoreLink.Visible = false;
+            gestionFamiliaLink.Visible = false;
+            gestionFamiliaPatenteLink.Visible = false;
+            falloIntegridadSeguridadLink.Visible = false;
+            permisosUsuarioLink.Visible = false;
+            configuracionEmpresaLink.Visible = false;
+            configuracionProductosLink.Visible = false;
+            productosLink.Visible = false;
+            carritoLink.Visible = false;
+            gestionPermisosUsuarioLink.Visible = false;
+            misComprasLink.Visible = false;
+            miCuentaLink.Visible = false;
+            reportesLink.Visible = false;
+            reporteComprasLink.Visible = false;
+            desbloquearUsuariosLink.Visible = false;
+            documentosLink.Visible = false;
+            cargaDocumentosLink.Visible = false;
+            misDocumentosLink.Visible = false;
+            reporteDocumentosLink.Visible = false;
+            misDatosLink.Visible = false;
         }
 
         public void UpdateLanguage(string language)
