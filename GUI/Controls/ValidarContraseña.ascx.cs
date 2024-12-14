@@ -30,8 +30,8 @@ namespace GUI.Controls
         protected void ValidatePassword(object source, ServerValidateEventArgs args)
         {
             string password = args.Value;
-
-            var regex = new Regex(@"^(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*?&#\-_+])[A-Za-z\d.@$!%*?&#\-_+]{8,}$");
+            
+            var regex = new Regex(@"^(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*?&#\-_+)\(])[A-Za-z\d.@$!%*?&#\-_+)\(]{8,}$");
             
             if (regex.IsMatch(password))
             {

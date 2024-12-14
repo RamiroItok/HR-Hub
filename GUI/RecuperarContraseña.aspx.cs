@@ -71,11 +71,11 @@ namespace GUI
                         body = body.Replace("{{CONTRASEÑA}}", nuevaContraseña);
 
                         _enviarMailService.EnviarMail(email, AsuntoMail.RecuperacionContraseña, body);
-                        lblMensaje.Text = _idiomaService.GetTranslation("MensajeContraseñaEnviada");
+                        lblMensaje.Text = _idiomaService.GetTranslation("MensajeContrasenaEnviada");
                         lblMensaje.CssClass = "message-label success";
                     }
                     else
-                        throw new Exception("MensajeErrorActualizarContraseña");
+                        throw new Exception("MensajeErrorActualizarContrasena");
 
                     lblMensaje.Visible = true;
                 }
