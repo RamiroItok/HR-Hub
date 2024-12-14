@@ -13,6 +13,7 @@
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Style/NavBar.css" rel="stylesheet" />
     <link href="/Style/MiCuenta.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body style="background-image: url('Content/imagenes/Fondo.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center center;">
     <form id="form1" runat="server">

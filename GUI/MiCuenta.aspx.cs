@@ -69,6 +69,21 @@ namespace GUI
                 var usuario = CompletarUsuario(userSession);
 
                 _iUsuarioService.ModificarUsuario(usuario, userSession);
+
+                string title = _idiomaService.GetTranslation("ModificarDatosUsuario");
+                string message = _idiomaService.GetTranslation("DatosModificadosExitosamente");
+                string confirmButton = _idiomaService.GetTranslation("ConfirmButtonText");
+
+                string script = $@"
+                    Swal.fire({{
+                        title: '{title}',
+                        text: '{message}',
+                        icon: 'success',
+                        confirmButtonText: '{confirmButton}'
+                    }});
+                ";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "SweetAlert", script, true);
             }
             catch (Exception ex)
             {
@@ -169,7 +184,7 @@ namespace GUI
         {
             if (string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtCiudad.Text) || string.IsNullOrEmpty(txtCodigoPostal.Text) 
                 || string.IsNullOrEmpty(txtDepartamento.Text) || string.IsNullOrEmpty(txtDireccion.Text)  || string.IsNullOrEmpty(txtNombre.Text)
-                || string.IsNullOrEmpty(txtNumeroDireccion.Text) || string.IsNullOrEmpty(txtPais.Text) || string.IsNullOrEmpty(txtProvincia.Text))
+                || string.IsNullOrEmpty(txtNumeroDireccion.Text) || string.IsNullOrEmpty(txtPais.Text) || string.IsNullOrEmpty(txtProvincia.Text) || drpGenero.SelectedIndex == 0)
                 throw new Exception(_idiomaService.GetTranslation("MensajeCamposIncompletos"));
 
             return null;

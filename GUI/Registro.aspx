@@ -29,12 +29,12 @@
                 
                 <div class="form-group">
                     <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" />
-                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
+                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" OnKeyPress="return validarTexto(event);" />
                 </div>
                 
                 <div class="form-group">
                     <asp:Label ID="lblApellido" runat="server" AssociatedControlID="txtApellido" />
-                    <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" />
+                    <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" OnKeyPress="return validarTexto(event);" />
                 </div>
                 
                 <div class="form-group">
@@ -113,6 +113,17 @@
         if (fieldId === 'txtFechaNac') {
             fpFechaNac.open();
         }
+    }
+
+    function validarTexto(e) {
+        var charCode = e.charCode || e.keyCode;
+        if ((charCode >= 65 && charCode <= 90) ||
+            (charCode >= 97 && charCode <= 122) ||
+            charCode === 32 ||
+            charCode === 8) {
+            return true;
+        }
+        return false;
     }
 </script>
 
