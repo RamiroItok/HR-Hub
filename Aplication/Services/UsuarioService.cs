@@ -72,22 +72,7 @@ namespace Aplication
         {
             try
             {
-                Usuario usuarioReal = new Usuario()
-                {
-                    Email = EncriptacionService.Encriptar_AES(usuario.Email),
-                    Puesto = usuario.Puesto,
-                    Area = usuario.Area,
-                    Genero = usuario.Genero,
-                    Direccion = usuario.Direccion,
-                    NumeroDireccion = usuario.NumeroDireccion,
-                    Departamento = usuario.Departamento,
-                    CodigoPostal = usuario.CodigoPostal,
-                    Ciudad = usuario.Ciudad,
-                    Provincia = usuario.Provincia,
-                    Pais = usuario.Pais
-                };
-
-                var idUsuario = _usuarioDAO.ModificarUsuario(usuarioReal);
+                var idUsuario = _usuarioDAO.ModificarUsuario(usuario);
                 _iBitacoraService.AltaBitacora(userSession.Email, userSession.Puesto, $"Se modifco el usuario {usuario.Nombre} {usuario.Apellido}", Criticidad.MEDIA);
                 _iDigitoVerificadorService.CalcularDVTabla("Usuario");
 

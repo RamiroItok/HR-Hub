@@ -177,7 +177,8 @@ namespace GUI
             if (string.IsNullOrWhiteSpace(txtApellido.Text) || string.IsNullOrWhiteSpace(hiddenContraseña.Value) || string.IsNullOrWhiteSpace(ValidarEmail.Email) || string.IsNullOrWhiteSpace(txtFechaNac.Value) || 
                 string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Pais) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Departamento) || 
                 string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Ciudad) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.CodigoPostal) || 
-                string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Direccion) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.NumeroDireccion.ToString()))
+                string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.Direccion) || string.IsNullOrWhiteSpace(ValidarRegistroUsuarioDatosControl.NumeroDireccion.ToString()) || 
+                drpGenero.SelectedIndex == 0 || DropDownArea.SelectedIndex == 0)
                 return false;
 
             return true;
