@@ -231,8 +231,11 @@ namespace GUI
             }
             else
             {
-                gvBitacora.DataSource = listaEventos;
-            }
+                gvBitacora.DataSource = listaEventos
+                            .OrderByDescending(p => p.Id)
+                            .Take(50)
+                            .ToList();
+            } 
 
             gvBitacora.AllowPaging = false;
             gvBitacora.DataBind();
