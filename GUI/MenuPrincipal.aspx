@@ -34,26 +34,9 @@
                     </h3>
                     <p class="card-text">
                         <asp:Literal ID="litGestionaPerfil" runat="server"></asp:Literal></p>
-                    <button class="btn btn-primary">
+                    <button id="btnIrPerfil" runat="server" class="btn btn-primary" onserverclick="btnIrPerfil_ServerClick">
                         <i class="fas fa-user-circle"></i>
                         <asp:Literal ID="litIrPerfil" runat="server"></asp:Literal>
-                    </button>
-                    <button class="btn btn-outline-primary">
-                        <i class="fas fa-coffee"></i>
-                        <asp:Literal ID="litSolicitarDescanso" runat="server"></asp:Literal>
-                    </button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">
-                        <asp:Literal ID="litMisTareas" runat="server"></asp:Literal></h3>
-                    <p class="card-text">
-                        <asp:Literal ID="litConsultaTareas" runat="server"></asp:Literal></p>
-                    <button class="btn btn-primary">
-                        <i class="fas fa-tasks"></i>
-                        <asp:Literal ID="litVerTareas" runat="server"></asp:Literal>
                     </button>
                 </div>
             </div>
@@ -64,7 +47,7 @@
                         <asp:Literal ID="litMisDocumentos" runat="server"></asp:Literal></h3>
                     <p class="card-text">
                         <asp:Literal ID="litAccedeDocumentos" runat="server"></asp:Literal></p>
-                    <button class="btn btn-primary">
+                    <button id="btnVerDocumentos" runat="server" class="btn btn-primary" onserverclick="btnVerDocumentos_ServerClick">
                         <i class="fas fa-file-alt"></i>
                         <asp:Literal ID="litVerDocumentos" runat="server"></asp:Literal>
                     </button>
