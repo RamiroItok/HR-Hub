@@ -15,6 +15,42 @@ namespace GUI
     {
 
         /// <summary>
+        /// Control litPageTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litPageTitle;
+
+        /// <summary>
+        /// Control form1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
+        /// Control NavBarControl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::GUI.Controls.NavBar NavBarControl;
+
+        /// <summary>
+        /// Control litErrorTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litErrorTitle;
+
+        /// <summary>
         /// Control lblErrorMessage.
         /// </summary>
         /// <remarks>
@@ -24,6 +60,15 @@ namespace GUI
         protected global::System.Web.UI.WebControls.Label lblErrorMessage;
 
         /// <summary>
+        /// Control litContactMessage.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litContactMessage;
+
+        /// <summary>
         /// Control btnOk.
         /// </summary>
         /// <remarks>
@@ -31,9 +76,5 @@ namespace GUI
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnOk;
-
-        protected global::System.Web.UI.WebControls.Literal litPageTitle;
-        protected global::System.Web.UI.WebControls.Literal litErrorTitle;
-        protected global::System.Web.UI.WebControls.Literal litContactMessage;
     }
 }
