@@ -1,5 +1,4 @@
-﻿/* Fondo y estilos generales */
-body {
+﻿body {
     font-family: Arial, sans-serif;
 }
 
@@ -37,7 +36,6 @@ body {
     margin-bottom: 8px;
 }
 
-/* Estilos de los botones */
 .btn-assign, .btn-remove {
     width: 100%;
     max-width: 200px;
@@ -67,7 +65,6 @@ body {
         background-color: #d32f2f;
     }
 
-/* Estilos para la tabla */
 .table-permissions {
     width: 100%;
     margin-top: 15px;
@@ -99,7 +96,6 @@ body {
         background-color: #eaf5ea;
     }
 
-    /* Checkbox header */
     .table-permissions th input[type="checkbox"] {
         margin: 0;
         cursor: pointer;
@@ -112,12 +108,12 @@ body {
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px; 
+    right: 15px; 
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;

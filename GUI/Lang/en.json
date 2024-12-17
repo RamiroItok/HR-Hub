@@ -593,5 +593,7 @@
   "ErrorListarBitacora": "Error listing events",
   "ErrorBajaBitacora": "Error deleting log",
   "ErrorAltaFamiliaPatente": "Error adding the family",
-  "ErrorAsignarPermisoFamilia": "Error assigning permission to the family"
+  "ErrorAsignarPermisoFamilia": "Error assigning permission to the family",
+
+  "MessageErrorMailRegistrado": "The email is already registered."
 }

@@ -592,5 +592,7 @@
   "ErrorListarBitacora": "Error al listar eventos",
   "ErrorBajaBitacora": "Error al eliminar bitacora",
   "ErrorAltaFamiliaPatente": "Error al dar de alta la familia",
-  "ErrorAsignarPermisoFamilia": "Error al asignar el permiso a la familia."
+  "ErrorAsignarPermisoFamilia": "Error al asignar el permiso a la familia.",
+
+  "MessageErrorMailRegistrado": "El mail ya se encuentra registrado."
 }

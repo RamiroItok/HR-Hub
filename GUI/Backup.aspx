@@ -31,7 +31,7 @@
 
             <div class="form-group">
                 <asp:Label ID="lblNombreBackup" runat="server" AssociatedControlID="txtNombre" Text="Nombre del Backup:"></asp:Label>
-                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingrese el nombre del backup"></asp:TextBox>
+                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingrese el nombre del backup" MaxLength="50"></asp:TextBox>
             </div>
 
             <div class="form-group text-center">

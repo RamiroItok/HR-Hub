@@ -1,7 +1,6 @@
-﻿/* --- Configuración básica de colores y fuentes --- */
-:root {
-    --main-green: #4e7e32; /* Verde oscuro */
-    --accent-green: #67a544; /* Verde más claro */
+﻿:root {
+    --main-green: #4e7e32;
+    --accent-green: #67a544;
     --black: #333333;
     --white: #ffffff;
     --background-color: #f5f5f5;
@@ -16,7 +15,6 @@ body {
     padding: 0;
 }
 
-/* --- Estilo del contenedor principal --- */
 .containerReporte {
     max-width: 800px;
     margin: 50px auto;
@@ -33,7 +31,6 @@ body {
         box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3);
     }
 
-/* --- Título principal --- */
 h2 {
     color: var(--main-green);
     font-weight: 700;
@@ -41,14 +38,12 @@ h2 {
     margin-bottom: 10px;
 }
 
-/* --- Descripción del reporte --- */
 p {
     color: var(--black);
     font-size: 1.1em;
     margin-bottom: 20px;
 }
 
-/* --- Botones de acción --- */
 .btn {
     padding: 10px 20px;
     font-size: 1em;
@@ -114,7 +109,6 @@ p {
         box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.15);
     }
 
-/* --- Dropdown selector de idioma --- */
 .language-selector {
     position: fixed;
     bottom: 15px;

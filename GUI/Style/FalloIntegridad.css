@@ -1,10 +1,8 @@
-﻿/* Estilo general */
-body, html {
+﻿body, html {
     height: 100%;
     margin: 0;
 }
 
-/* Fondo con degradado */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
@@ -23,13 +21,11 @@ body {
     transition: box-shadow 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centrado vertical */
-    align-items: center; /* Centrado horizontal */
-    min-height: 100vh; /* Hace que el contenedor ocupe toda la altura de la pantalla */
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
 }
 
-
-/* Contenedores de las secciones */
 .fallo-section {
     background-color: #fafafa;
     border-radius: 8px;
@@ -45,7 +41,6 @@ body {
         box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
     }
 
-/* Título */
 .fallo-title {
     color: #76B041;
     font-weight: bold;
@@ -59,7 +54,6 @@ body {
         color: #5c8f34;
     }
 
-/* Estilo para formularios */
 .fallo-form-group {
     margin-bottom: 20px;
 }
@@ -87,7 +81,6 @@ body {
         outline: none;
     }
 
-/* Estilo de los botones */
 .fallo-btn-primary {
     background-color: #76B041;
     border-color: #76B041;
@@ -120,7 +113,6 @@ body {
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
-/* Separador visual */
 .fallo-divider {
     border: 0;
     height: 1px;
@@ -128,28 +120,24 @@ body {
     margin: 40px 0;
 }
 
-/* Mensaje de éxito o error */
 .fallo-text-success {
     color: #28a745;
     font-size: 16px;
     font-weight: bold;
 }
 
-/* Mensaje de fallo */
 .fallo-text-failed {
     color: #dc3545;
     font-size: 16px;
     font-weight: bold;
 }
 
-/* Animaciones suaves */
 .fallo-section,
 .fallo-btn-primary,
 .fallo-btn-secondary {
     transition: all 0.3s ease;
 }
 
-/* Ajustes responsive */
 @media (max-width: 768px) {
     .fallo-container {
         padding: 20px;
@@ -163,12 +151,12 @@ body {
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px; 
+    right: 15px; 
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;

@@ -1,7 +1,4 @@
-﻿/* Backup.css */
-
-/* Estilo de fondo */
-body {
+﻿body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -14,7 +11,6 @@ body {
     color: #333;
 }
 
-/* Contenedor principal */
 .containerBackup {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 40px;
@@ -30,23 +26,20 @@ body {
         transform: scale(1.02);
     }
 
-    /* Título */
     .containerBackup h2 {
         font-size: 2.2em;
-        color: #67a544; /* Verde del logo */
+        color: #67a544;
         margin-bottom: 20px;
         font-weight: bold;
     }
 
-    /* Etiquetas de entrada */
     .containerBackup label {
-        color: #333; /* Gris oscuro */
+        color: #333;
         font-weight: 500;
         display: block;
         margin-bottom: 5px;
     }
 
-    /* Campos de entrada */
     .containerBackup .form-control {
         padding: 10px;
         font-size: 1em;
@@ -56,11 +49,10 @@ body {
     }
 
         .containerBackup .form-control:focus {
-            border-color: #67a544; /* Verde del logo */
+            border-color: #67a544;
             box-shadow: 0 0 5px rgba(103, 165, 68, 0.5);
         }
 
-/* Botones */
 .btn-action {
     padding: 12px 24px;
     font-size: 1em;
@@ -73,7 +65,7 @@ body {
 }
 
 .btn-primary {
-    background-color: #67a544; /* Verde del logo */
+    background-color: #67a544;
     border-color: #67a544;
     color: #fff;
 }
@@ -84,7 +76,7 @@ body {
     }
 
 .btn-secondary {
-    background-color: #333; /* Gris oscuro */
+    background-color: #333;
     border-color: #333;
     color: #fff;
 }
@@ -94,7 +86,6 @@ body {
         transform: translateY(-2px);
     }
 
-/* Mensaje de estado */
 .text-success {
     font-size: 1em;
     color: #4CAF50;
@@ -102,7 +93,6 @@ body {
     font-weight: bold;
 }
 
-/* Selector de idioma */
 #ddlLanguage {
     position: fixed;
     bottom: 15px;
@@ -123,12 +113,10 @@ body {
         color: #333;
     }
 
-/* Transiciones de contenedor */
 .containerBackup:hover {
     transform: scale(1.03);
 }
 
-/* Media queries para dispositivos móviles */
 @media (max-width: 600px) {
     .containerBackup {
         padding: 30px;
@@ -167,12 +155,12 @@ body {
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px; 
+    right: 15px; 
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;

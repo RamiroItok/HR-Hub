@@ -30,17 +30,17 @@
 
             <asp:Panel runat="server" CssClass="form-group">
                 <asp:Label runat="server" AssociatedControlID="txtPasswordActual" ID="lblPasswordActual" CssClass="form-label"></asp:Label>
-                <asp:TextBox runat="server" ID="txtPasswordActual" CssClass="form-control" TextMode="Password" />
+                <asp:TextBox runat="server" ID="txtPasswordActual" CssClass="form-control" TextMode="Password" MaxLength="50"/>
             </asp:Panel>
 
             <asp:Panel runat="server" CssClass="form-group">
                 <asp:Label runat="server" AssociatedControlID="txtPasswordNueva" ID="lblPasswordNueva" CssClass="form-label"></asp:Label>
-                <asp:TextBox runat="server" ID="txtPasswordNueva" CssClass="form-control" TextMode="Password" />
+                <asp:TextBox runat="server" ID="txtPasswordNueva" CssClass="form-control" TextMode="Password" MaxLength="50"/>
             </asp:Panel>
 
             <asp:Panel runat="server" CssClass="form-group">
                 <asp:Label runat="server" AssociatedControlID="txtPasswordConfirmar" ID="lblPasswordConfirmar" CssClass="form-label"></asp:Label>
-                <asp:TextBox runat="server" ID="txtPasswordConfirmar" CssClass="form-control" TextMode="Password" />
+                <asp:TextBox runat="server" ID="txtPasswordConfirmar" CssClass="form-control" TextMode="Password" MaxLength="50"/>
             </asp:Panel>
 
             <asp:Panel runat="server" CssClass="form-group">

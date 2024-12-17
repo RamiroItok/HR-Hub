@@ -1,5 +1,4 @@
-﻿/* Fondo de la página */
-.error-page {
+﻿.error-page {
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
     min-height: 100vh;
@@ -9,7 +8,6 @@
     margin: 0;
 }
 
-/* Contenedor principal */
 .error-content {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 30px;
@@ -21,7 +19,6 @@
     animation: fadeInUp 1s ease-out;
 }
 
-/* Título de error */
 .error-title {
     font-size: 2.5em;
     font-weight: bold;
@@ -30,7 +27,6 @@
     animation: fadeInDown 0.8s ease;
 }
 
-/* Mensaje de alerta */
 .error-alert {
     font-size: 1.2em;
     background-color: #fff3cd;
@@ -43,7 +39,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Mensaje de ayuda */
 .error-message {
     color: #333;
     font-size: 1.1em;
@@ -51,7 +46,6 @@
     font-weight: 500;
 }
 
-/* Botón de Aceptar */
 .btn-primary {
     background-color: #76b041;
     border-color: #76b041;
@@ -82,12 +76,12 @@
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px; 
+    right: 15px; 
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;

@@ -1,5 +1,4 @@
-﻿/* Estilos generales */
-body {
+﻿body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -8,14 +7,14 @@ body {
 
 .containerEmpresas {
     max-width: 600px;
-    margin: 0 auto; /* Centro en la pantalla */
+    margin: 0 auto;
     padding: 20px;
 }
 
 .content-box {
     padding: 20px 30px;
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+    background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
@@ -43,46 +42,41 @@ h2 {
         border-radius: 5px;
     }
 
-/* Estilos de los elementos de formulario */
 .form-group label {
     font-weight: 600;
     color: #333;
 }
 
-/* Estilo para DropDownList */
 .form-control {
     border: 1px solid #ccc;
     border-radius: 4px;
-    padding: 10px; /* Padding para asegurar espacio dentro del campo */
+    padding: 10px;
     font-size: 1rem;
-    line-height: 1.5; /* Asegura que el texto se centre verticalmente */
+    line-height: 1.5;
     width: 100%;
     box-sizing: border-box;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
     .form-control select {
-        appearance: none; /* Elimina estilos por defecto */
-        height: auto; /* Asegura que el texto se ajuste a la altura */
-        padding: 10px 8px; /* Ajusta el padding para evitar el texto cortado */
-        line-height: 1.5; /* Altura de línea adecuada para que el texto no se corte */
+        appearance: none; 
+        height: auto;
+        padding: 10px 8px;
+        line-height: 1.5; 
         font-size: 1rem;
     }
 
-    /* Enfoque visual para el campo */
     .form-control:focus {
         border-color: #76B041;
         box-shadow: 0 0 8px rgba(118, 176, 65, 0.2);
     }
 
-
-/* Tamaño y estilo de fuente uniforme para todos los controles */
 input[type="text"],
 input[type="number"],
 select,
 button,
 textarea {
-    font-size: 1.2rem; /* Tamaño uniforme para todos los elementos */
+    font-size: 1.2rem;
     padding: 12px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -93,19 +87,16 @@ textarea {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Estilo específico para el select */
 select {
     height: auto;
     line-height: 1.5;
-    appearance: none; /* Remueve estilos predeterminados */
+    appearance: none;
 }
 
-    /* Ajusta el tamaño de fuente en las opciones del Dropdown */
     select option {
-        font-size: 1.2rem; /* Mantiene el mismo tamaño de fuente para las opciones */
+        font-size: 1.2rem;
     }
 
-    /* Estilo de enfoque para todos los controles */
     input:focus,
     select:focus,
     textarea:focus {
@@ -113,9 +104,8 @@ select {
         box-shadow: 0 0 8px rgba(118, 176, 65, 0.2);
     }
 
-/* Estilo de botones */
 button, .btn-primary, .btn-secondary {
-    font-size: 1.2rem; /* Tamaño uniforme en los botones */
+    font-size: 1.2rem;
     font-weight: bold;
     padding: 12px 30px;
     border-radius: 5px;
@@ -123,7 +113,6 @@ button, .btn-primary, .btn-secondary {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Botón primario */
 .btn-primary {
     background-color: #76B041;
     border-color: #76B041;
@@ -135,7 +124,6 @@ button, .btn-primary, .btn-secondary {
         transform: scale(1.05);
     }
 
-/* Botón secundario */
 .btn-secondary {
     background-color: #555;
     border-color: #555;
@@ -149,17 +137,17 @@ button, .btn-primary, .btn-secondary {
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    padding: 5px 10px; /* Ajusta el padding para un tamaño más compacto */
+    bottom: 15px; 
+    right: 15px; 
+    z-index: 1000;
+    padding: 5px 10px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
-    width: auto; /* Ajusta el ancho automáticamente según el contenido */
-    display: inline-block; /* Evita que ocupe todo el ancho */
+    width: auto;
+    display: inline-block;
 }
 
     #ddlLanguage option {

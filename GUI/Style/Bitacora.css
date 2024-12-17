@@ -1,5 +1,4 @@
-﻿/* Fondo transparente de la bitacora-page */
-.bitacora-page {
+﻿.bitacora-page {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 30px;
     border-radius: 10px;
@@ -9,7 +8,6 @@
     margin: 20px auto;
 }
 
-/* Título de la página */
 .titulo-bitacora {
     font-size: 28px;
     color: #76B041;
@@ -18,7 +16,6 @@
     margin-bottom: 20px;
 }
 
-/* Contenedor de filtros */
 .filter-container {
     display: flex;
     flex-wrap: wrap;
@@ -31,7 +28,6 @@
     color: #a94442;
 }
 
-/* Estilos para los campos de texto y dropdown */
 .form-group {
     flex: 1 1 45%;
 }
@@ -44,17 +40,15 @@ input.form-control, select.form-control, .datepicker {
     width: 100%;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 44px; /* Asegura que todos los controles tengan la misma altura */
+    height: 44px;
 }
 
-    /* Efecto de foco */
     input.form-control:focus, select.form-control:focus {
         border-color: #76B041;
         box-shadow: 0 0 8px rgba(118, 176, 65, 0.4);
         outline: none;
     }
 
-/* Estilo de la tabla */
 .table {
     width: 100%;
     margin-top: 20px;
@@ -110,12 +104,12 @@ input.form-control, select.form-control, .datepicker {
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px; 
+    right: 15px; 
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;

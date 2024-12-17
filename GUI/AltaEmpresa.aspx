@@ -23,7 +23,7 @@
 
                 <div class="form-group">
                     <label for="txtNombreEmpresa" runat="server" id="lblNombreEmpresa">Nombre de la Empresa:</label>
-                    <asp:TextBox ID="txtNombreEmpresa" runat="server" CssClass="form-control" placeholder="Ingrese el nombre"></asp:TextBox>
+                    <asp:TextBox ID="txtNombreEmpresa" runat="server" CssClass="form-control" placeholder="Ingrese el nombre" MaxLength="50"></asp:TextBox>
                 </div>
                 
                 <div class="form-group">
@@ -33,7 +33,7 @@
 
                 <div class="form-group">
                     <label for="txtURLEmpresa" runat="server" id="lblURLEmpresa">URL de la Empresa:</label>
-                    <asp:TextBox ID="txtURLEmpresa" runat="server" CssClass="form-control" placeholder="https://www.ejemplo.com"></asp:TextBox>
+                    <asp:TextBox ID="txtURLEmpresa" runat="server" CssClass="form-control" placeholder="https://www.ejemplo.com" MaxLength="50"></asp:TextBox>
                 </div>
 
                 <div class="text-center">

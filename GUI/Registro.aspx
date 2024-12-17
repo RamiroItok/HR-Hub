@@ -29,12 +29,12 @@
                 
                 <div class="form-group">
                     <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" />
-                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" OnKeyPress="return validarTexto(event);" />
+                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" OnKeyPress="return validarTexto(event);" MaxLength="50"/>
                 </div>
                 
                 <div class="form-group">
                     <asp:Label ID="lblApellido" runat="server" AssociatedControlID="txtApellido" />
-                    <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" OnKeyPress="return validarTexto(event);" />
+                    <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" OnKeyPress="return validarTexto(event);" MaxLength="50"/>
                 </div>
                 
                 <div class="form-group">

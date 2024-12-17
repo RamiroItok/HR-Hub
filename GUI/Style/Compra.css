@@ -1,16 +1,14 @@
-﻿/* General para el contenedor de la pantalla de Compra */
-.containerCompra {
+﻿.containerCompra {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 30px;
     max-width: 1000px;
     margin: auto;
-    font-size: 18px; /* Tamaño base aumentado solo dentro del contenedor */
+    font-size: 18px;
     font-family: 'Roboto', sans-serif;
 }
 
-/* Tarjetas */
 .card-centered {
     width: 100%;
     max-width: 800px;
@@ -27,16 +25,14 @@
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
 
-/* Títulos */
 h3.card-title {
     color: #4CAF50;
     font-weight: bold;
-    font-size: 2rem; /* Tamaño aumentado solo en esta pantalla */
+    font-size: 2rem;
     margin-bottom: 20px;
     text-align: center;
 }
 
-/* Tabla de resumen de compra */
 .table {
     width: 100%;
     border-radius: 8px;
@@ -68,7 +64,6 @@ h3.card-title {
     font-weight: bold;
 }
 
-/* Formulario de Detalles de Pago */
 .form-group {
     margin-bottom: 18px;
 }
@@ -95,7 +90,6 @@ h3.card-title {
             box-shadow: 0 0 6px rgba(76, 175, 80, 0.3);
         }
 
-/* Botón de pago */
 .btn-success {
     background-color: #4CAF50;
     border-color: #4CAF50;
@@ -115,7 +109,6 @@ h3.card-title {
         transform: translateY(-3px);
     }
 
-/* Espaciado y estilo de la sección de detalles de pago */
 .card-centered.payment-details {
     margin-top: 40px;
     padding: 25px;
@@ -133,12 +126,12 @@ h3.card-title.payment-title {
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px; 
+    right: 15px; 
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
