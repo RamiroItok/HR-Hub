@@ -32,6 +32,7 @@ namespace GUI
             if (!_permisoService.TienePermiso(usuario, Permiso.MisDocumentos))
             {
                 Response.Redirect("AccesoDenegado.aspx");
+                Context.ApplicationInstance.CompleteRequest();
                 return;
             }
 

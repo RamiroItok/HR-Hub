@@ -37,6 +37,7 @@ namespace GUI
             if(!_iPermisoService.TienePermiso(usuario, Permiso.Bitacora))
             {
                 Response.Redirect("AccesoDenegado.aspx");
+                Context.ApplicationInstance.CompleteRequest();
                 return;
             }
             try

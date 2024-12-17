@@ -33,6 +33,7 @@ namespace GUI
             if(!_permisoService.TienePermiso(usuario, Permiso.Carrito))
             {
                 Response.Redirect("AccesoDenegado.aspx");
+                Context.ApplicationInstance.CompleteRequest();
                 return;
             }
 
@@ -251,6 +252,7 @@ namespace GUI
         {
             var userSession = Session["Usuario"] as Usuario;
             Response.Redirect($"Compra.aspx?carritoId={userSession.Id}");
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         protected void btnLimpiarCarrito_Click(object sender, EventArgs e)

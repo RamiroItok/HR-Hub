@@ -35,6 +35,7 @@ namespace GUI
             if(!_permisoService.TienePermiso(usuario, Permiso.ConfiguracionProducto))
             {
                 Response.Redirect("AccesoDenegado.aspx");
+                Context.ApplicationInstance.CompleteRequest();
                 return;
             }
 

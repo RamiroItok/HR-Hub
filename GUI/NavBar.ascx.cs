@@ -36,6 +36,7 @@ namespace GUI.Controls
 
             Session.Abandon();
             Response.Redirect("Home.aspx");
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         protected void btnInicio_Click(object sender, EventArgs e)
@@ -45,11 +46,13 @@ namespace GUI.Controls
             if ((usuario != null && Session["ErrorVerificacionDV"] == null) || (Session["ErrorVerificacionDV"] != null && usuario != null && usuario.Puesto == Models.Enums.Puesto.WebMaster))
             {
                 Response.Redirect("MenuPrincipal.aspx");
+                Context.ApplicationInstance.CompleteRequest();
             }
             else
             {
                 Session.Abandon();
                 Response.Redirect("Home.aspx");
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
 
