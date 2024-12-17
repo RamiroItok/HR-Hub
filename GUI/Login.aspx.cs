@@ -68,7 +68,7 @@ namespace GUI
                         Session["Usuario"] = usuario;
 
                     Session["ErrorVerificacionDV"] = falloIntegridad;
-                    Response.Redirect($"ErrorDigitoVerificador.aspx");
+                    Response.Redirect($"ErrorDigitoVerificador.aspx", false);
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
