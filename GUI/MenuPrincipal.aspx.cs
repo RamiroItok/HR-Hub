@@ -57,16 +57,9 @@ namespace GUI
                 litTituloPagina.Text = _idiomaService.GetTranslation("TituloPaginaMenu");
                 litGestionaPerfil.Text = _idiomaService.GetTranslation("GestionaPerfil");
                 litIrPerfil.Text = _idiomaService.GetTranslation("IrPerfil");
-                litSolicitarDescanso.Text = _idiomaService.GetTranslation("SolicitarDescanso");
-
-                litMisTareas.Text = _idiomaService.GetTranslation("MisTareas");
-                litConsultaTareas.Text = _idiomaService.GetTranslation("ConsultaTareas");
-                litVerTareas.Text = _idiomaService.GetTranslation("VerTareas");
-
                 litMisDocumentos.Text = _idiomaService.GetTranslation("MisDocumentos");
                 litAccedeDocumentos.Text = _idiomaService.GetTranslation("AccedeDocumentos");
                 litVerDocumentos.Text = _idiomaService.GetTranslation("VerDocumentos");
-
                 litFooterText.Text = _idiomaService.GetTranslation("TextoPiePagina");
             }
         }
@@ -87,6 +80,18 @@ namespace GUI
                     Context.ApplicationInstance.CompleteRequest();
                 }
             }
+        }
+
+        protected void btnIrPerfil_ServerClick(object sender, EventArgs e)
+        {
+            Response.Redirect("MiCuenta.aspx");
+            Context.ApplicationInstance.CompleteRequest();
+        }
+
+        protected void btnVerDocumentos_ServerClick(object sender, EventArgs e)
+        {
+            Response.Redirect("MisDocumentos.aspx");
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         public void UpdateLanguage(string newLanguage)
