@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <style>
-        /* Fondo con un gradiente sutil */
         body {
             background: linear-gradient(135deg, #f4f7f6 0%, #dfe9e8 100%);
             font-family: 'Arial', sans-serif;
@@ -19,7 +18,6 @@
             color: #333;
         }
 
-        /* Contenedor principal del mensaje de error */
         .error-container {
             text-align: center;
             max-width: 500px;
@@ -30,13 +28,11 @@
             transition: transform 0.3s ease;
         }
 
-        /* Efecto de sombreado y escala en hover */
         .error-container:hover {
             transform: scale(1.02);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        /* Número de error */
         .error-code {
             font-size: 100px;
             font-weight: 700;
@@ -44,7 +40,6 @@
             margin: 0;
         }
 
-        /* Mensaje de acceso denegado */
         .error-title {
             font-size: 24px;
             font-weight: 600;
@@ -52,7 +47,6 @@
             margin-top: 10px;
         }
 
-        /* Texto informativo */
         .error-message {
             font-size: 16px;
             color: #666;
@@ -60,7 +54,6 @@
             line-height: 1.5;
         }
 
-        /* Botón para volver a la página principal */
         .btn-home {
             display: inline-block;
             margin-top: 25px;
@@ -78,19 +71,18 @@
             box-shadow: 0 5px 15px rgba(74, 140, 56, 0.4);
         }
 
-        /* Estilos de animación */
         .error-container {
             animation: slideIn 0.5s ease;
         }
 
         #ddlLanguage {
             position: fixed;
-            bottom: 15px; /* Separación desde la parte inferior */
-            right: 15px; /* Separación desde el borde derecho */
-            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+            bottom: 15px;
+            right: 15px;
+            z-index: 1000;
             padding: 5px;
             font-size: 14px;
-            background-color: #fff; /* Fondo blanco para mejor visibilidad */
+            background-color: #fff;
             border: 1px solid #ccc;
             border-radius: 4px;
             cursor: pointer;

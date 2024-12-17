@@ -3,7 +3,7 @@
 <div class="form-group">
     <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" CssClass="form-label"></asp:Label>
     
-    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" onblur="validateEmailFormat(this)"></asp:TextBox>
+    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" onblur="validateEmailFormat(this)" MaxLength="60"></asp:TextBox>
     
     <asp:Label ID="lblEmailError" runat="server" CssClass="error-message" Style="color: red; display: none;"></asp:Label>
 </div>

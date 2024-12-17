@@ -2,7 +2,7 @@
 
 <div class="form-group">
     <asp:Label ID="lblDireccion" runat="server" AssociatedControlID="txtDireccion" />
-    <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" />
+    <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" MaxLength="50"/>
     <span id="errorDireccion" class="error-message" style="color:red; display:none;"></span>
 </div>
 
@@ -26,19 +26,19 @@
 
 <div class="form-group">
     <asp:Label ID="lblCiudad" runat="server" AssociatedControlID="txtCiudad" />
-    <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" />
+    <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" MaxLength="50"/>
     <span id="errorCiudad" class="error-message" style="color:red; display:none;"></span>
 </div>
 
 <div class="form-group">
     <asp:Label ID="lblProvincia" runat="server" AssociatedControlID="txtProvincia" />
-    <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control"  OnKeyPress="return validarTexto(event);" />
+    <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control"  OnKeyPress="return validarTexto(event);" MaxLength="50"/>
     <span id="errorProvincia" class="error-message" style="color:red; display:none;"></span>
 </div>
 
 <div class="form-group">
     <asp:Label ID="lblPais" runat="server" AssociatedControlID="txtPais" />
-    <asp:TextBox ID="txtPais" runat="server" CssClass="form-control"  OnKeyPress="return validarTexto(event);" />
+    <asp:TextBox ID="txtPais" runat="server" CssClass="form-control"  OnKeyPress="return validarTexto(event);" MaxLength="50"/>
     <span id="errorPais" class="error-message" style="color:red; display:none;"></span>
 </div>
 

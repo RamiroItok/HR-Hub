@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <asp:Label ID="lblNombreFamilia" runat="server" Text="Nombre de familia"></asp:Label>
-                    <asp:TextBox ID="txtFamilia" runat="server" CssClass="form-control" />
+                    <asp:TextBox ID="txtFamilia" runat="server" CssClass="form-control" MaxLength="30"/>
                     <asp:Button ID="btnAceptar" runat="server" Text="Alta" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-default" OnClick="btnCancelar_Click" />
                 </div>
