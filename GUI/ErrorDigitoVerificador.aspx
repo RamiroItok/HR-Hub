@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ErrorDigitoVerificador.aspx.cs" Inherits="GUI.ErrorDigitoVerificador" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ErrorDigitoVerificador.aspx.cs" Inherits="GUI.ErrorDigitoVerificador" %>
 <%@ Register Src="~/NavBar.ascx" TagPrefix="uc" TagName="NavBar" %>
 
 <!DOCTYPE html>
