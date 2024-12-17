@@ -41,10 +41,10 @@ namespace GUI
 
             if (!IsPostBack)
             {
-                MostrarEstadoFallido(Session["ErrorVerificacionDV"] as Models.FalloIntegridad);
                 string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
                 ddlLanguage.SelectedValue = selectedLanguage;
                 _idiomaService.CurrentLanguage = selectedLanguage;
+                MostrarEstadoFallido(Session["ErrorVerificacionDV"] as Models.FalloIntegridad);
                 CargarTextos();
             }
         }
