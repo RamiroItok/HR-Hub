@@ -73,7 +73,7 @@ namespace GUI
                 _bitacoraService.AltaBitacora(usuario.Email, usuario.Puesto, "Se recalcularon los digitos verificadores", Models.Enums.Criticidad.ALTA);
 
                 MostrarEstadoFallido(null);
-                if (lblEstadoIntegridad.Text == "Estado: Saludable")
+                if (lblEstadoIntegridad.Text == _idiomaService.GetTranslation("EstadoSaludable"))
                 {
                     lblMensajeRecalcular.Visible = true;
                     lblMensajeRecalcular.Text = _idiomaService.GetTranslation("MensajeRecalculoExito");
