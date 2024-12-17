@@ -382,7 +382,7 @@ namespace Aplication
             const string minusculas = "abcdefghijklmnopqrstuvwxyz";
             const string mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string numeros = "1234567890";
-            const string caracteresEspeciales = "!@#$%^&*()";
+            const string caracteresEspeciales = ".@$!%*?&#-_+()^";
             const string todosCaracteres = minusculas + mayusculas + numeros + caracteresEspeciales;
 
             StringBuilder contraseña = new StringBuilder();

@@ -96,7 +96,7 @@ namespace GUI
                 string rutaArchivo = Path.GetFileName(fileBackup.FileName);
                 if (!string.IsNullOrEmpty(rutaArchivo))
                 {
-                    string rutaDestino = "D:/Backups/" + rutaArchivo;
+                    string rutaDestino = "C:/HrHub/App_Data/" + rutaArchivo;
                     fileBackup.SaveAs(rutaDestino);
 
                     var resultado = _backUpService.RealizarRestore(rutaDestino, usuario);

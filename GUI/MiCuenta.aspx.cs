@@ -109,7 +109,7 @@ namespace GUI
                 Area = userSession.Area,
                 Nombre = txtNombre.Text,
                 Apellido = txtApellido.Text,
-                Genero = drpGenero.Text,
+                Genero = drpGenero.SelectedItem.Text,
                 Direccion = txtDireccion.Text,
                 NumeroDireccion = int.Parse(txtNumeroDireccion.Text),
                 Departamento = txtDepartamento.Text,
