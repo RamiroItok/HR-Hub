@@ -131,17 +131,21 @@ namespace GUI
                     CargarTextos();
 
                     var esContraseñaValida = _usuarioService.ValidarFormatoContraseña(usuario.Contraseña);
+                    var esUsuarioValido = _usuarioService.ObtenerUsuarioPorEmail(usuario.Email);
+
                     if (esContraseñaValida)
                     {
-                        var userSession = Session["Usuario"] as Usuario;
-                        var id = _usuarioService.RegistrarUsuario(usuario, userSession);
+                        if (esUsuarioValido == null)
+                        {
+                            var userSession = Session["Usuario"] as Usuario;
+                            var id = _usuarioService.RegistrarUsuario(usuario, userSession);
 
-                        var body = _usuarioService.ObtenerCuerpoCorreo(AsuntoMail.GeneracionContraseña);
+                            var body = _usuarioService.ObtenerCuerpoCorreo(AsuntoMail.GeneracionContraseña);
 
-                        body = body.Replace("{{CONTRASEÑA}}", usuario.Contraseña);
+                            body = body.Replace("{{CONTRASEÑA}}", usuario.Contraseña);
 
-                        _mailService.EnviarMail(usuario.Email, AsuntoMail.GeneracionContraseña, body);
-                        string script = $@"
+                            _mailService.EnviarMail(usuario.Email, AsuntoMail.GeneracionContraseña, body);
+                            string script = $@"
                             <script>
                                 Swal.fire({{
                                     title: '{MensajeRegistroExitoTitulo}',
@@ -151,8 +155,13 @@ namespace GUI
                                 }});
                             </script>";
 
-                        ClientScript.RegisterStartupScript(this.GetType(), "registroExitoso", script);
-                        Limpiar();
+                            ClientScript.RegisterStartupScript(this.GetType(), "registroExitoso", script);
+                            Limpiar();
+                        }
+                        else
+                        {
+                            throw new Exception("MessageErrorMailRegistrado");
+                        }
                     }
                     else
                     {
