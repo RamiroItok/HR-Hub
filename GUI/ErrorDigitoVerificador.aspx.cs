@@ -50,10 +50,12 @@ namespace GUI
             {
                 Session.Abandon();
                 Response.Redirect("Home.aspx");
+                Context.ApplicationInstance.CompleteRequest();
             }
             else
             {
                 Response.Redirect("MenuPrincipal.aspx");
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
 

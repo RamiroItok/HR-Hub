@@ -91,6 +91,7 @@ namespace GUI
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login.aspx");
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         public void UpdateLanguage(string newLanguage)

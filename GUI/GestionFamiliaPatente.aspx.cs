@@ -32,6 +32,7 @@ namespace GUI
             if(!_iPermiso.TienePermiso(usuario, Permiso.GestionFamiliaPatente))
             {
                 Response.Redirect("AccesoDenegado.aspx");
+                Context.ApplicationInstance.CompleteRequest();
                 return;
             }
 

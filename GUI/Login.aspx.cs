@@ -29,6 +29,7 @@ namespace GUI
                 if (Session["Usuario"] != null)
                 {
                     Response.Redirect("/MenuPrincipal.aspx");
+                    Context.ApplicationInstance.CompleteRequest();
                 }
 
                 string selectedLanguage = Session["SelectedLanguage"] as string ?? "es";
@@ -68,6 +69,7 @@ namespace GUI
 
                     Session["ErrorVerificacionDV"] = falloIntegridad;
                     Response.Redirect($"ErrorDigitoVerificador.aspx");
+                    Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
 

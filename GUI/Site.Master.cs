@@ -14,6 +14,7 @@ namespace GUI
         {
             Session.Abandon();
             Response.Redirect("Login.aspx");
+            Context.ApplicationInstance.CompleteRequest();
         }
     }
 }

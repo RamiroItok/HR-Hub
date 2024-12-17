@@ -34,6 +34,7 @@ namespace GUI
             if(!_permisoService.TienePermiso(usuario, Permiso.MisCompras))
             {
                 Response.Redirect("AccesoDenegado.aspx");
+                Context.ApplicationInstance.CompleteRequest();
                 return;
             }
 
@@ -102,6 +103,7 @@ namespace GUI
             if (userSession == null)
             {
                 Response.Redirect("Login.aspx");
+                Context.ApplicationInstance.CompleteRequest();
                 return;
             }
 

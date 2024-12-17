@@ -13,13 +13,11 @@ namespace GUI
 {
     public partial class DocumentoReporte : Page, IIdiomaService
     {
-        private readonly IDocumentoService _documentoService;
         private readonly IPermisoService _permisoService;
         private readonly IdiomaService _idiomaService;
 
         public DocumentoReporte()
         {
-            _documentoService = Global.Container.Resolve<IDocumentoService>();
             _permisoService = Global.Container.Resolve<IPermisoService>();
             _idiomaService = Global.Container.Resolve<IdiomaService>();
             _idiomaService.Subscribe(this);
@@ -31,6 +29,7 @@ namespace GUI
             if (!_permisoService.TienePermiso(usuario, Permiso.DocumentoReporte))
             {
                 Response.Redirect("AccesoDenegado.aspx");
+                Context.ApplicationInstance.CompleteRequest();
                 return;
             }
 
