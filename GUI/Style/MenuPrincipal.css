@@ -1,5 +1,4 @@
-﻿/* Sección de bienvenida */
-.welcome-section {
+﻿.welcome-section {
     background-color: #76B041;
     color: white;
     padding: 40px 40px 10px 40px;
@@ -10,7 +9,6 @@
         font-size: 2.5rem;
     }
 
-/* Estructura de la página */
 form {
     flex: 1;
     display: flex;
@@ -27,39 +25,36 @@ body {
     flex-direction: column;
 }
 
-/* Contenedor de las tarjetas */
 .quick-actions {
     margin-top: 40px;
     display: flex;
-    justify-content: center; /* Centra las tarjetas */
-    flex-wrap: wrap; /* Permite que las tarjetas se distribuyan en múltiples filas si es necesario */
-    gap: 30px; /* Ajustamos el espacio entre las tarjetas */
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
     padding: 20px;
 }
 
-/* Estilo de las tarjetas */
 .card {
     border-radius: 12px;
-    border: 1px solid #ccc; /* Color de borde más definido */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Sombras más definidas */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto de transición suave */
-    background-color: #fdfdfd; /* Fondo más claro */
-    flex-grow: 1; /* Permite que todas las tarjetas ocupen el mismo espacio */
-    min-width: 300px; /* Asegura que las tarjetas no se hagan demasiado pequeñas en pantallas grandes */
-    max-width: 350px; /* Establece un tamaño máximo para tarjetas */
-    min-height: 250px; /* Altura mínima consistente */
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fdfdfd;
+    flex-grow: 1;
+    min-width: 300px; 
+    max-width: 350px; 
+    min-height: 250px;
 }
 
     .card:hover {
-        transform: translateY(-5px); /* Elevación mayor en hover */
-        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
     }
 
-/* Títulos dentro de las tarjetas */
 .card-title {
     font-size: 1.35rem;
     font-weight: 700;
-    color: #333; /* Color más oscuro para mayor contraste */
+    color: #333;
     margin-bottom: 15px;
     display: flex;
     align-items: center;
@@ -67,21 +62,19 @@ body {
 
     .card-title i {
         margin-right: 8px;
-        font-size: 1.4rem; /* Iconos más grandes para títulos */
-        color: #76B041; /* Color del ícono que combina con el encabezado */
+        font-size: 1.4rem;
+        color: #76B041;
     }
 
-/* Estilo de las descripciones en las tarjetas */
 .card-text {
     color: #555;
     font-size: 12px;
     margin-bottom: 20px;
-    background-color: #f7f7f7; /* Fondo claro */
+    background-color: #f7f7f7;
     padding: 10px;
-    border-left: 3px solid #76B041; /* Línea decorativa */
+    border-left: 3px solid #76B041;
 }
 
-/* Botones */
 .btn {
     font-size: 1rem;
     padding: 12px;
@@ -90,7 +83,6 @@ body {
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Botón principal */
 .btn-primary {
     background-color: #4CAF50;
     border-color: #4CAF50;
@@ -102,7 +94,6 @@ body {
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
     }
 
-/* Botón de contorno */
 .btn-outline-primary {
     border-color: #4CAF50;
     color: #4CAF50;
@@ -111,15 +102,13 @@ body {
     .btn-outline-primary:hover {
         background-color: #4CAF50;
         color: white;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); /* Sombra en hover */
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
     }
 
-/* Espaciado adicional entre los elementos dentro de las tarjetas */
 .card-body {
     padding: 20px;
 }
 
-/* Pie de página */
 .footer {
     background-color: #333;
     color: #fff;
@@ -136,22 +125,20 @@ body {
         margin: 0;
     }
 
-/* Para pantallas más grandes */
 @media (min-width: 992px) {
     .quick-actions {
-        justify-content: space-between; /* Distribuye mejor en pantallas grandes */
+        justify-content: space-between;
     }
 }
 
-
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px;
+    right: 15px; 
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;

@@ -108,12 +108,12 @@
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px; 
+    right: 15px; 
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;

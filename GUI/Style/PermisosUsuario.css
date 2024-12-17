@@ -271,9 +271,8 @@ footer {
         margin-bottom: 5px;
     }
 
-/* Estilos personalizados para el modal */
 #verMasModal .modal-content {
-    background-color: #f9f9f9; /* Fondo claro */
+    background-color: #f9f9f9;
     border-radius: 10px;
     border: none;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
@@ -281,7 +280,7 @@ footer {
 }
 
 #verMasModal .modal-header {
-    background-color: #4CAF50; /* Verde similar al logo */
+    background-color: #4CAF50;
     color: white;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -289,7 +288,7 @@ footer {
 
 #verMasModal .modal-title {
     font-weight: bold;
-    font-size: 1.8rem; /* Aumentado para el título */
+    font-size: 1.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -301,17 +300,17 @@ footer {
 
     #verMasModal .close:hover {
         opacity: 1;
-        color: #2d2d2d; /* Gris oscuro como en el logo */
+        color: #2d2d2d;
     }
 
 #verMasModal .modal-body p {
-    font-size: 1.4rem; /* Aumentado para los datos del usuario */
+    font-size: 1.4rem;
     margin: 1rem 0;
 }
 
     #verMasModal .modal-body p strong {
-        color: #4CAF50; /* Verde para resaltar */
-        font-size: 1.5rem; /* Tamaño aumentado para datos importantes */
+        color: #4CAF50;
+        font-size: 1.5rem;
     }
 
 #verMasModal .modal-footer {
@@ -324,49 +323,46 @@ footer {
         background-color: #4CAF50;
         color: white;
         border: none;
-        font-size: 1.2rem; /* Aumentado para el botón */
+        font-size: 1.2rem;
     }
 
         #verMasModal .modal-footer .btn-secondary:hover {
-            background-color: #388E3C; /* Verde más oscuro */
+            background-color: #388E3C;
             color: white;
         }
 
-/* Lista de permisos estilizada */
 #modalPermisos {
     list-style-type: none;
     padding: 0;
 }
 
     #modalPermisos li {
-        padding: 0.7rem; /* Aumentado para más espacio */
-        background-color: #e8f5e9; /* Fondo verde suave */
+        padding: 0.7rem;
+        background-color: #e8f5e9;
         border-radius: 5px;
         margin-bottom: 0.5rem;
-        color: #2d2d2d; /* Gris oscuro para el texto */
+        color: #2d2d2d;
         font-weight: 500;
-        font-size: 1.2rem; /* Tamaño aumentado para los permisos */
+        font-size: 1.2rem;
     }
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Distancia desde la parte inferior */
-    right: 15px; /* Distancia desde el borde derecho */
-    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    bottom: 15px; 
+    right: 15px;
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
-    width: auto; /* Evita que ocupe todo el ancho */
+    width: auto;
 }
 
-/* Elimina el ancho completo de los elementos select generales */
 input[type="text"], select {
-    width: 100%; /* Este ancho se aplica a otros elementos, pero no afectará a #ddlLanguage */
+    width: 100%;
 }
-
 
 .text-danger {
     color: #a94442;

@@ -258,17 +258,17 @@ footer {
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    padding: 5px 10px; /* Ajusta el padding para un tamaño más compacto */
+    bottom: 15px; 
+    right: 15px;
+    z-index: 1000;
+    padding: 5px 10px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
-    width: auto; /* Ajusta el ancho automáticamente según el contenido */
-    display: inline-block; /* Evita que ocupe todo el ancho */
+    width: auto;
+    display: inline-block;
 }
 
     #ddlLanguage option {

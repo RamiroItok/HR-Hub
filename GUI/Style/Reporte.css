@@ -2,28 +2,25 @@
     max-width: 900px;
     margin: 20px auto;
     padding: 30px;
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-/* Título principal */
 h2 {
-    color: #4e7e32; /* Verde oscuro del logo */
+    color: #4e7e32;
     font-weight: bold;
     font-size: 1.8em;
     margin-bottom: 20px;
 }
 
-/* Descripción */
 p {
     color: #666;
     font-size: 1.1em;
     margin-bottom: 20px;
 }
 
-/* Botonera */
 .button-container {
     display: flex;
     gap: 10px;
@@ -42,11 +39,11 @@ p {
     }
 
     .button-container .btn-primary {
-        background-color: #67a544; /* Verde principal */
+        background-color: #67a544;
     }
 
     .button-container .btn-secondary {
-        background-color: #4e7e32; /* Verde oscuro */
+        background-color: #4e7e32;
     }
 
     .button-container .btn:hover {
@@ -54,7 +51,6 @@ p {
         opacity: 0.9;
     }
 
-/* Estilo del Dropdown */
 .form-control {
     font-size: 1em;
     padding: 8px;
@@ -63,7 +59,6 @@ p {
     width: auto;
 }
 
-/* Contenedor general de los gráficos (usando grid) */
 #chartContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -72,7 +67,6 @@ p {
     margin-top: 20px;
 }
 
-/* Contenedor de cada gráfico */
 .chart-container {
     width: 100%;
     max-width: 350px;
@@ -95,7 +89,6 @@ p {
         font-size: 1em;
     }
 
-    /* Ajuste de tamaño del gráfico */
     .chart-container canvas {
         width: 100% !important;
         height: 180px !important;
@@ -103,12 +96,12 @@ p {
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px;
+    right: 15px;
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;

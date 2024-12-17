@@ -26,7 +26,6 @@
     color: #a94442;
 }
 
-    /* Título */
 .containerRestore h2 {
     font-size: 2em;
     color: #67a544;
@@ -34,19 +33,16 @@
     font-weight: bold;
 }
 
-    /* Descripción */
     .containerRestore .description {
         font-size: 1em;
-        color: #000; /* Cambiado a negro */
+        color: #000;
         margin-bottom: 20px;
     }
 
-/* Etiqueta de archivo */
 .file-upload {
     transition: border-color 0.3s ease;
 }
 
-/* Botones */
 .btn-action {
     padding: 12px 20px;
     font-size: 1em;
@@ -59,13 +55,12 @@
 }
 
 .file-upload label {
-    color: #000; /* Cambiado a negro */
+    color: #000;
     font-weight: 500;
     margin-bottom: 5px;
     display: block;
 }
 
-/* Colores de botones */
 .btn-primary {
     background-color: #67a544;
     border-color: #67a544;
@@ -88,7 +83,6 @@
         transform: translateY(-2px);
     }
 
-/* Mensaje de alerta */
 .alert-message {
     font-size: 1em;
     color: #4CAF50;
@@ -136,12 +130,12 @@
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px; 
+    right: 15px;
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;

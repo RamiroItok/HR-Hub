@@ -4,13 +4,12 @@
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: #333; /* Asegúrate de que el color de fondo cubre completamente */
+    background-color: #333;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Ajuste de padding en el body para que no quede detrás del navbar */
 body {
-    padding-top: 60px; /* Ajusta este valor según la altura de tu navbar */
+    padding-top: 60px;
 }
 
 form {
@@ -39,17 +38,15 @@ form {
         transition: box-shadow 0.3s ease;
     }
 
-/* Título centrado */
 .title {
     color: #2e7d32;
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
     text-transform: uppercase;
-    text-align: center; /* Asegura el centrado del texto */
+    text-align: center;
 }
 
-/* Ajuste adicional para alinear el texto del título */
 .container-title {
     display: flex;
     justify-content: center;
@@ -57,7 +54,7 @@ form {
     margin: 0;
     padding: 0;
 }
-/* Labels and Buttons */
+
 .form-label {
     font-weight: bold;
     color: #4CAF50;
@@ -71,7 +68,6 @@ form {
     color: #5cb85c;
 }
 
-/* Button Styles */
 .btn {
     color: #ffffff;
     border: none;
@@ -107,7 +103,6 @@ form {
         background-color: #c82333;
     }
 
-/* Table Styles */
 .table {
     width: 100%;
     border-collapse: separate;
@@ -136,7 +131,6 @@ form {
         transition: background-color 0.3s ease;
     }
 
-/* DropDownList Styles */
 .language-selector {
     position: fixed;
     bottom: 15px;
@@ -155,13 +149,11 @@ form {
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-/* Custom Checkbox Row Highlight */
 .grid-view-row-selected {
     background-color: #c3e6cb;
     transition: background-color 0.3s ease;
 }
 
-/* Modal Title and Header */
 .modal-header {
     background-color: #4CAF50;
     color: white;
@@ -174,7 +166,6 @@ form {
     font-size: 1.5rem;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .title {
         font-size: 1.5rem;
@@ -188,12 +179,12 @@ form {
 
 #ddlLanguage {
     position: fixed;
-    bottom: 15px; /* Separación desde la parte inferior */
-    right: 15px; /* Separación desde el borde derecho */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    bottom: 15px; 
+    right: 15px;
+    z-index: 1000;
     padding: 5px;
     font-size: 14px;
-    background-color: #fff; /* Fondo blanco para mejor visibilidad */
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
